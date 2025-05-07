@@ -1,0 +1,129 @@
+[
+  {
+    "log": "short",
+    "did_url": "did:webvh:QmWvVRG6Vo7cS6sYxg9RkZXCSrnhhhQSxdQLf4G4XCAQxy:domain.example",
+    "status": "ok",
+    "didDocumentMetadata": {
+      "created": "2000-01-01T12:01:00Z",
+      "updated": "2000-01-01T12:02:00Z",
+      "versionId": "2-QmaSjvjEPdsqNfjs1TG892H5uW6SJhgMzgxMjeW8rCW8ug",
+      "versionNumber": 2,
+      "versionTime": "2000-01-01T12:02:00Z"
+    }
+  },
+  {
+    "log": "short",
+    "did_url": "did:webvh:QmWvVRG6Vo7cS6sYxg9RkZXCSrnhhhQSxdQLf4G4XCAQxy:domain.example?versionId=1-QmTUXyPUEwGpYL1yMgaR2gEW9hi6pJ7z7Yjkd2yyXdeYeY",
+    "status": "ok",
+    "didDocumentMetadata": {
+      "created": "2000-01-01T12:01:00Z",
+      "updated": "2000-01-01T12:02:00Z",
+      "versionId": "1-QmTUXyPUEwGpYL1yMgaR2gEW9hi6pJ7z7Yjkd2yyXdeYeY",
+      "versionNumber": 1,
+      "versionTime": "2000-01-01T12:01:00Z"
+    }
+  },
+  {
+    "log": "short",
+    "did_url": "did:webvh:QmWvVRG6Vo7cS6sYxg9RkZXCSrnhhhQSxdQLf4G4XCAQxy:domain.example?versionNumber=1",
+    "status": "ok",
+    "didDocumentMetadata": {
+      "created": "2000-01-01T12:01:00Z",
+      "updated": "2000-01-01T12:02:00Z",
+      "versionId": "1-QmTUXyPUEwGpYL1yMgaR2gEW9hi6pJ7z7Yjkd2yyXdeYeY",
+      "versionNumber": 1,
+      "versionTime": "2000-01-01T12:01:00Z"
+    }
+  },
+  {
+    "log": "short",
+    "did_url": "did:webvh:QmWvVRG6Vo7cS6sYxg9RkZXCSrnhhhQSxdQLf4G4XCAQxy:domain.example?versionNumber=0",
+    "status": "error",
+    "didResolutionMetadata": {
+      "error": "notFound"
+    }
+  },
+  {
+    "log": "short",
+    "did_url": "did:webvh:QmWvVRG6Vo7cS6sYxg9RkZXCSrnhhhQSxdQLf4G4XCAQxy:domain.example?versionId=1-invalid",
+    "status": "error",
+    "didResolutionMetadata": {
+      "error": "notFound"
+    }
+  },
+  {
+    "log": "short",
+    "did_url": "did:webvh:QmWvVRG6Vo7cS6sYxg9RkZXCSrnhhhQSxdQLf4G4XCAQxy:domain.example?versionNumber=1&versionId=2-QmaSjvjEPdsqNfjs1TG892H5uW6SJhgMzgxMjeW8rCW8ug",
+    "status": "error",
+    "didResolutionMetadata": {
+      "error": "notFound"
+    }
+  },
+  {
+    "log": "missing-proof",
+    "did_url": "did:webvh:QmWvVRG6Vo7cS6sYxg9RkZXCSrnhhhQSxdQLf4G4XCAQxy:domain.example",
+    "status": "error",
+    "didResolutionMetadata": {
+      "error": "invalidDid"
+    }
+  },
+  {
+    "log": "missing-proof",
+    "did_url": "did:webvh:QmWvVRG6Vo7cS6sYxg9RkZXCSrnhhhQSxdQLf4G4XCAQxy:domain.example?versionId=1-QmTUXyPUEwGpYL1yMgaR2gEW9hi6pJ7z7Yjkd2yyXdeYeY",
+    "status": "ok",
+    "didDocumentMetadata": {
+      "versionId": "1-QmTUXyPUEwGpYL1yMgaR2gEW9hi6pJ7z7Yjkd2yyXdeYeY",
+      "versionNumber": 1,
+      "versionTime": "2000-01-01T12:01:00Z"
+    }
+  },
+  {
+    "log": "missing-proof",
+    "did_url": "did:webvh:QmWvVRG6Vo7cS6sYxg9RkZXCSrnhhhQSxdQLf4G4XCAQxy:domain.example?versionId=2-QmaSjvjEPdsqNfjs1TG892H5uW6SJhgMzgxMjeW8rCW8ug",
+    "status": "ok",
+    "didDocumentMetadata": {
+      "versionId": "2-QmaSjvjEPdsqNfjs1TG892H5uW6SJhgMzgxMjeW8rCW8ug",
+      "versionNumber": 2
+    }
+  },
+  {
+    "log": "missing-proof",
+    "did_url": "did:webvh:QmWvVRG6Vo7cS6sYxg9RkZXCSrnhhhQSxdQLf4G4XCAQxy:domain.example?versionId=3-QmWb1SVuFJWNbLyYsPiAK2UZQY22UJAU2ueaTDomfodpvs",
+    "status": "error",
+    "didResolutionMetadata": {
+      "error": "invalidDid"
+    }
+  },
+  {
+    "log": "invalid-method",
+    "did_url": "did:webvh:QmXZQ3iT42T1yeb2ACjAw32ADgzTGhFoyFoUf1iKaMSa6P:domain.example",
+    "status": "error",
+    "didResolutionMetadata": {
+      "error": "invalidDid"
+    }
+  },
+  {
+    "log": "invalid-method",
+    "did_url": "did:webvh:QmXZQ3iT42T1yeb2ACjAw32ADgzTGhFoyFoUf1iKaMSa6P:domain.example?versionNumber=1",
+    "status": "error",
+    "didResolutionMetadata": {
+      "error": "invalidDid"
+    }
+  },
+  {
+    "log": "invalid-scid",
+    "did_url": "did:webvh:QmXZQ3iT42T1yeb2ACjAw32ADgzTGhFoyFoUf1iKaMSa6P:domain.example",
+    "status": "error",
+    "didResolutionMetadata": {
+      "error": "invalidDid"
+    }
+  },
+  {
+    "log": "invalid-scid",
+    "did_url": "did:webvh:QmXZQ3iT42T1yeb2ACjAw32ADgzTGhFoyFoUf1iKaMSa6P:domain.example?versionNumber=1",
+    "status": "error",
+    "didResolutionMetadata": {
+      "error": "invalidDid"
+    }
+  }
+]
