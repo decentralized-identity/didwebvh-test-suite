@@ -117,7 +117,7 @@ def write_short_log(log_id: str) -> tuple[str, list[str]]:
             "updateKeys": [str(sk.multikey)],
             "witness": {
                 "threshold": 1,
-                "witnesses": [{"id": "did:key:" + str(wit_key.multikey), "weight": 1}],
+                "witnesses": [{"id": "did:key:" + str(wit_key.multikey)}],
             },
         },
         document=gen_doc,
@@ -233,7 +233,7 @@ def write_missing_witness_log(log_id: str) -> tuple[str, list[str]]:
             "updateKeys": [str(sk.multikey)],
             "witness": {
                 "threshold": 1,
-                "witnesses": [{"id": "did:key:" + str(wit_key.multikey), "weight": 1}],
+                "witnesses": [{"id": "did:key:" + str(wit_key.multikey)}],
             },
         },
         document=gen_doc,
