@@ -1,5 +1,7 @@
 # java-eecc status
 
+Implementation: java-eecc 0.2.1
+
 ## DID Creation
 
 | Test Case | Result | Notes |
@@ -11,7 +13,7 @@
 | multi-update | ✅ PASS |  |
 | multiple-update-keys | ✅ PASS |  |
 | portable | ✅ PASS |  |
-| portable-move | ⚠️ SKIP | domain migration (portable-move) not supported by EECC UpdateOptions |
+| portable-move | ✅ PASS |  |
 | pre-rotation | ✅ PASS |  |
 | pre-rotation-consume | ✅ PASS |  |
 | services | ✅ PASS |  |
@@ -58,7 +60,7 @@
 | portable | rust | 🔶 DIFF | see diffs.txt |
 | portable | ts | 🔶 DIFF | see diffs.txt |
 | portable-move | java | 🔶 DIFF | see diffs.txt |
-| portable-move | java-eecc | ⚠️ SKIP | no did.jsonl present |
+| portable-move | java-eecc (self) | 🔶 DIFF | see diffs.txt |
 | portable-move | python | 🔶 DIFF | see diffs.txt |
 | portable-move | rust | 🔶 DIFF | see diffs.txt |
 | portable-move | ts | 🔶 DIFF | see diffs.txt |

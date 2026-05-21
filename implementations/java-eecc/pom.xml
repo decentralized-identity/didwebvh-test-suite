@@ -14,16 +14,16 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
     </properties>
 
     <dependencies>
         <!-- did:webvh Java implementation (European EPC Competence Center) -->
         <dependency>
-            <groupId>io.github.european-epc-competence-center</groupId>
-            <artifactId>didwebvh-java</artifactId>
-            <version>0.1.0-SNAPSHOT</version>
+            <groupId>de.eecc.did</groupId>
+            <artifactId>webvh</artifactId>
+            <version>0.2.1</version>
         </dependency>
 
         <!-- JSON Canonicalization Scheme (RFC 8785) for comparison -->

@@ -4,14 +4,15 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import io.didwebvh.api.*;
-import io.didwebvh.crypto.DataIntegrity;
-import io.didwebvh.crypto.Multiformats;
-import io.didwebvh.crypto.Signer;
-import io.didwebvh.log.LogSerializer;
-import io.didwebvh.model.*;
-import io.didwebvh.model.proof.DataIntegrityProof;
-import io.didwebvh.witness.WitnessProofCollection;
+import de.eecc.did.webvh.DidDocument;
+import de.eecc.did.webvh.api.*;
+import de.eecc.did.webvh.crypto.DataIntegrity;
+import de.eecc.did.webvh.crypto.Multiformats;
+import de.eecc.did.webvh.crypto.Signer;
+import de.eecc.did.webvh.log.LogSerializer;
+import de.eecc.did.webvh.model.*;
+import de.eecc.did.webvh.model.proof.DataIntegrityProof;
+import de.eecc.did.webvh.witness.WitnessProofCollection;
 import org.bouncycastle.crypto.params.Ed25519PrivateKeyParameters;
 import org.bouncycastle.crypto.signers.Ed25519Signer;
 import org.yaml.snakeyaml.Yaml;
@@ -170,7 +171,7 @@ public class GenerateVectors {
 
                 CreateOptions.Builder cb = CreateOptions.builder()
                         .domain(domain)
-                        .initialDocument(initialDoc)
+                        .initialDocument(DidDocument.fromJson(MAPPER.writeValueAsString(initialDoc)))
                         .updateKeys(updateKeyMks)
                         .signer(signer);
                 if (portable != null && portable) cb.portable(true);
@@ -180,7 +181,7 @@ public class GenerateVectors {
                 CreateResult result = DidWebVh.create(cb.build());
                 currentLog = result.log();
                 currentDid = result.did();
-                currentDoc = result.document();
+                currentDoc = toJsonNode(result.document());
 
                 if (witnessParam != null) {
                     witnessEntries.add(makeWitnessEntry(
@@ -189,11 +190,6 @@ public class GenerateVectors {
 
             // ----------------------------------------------------------------
             } else if ("update".equals(op)) {
-                if (step.containsKey("domain")) {
-                    throw new UnsupportedOperationException(
-                            "domain migration (portable-move) not supported by EECC UpdateOptions");
-                }
-
                 String signerKeyId = (String) step.get("signer");
 
                 List<String> newUpdateKeyMks = null;
@@ -215,15 +211,20 @@ public class GenerateVectors {
 
                 UpdateOptions.Builder ub = UpdateOptions.builder()
                         .log(currentLog)
-                        .updatedDocument(updatedDoc)
+                        .updatedDocument(DidDocument.fromJson(MAPPER.writeValueAsString(updatedDoc)))
                         .signer(signer);
                 if (newUpdateKeyMks != null) ub.updateKeys(newUpdateKeyMks);
                 if (nextKeyHashes != null) ub.nextKeyHashes(nextKeyHashes);
                 if (witnessParam != null) ub.witness(witnessParam);
+                String migrationDomain = (String) step.get("domain");
+                if (migrationDomain != null) ub.domain(migrationDomain);
 
                 UpdateResult result = DidWebVh.update(ub.build());
                 currentLog = result.log();
-                currentDoc = result.document();
+                currentDoc = toJsonNode(result.document());
+                if (migrationDomain != null && currentDoc != null) {
+                    currentDid = currentDoc.path("id").asText(currentDid);
+                }
 
                 if (witnessParam != null) {
                     witnessEntries.add(makeWitnessEntry(
@@ -367,7 +368,7 @@ public class GenerateVectors {
     private static ObjectNode buildResolutionResult(ResolveResult result, DidLog log, String did) {
         ObjectNode actual = MAPPER.createObjectNode();
 
-        JsonNode doc = result.document();
+        JsonNode doc = toJsonNode(result.document());
         if (doc == null && result.documentMetadata() != null
                 && Boolean.TRUE.equals(result.documentMetadata().deactivated())) {
             DidDocumentMetadata deactMeta = result.documentMetadata();
@@ -375,7 +376,7 @@ public class GenerateVectors {
                 try {
                     ResolveResult preDeact = DidWebVh.resolveFromLog(did, log,
                             ResolveOptions.builder().versionNumber(deactMeta.versionNumber() - 1).build());
-                    doc = preDeact.document();
+                    doc = toJsonNode(preDeact.document());
                 } catch (Exception ignored) {}
             }
         }
@@ -501,6 +502,15 @@ public class GenerateVectors {
             s.update(data, 0, data.length);
             return s.generateSignature();
         });
+    }
+
+    private static JsonNode toJsonNode(DidDocument doc) {
+        if (doc == null) return null;
+        try {
+            return MAPPER.readTree(doc.toJson());
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to parse DidDocument JSON", e);
+        }
     }
 
     private static byte[] hexToBytes(String hex) {

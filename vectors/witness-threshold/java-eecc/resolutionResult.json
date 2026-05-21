@@ -1,37 +1,37 @@
 {
   "didDocument" : {
     "@context" : [ "https://www.w3.org/ns/did/v1", "https://w3id.org/security/multikey/v1" ],
-    "id" : "did:webvh:QmVavdwQF34dfg3ykfijMhf6arcszfiW8spGhaJSvrBbr5:example.com",
-    "controller" : "did:webvh:QmVavdwQF34dfg3ykfijMhf6arcszfiW8spGhaJSvrBbr5:example.com",
+    "id" : "did:webvh:QmNgJ19PR985MeStbjzG3BrQJcqbsfjanmaqX9LCNkUnUX:example.com",
+    "controller" : "did:webvh:QmNgJ19PR985MeStbjzG3BrQJcqbsfjanmaqX9LCNkUnUX:example.com",
     "assertionMethod" : [ ],
     "keyAgreement" : [ ],
     "capabilityDelegation" : [ ],
     "capabilityInvocation" : [ ],
     "verificationMethod" : [ {
-      "id" : "did:webvh:QmVavdwQF34dfg3ykfijMhf6arcszfiW8spGhaJSvrBbr5:example.com#P5RDjVJG",
+      "id" : "did:webvh:QmNgJ19PR985MeStbjzG3BrQJcqbsfjanmaqX9LCNkUnUX:example.com#P5RDjVJG",
       "type" : "Multikey",
-      "controller" : "did:webvh:QmVavdwQF34dfg3ykfijMhf6arcszfiW8spGhaJSvrBbr5:example.com",
+      "controller" : "did:webvh:QmNgJ19PR985MeStbjzG3BrQJcqbsfjanmaqX9LCNkUnUX:example.com",
       "publicKeyMultibase" : "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
     } ],
-    "authentication" : [ "did:webvh:QmVavdwQF34dfg3ykfijMhf6arcszfiW8spGhaJSvrBbr5:example.com#P5RDjVJG" ],
+    "authentication" : [ "did:webvh:QmNgJ19PR985MeStbjzG3BrQJcqbsfjanmaqX9LCNkUnUX:example.com#P5RDjVJG" ],
     "service" : [ {
-      "id" : "did:webvh:QmVavdwQF34dfg3ykfijMhf6arcszfiW8spGhaJSvrBbr5:example.com#files",
+      "id" : "#files",
       "type" : "relativeRef",
       "serviceEndpoint" : "https://example.com/"
     }, {
       "@context" : "https://identity.foundation/linked-vp/contexts/v1",
-      "id" : "did:webvh:QmVavdwQF34dfg3ykfijMhf6arcszfiW8spGhaJSvrBbr5:example.com#whois",
+      "id" : "#whois",
       "type" : "LinkedVerifiablePresentation",
       "serviceEndpoint" : "https://example.com/whois.vp"
     } ]
   },
   "didDocumentMetadata" : {
-    "created" : "2026-05-14T20:10:25Z",
-    "updated" : "2026-05-14T20:10:25Z",
-    "versionId" : "1-QmZzAbTeGmGG5ji6gPLc6L4LzPq5Fi1F4XPuy7LVeXn9M1",
+    "created" : "2026-05-21T17:57:44Z",
+    "updated" : "2026-05-21T17:57:44Z",
+    "versionId" : "1-QmXs2LiztQ6tYHsAGXqW26ftCxcNR9P7zijvWdUUi3tBfN",
     "versionNumber" : 1,
-    "versionTime" : "2026-05-14T20:10:25Z",
-    "scid" : "QmVavdwQF34dfg3ykfijMhf6arcszfiW8spGhaJSvrBbr5"
+    "versionTime" : "2026-05-21T17:57:44Z",
+    "scid" : "QmNgJ19PR985MeStbjzG3BrQJcqbsfjanmaqX9LCNkUnUX"
   },
   "didResolutionMetadata" : {
     "contentType" : "application/did+ld+json"

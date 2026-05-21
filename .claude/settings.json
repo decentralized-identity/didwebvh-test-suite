@@ -11,7 +11,22 @@
       "Bash(git mv *)",
       "Bash(bun run *)",
       "Bash(cargo build *)",
-      "Bash(cargo run *)"
+      "Bash(cargo run *)",
+      "Bash(find ~/.m2/repository/io/github/european-epc-competence-center/didwebvh-java -type f -name \"*.pom\" 2>/dev/null | sort)",
+      "Read(//home/swcur/.m2/repository/io/github/european-epc-competence-center/didwebvh-java/**)",
+      "Bash(gh repo *)",
+      "Bash(find /tmp/didwebvh-temp/src/main/java -type f -name \"*.java\" | head -20)",
+      "Read(//tmp/didwebvh-temp/src/main/**)",
+      "Bash(ls -la /tmp/didwebvh-temp/src/main/java/)",
+      "Bash(ls -la /tmp/didwebvh-temp/ 2>&1 | head -30)",
+      "Read(//tmp/didwebvh-temp/**)",
+      "Bash(find /tmp/didwebvh-temp -name \"pom.xml\" -type f 2>&1)",
+      "Read(//tmp/didwebvh/didwebvh-java/src/main/java/de/eecc/did/webvh/api/**)",
+      "Read(//tmp/didwebvh/didwebvh-java/src/main/java/de/eecc/did/webvh/log/**)",
+      "Read(//tmp/didwebvh/didwebvh-java/src/main/java/de/eecc/did/webvh/model/**)",
+      "Read(//tmp/didwebvh/didwebvh-java/src/main/java/de/eecc/did/webvh/crypto/**)",
+      "WebFetch(domain:github.com)",
+      "Read(//tmp/didwebvh-repo/src/main/java/de/eecc/did/webvh/api/**)"
     ]
   }
 }

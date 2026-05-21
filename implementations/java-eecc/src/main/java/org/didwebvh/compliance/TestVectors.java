@@ -3,13 +3,13 @@ package org.didwebvh.compliance;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import io.didwebvh.api.DidWebVh;
-import io.didwebvh.api.ResolveOptions;
-import io.didwebvh.api.ResolveResult;
-import io.didwebvh.log.LogParser;
-import io.didwebvh.model.DidDocumentMetadata;
-import io.didwebvh.model.DidLog;
-import io.didwebvh.witness.WitnessProofCollection;
+import de.eecc.did.webvh.api.DidWebVh;
+import de.eecc.did.webvh.api.ResolveOptions;
+import de.eecc.did.webvh.api.ResolveResult;
+import de.eecc.did.webvh.log.LogParser;
+import de.eecc.did.webvh.model.DidDocumentMetadata;
+import de.eecc.did.webvh.model.DidLog;
+import de.eecc.did.webvh.witness.WitnessProofCollection;
 import org.erdtman.jcs.JsonCanonicalizer;
 
 import java.io.IOException;
@@ -350,7 +350,7 @@ public class TestVectors {
             ResolveOptions options, String did) {
         ObjectNode actual = MAPPER.createObjectNode();
 
-        JsonNode doc = result.document();
+        JsonNode doc = toJsonNode(result.document());
         if (doc == null && result.documentMetadata() != null
                 && Boolean.TRUE.equals(result.documentMetadata().deactivated())) {
             DidDocumentMetadata deactMeta = result.documentMetadata();
@@ -360,7 +360,7 @@ public class TestVectors {
                             .versionNumber(deactMeta.versionNumber() - 1)
                             .build();
                     ResolveResult preDeact = DidWebVh.resolveFromLog(did, log, preDeactOptions);
-                    doc = preDeact.document();
+                    doc = toJsonNode(preDeact.document());
                 } catch (Exception ignored) {}
             }
         }
@@ -511,6 +511,15 @@ public class TestVectors {
 
     private static String canonicalize(String json) throws IOException {
         return new JsonCanonicalizer(json).getEncodedString();
+    }
+
+    private static JsonNode toJsonNode(de.eecc.did.webvh.DidDocument doc) {
+        if (doc == null) return null;
+        try {
+            return MAPPER.readTree(doc.toJson());
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to parse DidDocument JSON", e);
+        }
     }
 
     // ---------------------------------------------------------------------------
