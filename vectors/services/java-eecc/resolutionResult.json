@@ -1,0 +1,47 @@
+{
+  "didDocument" : {
+    "@context" : [ "https://www.w3.org/ns/did/v1", "https://w3id.org/security/multikey/v1" ],
+    "id" : "did:webvh:QmaxR98xY27HzJqLW63V7CtwGRBc79fFLHy1rhSzDNBp9u:example.com",
+    "controller" : "did:webvh:QmaxR98xY27HzJqLW63V7CtwGRBc79fFLHy1rhSzDNBp9u:example.com",
+    "assertionMethod" : [ ],
+    "keyAgreement" : [ ],
+    "capabilityDelegation" : [ ],
+    "capabilityInvocation" : [ ],
+    "verificationMethod" : [ {
+      "id" : "did:webvh:QmaxR98xY27HzJqLW63V7CtwGRBc79fFLHy1rhSzDNBp9u:example.com#P5RDjVJG",
+      "type" : "Multikey",
+      "controller" : "did:webvh:QmaxR98xY27HzJqLW63V7CtwGRBc79fFLHy1rhSzDNBp9u:example.com",
+      "publicKeyMultibase" : "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+    } ],
+    "authentication" : [ "did:webvh:QmaxR98xY27HzJqLW63V7CtwGRBc79fFLHy1rhSzDNBp9u:example.com#P5RDjVJG" ],
+    "service" : [ {
+      "id" : "#linked-domain",
+      "type" : "LinkedDomains",
+      "serviceEndpoint" : "https://example.com"
+    }, {
+      "id" : "#messaging",
+      "type" : "DIDCommMessaging",
+      "serviceEndpoint" : "https://example.com/didcomm"
+    }, {
+      "id" : "#files",
+      "type" : "relativeRef",
+      "serviceEndpoint" : "https://example.com/"
+    }, {
+      "@context" : "https://identity.foundation/linked-vp/contexts/v1",
+      "id" : "#whois",
+      "type" : "LinkedVerifiablePresentation",
+      "serviceEndpoint" : "https://example.com/whois.vp"
+    } ]
+  },
+  "didDocumentMetadata" : {
+    "created" : "2026-05-21T17:57:44Z",
+    "updated" : "2026-05-21T17:57:45Z",
+    "versionId" : "2-QmXN4GKfLpgsv3zzqubqzvH9pABeGFtSDeufijNMvdQrJc",
+    "versionNumber" : 2,
+    "versionTime" : "2026-05-21T17:57:45Z",
+    "scid" : "QmaxR98xY27HzJqLW63V7CtwGRBc79fFLHy1rhSzDNBp9u"
+  },
+  "didResolutionMetadata" : {
+    "contentType" : "application/did+ld+json"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "didDocument" : {
+    "@context" : [ "https://www.w3.org/ns/did/v1", "https://w3id.org/security/multikey/v1" ],
+    "id" : "did:webvh:QmVykefrDdRomi8yhbV41wGDa7G33Cfu48S39JJeeksH9V:example.com",
+    "controller" : "did:webvh:QmVykefrDdRomi8yhbV41wGDa7G33Cfu48S39JJeeksH9V:example.com",
+    "assertionMethod" : [ ],
+    "keyAgreement" : [ ],
+    "capabilityDelegation" : [ ],
+    "capabilityInvocation" : [ ],
+    "verificationMethod" : [ {
+      "id" : "did:webvh:QmVykefrDdRomi8yhbV41wGDa7G33Cfu48S39JJeeksH9V:example.com#P5RDjVJG",
+      "type" : "Multikey",
+      "controller" : "did:webvh:QmVykefrDdRomi8yhbV41wGDa7G33Cfu48S39JJeeksH9V:example.com",
+      "publicKeyMultibase" : "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+    }, {
+      "id" : "did:webvh:QmVykefrDdRomi8yhbV41wGDa7G33Cfu48S39JJeeksH9V:example.com#ufuXSdxf",
+      "type" : "Multikey",
+      "controller" : "did:webvh:QmVykefrDdRomi8yhbV41wGDa7G33Cfu48S39JJeeksH9V:example.com",
+      "publicKeyMultibase" : "z6MknGc3ocHs3zdPiJbnaaqDi58NGb4pk1Sp9WxWufuXSdxf"
+    } ],
+    "authentication" : [ "did:webvh:QmVykefrDdRomi8yhbV41wGDa7G33Cfu48S39JJeeksH9V:example.com#P5RDjVJG", "did:webvh:QmVykefrDdRomi8yhbV41wGDa7G33Cfu48S39JJeeksH9V:example.com#ufuXSdxf" ],
+    "alsoKnownAs" : [ "did:web:example.com" ],
+    "service" : [ {
+      "id" : "#files",
+      "type" : "relativeRef",
+      "serviceEndpoint" : "https://example.com/"
+    }, {
+      "@context" : "https://identity.foundation/linked-vp/contexts/v1",
+      "id" : "#whois",
+      "type" : "LinkedVerifiablePresentation",
+      "serviceEndpoint" : "https://example.com/whois.vp"
+    } ]
+  },
+  "didDocumentMetadata" : {
+    "created" : "2026-05-21T17:57:44Z",
+    "updated" : "2026-05-21T17:57:45Z",
+    "versionId" : "2-QmP8NDRvcZx9AFFU3MUwgWiobTZRiMUea6R53eznCaZy4B",
+    "versionNumber" : 2,
+    "versionTime" : "2026-05-21T17:57:45Z",
+    "scid" : "QmVykefrDdRomi8yhbV41wGDa7G33Cfu48S39JJeeksH9V"
+  },
+  "didResolutionMetadata" : {
+    "contentType" : "application/did+ld+json"
+  }
+}
