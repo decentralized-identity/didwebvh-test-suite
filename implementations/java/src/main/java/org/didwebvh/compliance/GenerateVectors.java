@@ -1,28 +1,28 @@
 package org.didwebvh.compliance;
 
 import com.google.gson.*;
-import io.github.ivir3zam.didwebvh.core.DidWebVh;
-import io.github.ivir3zam.didwebvh.core.DidWebVhState;
-import io.github.ivir3zam.didwebvh.core.ResolutionException;
-import io.github.ivir3zam.didwebvh.core.SigningException;
-import io.github.ivir3zam.didwebvh.core.create.CreateDidConfig;
-import io.github.ivir3zam.didwebvh.core.create.CreateDidResult;
-import io.github.ivir3zam.didwebvh.core.crypto.MultikeyUtil;
-import io.github.ivir3zam.didwebvh.core.crypto.PreRotationHashGenerator;
-import io.github.ivir3zam.didwebvh.core.model.DataIntegrityProof;
-import io.github.ivir3zam.didwebvh.core.model.LogEntry;
-import io.github.ivir3zam.didwebvh.core.model.Parameters;
-import io.github.ivir3zam.didwebvh.core.model.ResolutionMetadata;
-import io.github.ivir3zam.didwebvh.core.model.ResolveResult;
-import io.github.ivir3zam.didwebvh.core.resolve.DidResolver;
-import io.github.ivir3zam.didwebvh.core.resolve.ResolveOptions;
-import io.github.ivir3zam.didwebvh.core.signing.ProofGenerator;
-import io.github.ivir3zam.didwebvh.core.signing.Signer;
-import io.github.ivir3zam.didwebvh.core.update.UpdateDidResult;
-import io.github.ivir3zam.didwebvh.core.witness.WitnessConfig;
-import io.github.ivir3zam.didwebvh.core.witness.WitnessEntry;
-import io.github.ivir3zam.didwebvh.core.witness.WitnessProofCollection;
-import io.github.ivir3zam.didwebvh.core.witness.WitnessProofEntry;
+import io.github.decentralizedidentity.didwebvh.core.DidWebVh;
+import io.github.decentralizedidentity.didwebvh.core.DidWebVhState;
+import io.github.decentralizedidentity.didwebvh.core.ResolutionException;
+import io.github.decentralizedidentity.didwebvh.core.SigningException;
+import io.github.decentralizedidentity.didwebvh.core.create.CreateDidConfig;
+import io.github.decentralizedidentity.didwebvh.core.create.CreateDidResult;
+import io.github.decentralizedidentity.didwebvh.core.crypto.MultikeyUtil;
+import io.github.decentralizedidentity.didwebvh.core.crypto.PreRotationHashGenerator;
+import io.github.decentralizedidentity.didwebvh.core.model.DataIntegrityProof;
+import io.github.decentralizedidentity.didwebvh.core.model.LogEntry;
+import io.github.decentralizedidentity.didwebvh.core.model.Parameters;
+import io.github.decentralizedidentity.didwebvh.core.model.ResolutionMetadata;
+import io.github.decentralizedidentity.didwebvh.core.model.ResolveResult;
+import io.github.decentralizedidentity.didwebvh.core.resolve.DidResolver;
+import io.github.decentralizedidentity.didwebvh.core.resolve.ResolveOptions;
+import io.github.decentralizedidentity.didwebvh.core.signing.ProofGenerator;
+import io.github.decentralizedidentity.didwebvh.core.signing.Signer;
+import io.github.decentralizedidentity.didwebvh.core.update.UpdateDidResult;
+import io.github.decentralizedidentity.didwebvh.core.witness.WitnessConfig;
+import io.github.decentralizedidentity.didwebvh.core.witness.WitnessEntry;
+import io.github.decentralizedidentity.didwebvh.core.witness.WitnessProofCollection;
+import io.github.decentralizedidentity.didwebvh.core.witness.WitnessProofEntry;
 import org.bouncycastle.crypto.params.Ed25519PrivateKeyParameters;
 import org.bouncycastle.crypto.signers.Ed25519Signer;
 import org.erdtman.jcs.JsonCanonicalizer;
@@ -89,6 +89,11 @@ public class GenerateVectors {
             if (!Files.exists(scriptPath)) continue;
 
             String scenarioName = scenarioDir.getFileName().toString();
+            if (scenarioName.startsWith("negative-")) {
+                System.out.println("Generating " + scenarioName + "... SKIP (negative test)");
+                skipped++;
+                continue;
+            }
             System.out.print("Generating " + scenarioName + "... ");
             try {
                 Yaml yaml = new Yaml();
@@ -173,14 +178,14 @@ public class GenerateVectors {
                         ? (List<String>) params.get("updateKeys")
                         : Collections.singletonList(signerKeyId);
 
-                // ivir3zam only supports one updateKey (the signer's key) at create time
+                // didwebvh-java only supports one updateKey (the signer's key) at create time
                 // Use the first declared updateKey as the signer
                 String primaryKeyId = updateKeyIds.get(0);
                 currentUpdateKeyMks = updateKeyIds.stream().map(multikeyMap::get).collect(Collectors.toList());
 
                 if (currentUpdateKeyMks.size() > 1) {
                     throw new UnsupportedOperationException(
-                            "multiple-update-keys at create time not supported by ivir3zam API");
+                            "multiple-update-keys at create time not supported by didwebvh-java API");
                 }
 
                 Signer signer = buildSigner(multikeyMap.get(primaryKeyId), privKeyMap.get(primaryKeyId));
@@ -494,7 +499,7 @@ public class GenerateVectors {
             byte[] sigBytes = bsSigner.generateSignature();
 
             // Encode as multibase base58btc (z prefix)
-            String proofValue = "z" + io.github.ivir3zam.didwebvh.core.crypto.Base58Btc.encode(sigBytes);
+            String proofValue = "z" + io.github.decentralizedidentity.didwebvh.core.crypto.Base58Btc.encode(sigBytes);
             proofOpts.setProofValue(proofValue);
             proofs.add(proofOpts);
         }

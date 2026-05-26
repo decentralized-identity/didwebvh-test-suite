@@ -9,8 +9,10 @@ import de.eecc.did.webvh.api.ResolveResult;
 import de.eecc.did.webvh.log.LogParser;
 import de.eecc.did.webvh.model.DidDocumentMetadata;
 import de.eecc.did.webvh.model.DidLog;
+import de.eecc.did.webvh.resolve.DidUrlTransformer;
 import de.eecc.did.webvh.witness.WitnessProofCollection;
 import org.erdtman.jcs.JsonCanonicalizer;
+import org.yaml.snakeyaml.Yaml;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -53,6 +55,7 @@ public class TestVectors {
     private int xfail = 0;
 
     private final List<String[]> allRows = new ArrayList<>();  // [scenario, logSource, result, notes]
+    private final List<String[]> negRows = new ArrayList<>();  // [scenario, expectedError, result, notes]
     private final StringBuilder allDiffs = new StringBuilder();
 
     public static void main(String[] args) {
@@ -82,10 +85,100 @@ public class TestVectors {
                     .collect(Collectors.toList());
         }
 
+        // --- Negative resolution tests (ts/ artifacts only) ---
+        for (Path scenarioDir : scenarios) {
+            String scenarioName = scenarioDir.getFileName().toString();
+            if (!scenarioName.startsWith("negative-")) continue;
+            if (!Files.exists(scenarioDir.resolve("script.yaml"))) continue;
+
+            Path tsDir = scenarioDir.resolve("ts");
+            Path jsonlPath = tsDir.resolve("did.jsonl");
+            Path resultPath = tsDir.resolve("resolutionResult.json");
+            if (!Files.exists(jsonlPath) || !Files.exists(resultPath)) {
+                negRows.add(new String[]{scenarioName, "?", "⚠️ SKIP", "ts/ not generated"});
+                continue;
+            }
+
+            String expectedError = "?";
+            try {
+                JsonNode rr = MAPPER.readTree(resultPath.toFile());
+                JsonNode rm = rr.path("didResolutionMetadata");
+                if (rm.has("error")) expectedError = rm.get("error").asText();
+            } catch (Exception ignored) {}
+
+            String rawJsonl = Files.readString(jsonlPath).strip();
+            if (rawJsonl.isEmpty()) {
+                // URL-only test: parse each DID URL from script.yaml using DidUrlTransformer.toLogUrl().
+                // PASS = all DIDs are rejected by the parser; FAIL = any DID is accepted.
+                Path scriptPath = scenarioDir.resolve("script.yaml");
+                try {
+                    Yaml yaml = new Yaml();
+                    Map<String, Object> script = yaml.load(Files.readString(scriptPath));
+                    List<?> steps = (List<?>) script.getOrDefault("steps", List.of());
+                    List<String> dids = new ArrayList<>();
+                    for (Object step : steps) {
+                        if (!(step instanceof Map)) continue;
+                        Map<?, ?> m = (Map<?, ?>) step;
+                        if (!"resolve-did".equals(m.get("op"))) continue;
+                        if (m.get("did") instanceof String) dids.add((String) m.get("did"));
+                    }
+                    if (dids.isEmpty()) {
+                        negRows.add(new String[]{scenarioName, expectedError, "⚠️ SKIP", "no resolve-did ops in script"});
+                    } else {
+                        String failReason = null;
+                        for (String did : dids) {
+                            try {
+                                DidUrlTransformer.toLogUrl(did);
+                                failReason = "URL parser accepted invalid DID: " + did;
+                                break;
+                            } catch (Exception ignored) {
+                                // URL correctly rejected
+                            }
+                        }
+                        if (failReason == null) {
+                            pass++;
+                            negRows.add(new String[]{scenarioName, expectedError, "✅ PASS", ""});
+                        } else {
+                            fail++;
+                            negRows.add(new String[]{scenarioName, expectedError, "❌ FAIL", failReason});
+                        }
+                    }
+                } catch (Exception e) {
+                    negRows.add(new String[]{scenarioName, expectedError, "⚠️ SKIP", "cannot parse script.yaml: " + e.getMessage()});
+                }
+                continue;
+            }
+
+            try {
+                DidLog negLog = LogParser.parse(rawJsonl);
+                String did = negLog.first().state().path("id").asText(null);
+                if (did == null) {
+                    negRows.add(new String[]{scenarioName, expectedError, "⚠️ SKIP", "cannot extract DID"});
+                    continue;
+                }
+                Path witnessPath = tsDir.resolve("did-witness.json");
+                ResolveOptions.Builder rb = ResolveOptions.builder();
+                if (Files.exists(witnessPath)) {
+                    WitnessProofCollection wpc = WitnessProofCollection.parse(Files.readString(witnessPath));
+                    rb.witnessProofs(wpc);
+                }
+                DidWebVh.resolveFromLog(did, negLog, rb.build());
+                // Resolver accepted a log it should have rejected.
+                fail++;
+                negRows.add(new String[]{scenarioName, expectedError, "❌ FAIL", "resolver accepted invalid log"});
+            } catch (Exception e) {
+                pass++;
+                negRows.add(new String[]{scenarioName, expectedError, "✅ PASS", ""});
+            }
+        }
+
         for (Path scenarioDir : scenarios) {
             if (!Files.exists(scenarioDir.resolve("script.yaml"))) continue;
 
             String scenarioName = scenarioDir.getFileName().toString();
+
+            // Negative test vectors are handled separately — skip here.
+            if (scenarioName.startsWith("negative-")) continue;
 
             // Delete old per-scenario status.md if present
             Files.deleteIfExists(scenarioDir.resolve(IMPL_NAME).resolve("status.md"));
@@ -217,6 +310,16 @@ public class TestVectors {
             } catch (Exception e) {
                 System.err.println("warning: could not read gen_results.json: " + e.getMessage());
             }
+        }
+
+        if (!negRows.isEmpty()) {
+            content.append("## Negative Resolution\n\n");
+            content.append("| Test Case | Expected Error | Result | Notes |\n|---|---|---|---|\n");
+            for (String[] row : negRows) {
+                content.append("| ").append(row[0]).append(" | ").append(row[1])
+                       .append(" | ").append(row[2]).append(" | ").append(row[3]).append(" |\n");
+            }
+            content.append("\n");
         }
 
         content.append("## Cross-Resolution\n\n");

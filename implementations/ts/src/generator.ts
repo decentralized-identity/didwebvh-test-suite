@@ -3,7 +3,7 @@ import path from 'path';
 import { load as yamlLoad } from 'js-yaml';
 import { sha256 } from '@noble/hashes/sha2';
 import { canonicalize } from 'json-canonicalize';
-import { createDID, updateDID, resolveDIDFromLog, multibaseEncode, multibaseDecode, MultibaseEncoding, prepareDataForSigning } from 'didwebvh-ts';
+import { createDID, updateDID, resolveDID, resolveDIDFromLog, multibaseEncode, multibaseDecode, MultibaseEncoding, prepareDataForSigning } from 'didwebvh-ts';
 import type { DIDLog, VerificationMethod, WitnessProofFileEntry, DataIntegrityProof } from 'didwebvh-ts';
 import { keyFromSeed, Ed25519Signer, PermissiveVerifier } from './cryptography.ts';
 import type { Script, CreateStep, UpdateStep, DeactivateStep, ResolveStep } from './interfaces.ts';
@@ -458,6 +458,128 @@ async function runVectorTest(
 interface RowEntry { logSource: string; result: string; notes: string }
 interface DiffEntry { logSource: string; filename: string; diff: string }
 interface GenRow { testCase: string; result: string; notes: string }
+interface NegRow { testCase: string; expectedError: string; result: string; notes: string }
+
+// ---------------------------------------------------------------------------
+// Negative resolution tests
+// ---------------------------------------------------------------------------
+
+// Calls resolveDID(did) with fetch mocked out.
+// PASS  = resolver rejected the URL before making any network call (correct).
+// FAIL  = resolver attempted a fetch (the malicious URL was not caught pre-network).
+async function runURLResolutionTest(
+  did: string,
+): Promise<{ outcome: 'pass' | 'fail'; fetchedUrl?: string }> {
+  let fetchAttempted = false;
+  let fetchedUrl = '';
+
+  const originalFetch = (globalThis as any).fetch;
+  const originalConsoleError = console.error;
+  (globalThis as any).fetch = async (url: RequestInfo | URL) => {
+    fetchAttempted = true;
+    fetchedUrl = String(url);
+    throw new Error('fetch intercepted by test harness');
+  };
+  // Suppress the library's "Error fetching DID log" console.error that fires
+  // when our fetch intercept throws — it's expected noise in this test context.
+  console.error = (...args: any[]) => {
+    if (typeof args[0] === 'string' && args[0].includes('Error fetching DID log')) return;
+    originalConsoleError(...args);
+  };
+
+  try {
+    await resolveDID(did);
+  } finally {
+    (globalThis as any).fetch = originalFetch;
+    console.error = originalConsoleError;
+  }
+
+  return fetchAttempted
+    ? { outcome: 'fail', fetchedUrl }
+    : { outcome: 'pass' };
+}
+
+async function runNegativeResolutionTest(
+  scenarioName: string,
+): Promise<{ outcome: 'pass' | 'fail' | 'skip'; expectedError: string; reason?: string }> {
+  const tsDir = path.join(VECTORS_DIR, scenarioName, 'ts');
+  const scriptPath = path.join(VECTORS_DIR, scenarioName, 'script.yaml');
+
+  if (!fs.existsSync(path.join(tsDir, 'did.jsonl'))) {
+    return { outcome: 'skip', expectedError: '—', reason: 'not generated' };
+  }
+
+  const resultPath = path.join(tsDir, 'resolutionResult.json');
+  if (!fs.existsSync(resultPath)) {
+    return { outcome: 'skip', expectedError: '—', reason: 'no resolutionResult.json' };
+  }
+
+  const expectedResult = JSON.parse(fs.readFileSync(resultPath, 'utf8'));
+  const expectedError: string = expectedResult.didResolutionMetadata?.error ?? '?';
+
+  const logContent = fs.readFileSync(path.join(tsDir, 'did.jsonl'), 'utf8').trim();
+  if (!logContent) {
+    // URL-only test: no log in the file.  Read the DID URLs from the script's
+    // resolve-did ops and test each one via resolveDID with a fetch intercept.
+    // PASS = resolver rejected before touching the network (correct behaviour).
+    // FAIL = resolver attempted a fetch (the URL slipped past validation).
+    const script = yamlLoad(fs.readFileSync(scriptPath, 'utf8')) as any;
+    const resolveDIDOps = (script.steps ?? []).filter((s: any) => s.op === 'resolve-did');
+
+    for (const op of resolveDIDOps) {
+      const r = await runURLResolutionTest(op.did as string);
+      if (r.outcome === 'fail') {
+        return {
+          outcome: 'fail',
+          expectedError,
+          reason: `resolver fetched URL: ${r.fetchedUrl}`,
+        };
+      }
+    }
+    return { outcome: 'pass', expectedError };
+  }
+
+  const log = logContent.split('\n').filter((l: string) => l.trim()).map((l: string) => JSON.parse(l)) as DIDLog;
+  const dummyVM = keyFromSeed('0'.repeat(64));
+  const verifier = new PermissiveVerifier({ verificationMethod: dummyVM });
+
+  const witnessPath = path.join(tsDir, 'did-witness.json');
+  const witnessProofs = fs.existsSync(witnessPath)
+    ? JSON.parse(fs.readFileSync(witnessPath, 'utf8'))
+    : undefined;
+
+  try {
+    await resolveDIDFromLog(log, { verifier, fastResolve: false, witnessProofs } as any);
+    // Resolver accepted the log — it should have rejected it.
+    return { outcome: 'fail', expectedError, reason: `expected error "${expectedError}" but resolution succeeded` };
+  } catch {
+    // Resolver threw — correctly rejected the invalid log.
+    return { outcome: 'pass', expectedError };
+  }
+}
+
+async function negativeResolutionStatus(): Promise<NegRow[]> {
+  const scenarios = fs.readdirSync(VECTORS_DIR)
+    .filter((d: string) => {
+      const scriptPath = path.join(VECTORS_DIR, d, 'script.yaml');
+      if (!fs.existsSync(scriptPath)) return false;
+      const s = yamlLoad(fs.readFileSync(scriptPath, 'utf8')) as any;
+      return s.negative === true;
+    })
+    .sort();
+
+  const rows: NegRow[] = [];
+  for (const name of scenarios) {
+    const r = await runNegativeResolutionTest(name);
+    rows.push({
+      testCase: name,
+      expectedError: r.expectedError,
+      result: r.outcome === 'pass' ? '✅ PASS' : r.outcome === 'fail' ? '❌ FAIL' : '⚠️ SKIP',
+      notes: r.reason ?? '',
+    });
+  }
+  return rows;
+}
 
 async function crossResolveStatus(
   scenarioName: string
@@ -520,7 +642,14 @@ async function main() {
   const verify = args.includes('--verify');
   const targets = args.filter((a: string) => !a.startsWith('--'));
 
-  const scriptPaths = targets.length > 0
+  const isNegativeScript = (scriptPath: string): boolean => {
+    try {
+      const s = yamlLoad(fs.readFileSync(scriptPath, 'utf8')) as any;
+      return s.negative === true;
+    } catch { return false; }
+  };
+
+  const scriptPaths = (targets.length > 0
     ? targets.map((t: string) =>
         fs.existsSync(t) ? t : path.join(VECTORS_DIR, t, 'script.yaml')
       )
@@ -530,7 +659,8 @@ async function main() {
           return fs.statSync(p).isDirectory() && fs.existsSync(path.join(p, 'script.yaml'));
         })
         .sort()
-        .map((d: string) => path.join(VECTORS_DIR, d, 'script.yaml'));
+        .map((d: string) => path.join(VECTORS_DIR, d, 'script.yaml'))
+  ).filter((p: string) => !isNegativeScript(p));
 
   const statusPath = path.join(TS_IMPL_DIR, 'status.md');
   const diffsPath = path.join(TS_IMPL_DIR, 'diffs.txt');
@@ -541,6 +671,7 @@ async function main() {
   }
 
   const genRows: GenRow[] = [];
+  const negRows: NegRow[] = [];
   const allRows: Array<{ testCase: string } & RowEntry> = [];
   const allDiffs: Array<{ testCase: string } & DiffEntry> = [];
 
@@ -571,11 +702,23 @@ async function main() {
   }
 
   if (!verify && (genRows.length > 0 || allRows.length > 0)) {
+    // Run negative resolution tests against pre-generated ts/ artifacts.
+    // Only meaningful on a full run (not single-scenario targets), but harmless
+    // to run always — scenarios without ts/ artifacts are reported as SKIP.
+    process.stdout.write('Running negative resolution tests... ');
+    const negResRows = await negativeResolutionStatus();
+    negRows.push(...negResRows);
+    console.log('done');
+
     const cfg = readConfig();
     const header = cfg.version ? `Implementation: didwebvh-ts ${cfg.version}\n\n` : '';
 
     const genTable = genRows.length > 0
       ? `## DID Creation\n\n| Test Case | Result | Notes |\n|---|---|---|\n${genRows.map(r => `| ${r.testCase} | ${r.result} | ${r.notes} |`).join('\n')}\n\n`
+      : '';
+
+    const negTable = negRows.length > 0
+      ? `## Negative Resolution\n\n| Test Case | Expected Error | Result | Notes |\n|---|---|---|---|\n${negRows.map(r => `| ${r.testCase} | ${r.expectedError} | ${r.result} | ${r.notes} |`).join('\n')}\n\n`
       : '';
 
     const tableRows = allRows
@@ -586,7 +729,7 @@ async function main() {
       : '';
 
     fs.writeFileSync(statusPath,
-      `# ts status\n\n${header}${genTable}${crossTable}`
+      `# ts status\n\n${header}${genTable}${negTable}${crossTable}`
     );
 
     if (allDiffs.length > 0) {

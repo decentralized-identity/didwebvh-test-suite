@@ -20,6 +20,7 @@ use std::path::Path;
 
 use didwebvh_rs::log_entry::LogEntryMethods;
 use didwebvh_rs::prelude::DIDWebVHState;
+use didwebvh_rs::url::WebVHURL;
 use serde_json::{json, Value};
 use serde_jcs;
 use similar::{ChangeTag, TextDiff};
@@ -65,12 +66,143 @@ async fn main() {
     let mut all_rows: Vec<(String, String, String, String)> = Vec::new();
     // (test_case, log_source, filename, diff_body)
     let mut all_diffs: Vec<(String, String, String, String)> = Vec::new();
+    // (test_case, expected_error, result, notes)
+    let mut neg_rows: Vec<(String, String, String, String)> = Vec::new();
+
+    // --- Negative resolution tests ---
+    let mut neg_scenarios: Vec<_> = scenarios
+        .iter()
+        .filter(|e| e.file_name().to_string_lossy().starts_with("negative-"))
+        .collect();
+    neg_scenarios.sort_by_key(|e| e.file_name());
+
+    for scenario in &neg_scenarios {
+        let scenario_dir = scenario.path();
+        let scenario_name = scenario.file_name().to_string_lossy().to_string();
+        let ts_dir = scenario_dir.join("ts");
+
+        // Read expected error from ts/resolutionResult.json
+        let expected_error = ts_dir.join("resolutionResult.json")
+            .exists()
+            .then(|| std::fs::read_to_string(ts_dir.join("resolutionResult.json")).ok())
+            .flatten()
+            .and_then(|s| serde_json::from_str::<serde_json::Value>(&s).ok())
+            .and_then(|v| v.pointer("/didResolutionMetadata/error").and_then(|e| e.as_str()).map(|s| s.to_string()))
+            .unwrap_or_else(|| "?".to_string());
+
+        let jsonl_path = ts_dir.join("did.jsonl");
+        if !jsonl_path.exists() {
+            neg_rows.push((scenario_name, expected_error, "⚠️ SKIP".to_string(), "ts/ not generated".to_string()));
+            continue;
+        }
+
+        let log_content = match std::fs::read_to_string(&jsonl_path) {
+            Ok(c) => c,
+            Err(e) => {
+                neg_rows.push((scenario_name, expected_error, "⚠️ SKIP".to_string(), format!("read error: {e}")));
+                continue;
+            }
+        };
+
+        if log_content.trim().is_empty() {
+            // URL-only test: parse the DID URLs from script.yaml and check that
+            // the URL parser rejects each one before any network call is needed.
+            let script_path = scenario_dir.join("script.yaml");
+            let script_str = match std::fs::read_to_string(&script_path) {
+                Ok(s) => s,
+                Err(_) => {
+                    neg_rows.push((scenario_name, expected_error, "⚠️ SKIP".to_string(), "cannot read script.yaml".to_string()));
+                    continue;
+                }
+            };
+            let script: serde_yaml::Value = match serde_yaml::from_str(&script_str) {
+                Ok(v) => v,
+                Err(_) => {
+                    neg_rows.push((scenario_name, expected_error, "⚠️ SKIP".to_string(), "cannot parse script.yaml".to_string()));
+                    continue;
+                }
+            };
+            let dids: Vec<String> = script["steps"]
+                .as_sequence()
+                .unwrap_or(&vec![])
+                .iter()
+                .filter(|s| s["op"].as_str() == Some("resolve-did"))
+                .filter_map(|s| s["did"].as_str().map(|d| d.to_string()))
+                .collect();
+
+            if dids.is_empty() {
+                neg_rows.push((scenario_name, expected_error, "⚠️ SKIP".to_string(), "no resolve-did ops in script".to_string()));
+                continue;
+            }
+
+            let mut fail_reason: Option<String> = None;
+            for did in &dids {
+                if WebVHURL::parse_did_url(did).is_ok() {
+                    fail_reason = Some(format!("URL parser accepted invalid DID: {did}"));
+                    break;
+                }
+            }
+            match fail_reason {
+                None => {
+                    pass += 1;
+                    neg_rows.push((scenario_name, expected_error, "✅ PASS".to_string(), String::new()));
+                }
+                Some(reason) => {
+                    fail += 1;
+                    neg_rows.push((scenario_name, expected_error, "❌ FAIL".to_string(), reason));
+                }
+            }
+            continue;
+        }
+
+        let witness_content = {
+            let wp = ts_dir.join("did-witness.json");
+            if wp.exists() { std::fs::read_to_string(&wp).ok() } else { None }
+        };
+
+        let first_entry: serde_json::Value = match log_content.lines().next()
+            .and_then(|l| serde_json::from_str(l).ok())
+        {
+            Some(v) => v,
+            None => {
+                neg_rows.push((scenario_name, expected_error, "⚠️ SKIP".to_string(), "cannot parse log".to_string()));
+                continue;
+            }
+        };
+        let base_did = match first_entry.pointer("/state/id").and_then(|v| v.as_str()) {
+            Some(s) => s.to_string(),
+            None => {
+                neg_rows.push((scenario_name, expected_error, "⚠️ SKIP".to_string(), "no /state/id".to_string()));
+                continue;
+            }
+        };
+
+        let mut state = DIDWebVHState::default();
+        match state.resolve_log_owned(&base_did, &log_content, witness_content.as_deref()).await {
+            Err(_) => {
+                // Resolver correctly rejected the invalid log.
+                pass += 1;
+                neg_rows.push((scenario_name, expected_error, "✅ PASS".to_string(), String::new()));
+            }
+            Ok(_) => {
+                // Resolver accepted a log it should have rejected.
+                fail += 1;
+                neg_rows.push((scenario_name, expected_error, "❌ FAIL".to_string(),
+                    "resolver accepted invalid log".to_string()));
+            }
+        }
+    }
 
     for scenario in &scenarios {
         let scenario_dir = scenario.path();
         let scenario_name = scenario.file_name().to_string_lossy().to_string();
 
         if !scenario_dir.join("script.yaml").exists() {
+            continue;
+        }
+
+        // Negative test vectors are handled separately — skip them here.
+        if scenario_name.starts_with("negative-") {
             continue;
         }
 
@@ -188,12 +320,22 @@ async fn main() {
             None => String::new(),
         };
 
+        let neg_table = if !neg_rows.is_empty() {
+            let rows = neg_rows.iter()
+                .map(|(tc, ee, r, n)| format!("| {tc} | {ee} | {r} | {n} |"))
+                .collect::<Vec<_>>()
+                .join("\n");
+            format!("## Negative Resolution\n\n| Test Case | Expected Error | Result | Notes |\n|---|---|---|---|\n{rows}\n\n")
+        } else {
+            String::new()
+        };
+
         let table_rows: String = all_rows.iter()
             .map(|(tc, ls, r, n)| format!("| {tc} | {ls} | {r} | {n} |"))
             .collect::<Vec<_>>()
             .join("\n");
         let content = format!(
-            "# rust status\n\n{header}{gen_table}## Cross-Resolution\n\n| Test Case | Log Source | Result | Notes |\n|---|---|---|---|\n{table_rows}\n"
+            "# rust status\n\n{header}{gen_table}{neg_table}## Cross-Resolution\n\n| Test Case | Log Source | Result | Notes |\n|---|---|---|---|\n{table_rows}\n"
         );
         if let Err(e) = std::fs::write(&status_path, &content) {
             eprintln!("warning: could not write status.md: {e}");
@@ -251,22 +393,6 @@ enum TestOutcome {
 fn extract_version_number(result_file: &str) -> Option<u32> {
     let stem = result_file.trim_end_matches(".json");
     stem.split('.').nth(1).and_then(|s| s.parse().ok())
-}
-
-/// TS COMPAT — nextKeyHashes: []
-fn log_has_empty_next_key_hashes(log_content: &str) -> bool {
-    let lines: Vec<&str> = log_content.lines().collect();
-    if lines.len() < 2 {
-        return false;
-    }
-    for line in &lines {
-        if let Ok(entry) = serde_json::from_str::<Value>(line) {
-            if entry.pointer("/parameters/nextKeyHashes") == Some(&json!([])) {
-                return true;
-            }
-        }
-    }
-    false
 }
 
 // ---------------------------------------------------------------------------
@@ -362,12 +488,6 @@ async fn run_vector_test(impl_dir: &Path, result_file: &str) -> TestOutcome {
         Err(e) => return TestOutcome::Fail(format!("read did.jsonl: {e}")),
     };
 
-    if log_has_empty_next_key_hashes(&log_content) {
-        return TestOutcome::XFail(
-            "TS COMPAT: nextKeyHashes:[] — TS serialises empty list; Rust library rejects"
-                .to_string(),
-        );
-    }
 
     let mut expected: Value =
         match std::fs::read_to_string(impl_dir.join(result_file)).map_err(|e| e.to_string()).and_then(|s| serde_json::from_str(&s).map_err(|e: serde_json::Error| e.to_string())) {
@@ -413,14 +533,6 @@ async fn run_vector_test(impl_dir: &Path, result_file: &str) -> TestOutcome {
         Ok(r) => r,
         Err(e) => {
             let msg = format!("{e:?}");
-            if msg.to_lowercase().contains("nextkeyhashe")
-                || msg.to_lowercase().contains("prerotation")
-                || msg.to_lowercase().contains("pre-rotation")
-                || msg.contains("updateKeys are not null")
-                || msg.contains("updatekeys are not null")
-            {
-                return TestOutcome::XFail(format!("TS COMPAT: resolution error: {msg}"));
-            }
             return TestOutcome::Fail(format!("resolve_log: {msg}"));
         }
     };

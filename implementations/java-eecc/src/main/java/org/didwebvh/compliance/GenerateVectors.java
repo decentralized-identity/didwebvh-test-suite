@@ -74,6 +74,11 @@ public class GenerateVectors {
             if (!Files.exists(scriptPath)) continue;
 
             String scenarioName = scenarioDir.getFileName().toString();
+            if (scenarioName.startsWith("negative-")) {
+                System.out.println("Generating " + scenarioName + "... SKIP (negative test)");
+                skipped++;
+                continue;
+            }
             System.out.print("Generating " + scenarioName + "... ");
             try {
                 Yaml yaml = new Yaml();
@@ -121,6 +126,9 @@ public class GenerateVectors {
 
     @SuppressWarnings("unchecked")
     private static void processScenario(Path scenarioDir, Map<String, Object> script) throws Exception {
+        if (Boolean.TRUE.equals(script.get("negative"))) {
+            throw new UnsupportedOperationException("negative test — generation handled by TS negative-generator");
+        }
         List<Map<String, Object>> keyDefs = (List<Map<String, Object>>) script.get("keys");
         Map<String, Ed25519PrivateKeyParameters> privKeyMap = new LinkedHashMap<>();
         Map<String, String> multikeyMap = new LinkedHashMap<>();

@@ -1,6 +1,6 @@
 # java-eecc status
 
-Implementation: java-eecc 0.2.1
+Implementation: java-eecc 0.3.0
 
 ## DID Creation
 
@@ -19,6 +19,27 @@ Implementation: java-eecc 0.2.1
 | services | ✅ PASS |  |
 | witness-threshold | ✅ PASS |  |
 | witness-update | ✅ PASS |  |
+
+## Negative Resolution
+
+| Test Case | Expected Error | Result | Notes |
+|---|---|---|---|
+| negative-cross-did-witness-replay | invalidDid | ❌ FAIL | resolver accepted invalid log |
+| negative-did-key-body-fragment-mismatch | invalidProof | ❌ FAIL | resolver accepted invalid log |
+| negative-duplicate-witness-ids | invalidParameters | ❌ FAIL | resolver accepted invalid log |
+| negative-fragment-leaks-into-domain | invalidDid | ❌ FAIL | URL parser accepted invalid DID: did:webvh:Qm0000000000000000000000000000000000000000000000:127.0.0.1#x |
+| negative-lowercase-pct-port-ip | invalidDid | ❌ FAIL | URL parser accepted invalid DID: did:webvh:Qm0000000000000000000000000000000000000000000000:127.0.0.1%3a8080 |
+| negative-path-traversal-did | invalidDid | ❌ FAIL | URL parser accepted invalid DID: did:webvh:Qm0000000000000000000000000000000000000000000000:example.com:..:..:admin |
+| negative-pct-encoded-ip-host | invalidDid | ❌ FAIL | URL parser accepted invalid DID: did:webvh:Qm0000000000000000000000000000000000000000000000:127%2E0%2E0%2E1 |
+| negative-pct-encoded-traversal | invalidDid | ❌ FAIL | URL parser accepted invalid DID: did:webvh:Qm0000000000000000000000000000000000000000000000:example.com:%2E%2E:admin |
+| negative-portable-scid-swap | invalidDid | ❌ FAIL | resolver accepted invalid log |
+| negative-pre-rotation-omit-updatekeys | invalidParameters | ❌ FAIL | resolver accepted invalid log |
+| negative-scid-mismatch-genesis | invalidDid | ❌ FAIL | resolver accepted invalid log |
+| negative-unknown-method-version | invalidDid | ❌ FAIL | resolver accepted invalid log |
+| negative-versiontime-future | invalidDid | ❌ FAIL | resolver accepted invalid log |
+| negative-versiontime-non-monotonic | invalidDid | ❌ FAIL | resolver accepted invalid log |
+| negative-wrong-cryptosuite | invalidProof | ❌ FAIL | resolver accepted invalid log |
+| negative-zero-witness-threshold | invalidParameters | ❌ FAIL | resolver accepted invalid log |
 
 ## Cross-Resolution
 

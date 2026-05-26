@@ -18,6 +18,27 @@
 | witness-threshold | ✅ PASS |  |
 | witness-update | ✅ PASS |  |
 
+## Negative Resolution
+
+| Test Case | Expected Error | Result | Notes |
+|---|---|---|---|
+| negative-cross-did-witness-replay | invalidDid | ❌ FAIL | expected error "invalidDid" but resolution succeeded |
+| negative-did-key-body-fragment-mismatch | invalidProof | ✅ PASS |  |
+| negative-duplicate-witness-ids | invalidParameters | ✅ PASS |  |
+| negative-fragment-leaks-into-domain | invalidDid | ❌ FAIL | resolver fetched URL: https://127.0.0.1/.well-known/did.jsonl |
+| negative-lowercase-pct-port-ip | invalidDid | ❌ FAIL | resolver fetched URL: https://127.0.0.1:8080/.well-known/did.jsonl |
+| negative-path-traversal-did | invalidDid | ❌ FAIL | resolver fetched URL: https://example.com/../../admin/did.jsonl |
+| negative-pct-encoded-ip-host | invalidDid | ❌ FAIL | resolver fetched URL: https://127.0.0.1/.well-known/did.jsonl |
+| negative-pct-encoded-traversal | invalidDid | ❌ FAIL | resolver fetched URL: https://example.com/../admin/did.jsonl |
+| negative-portable-scid-swap | invalidDid | ❌ FAIL | expected error "invalidDid" but resolution succeeded |
+| negative-pre-rotation-omit-updatekeys | invalidParameters | ✅ PASS |  |
+| negative-scid-mismatch-genesis | invalidDid | ✅ PASS |  |
+| negative-unknown-method-version | invalidDid | ✅ PASS |  |
+| negative-versiontime-future | invalidDid | ✅ PASS |  |
+| negative-versiontime-non-monotonic | invalidDid | ❌ FAIL | expected error "invalidDid" but resolution succeeded |
+| negative-wrong-cryptosuite | invalidProof | ✅ PASS |  |
+| negative-zero-witness-threshold | invalidParameters | ✅ PASS |  |
+
 ## Cross-Resolution
 
 | Test Case | Log Source | Result | Notes |
@@ -58,7 +79,7 @@
 | portable | rust | 🔶 DIFF | see diffs.txt |
 | portable | ts (self) | ✅ PASS |  |
 | portable-move | java | 🔶 DIFF | see diffs.txt |
-| portable-move | java-eecc | ⚠️ SKIP | no did.jsonl |
+| portable-move | java-eecc | 🔶 DIFF | see diffs.txt |
 | portable-move | python | 🔶 DIFF | see diffs.txt |
 | portable-move | rust | 🔶 DIFF | see diffs.txt |
 | portable-move | ts (self) | ✅ PASS |  |

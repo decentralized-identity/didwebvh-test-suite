@@ -36,6 +36,8 @@ def _collect_cases() -> list[tuple[str, str, str]]:
     for vdir in sorted(VECTORS_ROOT.iterdir()):
         if not vdir.is_dir():
             continue
+        if vdir.name.startswith("negative-"):
+            continue
         for impl_dir in sorted(vdir.iterdir()):
             if not impl_dir.is_dir():
                 continue
@@ -43,6 +45,24 @@ def _collect_cases() -> list[tuple[str, str, str]]:
                 continue
             for rf in sorted(impl_dir.glob("resolutionResult*.json")):
                 cases.append((vdir.name, impl_dir.name, rf.name))
+    return cases
+
+
+def _collect_negative_cases() -> list[tuple[str, str]]:
+    """Return (scenario_name, expected_error) for all negative test vectors with a ts/ log."""
+    cases = []
+    for vdir in sorted(VECTORS_ROOT.iterdir()):
+        if not vdir.is_dir() or not vdir.name.startswith("negative-"):
+            continue
+        ts_dir = vdir / "ts"
+        jsonl = ts_dir / "did.jsonl"
+        result_json = ts_dir / "resolutionResult.json"
+        if not jsonl.exists() or not result_json.exists():
+            continue
+        expected_error = json.loads(result_json.read_text()).get(
+            "didResolutionMetadata", {}
+        ).get("error", "?")
+        cases.append((vdir.name, expected_error))
     return cases
 
 
@@ -184,3 +204,46 @@ def test_vector(scenario: str, impl: str, result_file: str, _status_data: dict) 
     _status_data["actual"] = actual
     _status_data["expected"] = expected
     assert jsoncanon.canonicalize(actual) == jsoncanon.canonicalize(expected)
+
+
+# ---------------------------------------------------------------------------
+# Negative resolution tests
+# ---------------------------------------------------------------------------
+
+@pytest.mark.parametrize("scenario,expected_error", _collect_negative_cases())
+def test_negative_resolution(scenario: str, expected_error: str, _status_data: dict) -> None:
+    """Resolver must reject each negative test vector.
+
+    PASS = resolver returned an error or raised an exception.
+    FAIL = resolver accepted the invalid log (conformance bug).
+    """
+    log = VECTORS_ROOT / scenario / "ts" / "did.jsonl"
+    log_text = log.read_text().strip()
+
+    if not log_text:
+        _status_data["neg_scenario"] = scenario
+        _status_data["neg_expected_error"] = expected_error
+        _status_data["neg_outcome"] = "skip"
+        pytest.skip("URL-only test (no log)")
+
+    did = json.loads(log_text.splitlines()[0])["state"]["id"]
+
+    try:
+        result = asyncio.run(resolve_did(did, local_history=log))
+        actual_error = result.serialize().get("didResolutionMetadata", {}) or {}
+        if actual_error.get("error"):
+            # Resolver returned an error — correct behaviour.
+            _status_data["neg_outcome"] = "pass"
+            _status_data["neg_scenario"] = scenario
+            _status_data["neg_expected_error"] = expected_error
+        else:
+            # Resolver succeeded — it should have rejected this log.
+            _status_data["neg_outcome"] = "fail"
+            _status_data["neg_scenario"] = scenario
+            _status_data["neg_expected_error"] = expected_error
+            pytest.fail("resolver accepted invalid log (should have returned an error)")
+    except Exception:
+        # Any exception counts as rejection — correct behaviour.
+        _status_data["neg_outcome"] = "pass"
+        _status_data["neg_scenario"] = scenario
+        _status_data["neg_expected_error"] = expected_error

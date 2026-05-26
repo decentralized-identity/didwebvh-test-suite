@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "generate": "bun run implementations/ts/src/generator.ts",
+    "generate-negative": "bun run implementations/ts/src/negative-generator.ts",
     "verify": "bun run implementations/ts/src/generator.ts --verify"
   },
   "dependencies": {
