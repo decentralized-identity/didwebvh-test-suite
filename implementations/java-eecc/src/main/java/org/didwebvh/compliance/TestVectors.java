@@ -162,10 +162,18 @@ public class TestVectors {
                     WitnessProofCollection wpc = WitnessProofCollection.parse(Files.readString(witnessPath));
                     rb.witnessProofs(wpc);
                 }
-                DidWebVh.resolveFromLog(did, negLog, rb.build());
-                // Resolver accepted a log it should have rejected.
-                fail++;
-                negRows.add(new String[]{scenarioName, expectedError, "❌ FAIL", "resolver accepted invalid log"});
+                ResolveResult negResult = DidWebVh.resolveFromLog(did, negLog, rb.build());
+                // Library signals rejection via null document or error in resolutionMetadata.
+                boolean rejected = negResult.document() == null
+                        || (negResult.resolutionMetadata() != null
+                                && negResult.resolutionMetadata().error() != null);
+                if (rejected) {
+                    pass++;
+                    negRows.add(new String[]{scenarioName, expectedError, "✅ PASS", ""});
+                } else {
+                    fail++;
+                    negRows.add(new String[]{scenarioName, expectedError, "❌ FAIL", "resolver accepted invalid log"});
+                }
             } catch (Exception e) {
                 pass++;
                 negRows.add(new String[]{scenarioName, expectedError, "✅ PASS", ""});
@@ -412,16 +420,6 @@ public class TestVectors {
                 return TestOutcome.fail("resolve exception: " + e);
             }
 
-            if (!result.isSuccess() && result.resolutionMetadata() != null
-                    && result.resolutionMetadata().error() != null) {
-                JsonNode expDoc = expected.get("didDocument");
-                if (expDoc != null && !expDoc.isNull()) {
-                    String detail = result.resolutionMetadata().problemDetails() != null
-                            ? result.resolutionMetadata().problemDetails().detail() : "";
-                    return TestOutcome.xfail("TS COMPAT: library resolution error ("
-                            + result.resolutionMetadata().error() + "): " + detail);
-                }
-            }
 
             ObjectNode actual = buildActualResult(result, log, options, did);
             normalizePair(actual, expected);

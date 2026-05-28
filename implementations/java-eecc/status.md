@@ -1,6 +1,6 @@
 # java-eecc status
 
-Implementation: java-eecc 0.3.0
+Implementation: java-eecc 0.3.1
 
 ## DID Creation
 
@@ -24,22 +24,22 @@ Implementation: java-eecc 0.3.0
 
 | Test Case | Expected Error | Result | Notes |
 |---|---|---|---|
-| negative-cross-did-witness-replay | invalidDid | ❌ FAIL | resolver accepted invalid log |
-| negative-did-key-body-fragment-mismatch | invalidProof | ❌ FAIL | resolver accepted invalid log |
-| negative-duplicate-witness-ids | invalidParameters | ❌ FAIL | resolver accepted invalid log |
-| negative-fragment-leaks-into-domain | invalidDid | ❌ FAIL | URL parser accepted invalid DID: did:webvh:Qm0000000000000000000000000000000000000000000000:127.0.0.1#x |
-| negative-lowercase-pct-port-ip | invalidDid | ❌ FAIL | URL parser accepted invalid DID: did:webvh:Qm0000000000000000000000000000000000000000000000:127.0.0.1%3a8080 |
-| negative-path-traversal-did | invalidDid | ❌ FAIL | URL parser accepted invalid DID: did:webvh:Qm0000000000000000000000000000000000000000000000:example.com:..:..:admin |
-| negative-pct-encoded-ip-host | invalidDid | ❌ FAIL | URL parser accepted invalid DID: did:webvh:Qm0000000000000000000000000000000000000000000000:127%2E0%2E0%2E1 |
-| negative-pct-encoded-traversal | invalidDid | ❌ FAIL | URL parser accepted invalid DID: did:webvh:Qm0000000000000000000000000000000000000000000000:example.com:%2E%2E:admin |
-| negative-portable-scid-swap | invalidDid | ❌ FAIL | resolver accepted invalid log |
-| negative-pre-rotation-omit-updatekeys | invalidParameters | ❌ FAIL | resolver accepted invalid log |
-| negative-scid-mismatch-genesis | invalidDid | ❌ FAIL | resolver accepted invalid log |
-| negative-unknown-method-version | invalidDid | ❌ FAIL | resolver accepted invalid log |
-| negative-versiontime-future | invalidDid | ❌ FAIL | resolver accepted invalid log |
-| negative-versiontime-non-monotonic | invalidDid | ❌ FAIL | resolver accepted invalid log |
-| negative-wrong-cryptosuite | invalidProof | ❌ FAIL | resolver accepted invalid log |
-| negative-zero-witness-threshold | invalidParameters | ❌ FAIL | resolver accepted invalid log |
+| negative-cross-did-witness-replay | invalidDid | ✅ PASS |  |
+| negative-did-key-body-fragment-mismatch | invalidProof | ✅ PASS |  |
+| negative-duplicate-witness-ids | invalidParameters | ✅ PASS |  |
+| negative-fragment-leaks-into-domain | invalidDid | ✅ PASS |  |
+| negative-lowercase-pct-port-ip | invalidDid | ✅ PASS |  |
+| negative-path-traversal-did | invalidDid | ✅ PASS |  |
+| negative-pct-encoded-ip-host | invalidDid | ✅ PASS |  |
+| negative-pct-encoded-traversal | invalidDid | ✅ PASS |  |
+| negative-portable-scid-swap | invalidDid | ✅ PASS |  |
+| negative-pre-rotation-omit-updatekeys | invalidParameters | ✅ PASS |  |
+| negative-scid-mismatch-genesis | invalidDid | ✅ PASS |  |
+| negative-unknown-method-version | invalidDid | ✅ PASS |  |
+| negative-versiontime-future | invalidDid | ✅ PASS |  |
+| negative-versiontime-non-monotonic | invalidDid | ✅ PASS |  |
+| negative-wrong-cryptosuite | invalidProof | ✅ PASS |  |
+| negative-zero-witness-threshold | invalidParameters | ✅ PASS |  |
 
 ## Cross-Resolution
 
@@ -90,7 +90,7 @@ Implementation: java-eecc 0.3.0
 | pre-rotation | python | 🔶 DIFF | see diffs.txt |
 | pre-rotation | rust | 🔶 DIFF | see diffs.txt |
 | pre-rotation | ts | 🔶 DIFF | see diffs.txt |
-| pre-rotation-consume | java | ⚠️ SKIP | no did.jsonl present |
+| pre-rotation-consume | java | 🔶 DIFF | see diffs.txt |
 | pre-rotation-consume | java-eecc (self) | ✅ PASS |  |
 | pre-rotation-consume | python | 🔶 DIFF | see diffs.txt |
 | pre-rotation-consume | rust | 🔶 DIFF | see diffs.txt |
@@ -103,10 +103,10 @@ Implementation: java-eecc 0.3.0
 | witness-threshold | java | 🔶 DIFF | see diffs.txt |
 | witness-threshold | java-eecc (self) | ✅ PASS |  |
 | witness-threshold | python | 🔶 DIFF | see diffs.txt |
-| witness-threshold | rust | ⚠️ XFAIL | TS COMPAT: library resolution error (invalidDid): No valid entries in the DID log |
+| witness-threshold | rust | 🔶 DIFF | see diffs.txt |
 | witness-threshold | ts | 🔶 DIFF | see diffs.txt |
-| witness-update | java | ⚠️ XFAIL | TS COMPAT: library resolution error (invalidDid): Witness epoch [1, 2] requires threshold=2 but only 1 witness(es) provided valid proofs |
+| witness-update | java | 🔶 DIFF | see diffs.txt |
 | witness-update | java-eecc (self) | ✅ PASS |  |
 | witness-update | python | 🔶 DIFF | see diffs.txt |
-| witness-update | rust | ⚠️ XFAIL | TS COMPAT: library resolution error (invalidDid): No valid entries in the DID log |
-| witness-update | ts | ⚠️ XFAIL | TS COMPAT: library resolution error (invalidDid): Witness epoch [1, 2] requires threshold=2 but only 1 witness(es) provided valid proofs |
+| witness-update | rust | 🔶 DIFF | see diffs.txt |
+| witness-update | ts | 🔶 DIFF | see diffs.txt |
