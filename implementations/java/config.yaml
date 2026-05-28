@@ -1,4 +1,4 @@
 name: java
 home_repo: https://github.com/decentralized-identity/didwebvh-java
-version: "0.2.0-SNAPSHOT"
-commit: ""
+version: "0.3.0-SNAPSHOT"
+commit: "c50db5b"

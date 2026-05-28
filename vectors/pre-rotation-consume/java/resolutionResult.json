@@ -5,14 +5,14 @@
     "controller": "did:webvh:QmNVNZuRuHpTQSwHymPCdrD2Tfu2iDJjEpiC18udqmY7oB:example.com",
     "verificationMethod": [
       {
-        "id": "did:webvh:QmNVNZuRuHpTQSwHymPCdrD2Tfu2iDJjEpiC18udqmY7oB:example.com#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG",
+        "id": "did:webvh:QmNVNZuRuHpTQSwHymPCdrD2Tfu2iDJjEpiC18udqmY7oB:example.com#MiLH3kDQ",
         "type": "Multikey",
         "controller": "did:webvh:QmNVNZuRuHpTQSwHymPCdrD2Tfu2iDJjEpiC18udqmY7oB:example.com",
-        "publicKeyMultibase": "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+        "publicKeyMultibase": "z6MkvqoYXQfDDJRv8L4wKzxYeuKyVZBfi9Qo6Ro8MiLH3kDQ"
       }
     ],
     "authentication": [
-      "did:webvh:QmNVNZuRuHpTQSwHymPCdrD2Tfu2iDJjEpiC18udqmY7oB:example.com#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+      "did:webvh:QmNVNZuRuHpTQSwHymPCdrD2Tfu2iDJjEpiC18udqmY7oB:example.com#MiLH3kDQ"
     ],
     "assertionMethod": [
       "did:webvh:QmNVNZuRuHpTQSwHymPCdrD2Tfu2iDJjEpiC18udqmY7oB:example.com#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
@@ -33,10 +33,10 @@
   },
   "didDocumentMetadata": {
     "created": "2026-05-28T18:58:18Z",
-    "updated": "2026-05-28T18:58:18Z",
-    "versionId": "1-Qmd3718YXkmhD8wavxYBrxgtdLZtxqRVsMvg1ZGDAiTz9C",
-    "versionNumber": 1,
-    "versionTime": "2026-05-28T18:58:18Z",
+    "updated": "2026-05-28T18:58:20Z",
+    "versionId": "3-QmXf1eQMoitA44xD5Svz8CzM3moYfqFAuPKRNMMs51wfQm",
+    "versionNumber": 3,
+    "versionTime": "2026-05-28T18:58:20Z",
     "scid": "QmNVNZuRuHpTQSwHymPCdrD2Tfu2iDJjEpiC18udqmY7oB"
   },
   "didResolutionMetadata": {

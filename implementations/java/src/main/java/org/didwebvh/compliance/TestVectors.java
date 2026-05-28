@@ -386,17 +386,6 @@ public class TestVectors {
             String rawJsonl = Files.readString(logFile);
             String expectedContent = Files.readString(resultFile);
 
-            if (logHasEmptyNextKeyHashes(rawJsonl)) {
-                return TestOutcome.xfail(
-                        "TS COMPAT: nextKeyHashes:[] — TS serialises empty list; "
-                        + "Java library may reject on update validation");
-            }
-            if (logHasEmptyWitness(rawJsonl)) {
-                return TestOutcome.fail(
-                        "LIB BUG: didwebvh-java 0.2.0 NPEs on witness:{} in parameters "
-                        + "(Python/TS write empty witness object; library expects absent field)");
-            }
-
             String did = extractDid(rawJsonl);
             if (did == null) {
                 return TestOutcome.fail("Could not extract DID from did.jsonl");
