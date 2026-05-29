@@ -21,9 +21,9 @@
     <dependencies>
         <!-- did:webvh Java implementation -->
         <dependency>
-            <groupId>io.github.ivir3zam</groupId>
+            <groupId>io.github.decentralized-identity</groupId>
             <artifactId>didwebvh-core</artifactId>
-            <version>0.2.0</version>
+            <version>0.3.0-SNAPSHOT</version>
         </dependency>
 
         <!-- JSON Canonicalization Scheme (RFC 8785) for comparison -->

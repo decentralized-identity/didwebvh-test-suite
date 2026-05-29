@@ -4,7 +4,7 @@
 @@ -16,6 +16,19 @@
      ],
      "assertionMethod": [
-       "did:webvh:QmUT5WUrKrYM5fo8GTqNv4hmRm6bLLSPdQvqX6hY5oWgrg:example.com#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+       "did:webvh:QmcfGoJXuVbiRurrmXBcgbSMheaWbHS8LeEtaMbR9h2G3B:example.com#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
 +    ],
 +    "service": [
 +      {
@@ -22,12 +22,12 @@
    },
    "didDocumentMetadata": {
 @@ -23,8 +36,7 @@
-     "updated": "2026-05-12T22:55:19Z",
-     "versionId": "1-QmQaw3ZSofpKnAbEemFFfvz1p14jK2tLqTcPCQhuqoRmUD",
+     "updated": "2026-05-14T19:56:27Z",
+     "versionId": "1-QmU7zQS9rRMPZTcduL2w6R2Zw1W2WBZAKghbRmPnzbwFN6",
      "versionNumber": 1,
-+    "versionTime": "2026-05-12T22:55:19Z"
--    "versionTime": "2026-05-12T22:55:19Z",
--    "scid": "QmUT5WUrKrYM5fo8GTqNv4hmRm6bLLSPdQvqX6hY5oWgrg"
++    "versionTime": "2026-05-14T19:56:27Z"
+-    "versionTime": "2026-05-14T19:56:27Z",
+-    "scid": "QmcfGoJXuVbiRurrmXBcgbSMheaWbHS8LeEtaMbR9h2G3B"
    },
    "didResolutionMetadata": {
      "contentType": "application/did+ld+json"
@@ -35,30 +35,22 @@
 === basic-create / java-eecc — resolutionResult.json ===
 --- expected
 +++ actual (ts resolver)
-@@ -23,13 +23,13 @@
-     ],
-     "service": [
+@@ -25,7 +25,7 @@
        {
-+        "id": "#files",
--        "id": "did:webvh:QmdYqePhHPZBjktLyqEjJwbxbzTJ4KYCu8cqRtPyydnHfQ:example.com#files",
+         "id": "#files",
          "type": "relativeRef",
 +        "serviceEndpoint": "https://example.com"
 -        "serviceEndpoint": "https://example.com/"
        },
        {
          "@context": "https://identity.foundation/linked-vp/contexts/v1",
-+        "id": "#whois",
--        "id": "did:webvh:QmdYqePhHPZBjktLyqEjJwbxbzTJ4KYCu8cqRtPyydnHfQ:example.com#whois",
-         "type": "LinkedVerifiablePresentation",
-         "serviceEndpoint": "https://example.com/whois.vp"
-       }
 @@ -40,8 +40,7 @@
-     "updated": "2026-05-12T22:56:00Z",
-     "versionId": "1-QmaQsV7NyHqu44dHZKDHLfo8ALJfdqqbcA77aJG5PdmbPz",
+     "updated": "2026-05-26T18:45:06Z",
+     "versionId": "1-QmWc66oUVWRAdjUGAay4SAtdXL5721A8awa8ntha5TUrnJ",
      "versionNumber": 1,
-+    "versionTime": "2026-05-12T22:56:00Z"
--    "versionTime": "2026-05-12T22:56:00Z",
--    "scid": "QmdYqePhHPZBjktLyqEjJwbxbzTJ4KYCu8cqRtPyydnHfQ"
++    "versionTime": "2026-05-26T18:45:06Z"
+-    "versionTime": "2026-05-26T18:45:06Z",
+-    "scid": "QmXq3qKkf4miH65SnSpkaMbAcXixyR6JU4yt8p4W8ftGWx"
    },
    "didResolutionMetadata": {
      "contentType": "application/did+ld+json"
@@ -185,12 +177,12 @@
    },
    "didDocumentMetadata": {
 @@ -26,8 +39,7 @@
-     "updated": "2026-05-12T22:55:20Z",
-     "versionId": "2-QmYnDxNbUzHG39khQjzShRm4aKhEpxozLzpNuWreAnp587",
+     "updated": "2026-05-14T19:56:29Z",
+     "versionId": "2-QmYGBqAWhRRQxvQQEX8nQ6hNMjrg2tCwXCGwaawDxZmdis",
      "versionNumber": 2,
-+    "versionTime": "2026-05-12T22:55:20Z"
--    "versionTime": "2026-05-12T22:55:20Z",
--    "scid": "QmUT5WUrKrYM5fo8GTqNv4hmRm6bLLSPdQvqX6hY5oWgrg"
++    "versionTime": "2026-05-14T19:56:29Z"
+-    "versionTime": "2026-05-14T19:56:29Z",
+-    "scid": "QmVM8VMMBMpbVWus6yq9osWhqYA3etcsoVePrbiii8yXtn"
    },
    "didResolutionMetadata": {
      "contentType": "application/did+ld+json"
@@ -198,30 +190,22 @@
 === basic-update / java-eecc — resolutionResult.json ===
 --- expected
 +++ actual (ts resolver)
-@@ -26,13 +26,13 @@
-     ],
-     "service": [
+@@ -28,7 +28,7 @@
        {
-+        "id": "#files",
--        "id": "did:webvh:QmdYqePhHPZBjktLyqEjJwbxbzTJ4KYCu8cqRtPyydnHfQ:example.com#files",
+         "id": "#files",
          "type": "relativeRef",
 +        "serviceEndpoint": "https://example.com"
 -        "serviceEndpoint": "https://example.com/"
        },
        {
          "@context": "https://identity.foundation/linked-vp/contexts/v1",
-+        "id": "#whois",
--        "id": "did:webvh:QmdYqePhHPZBjktLyqEjJwbxbzTJ4KYCu8cqRtPyydnHfQ:example.com#whois",
-         "type": "LinkedVerifiablePresentation",
-         "serviceEndpoint": "https://example.com/whois.vp"
-       }
 @@ -43,8 +43,7 @@
-     "updated": "2026-05-12T22:56:00Z",
-     "versionId": "2-Qma6hsKB1EstAgW9MhcwKMC4RbeSozZSMdXtMun51ZexeH",
+     "updated": "2026-05-26T18:45:07Z",
+     "versionId": "2-QmeJtPUqLYmrzPoMDbnADCzkp1baK39NvSCM6GoKnoaFgB",
      "versionNumber": 2,
-+    "versionTime": "2026-05-12T22:56:00Z"
--    "versionTime": "2026-05-12T22:56:00Z",
--    "scid": "QmdYqePhHPZBjktLyqEjJwbxbzTJ4KYCu8cqRtPyydnHfQ"
++    "versionTime": "2026-05-26T18:45:07Z"
+-    "versionTime": "2026-05-26T18:45:07Z",
+-    "scid": "QmXq3qKkf4miH65SnSpkaMbAcXixyR6JU4yt8p4W8ftGWx"
    },
    "didResolutionMetadata": {
      "contentType": "application/did+ld+json"
@@ -330,7 +314,7 @@
 @@ -16,6 +16,19 @@
      ],
      "assertionMethod": [
-       "did:webvh:QmUT5WUrKrYM5fo8GTqNv4hmRm6bLLSPdQvqX6hY5oWgrg:example.com#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+       "did:webvh:QmVM8VMMBMpbVWus6yq9osWhqYA3etcsoVePrbiii8yXtn:example.com#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
 +    ],
 +    "service": [
 +      {
@@ -348,12 +332,12 @@
    },
    "didDocumentMetadata": {
 @@ -24,8 +37,7 @@
-     "versionId": "2-Qmc9HoLPx5wujBDHjaPvBLRmpPVZXdhxb6uSCe5cqQxghQ",
+     "versionId": "2-Qmc6Y5AfUAwPZLRoBNvH3eoh8Mq5zeG1Lr9ZhFxCZtuDf9",
      "versionNumber": 2,
-     "versionTime": "2026-05-12T22:55:20Z",
+     "versionTime": "2026-05-14T19:56:29Z",
 +    "deactivated": true
 -    "deactivated": true,
--    "scid": "QmUT5WUrKrYM5fo8GTqNv4hmRm6bLLSPdQvqX6hY5oWgrg"
+-    "scid": "QmVM8VMMBMpbVWus6yq9osWhqYA3etcsoVePrbiii8yXtn"
    },
    "didResolutionMetadata": {
      "contentType": "application/did+ld+json"
@@ -361,30 +345,22 @@
 === deactivate / java-eecc — resolutionResult.json ===
 --- expected
 +++ actual (ts resolver)
-@@ -23,13 +23,13 @@
-     ],
-     "service": [
+@@ -25,7 +25,7 @@
        {
-+        "id": "#files",
--        "id": "did:webvh:QmdYqePhHPZBjktLyqEjJwbxbzTJ4KYCu8cqRtPyydnHfQ:example.com#files",
+         "id": "#files",
          "type": "relativeRef",
 +        "serviceEndpoint": "https://example.com"
 -        "serviceEndpoint": "https://example.com/"
        },
        {
          "@context": "https://identity.foundation/linked-vp/contexts/v1",
-+        "id": "#whois",
--        "id": "did:webvh:QmdYqePhHPZBjktLyqEjJwbxbzTJ4KYCu8cqRtPyydnHfQ:example.com#whois",
-         "type": "LinkedVerifiablePresentation",
-         "serviceEndpoint": "https://example.com/whois.vp"
-       }
 @@ -41,8 +41,7 @@
-     "versionId": "2-QmcnrouaBSCHw9tP5SDgyWiSf2KoZyEWDb6RtCyGYksePp",
+     "versionId": "2-QmSitS2W7UGLaXHHTKGQvx3MvMUb5YqHv1x6sxCR6aqTUx",
      "versionNumber": 2,
-     "versionTime": "2026-05-12T22:56:00Z",
+     "versionTime": "2026-05-26T18:45:07Z",
 +    "deactivated": true
 -    "deactivated": true,
--    "scid": "QmdYqePhHPZBjktLyqEjJwbxbzTJ4KYCu8cqRtPyydnHfQ"
+-    "scid": "QmXq3qKkf4miH65SnSpkaMbAcXixyR6JU4yt8p4W8ftGWx"
    },
    "didResolutionMetadata": {
      "contentType": "application/did+ld+json"
@@ -476,10 +452,10 @@
 -    "deactivated": true,
 -    "portable": false,
 -    "scid": "Qmc57yQsqz5NYVyMwT1zWTAXBAX6cNHfiAzqcABAJTkLnY",
-     "updated": "2026-05-12T22:54:49Z",
-     "versionId": "2-QmSFWzz53adckmf5A2DBnvhu1jg2bEEsc7WB9eWAmqckRg",
+     "updated": "2026-05-14T19:50:40Z",
+     "versionId": "2-QmZbHhg8BCaWsgH7MtecrvGRVH8MRYxQBy3LmBYpZ56RML",
      "versionNumber": 2,
-     "versionTime": "2026-05-12T22:54:49Z",
+     "versionTime": "2026-05-14T19:50:40Z",
 +    "deactivated": true
 -    "watchers": null,
 -    "witness": null
@@ -493,7 +469,7 @@
 @@ -16,6 +16,19 @@
      ],
      "assertionMethod": [
-       "did:webvh:QmUT5WUrKrYM5fo8GTqNv4hmRm6bLLSPdQvqX6hY5oWgrg:example.com#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+       "did:webvh:QmVM8VMMBMpbVWus6yq9osWhqYA3etcsoVePrbiii8yXtn:example.com#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
 +    ],
 +    "service": [
 +      {
@@ -511,12 +487,12 @@
    },
    "didDocumentMetadata": {
 @@ -23,8 +36,7 @@
-     "updated": "2026-05-12T22:55:20Z",
-     "versionId": "2-Qma5TfonGA7WiLSnTCJVuXvxrRi65HaXwAesYvVCicAvUt",
+     "updated": "2026-05-14T19:56:29Z",
+     "versionId": "2-QmPubkXCkkB2Xdro5M1kTz8iRDuYKU2Dy7ijZxTUj2LtTA",
      "versionNumber": 2,
-+    "versionTime": "2026-05-12T22:55:20Z"
--    "versionTime": "2026-05-12T22:55:20Z",
--    "scid": "QmUT5WUrKrYM5fo8GTqNv4hmRm6bLLSPdQvqX6hY5oWgrg"
++    "versionTime": "2026-05-14T19:56:29Z"
+-    "versionTime": "2026-05-14T19:56:29Z",
+-    "scid": "QmVM8VMMBMpbVWus6yq9osWhqYA3etcsoVePrbiii8yXtn"
    },
    "didResolutionMetadata": {
      "contentType": "application/did+ld+json"
@@ -524,30 +500,22 @@
 === key-rotation / java-eecc — resolutionResult.json ===
 --- expected
 +++ actual (ts resolver)
-@@ -23,13 +23,13 @@
-     ],
-     "service": [
+@@ -25,7 +25,7 @@
        {
-+        "id": "#files",
--        "id": "did:webvh:QmdYqePhHPZBjktLyqEjJwbxbzTJ4KYCu8cqRtPyydnHfQ:example.com#files",
+         "id": "#files",
          "type": "relativeRef",
 +        "serviceEndpoint": "https://example.com"
 -        "serviceEndpoint": "https://example.com/"
        },
        {
          "@context": "https://identity.foundation/linked-vp/contexts/v1",
-+        "id": "#whois",
--        "id": "did:webvh:QmdYqePhHPZBjktLyqEjJwbxbzTJ4KYCu8cqRtPyydnHfQ:example.com#whois",
-         "type": "LinkedVerifiablePresentation",
-         "serviceEndpoint": "https://example.com/whois.vp"
-       }
 @@ -40,8 +40,7 @@
-     "updated": "2026-05-12T22:56:00Z",
-     "versionId": "2-QmcJ65eHXabwznDPxLAkJhcwTLYhGGuPjtonkGMSeP8fqJ",
+     "updated": "2026-05-26T18:45:07Z",
+     "versionId": "2-QmQ9PkTSedPFyjKgWKj6TvYExjkchkCC9WPisi99MTvcPN",
      "versionNumber": 2,
-+    "versionTime": "2026-05-12T22:56:00Z"
--    "versionTime": "2026-05-12T22:56:00Z",
--    "scid": "QmdYqePhHPZBjktLyqEjJwbxbzTJ4KYCu8cqRtPyydnHfQ"
++    "versionTime": "2026-05-26T18:45:07Z"
+-    "versionTime": "2026-05-26T18:45:07Z",
+-    "scid": "QmXq3qKkf4miH65SnSpkaMbAcXixyR6JU4yt8p4W8ftGWx"
    },
    "didResolutionMetadata": {
      "contentType": "application/did+ld+json"
@@ -656,7 +624,7 @@
 @@ -16,6 +16,19 @@
      ],
      "assertionMethod": [
-       "did:webvh:QmaJxmiJGCc6mpciqd6KqMxGZ8fwzimdneLnsBR9rqDYnY:example.com#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+       "did:webvh:QmVM8VMMBMpbVWus6yq9osWhqYA3etcsoVePrbiii8yXtn:example.com#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
 +    ],
 +    "service": [
 +      {
@@ -674,12 +642,12 @@
    },
    "didDocumentMetadata": {
 @@ -23,8 +36,7 @@
-     "updated": "2026-05-12T22:55:20Z",
-     "versionId": "1-QmS4Y1TiQ6JxWfxQwG49k6obkHvR3Cy1UqovtK8HZrNLvC",
+     "updated": "2026-05-14T19:56:28Z",
+     "versionId": "1-QmVXztHU9CD9Bs3Ee8abdr3BVJm35MuC7YfVdEkxEzBCJW",
      "versionNumber": 1,
-+    "versionTime": "2026-05-12T22:55:20Z"
--    "versionTime": "2026-05-12T22:55:20Z",
--    "scid": "QmaJxmiJGCc6mpciqd6KqMxGZ8fwzimdneLnsBR9rqDYnY"
++    "versionTime": "2026-05-14T19:56:28Z"
+-    "versionTime": "2026-05-14T19:56:28Z",
+-    "scid": "QmVM8VMMBMpbVWus6yq9osWhqYA3etcsoVePrbiii8yXtn"
    },
    "didResolutionMetadata": {
      "contentType": "application/did+ld+json"
@@ -708,12 +676,12 @@
    },
    "didDocumentMetadata": {
 @@ -26,8 +39,7 @@
-     "updated": "2026-05-12T22:55:21Z",
-     "versionId": "2-QmZxLy1M18DeuVKD6tCHs8Rqamkjs1jcBCJtVe8GmyuttD",
+     "updated": "2026-05-14T19:56:29Z",
+     "versionId": "2-QmYGBqAWhRRQxvQQEX8nQ6hNMjrg2tCwXCGwaawDxZmdis",
      "versionNumber": 2,
-+    "versionTime": "2026-05-12T22:55:21Z"
--    "versionTime": "2026-05-12T22:55:21Z",
--    "scid": "QmaJxmiJGCc6mpciqd6KqMxGZ8fwzimdneLnsBR9rqDYnY"
++    "versionTime": "2026-05-14T19:56:29Z"
+-    "versionTime": "2026-05-14T19:56:29Z",
+-    "scid": "QmVM8VMMBMpbVWus6yq9osWhqYA3etcsoVePrbiii8yXtn"
    },
    "didResolutionMetadata": {
      "contentType": "application/did+ld+json"
@@ -742,12 +710,12 @@
    },
    "didDocumentMetadata": {
 @@ -27,8 +40,7 @@
-     "updated": "2026-05-12T22:55:22Z",
-     "versionId": "3-QmUyPp4G3Ygi8FhrAcQjjMMGstcvgLYpKd4qzpsZpv5s54",
+     "updated": "2026-05-14T19:56:30Z",
+     "versionId": "3-QmWgFkF9TZxbL4Pkjhe6Pm74Y7EvxG3xwJa9KkgiAvc4LU",
      "versionNumber": 3,
-+    "versionTime": "2026-05-12T22:55:22Z"
--    "versionTime": "2026-05-12T22:55:22Z",
--    "scid": "QmaJxmiJGCc6mpciqd6KqMxGZ8fwzimdneLnsBR9rqDYnY"
++    "versionTime": "2026-05-14T19:56:30Z"
+-    "versionTime": "2026-05-14T19:56:30Z",
+-    "scid": "QmVM8VMMBMpbVWus6yq9osWhqYA3etcsoVePrbiii8yXtn"
    },
    "didResolutionMetadata": {
      "contentType": "application/did+ld+json"
@@ -755,30 +723,22 @@
 === multi-update / java-eecc — resolutionResult.1.json ===
 --- expected
 +++ actual (ts resolver)
-@@ -23,13 +23,13 @@
-     ],
-     "service": [
+@@ -25,7 +25,7 @@
        {
-+        "id": "#files",
--        "id": "did:webvh:QmdYqePhHPZBjktLyqEjJwbxbzTJ4KYCu8cqRtPyydnHfQ:example.com#files",
+         "id": "#files",
          "type": "relativeRef",
 +        "serviceEndpoint": "https://example.com"
 -        "serviceEndpoint": "https://example.com/"
        },
        {
          "@context": "https://identity.foundation/linked-vp/contexts/v1",
-+        "id": "#whois",
--        "id": "did:webvh:QmdYqePhHPZBjktLyqEjJwbxbzTJ4KYCu8cqRtPyydnHfQ:example.com#whois",
-         "type": "LinkedVerifiablePresentation",
-         "serviceEndpoint": "https://example.com/whois.vp"
-       }
 @@ -40,8 +40,7 @@
-     "updated": "2026-05-12T22:56:00Z",
-     "versionId": "1-QmaQsV7NyHqu44dHZKDHLfo8ALJfdqqbcA77aJG5PdmbPz",
+     "updated": "2026-05-26T18:45:06Z",
+     "versionId": "1-QmWc66oUVWRAdjUGAay4SAtdXL5721A8awa8ntha5TUrnJ",
      "versionNumber": 1,
-+    "versionTime": "2026-05-12T22:56:00Z"
--    "versionTime": "2026-05-12T22:56:00Z",
--    "scid": "QmdYqePhHPZBjktLyqEjJwbxbzTJ4KYCu8cqRtPyydnHfQ"
++    "versionTime": "2026-05-26T18:45:06Z"
+-    "versionTime": "2026-05-26T18:45:06Z",
+-    "scid": "QmXq3qKkf4miH65SnSpkaMbAcXixyR6JU4yt8p4W8ftGWx"
    },
    "didResolutionMetadata": {
      "contentType": "application/did+ld+json"
@@ -786,30 +746,22 @@
 === multi-update / java-eecc — resolutionResult.2.json ===
 --- expected
 +++ actual (ts resolver)
-@@ -26,13 +26,13 @@
-     ],
-     "service": [
+@@ -28,7 +28,7 @@
        {
-+        "id": "#files",
--        "id": "did:webvh:QmdYqePhHPZBjktLyqEjJwbxbzTJ4KYCu8cqRtPyydnHfQ:example.com#files",
+         "id": "#files",
          "type": "relativeRef",
 +        "serviceEndpoint": "https://example.com"
 -        "serviceEndpoint": "https://example.com/"
        },
        {
          "@context": "https://identity.foundation/linked-vp/contexts/v1",
-+        "id": "#whois",
--        "id": "did:webvh:QmdYqePhHPZBjktLyqEjJwbxbzTJ4KYCu8cqRtPyydnHfQ:example.com#whois",
-         "type": "LinkedVerifiablePresentation",
-         "serviceEndpoint": "https://example.com/whois.vp"
-       }
 @@ -43,8 +43,7 @@
-     "updated": "2026-05-12T22:56:01Z",
-     "versionId": "2-QmNNuntpNzxJVav9dswJBvwhtnHWpRLTzi8QW4eCfzgbci",
+     "updated": "2026-05-26T18:45:07Z",
+     "versionId": "2-QmeJtPUqLYmrzPoMDbnADCzkp1baK39NvSCM6GoKnoaFgB",
      "versionNumber": 2,
-+    "versionTime": "2026-05-12T22:56:01Z"
--    "versionTime": "2026-05-12T22:56:01Z",
--    "scid": "QmdYqePhHPZBjktLyqEjJwbxbzTJ4KYCu8cqRtPyydnHfQ"
++    "versionTime": "2026-05-26T18:45:07Z"
+-    "versionTime": "2026-05-26T18:45:07Z",
+-    "scid": "QmXq3qKkf4miH65SnSpkaMbAcXixyR6JU4yt8p4W8ftGWx"
    },
    "didResolutionMetadata": {
      "contentType": "application/did+ld+json"
@@ -817,30 +769,22 @@
 === multi-update / java-eecc — resolutionResult.json ===
 --- expected
 +++ actual (ts resolver)
-@@ -27,13 +27,13 @@
-     ],
-     "service": [
+@@ -29,7 +29,7 @@
        {
-+        "id": "#files",
--        "id": "did:webvh:QmdYqePhHPZBjktLyqEjJwbxbzTJ4KYCu8cqRtPyydnHfQ:example.com#files",
+         "id": "#files",
          "type": "relativeRef",
 +        "serviceEndpoint": "https://example.com"
 -        "serviceEndpoint": "https://example.com/"
        },
        {
          "@context": "https://identity.foundation/linked-vp/contexts/v1",
-+        "id": "#whois",
--        "id": "did:webvh:QmdYqePhHPZBjktLyqEjJwbxbzTJ4KYCu8cqRtPyydnHfQ:example.com#whois",
-         "type": "LinkedVerifiablePresentation",
-         "serviceEndpoint": "https://example.com/whois.vp"
-       }
 @@ -44,8 +44,7 @@
-     "updated": "2026-05-12T22:56:01Z",
-     "versionId": "3-QmU9PTtjDo2jkXkRFT1mkMiQ5KQruiTvhQdrfQu6tFdyGw",
+     "updated": "2026-05-26T18:45:08Z",
+     "versionId": "3-QmbFthJC5iCmPW4VSQxgjeHYw5RgsU1LHG1xHkY4NcUYvs",
      "versionNumber": 3,
-+    "versionTime": "2026-05-12T22:56:01Z"
--    "versionTime": "2026-05-12T22:56:01Z",
--    "scid": "QmdYqePhHPZBjktLyqEjJwbxbzTJ4KYCu8cqRtPyydnHfQ"
++    "versionTime": "2026-05-26T18:45:08Z"
+-    "versionTime": "2026-05-26T18:45:08Z",
+-    "scid": "QmXq3qKkf4miH65SnSpkaMbAcXixyR6JU4yt8p4W8ftGWx"
    },
    "didResolutionMetadata": {
      "contentType": "application/did+ld+json"
@@ -1164,30 +1108,22 @@
 === multiple-update-keys / java-eecc — resolutionResult.json ===
 --- expected
 +++ actual (ts resolver)
-@@ -33,13 +33,13 @@
-     ],
-     "service": [
+@@ -35,7 +35,7 @@
        {
-+        "id": "#files",
--        "id": "did:webvh:QmXyNArJj58bPqqHDcdEwiRVHUhBz42QVCgy3RySmK75kP:example.com#files",
+         "id": "#files",
          "type": "relativeRef",
 +        "serviceEndpoint": "https://example.com"
 -        "serviceEndpoint": "https://example.com/"
        },
        {
          "@context": "https://identity.foundation/linked-vp/contexts/v1",
-+        "id": "#whois",
--        "id": "did:webvh:QmXyNArJj58bPqqHDcdEwiRVHUhBz42QVCgy3RySmK75kP:example.com#whois",
-         "type": "LinkedVerifiablePresentation",
-         "serviceEndpoint": "https://example.com/whois.vp"
-       }
 @@ -50,8 +50,7 @@
-     "updated": "2026-05-12T22:56:01Z",
-     "versionId": "2-QmaXfYp3i2rzD3cznSotTQJ7r1a3mpeyttC3rZ1BahJHA4",
+     "updated": "2026-05-26T18:45:07Z",
+     "versionId": "2-QmYb6GyeV1zcqNY7QLZGbkqPaocM7M2K3bbghQkp6EbReF",
      "versionNumber": 2,
-+    "versionTime": "2026-05-12T22:56:01Z"
--    "versionTime": "2026-05-12T22:56:01Z",
--    "scid": "QmXyNArJj58bPqqHDcdEwiRVHUhBz42QVCgy3RySmK75kP"
++    "versionTime": "2026-05-26T18:45:07Z"
+-    "versionTime": "2026-05-26T18:45:07Z",
+-    "scid": "Qma7anVnd3xZawFFBt3XxNsTgpinJZsHBTFSVzyB5FXoJ8"
    },
    "didResolutionMetadata": {
      "contentType": "application/did+ld+json"
@@ -1296,7 +1232,7 @@
 @@ -16,6 +16,19 @@
      ],
      "assertionMethod": [
-       "did:webvh:QmdXWHWPazrCdUKg4HtK54xR33tN54ft4G6cicdvdMfDmJ:example.com#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+       "did:webvh:QmNSaocy1jNS1aqFWPzRJETPD4FDPNLgnmy87YBTFJ4Agt:example.com#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
 +    ],
 +    "service": [
 +      {
@@ -1314,13 +1250,13 @@
    },
    "didDocumentMetadata": {
 @@ -23,9 +36,7 @@
-     "updated": "2026-05-12T22:55:20Z",
-     "versionId": "1-QmNxcbkzLb2MvbETWRpARRZmjBzA7BhfLTDQYW3ympeLU7",
+     "updated": "2026-05-14T19:56:28Z",
+     "versionId": "1-QmPMQUaTdWs4rBCRWThEtXUe2e5qaTbSJkov9ugLp6s3p4",
      "versionNumber": 1,
-+    "versionTime": "2026-05-12T22:55:20Z"
--    "versionTime": "2026-05-12T22:55:20Z",
++    "versionTime": "2026-05-14T19:56:28Z"
+-    "versionTime": "2026-05-14T19:56:28Z",
 -    "portable": true,
--    "scid": "QmdXWHWPazrCdUKg4HtK54xR33tN54ft4G6cicdvdMfDmJ"
+-    "scid": "QmNSaocy1jNS1aqFWPzRJETPD4FDPNLgnmy87YBTFJ4Agt"
    },
    "didResolutionMetadata": {
      "contentType": "application/did+ld+json"
@@ -1328,31 +1264,23 @@
 === portable / java-eecc — resolutionResult.json ===
 --- expected
 +++ actual (ts resolver)
-@@ -23,13 +23,13 @@
-     ],
-     "service": [
+@@ -25,7 +25,7 @@
        {
-+        "id": "#files",
--        "id": "did:webvh:QmcrHV5LEB95UGMeTxARc1aycno6MY3tQGAjGfecagAYDt:example.com#files",
+         "id": "#files",
          "type": "relativeRef",
 +        "serviceEndpoint": "https://example.com"
 -        "serviceEndpoint": "https://example.com/"
        },
        {
          "@context": "https://identity.foundation/linked-vp/contexts/v1",
-+        "id": "#whois",
--        "id": "did:webvh:QmcrHV5LEB95UGMeTxARc1aycno6MY3tQGAjGfecagAYDt:example.com#whois",
-         "type": "LinkedVerifiablePresentation",
-         "serviceEndpoint": "https://example.com/whois.vp"
-       }
 @@ -40,9 +40,7 @@
-     "updated": "2026-05-12T22:56:01Z",
-     "versionId": "1-QmebuY6xCh5MbcskZhYwm7TUvcN2X5WAjbDMiHfm1f36C1",
+     "updated": "2026-05-26T18:45:06Z",
+     "versionId": "1-Qmci7uwA1DrAP3hYkgVmZSqyxJ9R2L3QqttSwHstcNQDtC",
      "versionNumber": 1,
-+    "versionTime": "2026-05-12T22:56:01Z"
--    "versionTime": "2026-05-12T22:56:01Z",
++    "versionTime": "2026-05-26T18:45:06Z"
+-    "versionTime": "2026-05-26T18:45:06Z",
 -    "portable": true,
--    "scid": "QmcrHV5LEB95UGMeTxARc1aycno6MY3tQGAjGfecagAYDt"
+-    "scid": "QmVFPaPZ4UKDxXP18MV4bTtw2NpvmWJkWGYf4CohqMVfFv"
    },
    "didResolutionMetadata": {
      "contentType": "application/did+ld+json"
@@ -1461,7 +1389,7 @@
 @@ -19,6 +19,19 @@
      ],
      "alsoKnownAs": [
-       "did:webvh:QmdXWHWPazrCdUKg4HtK54xR33tN54ft4G6cicdvdMfDmJ:example.com"
+       "did:webvh:QmNSaocy1jNS1aqFWPzRJETPD4FDPNLgnmy87YBTFJ4Agt:example.com"
 +    ],
 +    "service": [
 +      {
@@ -1479,13 +1407,37 @@
    },
    "didDocumentMetadata": {
 @@ -26,9 +39,7 @@
-     "updated": "2026-05-12T22:55:21Z",
-     "versionId": "2-QmT2wLez62kJTT5jU7WJYGQfweiDvgnBWBnULca1vDJSsB",
+     "updated": "2026-05-14T19:56:29Z",
+     "versionId": "2-Qmb1xiuJoneXu91WQ6T1dVxDvEEoC4wn7T21xJW5GncfkJ",
      "versionNumber": 2,
-+    "versionTime": "2026-05-12T22:55:21Z"
--    "versionTime": "2026-05-12T22:55:21Z",
++    "versionTime": "2026-05-14T19:56:29Z"
+-    "versionTime": "2026-05-14T19:56:29Z",
 -    "portable": true,
--    "scid": "QmdXWHWPazrCdUKg4HtK54xR33tN54ft4G6cicdvdMfDmJ"
+-    "scid": "QmNSaocy1jNS1aqFWPzRJETPD4FDPNLgnmy87YBTFJ4Agt"
+   },
+   "didResolutionMetadata": {
+     "contentType": "application/did+ld+json"
+
+=== portable-move / java-eecc — resolutionResult.json ===
+--- expected
++++ actual (ts resolver)
+@@ -28,7 +28,7 @@
+       {
+         "id": "#files",
+         "type": "relativeRef",
++        "serviceEndpoint": "https://example.org"
+-        "serviceEndpoint": "https://example.org/"
+       },
+       {
+         "@context": "https://identity.foundation/linked-vp/contexts/v1",
+@@ -43,9 +43,7 @@
+     "updated": "2026-05-26T18:45:07Z",
+     "versionId": "2-QmcLmnXHhnTA6WMCwtskfLLmrGqPgtDF2foTVitB5vVhQj",
+     "versionNumber": 2,
++    "versionTime": "2026-05-26T18:45:07Z"
+-    "versionTime": "2026-05-26T18:45:07Z",
+-    "portable": true,
+-    "scid": "QmVFPaPZ4UKDxXP18MV4bTtw2NpvmWJkWGYf4CohqMVfFv"
    },
    "didResolutionMetadata": {
      "contentType": "application/did+ld+json"
@@ -1594,7 +1546,7 @@
 @@ -16,6 +16,19 @@
      ],
      "assertionMethod": [
-       "did:webvh:QmaQBZTV1w6PaTYpLGfP4L9wcY4id7yszT1GaVSKUZAeh7:example.com#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+       "did:webvh:QmNUyra1RU7V6fUmmYwnLKMJdiNTrjyYTD85bZntmMKcac:example.com#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
 +    ],
 +    "service": [
 +      {
@@ -1612,12 +1564,12 @@
    },
    "didDocumentMetadata": {
 @@ -23,8 +36,7 @@
-     "updated": "2026-05-12T22:55:20Z",
-     "versionId": "1-QmVRg7JRcBiXAH1iAyGDHjoRyHPftTb67mhs4ic2cNm6rE",
+     "updated": "2026-05-14T19:56:28Z",
+     "versionId": "1-QmWHHoL7VUjMuADU1jHZ3p9c93fXzMQ3Xo7KM6kL37FGPa",
      "versionNumber": 1,
-+    "versionTime": "2026-05-12T22:55:20Z"
--    "versionTime": "2026-05-12T22:55:20Z",
--    "scid": "QmaQBZTV1w6PaTYpLGfP4L9wcY4id7yszT1GaVSKUZAeh7"
++    "versionTime": "2026-05-14T19:56:28Z"
+-    "versionTime": "2026-05-14T19:56:28Z",
+-    "scid": "QmNUyra1RU7V6fUmmYwnLKMJdiNTrjyYTD85bZntmMKcac"
    },
    "didResolutionMetadata": {
      "contentType": "application/did+ld+json"
@@ -1625,30 +1577,22 @@
 === pre-rotation / java-eecc — resolutionResult.json ===
 --- expected
 +++ actual (ts resolver)
-@@ -23,13 +23,13 @@
-     ],
-     "service": [
+@@ -25,7 +25,7 @@
        {
-+        "id": "#files",
--        "id": "did:webvh:QmabFvmYXy68J5EC4veeWq7FWoppToUXg2j2wHfrP1SPX1:example.com#files",
+         "id": "#files",
          "type": "relativeRef",
 +        "serviceEndpoint": "https://example.com"
 -        "serviceEndpoint": "https://example.com/"
        },
        {
          "@context": "https://identity.foundation/linked-vp/contexts/v1",
-+        "id": "#whois",
--        "id": "did:webvh:QmabFvmYXy68J5EC4veeWq7FWoppToUXg2j2wHfrP1SPX1:example.com#whois",
-         "type": "LinkedVerifiablePresentation",
-         "serviceEndpoint": "https://example.com/whois.vp"
-       }
 @@ -40,8 +40,7 @@
-     "updated": "2026-05-12T22:56:01Z",
-     "versionId": "1-QmcjJPTCmoRtdyZuz7sa4D643P9BbZvUx8KTrVad6EJAvF",
+     "updated": "2026-05-26T18:45:06Z",
+     "versionId": "1-QmUAtPKg1uXBpip5vcY8H35x7zBsBk1RzsmQXU7mh49Te3",
      "versionNumber": 1,
-+    "versionTime": "2026-05-12T22:56:01Z"
--    "versionTime": "2026-05-12T22:56:01Z",
--    "scid": "QmabFvmYXy68J5EC4veeWq7FWoppToUXg2j2wHfrP1SPX1"
++    "versionTime": "2026-05-26T18:45:06Z"
+-    "versionTime": "2026-05-26T18:45:06Z",
+-    "scid": "QmWZCzqBbRzYvH4nWeVZ6gViAfRYNuci6aT8o7ajAJZzWe"
    },
    "didResolutionMetadata": {
      "contentType": "application/did+ld+json"
@@ -1754,30 +1698,22 @@
 === pre-rotation-consume / java-eecc — resolutionResult.json ===
 --- expected
 +++ actual (ts resolver)
-@@ -23,13 +23,13 @@
-     ],
-     "service": [
+@@ -25,7 +25,7 @@
        {
-+        "id": "#files",
--        "id": "did:webvh:QmabFvmYXy68J5EC4veeWq7FWoppToUXg2j2wHfrP1SPX1:example.com#files",
+         "id": "#files",
          "type": "relativeRef",
 +        "serviceEndpoint": "https://example.com"
 -        "serviceEndpoint": "https://example.com/"
        },
        {
          "@context": "https://identity.foundation/linked-vp/contexts/v1",
-+        "id": "#whois",
--        "id": "did:webvh:QmabFvmYXy68J5EC4veeWq7FWoppToUXg2j2wHfrP1SPX1:example.com#whois",
-         "type": "LinkedVerifiablePresentation",
-         "serviceEndpoint": "https://example.com/whois.vp"
-       }
 @@ -40,8 +40,7 @@
-     "updated": "2026-05-12T22:56:01Z",
-     "versionId": "3-QmeTii9JBjEHrPjLuYH6XEtk3EqBaN5njJWAum9QgfEmcF",
+     "updated": "2026-05-26T18:45:08Z",
+     "versionId": "3-QmXuBz3MwEkM6XNfQHxLde6Ar5SY1iASHBhNi9QanHiijn",
      "versionNumber": 3,
-+    "versionTime": "2026-05-12T22:56:01Z"
--    "versionTime": "2026-05-12T22:56:01Z",
--    "scid": "QmabFvmYXy68J5EC4veeWq7FWoppToUXg2j2wHfrP1SPX1"
++    "versionTime": "2026-05-26T18:45:08Z"
+-    "versionTime": "2026-05-26T18:45:08Z",
+-    "scid": "QmWZCzqBbRzYvH4nWeVZ6gViAfRYNuci6aT8o7ajAJZzWe"
    },
    "didResolutionMetadata": {
      "contentType": "application/did+ld+json"
@@ -1902,12 +1838,12 @@
      ]
    },
 @@ -35,8 +46,7 @@
-     "updated": "2026-05-12T22:55:21Z",
-     "versionId": "2-Qme6Dkn8c513wPPkHJaEsJUTZiCDWKoW3jKc2eXmYA4kyA",
+     "updated": "2026-05-14T19:56:29Z",
+     "versionId": "2-Qmbqn3bRGPJA2n9HP3soh5cg5N764wEtbsDzrW35cxBCxy",
      "versionNumber": 2,
-+    "versionTime": "2026-05-12T22:55:21Z"
--    "versionTime": "2026-05-12T22:55:21Z",
--    "scid": "QmcWxytEk1kJ8eWWmjXr5Gdo7QGuWExBHC3kP8Xuox1SL8"
++    "versionTime": "2026-05-14T19:56:29Z"
+-    "versionTime": "2026-05-14T19:56:29Z",
+-    "scid": "QmQFhvUJ7AW14nsqPwHuveYSa6KfjYwyWvX1FJax4MUtRW"
    },
    "didResolutionMetadata": {
      "contentType": "application/did+ld+json"
@@ -1915,30 +1851,22 @@
 === services / java-eecc — resolutionResult.json ===
 --- expected
 +++ actual (ts resolver)
-@@ -33,13 +33,13 @@
-         "serviceEndpoint": "https://example.com/didcomm"
-       },
+@@ -35,7 +35,7 @@
        {
-+        "id": "#files",
--        "id": "did:webvh:QmeRVHxwzPu193ZKYhC5kxqj9vUdPUucwEo7CLT5uDPt9a:example.com#files",
+         "id": "#files",
          "type": "relativeRef",
 +        "serviceEndpoint": "https://example.com"
 -        "serviceEndpoint": "https://example.com/"
        },
        {
          "@context": "https://identity.foundation/linked-vp/contexts/v1",
-+        "id": "#whois",
--        "id": "did:webvh:QmeRVHxwzPu193ZKYhC5kxqj9vUdPUucwEo7CLT5uDPt9a:example.com#whois",
-         "type": "LinkedVerifiablePresentation",
-         "serviceEndpoint": "https://example.com/whois.vp"
-       }
 @@ -50,8 +50,7 @@
-     "updated": "2026-05-12T22:56:01Z",
-     "versionId": "2-QmaydhnnaU2gDA17xZ4Nb7G4DSNjV5MoWQSrZ8nuDEjuvG",
+     "updated": "2026-05-26T18:45:07Z",
+     "versionId": "2-QmWujJ9nY2h9zDzivFUH8x9Lip7XGg4L2gY8R8G6xn1SWR",
      "versionNumber": 2,
-+    "versionTime": "2026-05-12T22:56:01Z"
--    "versionTime": "2026-05-12T22:56:01Z",
--    "scid": "QmeRVHxwzPu193ZKYhC5kxqj9vUdPUucwEo7CLT5uDPt9a"
++    "versionTime": "2026-05-26T18:45:07Z"
+-    "versionTime": "2026-05-26T18:45:07Z",
+-    "scid": "QmW4gBYwEpZuqEPSMWd3j3q7T4sZDw5mcFEKeDM7zWmWLB"
    },
    "didResolutionMetadata": {
      "contentType": "application/did+ld+json"
@@ -2032,7 +1960,7 @@
 @@ -16,6 +16,19 @@
      ],
      "assertionMethod": [
-       "did:webvh:QmZseKPegE8mcQ7mwnzBLPAzfjf8uq5Tb1gSStmY6c9ZUn:example.com#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+       "did:webvh:QmZ37DUAdT8ykyecfHGH9noeDYPsXVgdeydR6WwpjoyWvc:example.com#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
 +    ],
 +    "service": [
 +      {
@@ -2050,12 +1978,12 @@
    },
    "didDocumentMetadata": {
 @@ -23,8 +36,7 @@
-     "updated": "2026-05-12T22:55:20Z",
-     "versionId": "1-Qmc43Fgt2oxrCrU2EE2dv4qRmdNRgJBoneLzmb4RYCndNo",
+     "updated": "2026-05-14T19:56:28Z",
+     "versionId": "1-QmVrw8Xbk2pYwBQurxe8etbMLWhW8UYw79RQqnrbPPshpr",
      "versionNumber": 1,
-+    "versionTime": "2026-05-12T22:55:20Z"
--    "versionTime": "2026-05-12T22:55:20Z",
--    "scid": "QmZseKPegE8mcQ7mwnzBLPAzfjf8uq5Tb1gSStmY6c9ZUn"
++    "versionTime": "2026-05-14T19:56:28Z"
+-    "versionTime": "2026-05-14T19:56:28Z",
+-    "scid": "QmZ37DUAdT8ykyecfHGH9noeDYPsXVgdeydR6WwpjoyWvc"
    },
    "didResolutionMetadata": {
      "contentType": "application/did+ld+json"
@@ -2063,30 +1991,22 @@
 === witness-threshold / java-eecc — resolutionResult.json ===
 --- expected
 +++ actual (ts resolver)
-@@ -23,13 +23,13 @@
-     ],
-     "service": [
+@@ -25,7 +25,7 @@
        {
-+        "id": "#files",
--        "id": "did:webvh:QmQD4uZZcwegmanPyk9UA3yxk9X8JgL8YoWE8UQJYvhPwv:example.com#files",
+         "id": "#files",
          "type": "relativeRef",
 +        "serviceEndpoint": "https://example.com"
 -        "serviceEndpoint": "https://example.com/"
        },
        {
          "@context": "https://identity.foundation/linked-vp/contexts/v1",
-+        "id": "#whois",
--        "id": "did:webvh:QmQD4uZZcwegmanPyk9UA3yxk9X8JgL8YoWE8UQJYvhPwv:example.com#whois",
-         "type": "LinkedVerifiablePresentation",
-         "serviceEndpoint": "https://example.com/whois.vp"
-       }
 @@ -40,8 +40,7 @@
-     "updated": "2026-05-12T22:56:01Z",
-     "versionId": "1-QmPJXAsyCkwciYcgjQg4QWyGwGPiWdPEz26zxnMTPg4DcA",
+     "updated": "2026-05-26T18:45:06Z",
+     "versionId": "1-QmQyMRcq9CjKY9gMM9WudCLBJ8UK8nsctKZ8GnxYREhwBv",
      "versionNumber": 1,
-+    "versionTime": "2026-05-12T22:56:01Z"
--    "versionTime": "2026-05-12T22:56:01Z",
--    "scid": "QmQD4uZZcwegmanPyk9UA3yxk9X8JgL8YoWE8UQJYvhPwv"
++    "versionTime": "2026-05-26T18:45:06Z"
+-    "versionTime": "2026-05-26T18:45:06Z",
+-    "scid": "QmejyJPWW1s6h2vVminmB2VRRE968XrEuFgvxiFoLC7gfh"
    },
    "didResolutionMetadata": {
      "contentType": "application/did+ld+json"
@@ -2144,7 +2064,7 @@
 @@ -16,6 +16,19 @@
      ],
      "assertionMethod": [
-       "did:webvh:QmeuSHFBxjJDFWaNPgpFdeqWDc2eZWq5Ab85xdNuxCe8Dp:example.com#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+       "did:webvh:QmeNpfoj3CtcKrNEdWDx8uPrTLk3cpkv2fvFpQWMeP9avM:example.com#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
 +    ],
 +    "service": [
 +      {
@@ -2162,12 +2082,12 @@
    },
    "didDocumentMetadata": {
 @@ -23,8 +36,7 @@
-     "updated": "2026-05-12T22:55:21Z",
-     "versionId": "2-QmY1XUJiEudbdEeLnJkZVgm7jiGjHtZaPh2o5DnW8bnxYH",
+     "updated": "2026-05-14T19:56:29Z",
+     "versionId": "2-QmY8sbzQPhr6Kjjz4nWcdYXABHVyxd11Fbb97eJm9cstu8",
      "versionNumber": 2,
-+    "versionTime": "2026-05-12T22:55:21Z"
--    "versionTime": "2026-05-12T22:55:21Z",
--    "scid": "QmeuSHFBxjJDFWaNPgpFdeqWDc2eZWq5Ab85xdNuxCe8Dp"
++    "versionTime": "2026-05-14T19:56:29Z"
+-    "versionTime": "2026-05-14T19:56:29Z",
+-    "scid": "QmeNpfoj3CtcKrNEdWDx8uPrTLk3cpkv2fvFpQWMeP9avM"
    },
    "didResolutionMetadata": {
      "contentType": "application/did+ld+json"
@@ -2182,22 +2102,22 @@
 +      "https://www.w3.org/ns/did/v1",
 +      "https://w3id.org/security/multikey/v1"
 +    ],
-+    "id": "did:webvh:QmUjUMMY1UShc8MbRnr4dbV4dYh2jmMebmzCgk3oKpJNZ9:example.com",
-+    "controller": "did:webvh:QmUjUMMY1UShc8MbRnr4dbV4dYh2jmMebmzCgk3oKpJNZ9:example.com",
++    "id": "did:webvh:Qmcy68zXi6zWSxhchHQRyRYjbFoVeaRjHsF9wLXGBaCMgx:example.com",
++    "controller": "did:webvh:Qmcy68zXi6zWSxhchHQRyRYjbFoVeaRjHsF9wLXGBaCMgx:example.com",
 +    "assertionMethod": [],
 +    "keyAgreement": [],
 +    "capabilityDelegation": [],
 +    "capabilityInvocation": [],
 +    "verificationMethod": [
 +      {
-+        "id": "did:webvh:QmUjUMMY1UShc8MbRnr4dbV4dYh2jmMebmzCgk3oKpJNZ9:example.com#P5RDjVJG",
++        "id": "did:webvh:Qmcy68zXi6zWSxhchHQRyRYjbFoVeaRjHsF9wLXGBaCMgx:example.com#P5RDjVJG",
 +        "type": "Multikey",
-+        "controller": "did:webvh:QmUjUMMY1UShc8MbRnr4dbV4dYh2jmMebmzCgk3oKpJNZ9:example.com",
++        "controller": "did:webvh:Qmcy68zXi6zWSxhchHQRyRYjbFoVeaRjHsF9wLXGBaCMgx:example.com",
 +        "publicKeyMultibase": "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
 +      }
 +    ],
 +    "authentication": [
-+      "did:webvh:QmUjUMMY1UShc8MbRnr4dbV4dYh2jmMebmzCgk3oKpJNZ9:example.com#P5RDjVJG"
++      "did:webvh:Qmcy68zXi6zWSxhchHQRyRYjbFoVeaRjHsF9wLXGBaCMgx:example.com#P5RDjVJG"
 +    ],
 +    "service": [
 +      {
@@ -2214,11 +2134,11 @@
 +    ]
 +  },
 +  "didDocumentMetadata": {
-+    "created": "2026-05-12T22:56:01Z",
-+    "updated": "2026-05-12T22:56:01Z",
-+    "versionId": "2-QmPY4jwLJ3nr5YWarm9qxcmEcZ6Gi5tNH2xH1oXwdZda64",
++    "created": "2026-05-26T18:45:06Z",
++    "updated": "2026-05-26T18:45:07Z",
++    "versionId": "2-QmZ38kfnEGATj9Cyook7mTPjayNoHpbmeSwy8E6vYNdMaq",
 +    "versionNumber": 2,
-+    "versionTime": "2026-05-12T22:56:01Z"
++    "versionTime": "2026-05-26T18:45:07Z"
 +  },
 -  "didDocument": null,
 -  "didDocumentMetadata": {},

@@ -1,34 +1,47 @@
 {
   "didDocument": {
     "@context": "https://www.w3.org/ns/did/v1",
-    "id": "did:webvh:QmVM8VMMBMpbVWus6yq9osWhqYA3etcsoVePrbiii8yXtn:example.com",
-    "controller": "did:webvh:QmVM8VMMBMpbVWus6yq9osWhqYA3etcsoVePrbiii8yXtn:example.com",
+    "id": "did:webvh:QmePZQxDW6wr4ohW61LLra4jm8SU3Go6EnCKcVbvzXkNtn:example.com",
+    "controller": "did:webvh:QmePZQxDW6wr4ohW61LLra4jm8SU3Go6EnCKcVbvzXkNtn:example.com",
     "verificationMethod": [
       {
-        "id": "did:webvh:QmVM8VMMBMpbVWus6yq9osWhqYA3etcsoVePrbiii8yXtn:example.com#P5RDjVJG",
+        "id": "did:webvh:QmePZQxDW6wr4ohW61LLra4jm8SU3Go6EnCKcVbvzXkNtn:example.com#P5RDjVJG",
         "type": "Multikey",
-        "controller": "did:webvh:QmVM8VMMBMpbVWus6yq9osWhqYA3etcsoVePrbiii8yXtn:example.com",
+        "controller": "did:webvh:QmePZQxDW6wr4ohW61LLra4jm8SU3Go6EnCKcVbvzXkNtn:example.com",
         "publicKeyMultibase": "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
       }
     ],
     "authentication": [
-      "did:webvh:QmVM8VMMBMpbVWus6yq9osWhqYA3etcsoVePrbiii8yXtn:example.com#P5RDjVJG"
+      "did:webvh:QmePZQxDW6wr4ohW61LLra4jm8SU3Go6EnCKcVbvzXkNtn:example.com#P5RDjVJG"
     ],
     "assertionMethod": [
-      "did:webvh:QmVM8VMMBMpbVWus6yq9osWhqYA3etcsoVePrbiii8yXtn:example.com#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+      "did:webvh:QmePZQxDW6wr4ohW61LLra4jm8SU3Go6EnCKcVbvzXkNtn:example.com#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
     ],
     "alsoKnownAs": [
       "did:web:example.com",
       "did:web:example.org"
+    ],
+    "service": [
+      {
+        "id": "did:webvh:QmePZQxDW6wr4ohW61LLra4jm8SU3Go6EnCKcVbvzXkNtn:example.com#files",
+        "type": "relativeRef",
+        "serviceEndpoint": "https://example.com/"
+      },
+      {
+        "@context": "https://identity.foundation/linked-vp/contexts/v1",
+        "id": "did:webvh:QmePZQxDW6wr4ohW61LLra4jm8SU3Go6EnCKcVbvzXkNtn:example.com#whois",
+        "type": "LinkedVerifiablePresentation",
+        "serviceEndpoint": "https://example.com/whois.vp"
+      }
     ]
   },
   "didDocumentMetadata": {
-    "created": "2026-05-14T19:56:28Z",
-    "updated": "2026-05-14T19:56:30Z",
-    "versionId": "3-QmWgFkF9TZxbL4Pkjhe6Pm74Y7EvxG3xwJa9KkgiAvc4LU",
+    "created": "2026-05-28T18:58:18Z",
+    "updated": "2026-05-28T18:58:20Z",
+    "versionId": "3-QmRXHVyqoXyw8LQRb5gHnXW2d6ATwaZX1atYyxrRZF9Zi9",
     "versionNumber": 3,
-    "versionTime": "2026-05-14T19:56:30Z",
-    "scid": "QmVM8VMMBMpbVWus6yq9osWhqYA3etcsoVePrbiii8yXtn"
+    "versionTime": "2026-05-28T18:58:20Z",
+    "scid": "QmePZQxDW6wr4ohW61LLra4jm8SU3Go6EnCKcVbvzXkNtn"
   },
   "didResolutionMetadata": {
     "contentType": "application/did+ld+json"

@@ -18,6 +18,27 @@
 | witness-threshold | ✅ PASS |  |
 | witness-update | ✅ PASS |  |
 
+## Negative Resolution
+
+| Test Case | Expected Error | Result | Notes |
+|---|---|---|---|
+| negative-cross-did-witness-replay | invalidDid | ✅ PASS |  |
+| negative-did-key-body-fragment-mismatch | invalidProof | ✅ PASS |  |
+| negative-duplicate-witness-ids | invalidParameters | ✅ PASS |  |
+| negative-fragment-leaks-into-domain | invalidDid | ⚠️ SKIP | URL-only test (no log) |
+| negative-lowercase-pct-port-ip | invalidDid | ⚠️ SKIP | URL-only test (no log) |
+| negative-path-traversal-did | invalidDid | ⚠️ SKIP | URL-only test (no log) |
+| negative-pct-encoded-ip-host | invalidDid | ⚠️ SKIP | URL-only test (no log) |
+| negative-pct-encoded-traversal | invalidDid | ⚠️ SKIP | URL-only test (no log) |
+| negative-portable-scid-swap | invalidDid | ✅ PASS |  |
+| negative-pre-rotation-omit-updatekeys | invalidParameters | ✅ PASS |  |
+| negative-scid-mismatch-genesis | invalidDid | ✅ PASS |  |
+| negative-unknown-method-version | invalidDid | ✅ PASS |  |
+| negative-versiontime-future | invalidDid | ✅ PASS |  |
+| negative-versiontime-non-monotonic | invalidDid | ❌ FAIL | resolver accepted invalid log |
+| negative-wrong-cryptosuite | invalidProof | ✅ PASS |  |
+| negative-zero-witness-threshold | invalidParameters | ❌ FAIL | resolver accepted invalid log |
+
 ## Cross-Resolution
 
 | Test Case | Log Source | Result | Notes |
@@ -67,6 +88,7 @@
 | portable | rust | 🔶 DIFF | see diffs.txt |
 | portable | ts | ✅ PASS |  |
 | portable-move | java | 🔶 DIFF | see diffs.txt |
+| portable-move | java-eecc | 🔶 DIFF | see diffs.txt |
 | portable-move | python | 🔶 DIFF | see diffs.txt |
 | portable-move | rust | 🔶 DIFF | see diffs.txt |
 | portable-move | ts | ⚠️ XFAIL | TS COMPAT: TS generator writes nextKeyHashes: [] for non-pre-rotation entries; Python library rejects an empty list. Fix |

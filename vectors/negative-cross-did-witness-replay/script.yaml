@@ -1,85 +1,38 @@
-description: "Witness proof for a versionId that is not from this DID's log — must be rejected"
+description: "Witness proof signed over a stale versionId — must be rejected"
 spec_ref: "https://identity.foundation/didwebvh/v1.0/#witnesses"
 negative: true
 
 keys:
-  - id: ctrl-A
+  - id: key-0
     type: ed25519
     seed: "0000000000000000000000000000000000000000000000000000000000000001"
-  - id: ctrl-B
-    type: ed25519
-    seed: "00000000000000000000000000000000000000000000000000000000000000aa"
-  - id: shared-witness
+  - id: witness-key
     type: ed25519
     seed: "0000000000000000000000000000000000000000000000000000000000000010"
 
 steps:
-  # DID-B is created elsewhere and has a witness proof signed by shared-witness
-  # over versionId "3-<some-other-hash>". DID-A is the victim. The attacker
-  # controls DID-A's hosting and lifts DID-B's witness proof verbatim into
-  # DID-A's did-witness.json file.
-  #
-  # DID-A's log has 3 entries; entries 1 and 2 require a witness proof. The
-  # lifted proof's signature is genuine (the witness really did sign
-  # "3-<other-hash>"), and a vulnerable resolver's later-version branch
-  # verifies the signature against the claimed versionId — which checks out.
-
   - op: create
-    did_label: B
-    domain: other.example.com
-    signer: ctrl-B
+    domain: example.com
+    signer: key-0
     timestamp: "2000-01-01T00:00:00Z"
     params:
-      updateKeys: ["ctrl-B"]
+      updateKeys: ["key-0"]
       witness:
         threshold: 1
         witnesses:
-          - id: shared-witness
+          - id: witness-key
 
   - op: update
-    did_label: B
-    signer: ctrl-B
+    signer: key-0
     timestamp: "2000-01-02T00:00:00Z"
 
-  - op: update
-    did_label: B
-    signer: ctrl-B
-    timestamp: "2000-01-03T00:00:00Z"
-
-  # Now build DID-A — same shared-witness in the witness config.
-  - op: create
-    did_label: A
-    domain: example.com
-    signer: ctrl-A
-    timestamp: "2001-01-01T00:00:00Z"
-    params:
-      updateKeys: ["ctrl-A"]
-      witness:
-        threshold: 1
-        witnesses:
-          - id: shared-witness
-
-  - op: update
-    did_label: A
-    signer: ctrl-A
-    timestamp: "2001-01-02T00:00:00Z"
-    params:
-      # Turn witnessing off at entry 3 (so the attacker doesn't need a
-      # genuine witness proof for the latest entry).
-      witness: {}
-
-  - op: update
-    did_label: A
-    signer: ctrl-A
-    timestamp: "2001-01-03T00:00:00Z"
-
-  # Lift DID-B's witness proof (whatever versionId it has) and inject it
-  # into DID-A's did-witness.json file as the sole proof.
-  - op: replay-witness-proof
-    from: B
-    from_version: 3
-    into: A
+  # The witness signs entry 0's versionId — a genuine, valid signature —
+  # but it is presented as the sole witness proof for DID resolution.
+  # A conforming resolver must reject this because the signed versionId
+  # does not match the current HEAD (entry 1's versionId).
+  - op: sign-witness-proof
+    signer: witness-key
+    entry: 0
 
   - op: resolve
-    did: A
     expectError: invalidDid

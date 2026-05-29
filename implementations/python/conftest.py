@@ -17,6 +17,7 @@ DIFFS_PATH = IMPL_DIR / "diffs.txt"
 
 _rows: list[dict] = []
 _diffs: list[dict] = []
+_neg_rows: list[dict] = []
 
 
 # ---------------------------------------------------------------------------
@@ -26,6 +27,7 @@ _diffs: list[dict] = []
 def pytest_sessionstart(session):
     _rows.clear()
     _diffs.clear()
+    _neg_rows.clear()
     if STATUS_PATH.exists():
         STATUS_PATH.unlink()
     if DIFFS_PATH.exists():
@@ -43,10 +45,28 @@ def pytest_runtest_makereport(item, call):
     scenario = item.callspec.params.get("scenario")
     impl = item.callspec.params.get("impl")
     result_file = item.callspec.params.get("result_file")
-    if not (scenario and impl and result_file):
-        return
 
     store = getattr(item, "_status_data", {})
+
+    # Negative resolution tests use different status_data keys — handle before
+    # the impl/result_file guard which would exit early for these tests.
+    if "neg_scenario" in store:
+        outcome = store.get("neg_outcome", "fail")
+        neg_scenario = store["neg_scenario"]
+        neg_expected = store.get("neg_expected_error", "?")
+        if report.passed or outcome == "pass":
+            _neg_rows.append({"testCase": neg_scenario, "expectedError": neg_expected,
+                               "result": "✅ PASS", "notes": ""})
+        elif report.skipped or outcome == "skip":
+            _neg_rows.append({"testCase": neg_scenario, "expectedError": neg_expected,
+                               "result": "⚠️ SKIP", "notes": "URL-only test (no log)"})
+        else:
+            _neg_rows.append({"testCase": neg_scenario, "expectedError": neg_expected,
+                               "result": "❌ FAIL", "notes": "resolver accepted invalid log"})
+        return
+
+    if not (scenario and impl and result_file):
+        return
 
     if report.passed:
         _rows.append({"testCase": scenario, "logSource": impl,
@@ -74,7 +94,7 @@ def pytest_runtest_makereport(item, call):
 
 
 def pytest_sessionfinish(session, exitstatus):
-    if not _rows:
+    if not _rows and not _neg_rows:
         return
 
     version = _read_version()
@@ -94,12 +114,24 @@ def pytest_sessionfinish(session, exitstatus):
                 f"| Test Case | Result | Notes |\n|---|---|---|\n{rows_text}\n\n"
             )
 
+    neg_table = ""
+    if _neg_rows:
+        neg_rows_sorted = sorted(_neg_rows, key=lambda r: r["testCase"])
+        neg_rows_text = "\n".join(
+            f"| {r['testCase']} | {r['expectedError']} | {r['result']} | {r['notes']} |"
+            for r in neg_rows_sorted
+        )
+        neg_table = (
+            f"## Negative Resolution\n\n"
+            f"| Test Case | Expected Error | Result | Notes |\n|---|---|---|---|\n{neg_rows_text}\n\n"
+        )
+
     table_rows = "\n".join(
         f"| {r['testCase']} | {r['logSource']} | {r['result']} | {r['notes']} |"
         for r in _rows
     )
     STATUS_PATH.write_text(
-        f"# python status\n\n{header}{gen_table}"
+        f"# python status\n\n{header}{gen_table}{neg_table}"
         f"## Cross-Resolution\n\n"
         f"| Test Case | Log Source | Result | Notes |\n|---|---|---|---|\n{table_rows}\n"
     )

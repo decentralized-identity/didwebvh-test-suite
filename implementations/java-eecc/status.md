@@ -1,6 +1,6 @@
 # java-eecc status
 
-Implementation: java-eecc 0.2.1
+Implementation: java-eecc 0.3.1
 
 ## DID Creation
 
@@ -19,6 +19,27 @@ Implementation: java-eecc 0.2.1
 | services | ✅ PASS |  |
 | witness-threshold | ✅ PASS |  |
 | witness-update | ✅ PASS |  |
+
+## Negative Resolution
+
+| Test Case | Expected Error | Result | Notes |
+|---|---|---|---|
+| negative-cross-did-witness-replay | invalidDid | ✅ PASS |  |
+| negative-did-key-body-fragment-mismatch | invalidProof | ✅ PASS |  |
+| negative-duplicate-witness-ids | invalidParameters | ✅ PASS |  |
+| negative-fragment-leaks-into-domain | invalidDid | ✅ PASS |  |
+| negative-lowercase-pct-port-ip | invalidDid | ✅ PASS |  |
+| negative-path-traversal-did | invalidDid | ✅ PASS |  |
+| negative-pct-encoded-ip-host | invalidDid | ✅ PASS |  |
+| negative-pct-encoded-traversal | invalidDid | ✅ PASS |  |
+| negative-portable-scid-swap | invalidDid | ✅ PASS |  |
+| negative-pre-rotation-omit-updatekeys | invalidParameters | ✅ PASS |  |
+| negative-scid-mismatch-genesis | invalidDid | ✅ PASS |  |
+| negative-unknown-method-version | invalidDid | ✅ PASS |  |
+| negative-versiontime-future | invalidDid | ✅ PASS |  |
+| negative-versiontime-non-monotonic | invalidDid | ✅ PASS |  |
+| negative-wrong-cryptosuite | invalidProof | ✅ PASS |  |
+| negative-zero-witness-threshold | invalidParameters | ✅ PASS |  |
 
 ## Cross-Resolution
 
@@ -69,7 +90,7 @@ Implementation: java-eecc 0.2.1
 | pre-rotation | python | 🔶 DIFF | see diffs.txt |
 | pre-rotation | rust | 🔶 DIFF | see diffs.txt |
 | pre-rotation | ts | 🔶 DIFF | see diffs.txt |
-| pre-rotation-consume | java | ⚠️ SKIP | no did.jsonl present |
+| pre-rotation-consume | java | 🔶 DIFF | see diffs.txt |
 | pre-rotation-consume | java-eecc (self) | ✅ PASS |  |
 | pre-rotation-consume | python | 🔶 DIFF | see diffs.txt |
 | pre-rotation-consume | rust | 🔶 DIFF | see diffs.txt |
@@ -82,10 +103,10 @@ Implementation: java-eecc 0.2.1
 | witness-threshold | java | 🔶 DIFF | see diffs.txt |
 | witness-threshold | java-eecc (self) | ✅ PASS |  |
 | witness-threshold | python | 🔶 DIFF | see diffs.txt |
-| witness-threshold | rust | ⚠️ XFAIL | TS COMPAT: library resolution error (invalidDid): No valid entries in the DID log |
+| witness-threshold | rust | 🔶 DIFF | see diffs.txt |
 | witness-threshold | ts | 🔶 DIFF | see diffs.txt |
-| witness-update | java | ⚠️ XFAIL | TS COMPAT: library resolution error (invalidDid): Witness epoch [1, 2] requires threshold=2 but only 1 witness(es) provided valid proofs |
+| witness-update | java | 🔶 DIFF | see diffs.txt |
 | witness-update | java-eecc (self) | ✅ PASS |  |
 | witness-update | python | 🔶 DIFF | see diffs.txt |
-| witness-update | rust | ⚠️ XFAIL | TS COMPAT: library resolution error (invalidDid): No valid entries in the DID log |
-| witness-update | ts | ⚠️ XFAIL | TS COMPAT: library resolution error (invalidDid): Witness epoch [1, 2] requires threshold=2 but only 1 witness(es) provided valid proofs |
+| witness-update | rust | 🔶 DIFF | see diffs.txt |
+| witness-update | ts | 🔶 DIFF | see diffs.txt |

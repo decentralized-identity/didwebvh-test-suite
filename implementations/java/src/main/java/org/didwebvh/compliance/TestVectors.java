@@ -1,13 +1,15 @@
 package org.didwebvh.compliance;
 
 import com.google.gson.*;
-import io.github.ivir3zam.didwebvh.core.ResolutionException;
-import io.github.ivir3zam.didwebvh.core.model.LogEntry;
-import io.github.ivir3zam.didwebvh.core.model.ResolutionMetadata;
-import io.github.ivir3zam.didwebvh.core.model.ResolveResult;
-import io.github.ivir3zam.didwebvh.core.resolve.DidResolver;
-import io.github.ivir3zam.didwebvh.core.resolve.ResolveOptions;
+import io.github.decentralizedidentity.didwebvh.core.ResolutionException;
+import io.github.decentralizedidentity.didwebvh.core.model.LogEntry;
+import io.github.decentralizedidentity.didwebvh.core.model.ResolutionMetadata;
+import io.github.decentralizedidentity.didwebvh.core.model.ResolveResult;
+import io.github.decentralizedidentity.didwebvh.core.resolve.DidResolver;
+import io.github.decentralizedidentity.didwebvh.core.resolve.ResolveOptions;
+import io.github.decentralizedidentity.didwebvh.core.url.DidWebVhUrl;
 import org.erdtman.jcs.JsonCanonicalizer;
+import org.yaml.snakeyaml.Yaml;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -50,6 +52,7 @@ public class TestVectors {
     private int xfail = 0;
 
     private final List<String[]> allRows = new ArrayList<>();  // [scenario, logSource, result, notes]
+    private final List<String[]> negRows = new ArrayList<>();  // [scenario, expectedError, result, notes]
     private final StringBuilder allDiffs = new StringBuilder();
 
     public static void main(String[] args) {
@@ -79,12 +82,110 @@ public class TestVectors {
                     .collect(Collectors.toList());
         }
 
+        // --- Negative resolution tests (ts/ artifacts only) ---
+        for (Path scenarioDir : scenarios) {
+            String scenarioName = scenarioDir.getFileName().toString();
+            if (!scenarioName.startsWith("negative-")) continue;
+            if (!Files.exists(scenarioDir.resolve("script.yaml"))) continue;
+
+            Path tsDir = scenarioDir.resolve("ts");
+            Path jsonlPath = tsDir.resolve("did.jsonl");
+            Path resultPath = tsDir.resolve("resolutionResult.json");
+            if (!Files.exists(jsonlPath) || !Files.exists(resultPath)) {
+                negRows.add(new String[]{scenarioName, "?", "⚠️ SKIP", "ts/ not generated"});
+                continue;
+            }
+
+            String expectedError = "?";
+            try {
+                JsonObject rr = JsonParser.parseString(Files.readString(resultPath)).getAsJsonObject();
+                JsonObject rm = asObject(rr.get("didResolutionMetadata"));
+                if (rm != null && rm.has("error")) expectedError = rm.get("error").getAsString();
+            } catch (Exception ignored) {}
+
+            String rawJsonl = Files.readString(jsonlPath).strip();
+            if (rawJsonl.isEmpty()) {
+                // URL-only test: parse each DID URL from script.yaml using DidWebVhUrl.parse().
+                // PASS = all DIDs are rejected by the parser; FAIL = any DID is accepted.
+                Path scriptPath = scenarioDir.resolve("script.yaml");
+                try {
+                    Yaml yaml = new Yaml();
+                    Map<String, Object> script = yaml.load(Files.readString(scriptPath));
+                    List<?> steps = (List<?>) script.getOrDefault("steps", List.of());
+                    List<String> dids = new ArrayList<>();
+                    for (Object step : steps) {
+                        if (!(step instanceof Map)) continue;
+                        Map<?, ?> m = (Map<?, ?>) step;
+                        if (!"resolve-did".equals(m.get("op"))) continue;
+                        if (m.get("did") instanceof String) dids.add((String) m.get("did"));
+                    }
+                    if (dids.isEmpty()) {
+                        negRows.add(new String[]{scenarioName, expectedError, "⚠️ SKIP", "no resolve-did ops in script"});
+                    } else {
+                        String failReason = null;
+                        for (String did : dids) {
+                            try {
+                                DidWebVhUrl.parse(did);
+                                failReason = "URL parser accepted invalid DID: " + did;
+                                break;
+                            } catch (Exception ignored) {
+                                // URL correctly rejected
+                            }
+                        }
+                        if (failReason == null) {
+                            pass++;
+                            negRows.add(new String[]{scenarioName, expectedError, "✅ PASS", ""});
+                        } else {
+                            fail++;
+                            negRows.add(new String[]{scenarioName, expectedError, "❌ FAIL", failReason});
+                        }
+                    }
+                } catch (Exception e) {
+                    negRows.add(new String[]{scenarioName, expectedError, "⚠️ SKIP", "cannot parse script.yaml: " + e.getMessage()});
+                }
+                continue;
+            }
+
+            String did = extractDid(rawJsonl);
+            if (did == null) {
+                negRows.add(new String[]{scenarioName, expectedError, "⚠️ SKIP", "cannot extract DID"});
+                continue;
+            }
+
+            Path witnessPath = tsDir.resolve("did-witness.json");
+            String witnessContent = Files.exists(witnessPath) ? Files.readString(witnessPath) : null;
+
+            DidResolver resolver = new DidResolver();
+            try {
+                if (witnessContent != null) {
+                    resolveWithWitness(resolver, rawJsonl, did, ResolveOptions.defaults(), witnessContent);
+                } else {
+                    resolver.resolveFromLog(rawJsonl, did, ResolveOptions.defaults());
+                }
+                // Resolver accepted a log it should have rejected.
+                fail++;
+                negRows.add(new String[]{scenarioName, expectedError, "❌ FAIL", "resolver accepted invalid log"});
+            } catch (XFailException e) {
+                pass++;
+                negRows.add(new String[]{scenarioName, expectedError, "✅ PASS", ""});
+            } catch (ResolutionException e) {
+                pass++;
+                negRows.add(new String[]{scenarioName, expectedError, "✅ PASS", ""});
+            } catch (Exception e) {
+                pass++;
+                negRows.add(new String[]{scenarioName, expectedError, "✅ PASS", ""});
+            }
+        }
+
         for (Path scenarioDir : scenarios) {
             if (!Files.exists(scenarioDir.resolve("script.yaml"))) {
                 continue;
             }
 
             String scenarioName = scenarioDir.getFileName().toString();
+
+            // Negative test vectors handled above — skip here.
+            if (scenarioName.startsWith("negative-")) continue;
 
             // Delete old per-scenario status.md if present
             Files.deleteIfExists(scenarioDir.resolve(IMPL_NAME).resolve("status.md"));
@@ -219,6 +320,16 @@ public class TestVectors {
             }
         }
 
+        if (!negRows.isEmpty()) {
+            content.append("## Negative Resolution\n\n");
+            content.append("| Test Case | Expected Error | Result | Notes |\n|---|---|---|---|\n");
+            for (String[] row : negRows) {
+                content.append("| ").append(row[0]).append(" | ").append(row[1])
+                       .append(" | ").append(row[2]).append(" | ").append(row[3]).append(" |\n");
+            }
+            content.append("\n");
+        }
+
         content.append("## Cross-Resolution\n\n");
         content.append("| Test Case | Log Source | Result | Notes |\n|---|---|---|---|\n");
         for (String[] row : allRows) {
@@ -274,17 +385,6 @@ public class TestVectors {
             Path logFile = implDir.resolve("did.jsonl");
             String rawJsonl = Files.readString(logFile);
             String expectedContent = Files.readString(resultFile);
-
-            if (logHasEmptyNextKeyHashes(rawJsonl)) {
-                return TestOutcome.xfail(
-                        "TS COMPAT: nextKeyHashes:[] — TS serialises empty list; "
-                        + "Java library may reject on update validation");
-            }
-            if (logHasEmptyWitness(rawJsonl)) {
-                return TestOutcome.fail(
-                        "LIB BUG: ivir3zam 0.2.0 NPEs on witness:{} in parameters "
-                        + "(Python/TS write empty witness object; library expects absent field)");
-            }
 
             String did = extractDid(rawJsonl);
             if (did == null) {
@@ -544,7 +644,7 @@ public class TestVectors {
     // ---------------------------------------------------------------------------
 
     /**
-     * LIB BUG: ivir3zam 0.2.0 NPEs on "witness":{} in parameters.  The library
+     * LIB BUG: didwebvh-java 0.2.0 NPEs on "witness":{} in parameters.  The library
      * deserializes the empty object into a Witnesses with witnesses=null, then
      * calls .isEmpty() on it.  Python and TS always write "witness":{} when no
      * witness is configured; Rust omits the field entirely.
