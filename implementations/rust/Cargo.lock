@@ -27,12 +27,60 @@ dependencies = [
 ]
 
 [[package]]
+name = "affinidi-crypto"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2a56253d8878db88e02d70a0472ec7e346412a4dcf14b84a77cca096ecbbf4f0"
+dependencies = [
+ "affinidi-encoding",
+ "base58",
+ "base64",
+ "ed25519-dalek",
+ "getrandom 0.2.17",
+ "k256",
+ "multibase",
+ "p256",
+ "p384",
+ "p521",
+ "rand_core 0.6.4",
+ "serde",
+ "serde_json",
+ "sha2 0.10.9",
+ "thiserror",
+ "x25519-dalek",
+ "zeroize",
+]
+
+[[package]]
 name = "affinidi-data-integrity"
 version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6ce7f611e7bcad221aee953b8ef91d23e0f18ef319c711211357f03f14f63450"
 dependencies = [
- "affinidi-crypto",
+ "affinidi-crypto 0.1.6",
+ "affinidi-did-common",
+ "affinidi-rdf-encoding",
+ "affinidi-secrets-resolver",
+ "async-trait",
+ "chrono",
+ "ed25519-dalek",
+ "multibase",
+ "serde",
+ "serde_json",
+ "serde_json_canonicalizer",
+ "sha2 0.10.9",
+ "thiserror",
+ "tracing",
+ "zeroize",
+]
+
+[[package]]
+name = "affinidi-data-integrity"
+version = "0.7.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d3ac6d3b8f244b0531a14dfde22a90d0468e5e759b682fdc4bd41600d53a0b3a"
+dependencies = [
+ "affinidi-crypto 0.2.0",
  "affinidi-did-common",
  "affinidi-rdf-encoding",
  "affinidi-secrets-resolver",
@@ -55,7 +103,7 @@ version = "0.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8a10e1890c284e5d918492f55d58ed2fa442071ff88cfe52f2395e7ee3eb9b01"
 dependencies = [
- "affinidi-crypto",
+ "affinidi-crypto 0.1.6",
  "affinidi-encoding",
  "base64",
  "serde",
@@ -68,9 +116,9 @@ dependencies = [
 
 [[package]]
 name = "affinidi-encoding"
-version = "0.1.3"
+version = "0.1.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0c0d6ba1e7fc9bde231c5c7d6e10f29b6822f93e20000dce2a4647d8de8c8d9a"
+checksum = "8b0faa57ab55df6fad876ac64a223532a9bb159b393d88b66887c1ae42c33f52"
 dependencies = [
  "bs58",
  "serde",
@@ -98,7 +146,7 @@ version = "0.5.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "933214490477763c4c7eb01ec7438d58887b2994bbb8f5d4699b4c7a5acce52a"
 dependencies = [
- "affinidi-crypto",
+ "affinidi-crypto 0.1.6",
  "affinidi-encoding",
  "ahash",
  "base58",
@@ -468,14 +516,18 @@ dependencies = [
 name = "didwebvh-compliance"
 version = "0.1.0"
 dependencies = [
+ "affinidi-data-integrity 0.7.5",
  "ahash",
+ "base58",
  "chrono",
  "didwebvh-rs",
  "hex",
  "serde",
  "serde_jcs",
  "serde_json",
+ "serde_json_canonicalizer",
  "serde_yaml",
+ "sha2 0.11.0",
  "similar",
  "tokio",
 ]
@@ -485,7 +537,7 @@ name = "didwebvh-rs"
 version = "0.5.3"
 source = "git+https://github.com/decentralized-identity/didwebvh-rs#f8f7d751aa0bf4f0e2abe1023f9b6b342fdb801a"
 dependencies = [
- "affinidi-data-integrity",
+ "affinidi-data-integrity 0.6.0",
  "affinidi-did-common",
  "affinidi-secrets-resolver",
  "ahash",
@@ -1086,6 +1138,20 @@ dependencies = [
  "ecdsa",
  "elliptic-curve",
  "primeorder",
+ "sha2 0.10.9",
+]
+
+[[package]]
+name = "p521"
+version = "0.13.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0fc9e2161f1f215afdfce23677034ae137bbd45016a880c2eb3ba8eb95f085b2"
+dependencies = [
+ "base16ct",
+ "ecdsa",
+ "elliptic-curve",
+ "primeorder",
+ "rand_core 0.6.4",
  "sha2 0.10.9",
 ]
 
