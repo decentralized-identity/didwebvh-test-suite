@@ -32,6 +32,8 @@ const VECTORS_ROOT: &str = concat!(env!("CARGO_MANIFEST_DIR"), "/../../vectors")
 #[derive(Debug, Deserialize)]
 struct Script {
     #[serde(default)]
+    negative: bool,
+    #[serde(default)]
     keys: Vec<KeyDef>,
     steps: Vec<Step>,
 }
@@ -149,10 +151,17 @@ fn build_parameters(p: &StepParams, keys: &HashMap<String, KeyInfo>) -> Result<P
     let witness = if let Some(wc) = &p.witness {
         let mut builder = Witnesses::builder().threshold(wc.threshold);
         for we in &wc.witnesses {
-            let mb = keys.get(&we.id)
-                .map(|k| k.pub_multibase.clone())
-                .unwrap_or_else(|| we.id.clone());
-            builder = builder.witness(Multibase::new(mb));
+            let witness_id = keys
+                .get(&we.id)
+                .map(|k| format!("did:key:{}", k.pub_multibase))
+                .unwrap_or_else(|| {
+                    if we.id.starts_with("did:key:") {
+                        we.id.clone()
+                    } else {
+                        format!("did:key:{}", we.id)
+                    }
+                });
+            builder = builder.witness(Multibase::new(witness_id));
         }
         Some(Arc::new(builder.build()
             .map_err(|e| format!("build witnesses: {e:?}"))?))
@@ -175,9 +184,12 @@ fn build_parameters(p: &StepParams, keys: &HashMap<String, KeyInfo>) -> Result<P
 // ---------------------------------------------------------------------------
 
 fn all_witness_secrets(keys: &HashMap<String, KeyInfo>) -> HashMap<String, Secret> {
-    keys.values()
-        .map(|k| (k.pub_multibase.clone(), k.secret.clone()))
-        .collect()
+    let mut out = HashMap::default();
+    for k in keys.values() {
+        out.insert(k.pub_multibase.clone(), k.secret.clone());
+        out.insert(format!("did:key:{}", k.pub_multibase), k.secret.clone());
+    }
+    out
 }
 
 // ---------------------------------------------------------------------------
@@ -259,7 +271,19 @@ async fn main() {
         if let Some(ref f) = filter {
             if &name != f { continue; }
         }
-        if !scenario.path().join("script.yaml").exists() { continue; }
+        let script_path = scenario.path().join("script.yaml");
+        if !script_path.exists() { continue; }
+
+        // Happy-path generator should not process negative scenarios.
+        let script_is_negative = std::fs::read_to_string(&script_path)
+            .ok()
+            .and_then(|txt| serde_yaml::from_str::<Script>(&txt).ok())
+            .map(|s| s.negative)
+            .unwrap_or(false);
+        if script_is_negative {
+            continue;
+        }
+
         print!("generate {name} ... ");
         match run_scenario(&scenario.path()).await {
             Ok(()) => {
