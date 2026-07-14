@@ -20,7 +20,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates
 RUN mkdir -p /app \
     && git clone --depth 1 --branch "$BRANCH" "$REPO" /deps/didwebvh-ts \
     && git -C /deps/didwebvh-ts rev-parse HEAD > /app/library-commit \
-    && cd /deps/didwebvh-ts && bun install && bun run build
+    && cd /deps/didwebvh-ts \
+    && bun install \
+    && export PATH="/deps/didwebvh-ts/node_modules/.bin:$PATH" \
+    && bun scripts/build.ts
 
 WORKDIR /workspace
 
