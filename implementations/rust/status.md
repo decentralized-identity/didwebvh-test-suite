@@ -126,4 +126,4 @@ Implementation: didwebvh-rs 0.5.3 @ ad614934
 | witness-update | ts | 🔶 DIFF | see diffs.txt |
 
 ---
-Built from: https://github.com/decentralized-identity/didwebvh-rs @ main (c3daba1)
+Built from: https://github.com/decentralized-identity/didwebvh-rs @ main (d3cc500)

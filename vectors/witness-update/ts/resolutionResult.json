@@ -7,45 +7,41 @@
       "https://www.w3.org/ns/did/v1",
       "https://w3id.org/security/multikey/v1"
     ],
-    "id": "did:webvh:QmbKWDWzoZZpiDQbDCD1tAVxWhsadoAdgKQuSfuM8pKQqv:example.com",
-    "controller": "did:webvh:QmbKWDWzoZZpiDQbDCD1tAVxWhsadoAdgKQuSfuM8pKQqv:example.com",
+    "id": "did:webvh:QmR72NXg5DyrNL1PXwk4kiZEJxS1RJxvFEtSu9wPSZkp1u:example.com",
+    "controller": "did:webvh:QmR72NXg5DyrNL1PXwk4kiZEJxS1RJxvFEtSu9wPSZkp1u:example.com",
     "verificationMethod": [
       {
         "type": "Multikey",
         "publicKeyMultibase": "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG",
         "purpose": "authentication",
-        "id": "did:webvh:QmbKWDWzoZZpiDQbDCD1tAVxWhsadoAdgKQuSfuM8pKQqv:example.com#P5RDjVJG",
-        "controller": "did:webvh:QmbKWDWzoZZpiDQbDCD1tAVxWhsadoAdgKQuSfuM8pKQqv:example.com"
+        "id": "did:webvh:QmR72NXg5DyrNL1PXwk4kiZEJxS1RJxvFEtSu9wPSZkp1u:example.com#P5RDjVJG",
+        "controller": "did:webvh:QmR72NXg5DyrNL1PXwk4kiZEJxS1RJxvFEtSu9wPSZkp1u:example.com"
       }
     ],
     "authentication": [
-      "did:webvh:QmbKWDWzoZZpiDQbDCD1tAVxWhsadoAdgKQuSfuM8pKQqv:example.com#P5RDjVJG"
+      "did:webvh:QmR72NXg5DyrNL1PXwk4kiZEJxS1RJxvFEtSu9wPSZkp1u:example.com#P5RDjVJG"
     ],
-    "assertionMethod": [],
-    "keyAgreement": [],
-    "capabilityDelegation": [],
-    "capabilityInvocation": [],
     "service": [
       {
-        "id": "did:webvh:QmbKWDWzoZZpiDQbDCD1tAVxWhsadoAdgKQuSfuM8pKQqv:example.com#files",
+        "id": "did:webvh:QmR72NXg5DyrNL1PXwk4kiZEJxS1RJxvFEtSu9wPSZkp1u:example.com#files",
         "type": "relativeRef",
         "serviceEndpoint": "https://example.com/"
       },
       {
         "@context": "https://identity.foundation/linked-vp/contexts/v1",
-        "id": "did:webvh:QmbKWDWzoZZpiDQbDCD1tAVxWhsadoAdgKQuSfuM8pKQqv:example.com#whois",
+        "id": "did:webvh:QmR72NXg5DyrNL1PXwk4kiZEJxS1RJxvFEtSu9wPSZkp1u:example.com#whois",
         "type": "LinkedVerifiablePresentation",
         "serviceEndpoint": "https://example.com/whois.vp"
       }
     ]
   },
   "didDocumentMetadata": {
-    "versionId": "2-QmcRmyDP523pLsvKvr49BNEVsevhjNGYZhxMGtPyhut9Hy",
+    "versionId": "2-QmVFJYT8yxTo2bATSCTHJnRcCMsZTf9tJURnM7zH6ZaKZW",
     "created": "2000-01-01T00:00:00Z",
     "updated": "2000-01-02T00:00:00Z",
     "deactivated": false,
     "portable": false,
-    "scid": "QmbKWDWzoZZpiDQbDCD1tAVxWhsadoAdgKQuSfuM8pKQqv",
+    "scid": "QmR72NXg5DyrNL1PXwk4kiZEJxS1RJxvFEtSu9wPSZkp1u",
     "updateKeys": [
       "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
     ],
@@ -60,6 +56,6 @@
       "threshold": 1
     },
     "watchers": [],
-    "previousLogEntryHash": "QmbKWDWzoZZpiDQbDCD1tAVxWhsadoAdgKQuSfuM8pKQqv"
+    "previousLogEntryHash": "QmR72NXg5DyrNL1PXwk4kiZEJxS1RJxvFEtSu9wPSZkp1u"
   }
 }
