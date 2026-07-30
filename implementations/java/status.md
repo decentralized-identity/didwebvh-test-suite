@@ -38,6 +38,7 @@ Implementation: didwebvh-java 0.3.0-SNAPSHOT @ c50db5b
 | negative-unknown-method-version | invalidDid | ✅ PASS |  |
 | negative-versiontime-future | invalidDid | ✅ PASS |  |
 | negative-versiontime-non-monotonic | invalidDid | ✅ PASS |  |
+| negative-witness-update-threshold-not-met | invalidDid | ✅ PASS |  |
 | negative-wrong-cryptosuite | invalidProof | ✅ PASS |  |
 | negative-zero-witness-threshold | invalidParameters | ✅ PASS |  |
 
@@ -125,4 +126,4 @@ Implementation: didwebvh-java 0.3.0-SNAPSHOT @ c50db5b
 | witness-update | ts | 🔶 DIFF | see diffs.txt |
 
 ---
-Built from: https://github.com/decentralized-identity/didwebvh-java @ main (220508b)
+Built from: https://github.com/decentralized-identity/didwebvh-java @ main (65eb18f)

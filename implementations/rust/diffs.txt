@@ -3,7 +3,7 @@
 +++ actual (rust resolver)
      "service": [
        {
-         "id": "did:webvh:Qmf7P4Pcebk5x2SqGUWE2dtXHk3Eu2DPHkd3EWpR19zB1m:example.com#files",
+         "id": "did:webvh:QmcKdyoAMftdmvcnMLmsBhNf4uSeuGtzMuBTuKgvtJ8Evb:example.com#files",
 -        "serviceEndpoint": "https://example.com/",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
@@ -12,15 +12,15 @@
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:50:27Z",
+     "created": "2026-07-29T18:12:35Z",
 +    "deactivated": false,
 +    "portable": false,
-     "scid": "Qmf7P4Pcebk5x2SqGUWE2dtXHk3Eu2DPHkd3EWpR19zB1m",
-     "updated": "2026-06-15T01:50:27Z",
-     "versionId": "1-QmdL4w2mykHy72nP1zqsZQ3wFdDxDxxhiZSu2r2LM3nVHM",
+     "scid": "QmcKdyoAMftdmvcnMLmsBhNf4uSeuGtzMuBTuKgvtJ8Evb",
+     "updated": "2026-07-29T18:12:35Z",
+     "versionId": "1-QmUvyxGRzthwANt6jGwd85eZGjzDQDDKf1g9C6bZDdWYvt",
      "versionNumber": 1,
--    "versionTime": "2026-06-15T01:50:27Z"
-+    "versionTime": "2026-06-15T01:50:27Z",
+-    "versionTime": "2026-07-29T18:12:35Z"
++    "versionTime": "2026-07-29T18:12:35Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -33,7 +33,7 @@
 +++ actual (rust resolver)
      "service": [
        {
-         "id": "did:webvh:QmSXsRKkp2WdQxJCgV8DQFWGZAgd1nuSqF65uutDP9bVX3:example.com#files",
+         "id": "did:webvh:QmahABJ2PJFRXXz564HVGWbu5h9JV7oQYQkKiHQuy7ktvi:example.com#files",
 -        "serviceEndpoint": "https://example.com/",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
@@ -42,15 +42,15 @@
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:48:28Z",
+     "created": "2026-07-29T18:06:55Z",
 +    "deactivated": false,
      "portable": false,
-     "scid": "QmSXsRKkp2WdQxJCgV8DQFWGZAgd1nuSqF65uutDP9bVX3",
-     "updated": "2026-06-15T01:48:28Z",
-     "versionId": "1-QmaNiUQUgafjNvBs14qTzMLVws6Q8oti4U8AtML4iHcsHr",
+     "scid": "QmahABJ2PJFRXXz564HVGWbu5h9JV7oQYQkKiHQuy7ktvi",
+     "updated": "2026-07-29T18:06:55Z",
+     "versionId": "1-QmWRhGiajYF1UtL74vJqxhQ1cCLn6r5yhkGXbgJoig1pyP",
      "versionNumber": 1,
--    "versionTime": "2026-06-15T01:48:28Z"
-+    "versionTime": "2026-06-15T01:48:28Z",
+-    "versionTime": "2026-07-29T18:06:55Z"
++    "versionTime": "2026-07-29T18:06:55Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -66,29 +66,29 @@
        {
 -        "id": "#files",
 -        "serviceEndpoint": "https://example.com/",
-+        "id": "did:webvh:QmNieX9pNouJgaMPUfhoFJs6o7orDrJzkNZ8uutvGZmUnc:example.com#files",
++        "id": "did:webvh:QmP2vGKN6Y19NAu4zfbsiELsshWth6qPbnMM2woGPACtuC:example.com#files",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
        },
        {
          "@context": "https://identity.foundation/linked-vp/contexts/v1",
 -        "id": "#whois",
-+        "id": "did:webvh:QmNieX9pNouJgaMPUfhoFJs6o7orDrJzkNZ8uutvGZmUnc:example.com#whois",
++        "id": "did:webvh:QmP2vGKN6Y19NAu4zfbsiELsshWth6qPbnMM2woGPACtuC:example.com#whois",
          "serviceEndpoint": "https://example.com/whois.vp",
          "type": "LinkedVerifiablePresentation"
        }
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:49:28Z",
+     "created": "2026-07-29T18:10:45Z",
 +    "deactivated": false,
 +    "portable": false,
-     "scid": "QmNieX9pNouJgaMPUfhoFJs6o7orDrJzkNZ8uutvGZmUnc",
-     "updated": "2026-06-15T01:49:28Z",
-     "versionId": "1-QmZcCkwP2VZgxMWqqmUsDG8vDQPecvz1qcMdS2i35MdYGU",
+     "scid": "QmP2vGKN6Y19NAu4zfbsiELsshWth6qPbnMM2woGPACtuC",
+     "updated": "2026-07-29T18:10:45Z",
+     "versionId": "1-Qmc8NNhTur8a5Z2gdN53kpVrkwuxgaFcM6hJ9uWJejTWxZ",
      "versionNumber": 1,
--    "versionTime": "2026-06-15T01:49:28Z"
-+    "versionTime": "2026-06-15T01:49:28Z",
+-    "versionTime": "2026-07-29T18:10:45Z"
++    "versionTime": "2026-07-29T18:10:45Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -131,32 +131,31 @@
 === basic-create / ts — resolutionResult.json ===
 --- expected
 +++ actual (rust resolver)
-     "keyAgreement": [],
      "service": [
        {
--        "id": "#files",
-+        "id": "did:webvh:QmV2V5CSzH5w9UF4rHHAdktXL93ounugmgV2LXVCx9s2i9:example.com#files",
-         "serviceEndpoint": "https://example.com",
+         "id": "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:example.com#files",
+-        "serviceEndpoint": "https://example.com/",
++        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
        },
        {
-         "@context": "https://identity.foundation/linked-vp/contexts/v1",
--        "id": "#whois",
-+        "id": "did:webvh:QmV2V5CSzH5w9UF4rHHAdktXL93ounugmgV2LXVCx9s2i9:example.com#whois",
-         "serviceEndpoint": "https://example.com/whois.vp",
-         "type": "LinkedVerifiablePresentation"
-       }
 ...
-   },
    "didDocumentMetadata": {
      "created": "2000-01-01T00:00:00Z",
-+    "deactivated": false,
-+    "portable": false,
-+    "scid": "QmV2V5CSzH5w9UF4rHHAdktXL93ounugmgV2LXVCx9s2i9",
+     "deactivated": false,
+-    "nextKeyHashes": [],
+     "portable": false,
+-    "prerotation": false,
+-    "previousLogEntryHash": "QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ",
+     "scid": "QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ",
+-    "updateKeys": [
+-      "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+-    ],
      "updated": "2000-01-01T00:00:00Z",
-     "versionId": "1-Qme7MrtMydsarZEeqvYPfV39KFtW1bPzytSdF4QmTx4YJj",
-     "versionNumber": 1,
--    "versionTime": "2000-01-01T00:00:00Z"
+     "versionId": "1-QmRqMp6AtLbWzMyLa6ZdCjiQXo1HaLpUStJFwqAMY7pVfo",
+-    "watchers": [],
+-    "witness": {}
++    "versionNumber": 1,
 +    "versionTime": "2000-01-01T00:00:00Z",
 +    "watchers": null,
 +    "witness": null
@@ -170,7 +169,7 @@
 +++ actual (rust resolver)
      "service": [
        {
-         "id": "did:webvh:Qmf7P4Pcebk5x2SqGUWE2dtXHk3Eu2DPHkd3EWpR19zB1m:example.com#files",
+         "id": "did:webvh:QmcKdyoAMftdmvcnMLmsBhNf4uSeuGtzMuBTuKgvtJ8Evb:example.com#files",
 -        "serviceEndpoint": "https://example.com/",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
@@ -179,15 +178,15 @@
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:50:27Z",
+     "created": "2026-07-29T18:12:35Z",
 +    "deactivated": false,
 +    "portable": false,
-     "scid": "Qmf7P4Pcebk5x2SqGUWE2dtXHk3Eu2DPHkd3EWpR19zB1m",
-     "updated": "2026-06-15T01:50:28Z",
-     "versionId": "2-Qmcjby2eUpWXbSWDpQzSFsdbXRfYsuWei1MkEfPuY1mVKY",
+     "scid": "QmcKdyoAMftdmvcnMLmsBhNf4uSeuGtzMuBTuKgvtJ8Evb",
+     "updated": "2026-07-29T18:12:36Z",
+     "versionId": "2-QmUDbGUCrmrqpuf2MRDX5x8rVnoPtQAt626cqBdepZ2bq4",
      "versionNumber": 2,
--    "versionTime": "2026-06-15T01:50:28Z"
-+    "versionTime": "2026-06-15T01:50:28Z",
+-    "versionTime": "2026-07-29T18:12:36Z"
++    "versionTime": "2026-07-29T18:12:36Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -200,7 +199,7 @@
 +++ actual (rust resolver)
      "service": [
        {
-         "id": "did:webvh:QmSXsRKkp2WdQxJCgV8DQFWGZAgd1nuSqF65uutDP9bVX3:example.com#files",
+         "id": "did:webvh:QmahABJ2PJFRXXz564HVGWbu5h9JV7oQYQkKiHQuy7ktvi:example.com#files",
 -        "serviceEndpoint": "https://example.com/",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
@@ -209,15 +208,15 @@
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:48:28Z",
+     "created": "2026-07-29T18:06:55Z",
 +    "deactivated": false,
      "portable": false,
-     "scid": "QmSXsRKkp2WdQxJCgV8DQFWGZAgd1nuSqF65uutDP9bVX3",
-     "updated": "2026-06-15T01:48:29Z",
-     "versionId": "2-QmU92tHTN6xrrvCxtKj2xt3Jq1o9bMvGxt9z1GL5AjVmhS",
+     "scid": "QmahABJ2PJFRXXz564HVGWbu5h9JV7oQYQkKiHQuy7ktvi",
+     "updated": "2026-07-29T18:06:56Z",
+     "versionId": "2-QmNUC35G3usBSNxfCZ68CMKmmEseBJ1kdsWcPTYnmM5B8m",
      "versionNumber": 2,
--    "versionTime": "2026-06-15T01:48:29Z"
-+    "versionTime": "2026-06-15T01:48:29Z",
+-    "versionTime": "2026-07-29T18:06:56Z"
++    "versionTime": "2026-07-29T18:06:56Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -233,29 +232,29 @@
        {
 -        "id": "#files",
 -        "serviceEndpoint": "https://example.com/",
-+        "id": "did:webvh:QmNieX9pNouJgaMPUfhoFJs6o7orDrJzkNZ8uutvGZmUnc:example.com#files",
++        "id": "did:webvh:QmP2vGKN6Y19NAu4zfbsiELsshWth6qPbnMM2woGPACtuC:example.com#files",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
        },
        {
          "@context": "https://identity.foundation/linked-vp/contexts/v1",
 -        "id": "#whois",
-+        "id": "did:webvh:QmNieX9pNouJgaMPUfhoFJs6o7orDrJzkNZ8uutvGZmUnc:example.com#whois",
++        "id": "did:webvh:QmP2vGKN6Y19NAu4zfbsiELsshWth6qPbnMM2woGPACtuC:example.com#whois",
          "serviceEndpoint": "https://example.com/whois.vp",
          "type": "LinkedVerifiablePresentation"
        }
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:49:28Z",
+     "created": "2026-07-29T18:10:45Z",
 +    "deactivated": false,
 +    "portable": false,
-     "scid": "QmNieX9pNouJgaMPUfhoFJs6o7orDrJzkNZ8uutvGZmUnc",
-     "updated": "2026-06-15T01:49:29Z",
-     "versionId": "2-QmTJUj9Lh6j7xuFfTXz7wrZDv4aZfwHQ6nT7yP1qwydR1Q",
+     "scid": "QmP2vGKN6Y19NAu4zfbsiELsshWth6qPbnMM2woGPACtuC",
+     "updated": "2026-07-29T18:10:46Z",
+     "versionId": "2-QmcDhDRJnJFXS5q6RuBUXAf5ZNxqqwkyobkisYc4VT2QZf",
      "versionNumber": 2,
--    "versionTime": "2026-06-15T01:49:29Z"
-+    "versionTime": "2026-06-15T01:49:29Z",
+-    "versionTime": "2026-07-29T18:10:46Z"
++    "versionTime": "2026-07-29T18:10:46Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -298,32 +297,31 @@
 === basic-update / ts — resolutionResult.json ===
 --- expected
 +++ actual (rust resolver)
-     "keyAgreement": [],
      "service": [
        {
--        "id": "#files",
-+        "id": "did:webvh:QmV2V5CSzH5w9UF4rHHAdktXL93ounugmgV2LXVCx9s2i9:example.com#files",
-         "serviceEndpoint": "https://example.com",
+         "id": "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:example.com#files",
+-        "serviceEndpoint": "https://example.com/",
++        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
        },
        {
-         "@context": "https://identity.foundation/linked-vp/contexts/v1",
--        "id": "#whois",
-+        "id": "did:webvh:QmV2V5CSzH5w9UF4rHHAdktXL93ounugmgV2LXVCx9s2i9:example.com#whois",
-         "serviceEndpoint": "https://example.com/whois.vp",
-         "type": "LinkedVerifiablePresentation"
-       }
 ...
-   },
    "didDocumentMetadata": {
      "created": "2000-01-01T00:00:00Z",
-+    "deactivated": false,
-+    "portable": false,
-+    "scid": "QmV2V5CSzH5w9UF4rHHAdktXL93ounugmgV2LXVCx9s2i9",
+     "deactivated": false,
+-    "nextKeyHashes": [],
+     "portable": false,
+-    "prerotation": false,
+-    "previousLogEntryHash": "QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ",
+     "scid": "QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ",
+-    "updateKeys": [
+-      "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+-    ],
      "updated": "2000-01-02T00:00:00Z",
-     "versionId": "2-QmTWXUmXrDE4DyvQHJ45VyN5ujPcaSxTKjvVAVHAAtLwmt",
-     "versionNumber": 2,
--    "versionTime": "2000-01-02T00:00:00Z"
+     "versionId": "2-QmbcnNJZ7EvsbU9ogcsGdYrqKBH1YjVy5nEjs1rxznXxBe",
+-    "watchers": [],
+-    "witness": {}
++    "versionNumber": 2,
 +    "versionTime": "2000-01-02T00:00:00Z",
 +    "watchers": null,
 +    "witness": null
@@ -337,7 +335,7 @@
 +++ actual (rust resolver)
      "service": [
        {
-         "id": "did:webvh:Qmf7P4Pcebk5x2SqGUWE2dtXHk3Eu2DPHkd3EWpR19zB1m:example.com#files",
+         "id": "did:webvh:QmcKdyoAMftdmvcnMLmsBhNf4uSeuGtzMuBTuKgvtJ8Evb:example.com#files",
 -        "serviceEndpoint": "https://example.com/",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
@@ -345,15 +343,15 @@
        {
 ...
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:50:27Z",
+     "created": "2026-07-29T18:12:35Z",
      "deactivated": true,
 +    "portable": false,
-     "scid": "Qmf7P4Pcebk5x2SqGUWE2dtXHk3Eu2DPHkd3EWpR19zB1m",
-     "updated": "2026-06-15T01:50:28Z",
-     "versionId": "2-QmVx56yUdo9fp3WWGDUEiKKnnkP9NHS8Jda3qDYkFsSm5A",
+     "scid": "QmcKdyoAMftdmvcnMLmsBhNf4uSeuGtzMuBTuKgvtJ8Evb",
+     "updated": "2026-07-29T18:12:36Z",
+     "versionId": "2-Qmc8wvANydzk1dWFthyVta2FyrSJmnN4iUCN4bVsM2P1PM",
      "versionNumber": 2,
--    "versionTime": "2026-06-15T01:50:28Z"
-+    "versionTime": "2026-06-15T01:50:28Z",
+-    "versionTime": "2026-07-29T18:12:36Z"
++    "versionTime": "2026-07-29T18:12:36Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -365,30 +363,30 @@
 --- expected
 +++ actual (rust resolver)
      ],
-     "controller": "did:webvh:QmSXsRKkp2WdQxJCgV8DQFWGZAgd1nuSqF65uutDP9bVX3:example.com",
-     "id": "did:webvh:QmSXsRKkp2WdQxJCgV8DQFWGZAgd1nuSqF65uutDP9bVX3:example.com",
+     "controller": "did:webvh:QmahABJ2PJFRXXz564HVGWbu5h9JV7oQYQkKiHQuy7ktvi:example.com",
+     "id": "did:webvh:QmahABJ2PJFRXXz564HVGWbu5h9JV7oQYQkKiHQuy7ktvi:example.com",
 +    "service": [
 +      {
-+        "id": "did:webvh:QmSXsRKkp2WdQxJCgV8DQFWGZAgd1nuSqF65uutDP9bVX3:example.com#files",
++        "id": "did:webvh:QmahABJ2PJFRXXz564HVGWbu5h9JV7oQYQkKiHQuy7ktvi:example.com#files",
 +        "serviceEndpoint": "https://example.com",
 +        "type": "relativeRef"
 +      },
 +      {
 +        "@context": "https://identity.foundation/linked-vp/contexts/v1",
-+        "id": "did:webvh:QmSXsRKkp2WdQxJCgV8DQFWGZAgd1nuSqF65uutDP9bVX3:example.com#whois",
++        "id": "did:webvh:QmahABJ2PJFRXXz564HVGWbu5h9JV7oQYQkKiHQuy7ktvi:example.com#whois",
 +        "serviceEndpoint": "https://example.com/whois.vp",
 +        "type": "LinkedVerifiablePresentation"
 +      }
 +    ],
      "verificationMethod": [
        {
-         "controller": "did:webvh:QmSXsRKkp2WdQxJCgV8DQFWGZAgd1nuSqF65uutDP9bVX3:example.com",
+         "controller": "did:webvh:QmahABJ2PJFRXXz564HVGWbu5h9JV7oQYQkKiHQuy7ktvi:example.com",
 ...
-     "updated": "2026-06-15T01:48:29Z",
-     "versionId": "2-QmewLGADyXQcdRJzag26wPX5HkL95J88BAATKQFDSn39t5",
+     "updated": "2026-07-29T18:06:56Z",
+     "versionId": "2-QmeF5LeuJKQGVBjmon7ndPq5qK1BGacdEubFMXL85f4NCZ",
      "versionNumber": 2,
--    "versionTime": "2026-06-15T01:48:29Z"
-+    "versionTime": "2026-06-15T01:48:29Z",
+-    "versionTime": "2026-07-29T18:06:56Z"
++    "versionTime": "2026-07-29T18:06:56Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -404,28 +402,28 @@
        {
 -        "id": "#files",
 -        "serviceEndpoint": "https://example.com/",
-+        "id": "did:webvh:QmNieX9pNouJgaMPUfhoFJs6o7orDrJzkNZ8uutvGZmUnc:example.com#files",
++        "id": "did:webvh:QmP2vGKN6Y19NAu4zfbsiELsshWth6qPbnMM2woGPACtuC:example.com#files",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
        },
        {
          "@context": "https://identity.foundation/linked-vp/contexts/v1",
 -        "id": "#whois",
-+        "id": "did:webvh:QmNieX9pNouJgaMPUfhoFJs6o7orDrJzkNZ8uutvGZmUnc:example.com#whois",
++        "id": "did:webvh:QmP2vGKN6Y19NAu4zfbsiELsshWth6qPbnMM2woGPACtuC:example.com#whois",
          "serviceEndpoint": "https://example.com/whois.vp",
          "type": "LinkedVerifiablePresentation"
        }
 ...
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:49:28Z",
+     "created": "2026-07-29T18:10:45Z",
      "deactivated": true,
 +    "portable": false,
-     "scid": "QmNieX9pNouJgaMPUfhoFJs6o7orDrJzkNZ8uutvGZmUnc",
-     "updated": "2026-06-15T01:49:29Z",
-     "versionId": "2-QmWtSdrKNPo3Gxp5dVr5GyToRRquCJMHWshAWNBG6YYDos",
+     "scid": "QmP2vGKN6Y19NAu4zfbsiELsshWth6qPbnMM2woGPACtuC",
+     "updated": "2026-07-29T18:10:46Z",
+     "versionId": "2-QmU4xQ4EEdt8E9NSBPgJAMDNyTMXJGhAsUaYwLu4J1aQB3",
      "versionNumber": 2,
--    "versionTime": "2026-06-15T01:49:29Z"
-+    "versionTime": "2026-06-15T01:49:29Z",
+-    "versionTime": "2026-07-29T18:10:46Z"
++    "versionTime": "2026-07-29T18:10:46Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -475,32 +473,28 @@
 +      "https://www.w3.org/ns/did/v1",
 +      "https://w3id.org/security/multikey/v1"
 +    ],
-+    "assertionMethod": [],
 +    "authentication": [
-+      "did:webvh:QmV2V5CSzH5w9UF4rHHAdktXL93ounugmgV2LXVCx9s2i9:example.com#P5RDjVJG"
++      "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:example.com#P5RDjVJG"
 +    ],
-+    "capabilityDelegation": [],
-+    "capabilityInvocation": [],
-+    "controller": "did:webvh:QmV2V5CSzH5w9UF4rHHAdktXL93ounugmgV2LXVCx9s2i9:example.com",
-+    "id": "did:webvh:QmV2V5CSzH5w9UF4rHHAdktXL93ounugmgV2LXVCx9s2i9:example.com",
-+    "keyAgreement": [],
++    "controller": "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:example.com",
++    "id": "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:example.com",
 +    "service": [
 +      {
-+        "id": "did:webvh:QmV2V5CSzH5w9UF4rHHAdktXL93ounugmgV2LXVCx9s2i9:example.com#files",
++        "id": "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:example.com#files",
 +        "serviceEndpoint": "https://example.com",
 +        "type": "relativeRef"
 +      },
 +      {
 +        "@context": "https://identity.foundation/linked-vp/contexts/v1",
-+        "id": "did:webvh:QmV2V5CSzH5w9UF4rHHAdktXL93ounugmgV2LXVCx9s2i9:example.com#whois",
++        "id": "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:example.com#whois",
 +        "serviceEndpoint": "https://example.com/whois.vp",
 +        "type": "LinkedVerifiablePresentation"
 +      }
 +    ],
 +    "verificationMethod": [
 +      {
-+        "controller": "did:webvh:QmV2V5CSzH5w9UF4rHHAdktXL93ounugmgV2LXVCx9s2i9:example.com",
-+        "id": "did:webvh:QmV2V5CSzH5w9UF4rHHAdktXL93ounugmgV2LXVCx9s2i9:example.com#P5RDjVJG",
++        "controller": "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:example.com",
++        "id": "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:example.com#P5RDjVJG",
 +        "publicKeyMultibase": "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG",
 +        "purpose": "authentication",
 +        "type": "Multikey"
@@ -510,12 +504,19 @@
    "didDocumentMetadata": {
      "created": "2000-01-01T00:00:00Z",
      "deactivated": true,
-+    "portable": false,
-+    "scid": "QmV2V5CSzH5w9UF4rHHAdktXL93ounugmgV2LXVCx9s2i9",
+-    "nextKeyHashes": [],
+     "portable": false,
+-    "prerotation": false,
+-    "previousLogEntryHash": "QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ",
+     "scid": "QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ",
+-    "updateKeys": [
+-      "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+-    ],
      "updated": "2000-01-02T00:00:00Z",
-     "versionId": "2-QmR5hA9K5pf2eycp7rbZmjC6YoD3WeKGAAppRvRBtMyRrx",
-     "versionNumber": 2,
--    "versionTime": "2000-01-02T00:00:00Z"
+     "versionId": "2-QmYb3D51qGSjcWUVg9P8Y5nuN9KyRQLfKc9yFLvxoWuUce",
+-    "watchers": [],
+-    "witness": {}
++    "versionNumber": 2,
 +    "versionTime": "2000-01-02T00:00:00Z",
 +    "watchers": null,
 +    "witness": null
@@ -529,7 +530,7 @@
 +++ actual (rust resolver)
      "service": [
        {
-         "id": "did:webvh:Qmf7P4Pcebk5x2SqGUWE2dtXHk3Eu2DPHkd3EWpR19zB1m:example.com#files",
+         "id": "did:webvh:QmcKdyoAMftdmvcnMLmsBhNf4uSeuGtzMuBTuKgvtJ8Evb:example.com#files",
 -        "serviceEndpoint": "https://example.com/",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
@@ -538,15 +539,15 @@
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:50:27Z",
+     "created": "2026-07-29T18:12:35Z",
 +    "deactivated": false,
 +    "portable": false,
-     "scid": "Qmf7P4Pcebk5x2SqGUWE2dtXHk3Eu2DPHkd3EWpR19zB1m",
-     "updated": "2026-06-15T01:50:28Z",
-     "versionId": "2-QmVZT577FWYaEkbAEjtTsYDL1yFbiKcBVHN6zx7fTmhibU",
+     "scid": "QmcKdyoAMftdmvcnMLmsBhNf4uSeuGtzMuBTuKgvtJ8Evb",
+     "updated": "2026-07-29T18:12:36Z",
+     "versionId": "2-QmYspyzC8P9iS18RCTTGwtCaKZMexJiR5xsJ6QCkgpSnV4",
      "versionNumber": 2,
--    "versionTime": "2026-06-15T01:50:28Z"
-+    "versionTime": "2026-06-15T01:50:28Z",
+-    "versionTime": "2026-07-29T18:12:36Z"
++    "versionTime": "2026-07-29T18:12:36Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -559,7 +560,7 @@
 +++ actual (rust resolver)
      "service": [
        {
-         "id": "did:webvh:QmSXsRKkp2WdQxJCgV8DQFWGZAgd1nuSqF65uutDP9bVX3:example.com#files",
+         "id": "did:webvh:QmahABJ2PJFRXXz564HVGWbu5h9JV7oQYQkKiHQuy7ktvi:example.com#files",
 -        "serviceEndpoint": "https://example.com/",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
@@ -568,15 +569,15 @@
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:48:28Z",
+     "created": "2026-07-29T18:06:55Z",
 +    "deactivated": false,
      "portable": false,
-     "scid": "QmSXsRKkp2WdQxJCgV8DQFWGZAgd1nuSqF65uutDP9bVX3",
-     "updated": "2026-06-15T01:48:29Z",
-     "versionId": "2-QmNYKuDc5pHK5x4Cu6xef8ThdL2BSs9kXmasTck5LNYPWk",
+     "scid": "QmahABJ2PJFRXXz564HVGWbu5h9JV7oQYQkKiHQuy7ktvi",
+     "updated": "2026-07-29T18:06:56Z",
+     "versionId": "2-QmdRDpsphqvGvZweYMkY6sr6gDfypyN4VaETxSWmHTzyHD",
      "versionNumber": 2,
--    "versionTime": "2026-06-15T01:48:29Z"
-+    "versionTime": "2026-06-15T01:48:29Z",
+-    "versionTime": "2026-07-29T18:06:56Z"
++    "versionTime": "2026-07-29T18:06:56Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -592,29 +593,29 @@
        {
 -        "id": "#files",
 -        "serviceEndpoint": "https://example.com/",
-+        "id": "did:webvh:QmNieX9pNouJgaMPUfhoFJs6o7orDrJzkNZ8uutvGZmUnc:example.com#files",
++        "id": "did:webvh:QmP2vGKN6Y19NAu4zfbsiELsshWth6qPbnMM2woGPACtuC:example.com#files",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
        },
        {
          "@context": "https://identity.foundation/linked-vp/contexts/v1",
 -        "id": "#whois",
-+        "id": "did:webvh:QmNieX9pNouJgaMPUfhoFJs6o7orDrJzkNZ8uutvGZmUnc:example.com#whois",
++        "id": "did:webvh:QmP2vGKN6Y19NAu4zfbsiELsshWth6qPbnMM2woGPACtuC:example.com#whois",
          "serviceEndpoint": "https://example.com/whois.vp",
          "type": "LinkedVerifiablePresentation"
        }
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:49:28Z",
+     "created": "2026-07-29T18:10:45Z",
 +    "deactivated": false,
 +    "portable": false,
-     "scid": "QmNieX9pNouJgaMPUfhoFJs6o7orDrJzkNZ8uutvGZmUnc",
-     "updated": "2026-06-15T01:49:29Z",
-     "versionId": "2-QmcdFJoGwihkhTDV24RVdXyNbMPRPkgA6EvbVZfjwX1p98",
+     "scid": "QmP2vGKN6Y19NAu4zfbsiELsshWth6qPbnMM2woGPACtuC",
+     "updated": "2026-07-29T18:10:46Z",
+     "versionId": "2-QmTRukrzJ5XoXR7Qt5E8yHMjK7TYrmsVrpjXzNmN9RAxT5",
      "versionNumber": 2,
--    "versionTime": "2026-06-15T01:49:29Z"
-+    "versionTime": "2026-06-15T01:49:29Z",
+-    "versionTime": "2026-07-29T18:10:46Z"
++    "versionTime": "2026-07-29T18:10:46Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -657,32 +658,31 @@
 === key-rotation / ts — resolutionResult.json ===
 --- expected
 +++ actual (rust resolver)
-     "keyAgreement": [],
      "service": [
        {
--        "id": "#files",
-+        "id": "did:webvh:QmV2V5CSzH5w9UF4rHHAdktXL93ounugmgV2LXVCx9s2i9:example.com#files",
-         "serviceEndpoint": "https://example.com",
+         "id": "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:example.com#files",
+-        "serviceEndpoint": "https://example.com/",
++        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
        },
        {
-         "@context": "https://identity.foundation/linked-vp/contexts/v1",
--        "id": "#whois",
-+        "id": "did:webvh:QmV2V5CSzH5w9UF4rHHAdktXL93ounugmgV2LXVCx9s2i9:example.com#whois",
-         "serviceEndpoint": "https://example.com/whois.vp",
-         "type": "LinkedVerifiablePresentation"
-       }
 ...
-   },
    "didDocumentMetadata": {
      "created": "2000-01-01T00:00:00Z",
-+    "deactivated": false,
-+    "portable": false,
-+    "scid": "QmV2V5CSzH5w9UF4rHHAdktXL93ounugmgV2LXVCx9s2i9",
+     "deactivated": false,
+-    "nextKeyHashes": [],
+     "portable": false,
+-    "prerotation": false,
+-    "previousLogEntryHash": "QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ",
+     "scid": "QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ",
+-    "updateKeys": [
+-      "z6MknGc3ocHs3zdPiJbnaaqDi58NGb4pk1Sp9WxWufuXSdxf"
+-    ],
      "updated": "2000-01-02T00:00:00Z",
-     "versionId": "2-QmdQPdrki8mvwVV4d3f5z8YPCLwL21ZMZSaXMaLLi3s2Gk",
-     "versionNumber": 2,
--    "versionTime": "2000-01-02T00:00:00Z"
+     "versionId": "2-QmWE94wWoApaRpmpcWUQ3CRh9PB64tAniHAEasPUYpGWL3",
+-    "watchers": [],
+-    "witness": {}
++    "versionNumber": 2,
 +    "versionTime": "2000-01-02T00:00:00Z",
 +    "watchers": null,
 +    "witness": null
@@ -696,7 +696,7 @@
 +++ actual (rust resolver)
      "service": [
        {
-         "id": "did:webvh:Qmf7P4Pcebk5x2SqGUWE2dtXHk3Eu2DPHkd3EWpR19zB1m:example.com#files",
+         "id": "did:webvh:QmcKdyoAMftdmvcnMLmsBhNf4uSeuGtzMuBTuKgvtJ8Evb:example.com#files",
 -        "serviceEndpoint": "https://example.com/",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
@@ -705,16 +705,16 @@
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:50:27Z",
+     "created": "2026-07-29T18:12:35Z",
 +    "deactivated": false,
 +    "portable": false,
-     "scid": "Qmf7P4Pcebk5x2SqGUWE2dtXHk3Eu2DPHkd3EWpR19zB1m",
--    "updated": "2026-06-15T01:50:27Z",
-+    "updated": "2026-06-15T01:50:29Z",
-     "versionId": "1-QmdL4w2mykHy72nP1zqsZQ3wFdDxDxxhiZSu2r2LM3nVHM",
+     "scid": "QmcKdyoAMftdmvcnMLmsBhNf4uSeuGtzMuBTuKgvtJ8Evb",
+-    "updated": "2026-07-29T18:12:35Z",
++    "updated": "2026-07-29T18:12:37Z",
+     "versionId": "1-QmUvyxGRzthwANt6jGwd85eZGjzDQDDKf1g9C6bZDdWYvt",
      "versionNumber": 1,
--    "versionTime": "2026-06-15T01:50:27Z"
-+    "versionTime": "2026-06-15T01:50:27Z",
+-    "versionTime": "2026-07-29T18:12:35Z"
++    "versionTime": "2026-07-29T18:12:35Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -727,7 +727,7 @@
 +++ actual (rust resolver)
      "service": [
        {
-         "id": "did:webvh:Qmf7P4Pcebk5x2SqGUWE2dtXHk3Eu2DPHkd3EWpR19zB1m:example.com#files",
+         "id": "did:webvh:QmcKdyoAMftdmvcnMLmsBhNf4uSeuGtzMuBTuKgvtJ8Evb:example.com#files",
 -        "serviceEndpoint": "https://example.com/",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
@@ -736,16 +736,16 @@
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:50:27Z",
+     "created": "2026-07-29T18:12:35Z",
 +    "deactivated": false,
 +    "portable": false,
-     "scid": "Qmf7P4Pcebk5x2SqGUWE2dtXHk3Eu2DPHkd3EWpR19zB1m",
--    "updated": "2026-06-15T01:50:28Z",
-+    "updated": "2026-06-15T01:50:29Z",
-     "versionId": "2-Qmcjby2eUpWXbSWDpQzSFsdbXRfYsuWei1MkEfPuY1mVKY",
+     "scid": "QmcKdyoAMftdmvcnMLmsBhNf4uSeuGtzMuBTuKgvtJ8Evb",
+-    "updated": "2026-07-29T18:12:36Z",
++    "updated": "2026-07-29T18:12:37Z",
+     "versionId": "2-QmUDbGUCrmrqpuf2MRDX5x8rVnoPtQAt626cqBdepZ2bq4",
      "versionNumber": 2,
--    "versionTime": "2026-06-15T01:50:28Z"
-+    "versionTime": "2026-06-15T01:50:28Z",
+-    "versionTime": "2026-07-29T18:12:36Z"
++    "versionTime": "2026-07-29T18:12:36Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -758,7 +758,7 @@
 +++ actual (rust resolver)
      "service": [
        {
-         "id": "did:webvh:Qmf7P4Pcebk5x2SqGUWE2dtXHk3Eu2DPHkd3EWpR19zB1m:example.com#files",
+         "id": "did:webvh:QmcKdyoAMftdmvcnMLmsBhNf4uSeuGtzMuBTuKgvtJ8Evb:example.com#files",
 -        "serviceEndpoint": "https://example.com/",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
@@ -767,15 +767,15 @@
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:50:27Z",
+     "created": "2026-07-29T18:12:35Z",
 +    "deactivated": false,
 +    "portable": false,
-     "scid": "Qmf7P4Pcebk5x2SqGUWE2dtXHk3Eu2DPHkd3EWpR19zB1m",
-     "updated": "2026-06-15T01:50:29Z",
-     "versionId": "3-QmNWbWKrzYNagB7PHyKEA2ijsYoWnay8VAq7imiwggc5wM",
+     "scid": "QmcKdyoAMftdmvcnMLmsBhNf4uSeuGtzMuBTuKgvtJ8Evb",
+     "updated": "2026-07-29T18:12:37Z",
+     "versionId": "3-QmY42cKCriHn4iTQhznkjZWjkK27D1kBBjptYwfTHUFR5q",
      "versionNumber": 3,
--    "versionTime": "2026-06-15T01:50:29Z"
-+    "versionTime": "2026-06-15T01:50:29Z",
+-    "versionTime": "2026-07-29T18:12:37Z"
++    "versionTime": "2026-07-29T18:12:37Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -788,7 +788,7 @@
 +++ actual (rust resolver)
      "service": [
        {
-         "id": "did:webvh:QmSXsRKkp2WdQxJCgV8DQFWGZAgd1nuSqF65uutDP9bVX3:example.com#files",
+         "id": "did:webvh:QmahABJ2PJFRXXz564HVGWbu5h9JV7oQYQkKiHQuy7ktvi:example.com#files",
 -        "serviceEndpoint": "https://example.com/",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
@@ -797,16 +797,16 @@
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:48:28Z",
+     "created": "2026-07-29T18:06:55Z",
 +    "deactivated": false,
      "portable": false,
-     "scid": "QmSXsRKkp2WdQxJCgV8DQFWGZAgd1nuSqF65uutDP9bVX3",
--    "updated": "2026-06-15T01:48:28Z",
-+    "updated": "2026-06-15T01:48:30Z",
-     "versionId": "1-QmaNiUQUgafjNvBs14qTzMLVws6Q8oti4U8AtML4iHcsHr",
+     "scid": "QmahABJ2PJFRXXz564HVGWbu5h9JV7oQYQkKiHQuy7ktvi",
+-    "updated": "2026-07-29T18:06:55Z",
++    "updated": "2026-07-29T18:06:57Z",
+     "versionId": "1-QmWRhGiajYF1UtL74vJqxhQ1cCLn6r5yhkGXbgJoig1pyP",
      "versionNumber": 1,
--    "versionTime": "2026-06-15T01:48:28Z"
-+    "versionTime": "2026-06-15T01:48:28Z",
+-    "versionTime": "2026-07-29T18:06:55Z"
++    "versionTime": "2026-07-29T18:06:55Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -819,7 +819,7 @@
 +++ actual (rust resolver)
      "service": [
        {
-         "id": "did:webvh:QmSXsRKkp2WdQxJCgV8DQFWGZAgd1nuSqF65uutDP9bVX3:example.com#files",
+         "id": "did:webvh:QmahABJ2PJFRXXz564HVGWbu5h9JV7oQYQkKiHQuy7ktvi:example.com#files",
 -        "serviceEndpoint": "https://example.com/",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
@@ -828,16 +828,16 @@
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:48:28Z",
+     "created": "2026-07-29T18:06:55Z",
 +    "deactivated": false,
      "portable": false,
-     "scid": "QmSXsRKkp2WdQxJCgV8DQFWGZAgd1nuSqF65uutDP9bVX3",
--    "updated": "2026-06-15T01:48:29Z",
-+    "updated": "2026-06-15T01:48:30Z",
-     "versionId": "2-QmU92tHTN6xrrvCxtKj2xt3Jq1o9bMvGxt9z1GL5AjVmhS",
+     "scid": "QmahABJ2PJFRXXz564HVGWbu5h9JV7oQYQkKiHQuy7ktvi",
+-    "updated": "2026-07-29T18:06:56Z",
++    "updated": "2026-07-29T18:06:57Z",
+     "versionId": "2-QmNUC35G3usBSNxfCZ68CMKmmEseBJ1kdsWcPTYnmM5B8m",
      "versionNumber": 2,
--    "versionTime": "2026-06-15T01:48:29Z"
-+    "versionTime": "2026-06-15T01:48:29Z",
+-    "versionTime": "2026-07-29T18:06:56Z"
++    "versionTime": "2026-07-29T18:06:56Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -850,7 +850,7 @@
 +++ actual (rust resolver)
      "service": [
        {
-         "id": "did:webvh:QmSXsRKkp2WdQxJCgV8DQFWGZAgd1nuSqF65uutDP9bVX3:example.com#files",
+         "id": "did:webvh:QmahABJ2PJFRXXz564HVGWbu5h9JV7oQYQkKiHQuy7ktvi:example.com#files",
 -        "serviceEndpoint": "https://example.com/",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
@@ -859,15 +859,15 @@
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:48:28Z",
+     "created": "2026-07-29T18:06:55Z",
 +    "deactivated": false,
      "portable": false,
-     "scid": "QmSXsRKkp2WdQxJCgV8DQFWGZAgd1nuSqF65uutDP9bVX3",
-     "updated": "2026-06-15T01:48:30Z",
-     "versionId": "3-QmUVLd7KFJ2WLwuETpBYAyeEK93aztRUAQ1pGVRd5c4kSq",
+     "scid": "QmahABJ2PJFRXXz564HVGWbu5h9JV7oQYQkKiHQuy7ktvi",
+     "updated": "2026-07-29T18:06:57Z",
+     "versionId": "3-Qmdk3BojCbiwqbnoWi4cCxpJ95u4gacvQBnNdS34rEh8yM",
      "versionNumber": 3,
--    "versionTime": "2026-06-15T01:48:30Z"
-+    "versionTime": "2026-06-15T01:48:30Z",
+-    "versionTime": "2026-07-29T18:06:57Z"
++    "versionTime": "2026-07-29T18:06:57Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -883,30 +883,30 @@
        {
 -        "id": "#files",
 -        "serviceEndpoint": "https://example.com/",
-+        "id": "did:webvh:QmNieX9pNouJgaMPUfhoFJs6o7orDrJzkNZ8uutvGZmUnc:example.com#files",
++        "id": "did:webvh:QmP2vGKN6Y19NAu4zfbsiELsshWth6qPbnMM2woGPACtuC:example.com#files",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
        },
        {
          "@context": "https://identity.foundation/linked-vp/contexts/v1",
 -        "id": "#whois",
-+        "id": "did:webvh:QmNieX9pNouJgaMPUfhoFJs6o7orDrJzkNZ8uutvGZmUnc:example.com#whois",
++        "id": "did:webvh:QmP2vGKN6Y19NAu4zfbsiELsshWth6qPbnMM2woGPACtuC:example.com#whois",
          "serviceEndpoint": "https://example.com/whois.vp",
          "type": "LinkedVerifiablePresentation"
        }
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:49:28Z",
+     "created": "2026-07-29T18:10:45Z",
 +    "deactivated": false,
 +    "portable": false,
-     "scid": "QmNieX9pNouJgaMPUfhoFJs6o7orDrJzkNZ8uutvGZmUnc",
--    "updated": "2026-06-15T01:49:28Z",
-+    "updated": "2026-06-15T01:49:30Z",
-     "versionId": "1-QmZcCkwP2VZgxMWqqmUsDG8vDQPecvz1qcMdS2i35MdYGU",
+     "scid": "QmP2vGKN6Y19NAu4zfbsiELsshWth6qPbnMM2woGPACtuC",
+-    "updated": "2026-07-29T18:10:45Z",
++    "updated": "2026-07-29T18:10:47Z",
+     "versionId": "1-Qmc8NNhTur8a5Z2gdN53kpVrkwuxgaFcM6hJ9uWJejTWxZ",
      "versionNumber": 1,
--    "versionTime": "2026-06-15T01:49:28Z"
-+    "versionTime": "2026-06-15T01:49:28Z",
+-    "versionTime": "2026-07-29T18:10:45Z"
++    "versionTime": "2026-07-29T18:10:45Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -922,30 +922,30 @@
        {
 -        "id": "#files",
 -        "serviceEndpoint": "https://example.com/",
-+        "id": "did:webvh:QmNieX9pNouJgaMPUfhoFJs6o7orDrJzkNZ8uutvGZmUnc:example.com#files",
++        "id": "did:webvh:QmP2vGKN6Y19NAu4zfbsiELsshWth6qPbnMM2woGPACtuC:example.com#files",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
        },
        {
          "@context": "https://identity.foundation/linked-vp/contexts/v1",
 -        "id": "#whois",
-+        "id": "did:webvh:QmNieX9pNouJgaMPUfhoFJs6o7orDrJzkNZ8uutvGZmUnc:example.com#whois",
++        "id": "did:webvh:QmP2vGKN6Y19NAu4zfbsiELsshWth6qPbnMM2woGPACtuC:example.com#whois",
          "serviceEndpoint": "https://example.com/whois.vp",
          "type": "LinkedVerifiablePresentation"
        }
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:49:28Z",
+     "created": "2026-07-29T18:10:45Z",
 +    "deactivated": false,
 +    "portable": false,
-     "scid": "QmNieX9pNouJgaMPUfhoFJs6o7orDrJzkNZ8uutvGZmUnc",
--    "updated": "2026-06-15T01:49:29Z",
-+    "updated": "2026-06-15T01:49:30Z",
-     "versionId": "2-QmTJUj9Lh6j7xuFfTXz7wrZDv4aZfwHQ6nT7yP1qwydR1Q",
+     "scid": "QmP2vGKN6Y19NAu4zfbsiELsshWth6qPbnMM2woGPACtuC",
+-    "updated": "2026-07-29T18:10:46Z",
++    "updated": "2026-07-29T18:10:47Z",
+     "versionId": "2-QmcDhDRJnJFXS5q6RuBUXAf5ZNxqqwkyobkisYc4VT2QZf",
      "versionNumber": 2,
--    "versionTime": "2026-06-15T01:49:29Z"
-+    "versionTime": "2026-06-15T01:49:29Z",
+-    "versionTime": "2026-07-29T18:10:46Z"
++    "versionTime": "2026-07-29T18:10:46Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -961,29 +961,29 @@
        {
 -        "id": "#files",
 -        "serviceEndpoint": "https://example.com/",
-+        "id": "did:webvh:QmNieX9pNouJgaMPUfhoFJs6o7orDrJzkNZ8uutvGZmUnc:example.com#files",
++        "id": "did:webvh:QmP2vGKN6Y19NAu4zfbsiELsshWth6qPbnMM2woGPACtuC:example.com#files",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
        },
        {
          "@context": "https://identity.foundation/linked-vp/contexts/v1",
 -        "id": "#whois",
-+        "id": "did:webvh:QmNieX9pNouJgaMPUfhoFJs6o7orDrJzkNZ8uutvGZmUnc:example.com#whois",
++        "id": "did:webvh:QmP2vGKN6Y19NAu4zfbsiELsshWth6qPbnMM2woGPACtuC:example.com#whois",
          "serviceEndpoint": "https://example.com/whois.vp",
          "type": "LinkedVerifiablePresentation"
        }
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:49:28Z",
+     "created": "2026-07-29T18:10:45Z",
 +    "deactivated": false,
 +    "portable": false,
-     "scid": "QmNieX9pNouJgaMPUfhoFJs6o7orDrJzkNZ8uutvGZmUnc",
-     "updated": "2026-06-15T01:49:30Z",
-     "versionId": "3-QmNwWFzfiYoVbvhmNDHWwsZN9L6h9mNbozMy4rcAjqVTS5",
+     "scid": "QmP2vGKN6Y19NAu4zfbsiELsshWth6qPbnMM2woGPACtuC",
+     "updated": "2026-07-29T18:10:47Z",
+     "versionId": "3-QmWeKk8pcSpPiU1zvWWPrXDC66AsBvj5FRDZowUj45YuFL",
      "versionNumber": 3,
--    "versionTime": "2026-06-15T01:49:30Z"
-+    "versionTime": "2026-06-15T01:49:30Z",
+-    "versionTime": "2026-07-29T18:10:47Z"
++    "versionTime": "2026-07-29T18:10:47Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -1119,33 +1119,32 @@
 === multi-update / ts — resolutionResult.1.json ===
 --- expected
 +++ actual (rust resolver)
-     "keyAgreement": [],
      "service": [
        {
--        "id": "#files",
-+        "id": "did:webvh:QmV2V5CSzH5w9UF4rHHAdktXL93ounugmgV2LXVCx9s2i9:example.com#files",
-         "serviceEndpoint": "https://example.com",
+         "id": "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:example.com#files",
+-        "serviceEndpoint": "https://example.com/",
++        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
        },
        {
-         "@context": "https://identity.foundation/linked-vp/contexts/v1",
--        "id": "#whois",
-+        "id": "did:webvh:QmV2V5CSzH5w9UF4rHHAdktXL93ounugmgV2LXVCx9s2i9:example.com#whois",
-         "serviceEndpoint": "https://example.com/whois.vp",
-         "type": "LinkedVerifiablePresentation"
-       }
 ...
-   },
    "didDocumentMetadata": {
      "created": "2000-01-01T00:00:00Z",
+     "deactivated": false,
+-    "nextKeyHashes": [],
+     "portable": false,
+-    "prerotation": false,
+-    "previousLogEntryHash": "QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ",
+     "scid": "QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ",
+-    "updateKeys": [
+-      "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+-    ],
 -    "updated": "2000-01-01T00:00:00Z",
-+    "deactivated": false,
-+    "portable": false,
-+    "scid": "QmV2V5CSzH5w9UF4rHHAdktXL93ounugmgV2LXVCx9s2i9",
 +    "updated": "2000-01-03T00:00:00Z",
-     "versionId": "1-Qme7MrtMydsarZEeqvYPfV39KFtW1bPzytSdF4QmTx4YJj",
-     "versionNumber": 1,
--    "versionTime": "2000-01-01T00:00:00Z"
+     "versionId": "1-QmRqMp6AtLbWzMyLa6ZdCjiQXo1HaLpUStJFwqAMY7pVfo",
+-    "watchers": [],
+-    "witness": {}
++    "versionNumber": 1,
 +    "versionTime": "2000-01-01T00:00:00Z",
 +    "watchers": null,
 +    "witness": null
@@ -1157,33 +1156,32 @@
 === multi-update / ts — resolutionResult.2.json ===
 --- expected
 +++ actual (rust resolver)
-     "keyAgreement": [],
      "service": [
        {
--        "id": "#files",
-+        "id": "did:webvh:QmV2V5CSzH5w9UF4rHHAdktXL93ounugmgV2LXVCx9s2i9:example.com#files",
-         "serviceEndpoint": "https://example.com",
+         "id": "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:example.com#files",
+-        "serviceEndpoint": "https://example.com/",
++        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
        },
        {
-         "@context": "https://identity.foundation/linked-vp/contexts/v1",
--        "id": "#whois",
-+        "id": "did:webvh:QmV2V5CSzH5w9UF4rHHAdktXL93ounugmgV2LXVCx9s2i9:example.com#whois",
-         "serviceEndpoint": "https://example.com/whois.vp",
-         "type": "LinkedVerifiablePresentation"
-       }
 ...
-   },
    "didDocumentMetadata": {
      "created": "2000-01-01T00:00:00Z",
+     "deactivated": false,
+-    "nextKeyHashes": [],
+     "portable": false,
+-    "prerotation": false,
+-    "previousLogEntryHash": "QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ",
+     "scid": "QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ",
+-    "updateKeys": [
+-      "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+-    ],
 -    "updated": "2000-01-02T00:00:00Z",
-+    "deactivated": false,
-+    "portable": false,
-+    "scid": "QmV2V5CSzH5w9UF4rHHAdktXL93ounugmgV2LXVCx9s2i9",
 +    "updated": "2000-01-03T00:00:00Z",
-     "versionId": "2-QmTWXUmXrDE4DyvQHJ45VyN5ujPcaSxTKjvVAVHAAtLwmt",
-     "versionNumber": 2,
--    "versionTime": "2000-01-02T00:00:00Z"
+     "versionId": "2-QmbcnNJZ7EvsbU9ogcsGdYrqKBH1YjVy5nEjs1rxznXxBe",
+-    "watchers": [],
+-    "witness": {}
++    "versionNumber": 2,
 +    "versionTime": "2000-01-02T00:00:00Z",
 +    "watchers": null,
 +    "witness": null
@@ -1195,32 +1193,31 @@
 === multi-update / ts — resolutionResult.json ===
 --- expected
 +++ actual (rust resolver)
-     "keyAgreement": [],
      "service": [
        {
--        "id": "#files",
-+        "id": "did:webvh:QmV2V5CSzH5w9UF4rHHAdktXL93ounugmgV2LXVCx9s2i9:example.com#files",
-         "serviceEndpoint": "https://example.com",
+         "id": "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:example.com#files",
+-        "serviceEndpoint": "https://example.com/",
++        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
        },
        {
-         "@context": "https://identity.foundation/linked-vp/contexts/v1",
--        "id": "#whois",
-+        "id": "did:webvh:QmV2V5CSzH5w9UF4rHHAdktXL93ounugmgV2LXVCx9s2i9:example.com#whois",
-         "serviceEndpoint": "https://example.com/whois.vp",
-         "type": "LinkedVerifiablePresentation"
-       }
 ...
-   },
    "didDocumentMetadata": {
      "created": "2000-01-01T00:00:00Z",
-+    "deactivated": false,
-+    "portable": false,
-+    "scid": "QmV2V5CSzH5w9UF4rHHAdktXL93ounugmgV2LXVCx9s2i9",
+     "deactivated": false,
+-    "nextKeyHashes": [],
+     "portable": false,
+-    "prerotation": false,
+-    "previousLogEntryHash": "QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ",
+     "scid": "QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ",
+-    "updateKeys": [
+-      "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+-    ],
      "updated": "2000-01-03T00:00:00Z",
-     "versionId": "3-QmQR2fWA8kbMWRSFjqXDeKG7PeW9p7MkTydvLiABUQjVSM",
-     "versionNumber": 3,
--    "versionTime": "2000-01-03T00:00:00Z"
+     "versionId": "3-QmbJW2mTkC7dmn9XYAfcFiCAVRFWfF39BFJzvM6wSvuR5E",
+-    "watchers": [],
+-    "witness": {}
++    "versionNumber": 3,
 +    "versionTime": "2000-01-03T00:00:00Z",
 +    "watchers": null,
 +    "witness": null
@@ -1237,29 +1234,29 @@
        {
 -        "id": "#files",
 -        "serviceEndpoint": "https://example.com/",
-+        "id": "did:webvh:QmTr9bmT2QKAxBWvec8wwuQx6sggvAMZKc5xjCciB9vmtH:example.com#files",
++        "id": "did:webvh:QmRUqjDvxLBAuWEwaxy9EdF83kXBmNeWdi6mR9e81Pf2xf:example.com#files",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
        },
        {
          "@context": "https://identity.foundation/linked-vp/contexts/v1",
 -        "id": "#whois",
-+        "id": "did:webvh:QmTr9bmT2QKAxBWvec8wwuQx6sggvAMZKc5xjCciB9vmtH:example.com#whois",
++        "id": "did:webvh:QmRUqjDvxLBAuWEwaxy9EdF83kXBmNeWdi6mR9e81Pf2xf:example.com#whois",
          "serviceEndpoint": "https://example.com/whois.vp",
          "type": "LinkedVerifiablePresentation"
        }
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:49:28Z",
+     "created": "2026-07-29T18:10:45Z",
 +    "deactivated": false,
 +    "portable": false,
-     "scid": "QmTr9bmT2QKAxBWvec8wwuQx6sggvAMZKc5xjCciB9vmtH",
-     "updated": "2026-06-15T01:49:29Z",
-     "versionId": "2-QmepNLQU1y9Pxr2Bb19BvP6BLjqQBaAWaGxvYxUv3ya37K",
+     "scid": "QmRUqjDvxLBAuWEwaxy9EdF83kXBmNeWdi6mR9e81Pf2xf",
+     "updated": "2026-07-29T18:10:46Z",
+     "versionId": "2-QmdBhAVQHu5DpsnvZnDj9zDhepYQiSe9uCMRm6Wmnqyiae",
      "versionNumber": 2,
--    "versionTime": "2026-06-15T01:49:29Z"
-+    "versionTime": "2026-06-15T01:49:29Z",
+-    "versionTime": "2026-07-29T18:10:46Z"
++    "versionTime": "2026-07-29T18:10:46Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -1302,32 +1299,32 @@
 === multiple-update-keys / ts — resolutionResult.json ===
 --- expected
 +++ actual (rust resolver)
-     "keyAgreement": [],
      "service": [
        {
--        "id": "#files",
-+        "id": "did:webvh:QmdqYkwBrTsuFarEykVCw4MJJewAurmj8qZzkjZUz2bdAo:example.com#files",
-         "serviceEndpoint": "https://example.com",
+         "id": "did:webvh:QmP3WFXAfND3yLL3eXZHvCNZaNRGaZzxU8i5rjVPS73i6L:example.com#files",
+-        "serviceEndpoint": "https://example.com/",
++        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
        },
        {
-         "@context": "https://identity.foundation/linked-vp/contexts/v1",
--        "id": "#whois",
-+        "id": "did:webvh:QmdqYkwBrTsuFarEykVCw4MJJewAurmj8qZzkjZUz2bdAo:example.com#whois",
-         "serviceEndpoint": "https://example.com/whois.vp",
-         "type": "LinkedVerifiablePresentation"
-       }
 ...
-   },
    "didDocumentMetadata": {
      "created": "2000-01-01T00:00:00Z",
-+    "deactivated": false,
-+    "portable": false,
-+    "scid": "QmdqYkwBrTsuFarEykVCw4MJJewAurmj8qZzkjZUz2bdAo",
+     "deactivated": false,
+-    "nextKeyHashes": [],
+     "portable": false,
+-    "prerotation": false,
+-    "previousLogEntryHash": "QmP3WFXAfND3yLL3eXZHvCNZaNRGaZzxU8i5rjVPS73i6L",
+     "scid": "QmP3WFXAfND3yLL3eXZHvCNZaNRGaZzxU8i5rjVPS73i6L",
+-    "updateKeys": [
+-      "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG",
+-      "z6MknGc3ocHs3zdPiJbnaaqDi58NGb4pk1Sp9WxWufuXSdxf"
+-    ],
      "updated": "2000-01-02T00:00:00Z",
-     "versionId": "2-QmSCi2w3GZtJGJcBYk9HsUjthx7FrQ8X8sHMJkrszGPMui",
-     "versionNumber": 2,
--    "versionTime": "2000-01-02T00:00:00Z"
+     "versionId": "2-QmXyqqct1UiP8gN6vK4twC46F7xmRFGKRtZz7CRJ3pcHUz",
+-    "watchers": [],
+-    "witness": {}
++    "versionNumber": 2,
 +    "versionTime": "2000-01-02T00:00:00Z",
 +    "watchers": null,
 +    "witness": null
@@ -1341,7 +1338,7 @@
 +++ actual (rust resolver)
      "service": [
        {
-         "id": "did:webvh:Qme827gBknTfkmfM5AQd5zqtZMy1kaAhwggZ8V6pHPrqnw:example.com#files",
+         "id": "did:webvh:QmPRfZb5Di5ukQ4hx7VES36qmKD6GC4zuregjLSHyXbu3L:example.com#files",
 -        "serviceEndpoint": "https://example.com/",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
@@ -1350,15 +1347,15 @@
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:50:27Z",
+     "created": "2026-07-29T18:12:35Z",
 +    "deactivated": false,
      "portable": true,
-     "scid": "Qme827gBknTfkmfM5AQd5zqtZMy1kaAhwggZ8V6pHPrqnw",
-     "updated": "2026-06-15T01:50:27Z",
-     "versionId": "1-QmUoyF3wmGZPcrjxKaQB2JJyBXCvGdqABKK4J3vNcXA9N9",
+     "scid": "QmPRfZb5Di5ukQ4hx7VES36qmKD6GC4zuregjLSHyXbu3L",
+     "updated": "2026-07-29T18:12:35Z",
+     "versionId": "1-QmcBD8hY5ev1KgT3Q2EMP9f4JLxAN9fxczbd34BDvZNrkg",
      "versionNumber": 1,
--    "versionTime": "2026-06-15T01:50:27Z"
-+    "versionTime": "2026-06-15T01:50:27Z",
+-    "versionTime": "2026-07-29T18:12:35Z"
++    "versionTime": "2026-07-29T18:12:35Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -1371,7 +1368,7 @@
 +++ actual (rust resolver)
      "service": [
        {
-         "id": "did:webvh:QmXYBYX1uuwfcyhySFkegAqm6U8kutS7yzG8ruxKm8GGpD:example.com#files",
+         "id": "did:webvh:QmRSkHeHrE78vEKNmedXn1h8pbysra1E63yNtZn3emuv3R:example.com#files",
 -        "serviceEndpoint": "https://example.com/",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
@@ -1380,15 +1377,15 @@
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:48:28Z",
+     "created": "2026-07-29T18:06:55Z",
 +    "deactivated": false,
      "portable": true,
-     "scid": "QmXYBYX1uuwfcyhySFkegAqm6U8kutS7yzG8ruxKm8GGpD",
-     "updated": "2026-06-15T01:48:28Z",
-     "versionId": "1-QmbYJFqLkVXnnUWo1FfxaqTtZ54XuHnbFdkQk8GVnof6KH",
+     "scid": "QmRSkHeHrE78vEKNmedXn1h8pbysra1E63yNtZn3emuv3R",
+     "updated": "2026-07-29T18:06:55Z",
+     "versionId": "1-QmZxRWvvuJF45iCEEKiiQUD8dNyHm9XSJMsjEasL5tFjD3",
      "versionNumber": 1,
--    "versionTime": "2026-06-15T01:48:28Z"
-+    "versionTime": "2026-06-15T01:48:28Z",
+-    "versionTime": "2026-07-29T18:06:55Z"
++    "versionTime": "2026-07-29T18:06:55Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -1404,29 +1401,29 @@
        {
 -        "id": "#files",
 -        "serviceEndpoint": "https://example.com/",
-+        "id": "did:webvh:QmaWg9hkFsXg7ityiMZ3GG4JSTzXa8ERvgRtLi63rbxnQ4:example.com#files",
++        "id": "did:webvh:QmUmjgSCH5bDvSqhQ7anNo5bKn5Fn9yNtiJhKoL4PEbAb6:example.com#files",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
        },
        {
          "@context": "https://identity.foundation/linked-vp/contexts/v1",
 -        "id": "#whois",
-+        "id": "did:webvh:QmaWg9hkFsXg7ityiMZ3GG4JSTzXa8ERvgRtLi63rbxnQ4:example.com#whois",
++        "id": "did:webvh:QmUmjgSCH5bDvSqhQ7anNo5bKn5Fn9yNtiJhKoL4PEbAb6:example.com#whois",
          "serviceEndpoint": "https://example.com/whois.vp",
          "type": "LinkedVerifiablePresentation"
        }
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:49:28Z",
+     "created": "2026-07-29T18:10:45Z",
 +    "deactivated": false,
      "portable": true,
-     "scid": "QmaWg9hkFsXg7ityiMZ3GG4JSTzXa8ERvgRtLi63rbxnQ4",
-     "updated": "2026-06-15T01:49:28Z",
-     "versionId": "1-QmZNC7sDrjYuVM451dafe6rzDhUXyLLXobtHrL5Gs5X7n2",
+     "scid": "QmUmjgSCH5bDvSqhQ7anNo5bKn5Fn9yNtiJhKoL4PEbAb6",
+     "updated": "2026-07-29T18:10:45Z",
+     "versionId": "1-QmNP8dZC6GFovm9zL4WzTp6om8fThvbRJWzHFfJwyntLEc",
      "versionNumber": 1,
--    "versionTime": "2026-06-15T01:49:28Z"
-+    "versionTime": "2026-06-15T01:49:28Z",
+-    "versionTime": "2026-07-29T18:10:45Z"
++    "versionTime": "2026-07-29T18:10:45Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -1469,32 +1466,31 @@
 === portable / ts — resolutionResult.json ===
 --- expected
 +++ actual (rust resolver)
-     "keyAgreement": [],
      "service": [
        {
--        "id": "#files",
-+        "id": "did:webvh:QmSoujwhaNNgWGD3deyXDHoE3UTvnXJSeq925AR4kzoc9S:example.com#files",
-         "serviceEndpoint": "https://example.com",
+         "id": "did:webvh:QmfG1Dx5wj8zxVVkdTcD81teRgV5DLuQcUvzizd75x8Zxd:example.com#files",
+-        "serviceEndpoint": "https://example.com/",
++        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
        },
        {
-         "@context": "https://identity.foundation/linked-vp/contexts/v1",
--        "id": "#whois",
-+        "id": "did:webvh:QmSoujwhaNNgWGD3deyXDHoE3UTvnXJSeq925AR4kzoc9S:example.com#whois",
-         "serviceEndpoint": "https://example.com/whois.vp",
-         "type": "LinkedVerifiablePresentation"
-       }
 ...
-   },
    "didDocumentMetadata": {
      "created": "2000-01-01T00:00:00Z",
-+    "deactivated": false,
-+    "portable": true,
-+    "scid": "QmSoujwhaNNgWGD3deyXDHoE3UTvnXJSeq925AR4kzoc9S",
+     "deactivated": false,
+-    "nextKeyHashes": [],
+     "portable": true,
+-    "prerotation": false,
+-    "previousLogEntryHash": "QmfG1Dx5wj8zxVVkdTcD81teRgV5DLuQcUvzizd75x8Zxd",
+     "scid": "QmfG1Dx5wj8zxVVkdTcD81teRgV5DLuQcUvzizd75x8Zxd",
+-    "updateKeys": [
+-      "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+-    ],
      "updated": "2000-01-01T00:00:00Z",
-     "versionId": "1-QmakovVDuuoDiVHCzNScfzTHHEdvwQN3WshofC1br1LPXW",
-     "versionNumber": 1,
--    "versionTime": "2000-01-01T00:00:00Z"
+     "versionId": "1-Qma8aFfhnzn7sTcBGJHNVeqDQ3vmLmWutSKFTPdvSZxgkV",
+-    "watchers": [],
+-    "witness": {}
++    "versionNumber": 1,
 +    "versionTime": "2000-01-01T00:00:00Z",
 +    "watchers": null,
 +    "witness": null
@@ -1508,7 +1504,7 @@
 +++ actual (rust resolver)
      "service": [
        {
-         "id": "did:webvh:Qme827gBknTfkmfM5AQd5zqtZMy1kaAhwggZ8V6pHPrqnw:example.org#files",
+         "id": "did:webvh:QmPRfZb5Di5ukQ4hx7VES36qmKD6GC4zuregjLSHyXbu3L:example.org#files",
 -        "serviceEndpoint": "https://example.org/",
 +        "serviceEndpoint": "https://example.org",
          "type": "relativeRef"
@@ -1517,15 +1513,15 @@
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:50:27Z",
+     "created": "2026-07-29T18:12:35Z",
 +    "deactivated": false,
      "portable": true,
-     "scid": "Qme827gBknTfkmfM5AQd5zqtZMy1kaAhwggZ8V6pHPrqnw",
-     "updated": "2026-06-15T01:50:28Z",
-     "versionId": "2-QmST3rirCWARgn2FQSdDWk5qqwoEEMddRa88pBYPp5Pywc",
+     "scid": "QmPRfZb5Di5ukQ4hx7VES36qmKD6GC4zuregjLSHyXbu3L",
+     "updated": "2026-07-29T18:12:36Z",
+     "versionId": "2-QmW3zqTiEq6E6sjqNEjPFnxCgQQRPpJrCGH2fVH3FcZhdM",
      "versionNumber": 2,
--    "versionTime": "2026-06-15T01:50:28Z"
-+    "versionTime": "2026-06-15T01:50:28Z",
+-    "versionTime": "2026-07-29T18:12:36Z"
++    "versionTime": "2026-07-29T18:12:36Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -1538,7 +1534,7 @@
 +++ actual (rust resolver)
      "service": [
        {
-         "id": "did:webvh:QmXYBYX1uuwfcyhySFkegAqm6U8kutS7yzG8ruxKm8GGpD:example.org#files",
+         "id": "did:webvh:QmRSkHeHrE78vEKNmedXn1h8pbysra1E63yNtZn3emuv3R:example.org#files",
 -        "serviceEndpoint": "https://example.org/",
 +        "serviceEndpoint": "https://example.org",
          "type": "relativeRef"
@@ -1547,15 +1543,15 @@
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:48:28Z",
+     "created": "2026-07-29T18:06:55Z",
 +    "deactivated": false,
      "portable": true,
-     "scid": "QmXYBYX1uuwfcyhySFkegAqm6U8kutS7yzG8ruxKm8GGpD",
-     "updated": "2026-06-15T01:48:29Z",
-     "versionId": "2-QmYXbkGu3vbQmAdqrqeHvvQCBDmZVm6z2dohBZ6RGxntrx",
+     "scid": "QmRSkHeHrE78vEKNmedXn1h8pbysra1E63yNtZn3emuv3R",
+     "updated": "2026-07-29T18:06:56Z",
+     "versionId": "2-QmepbxuYPLMtNaQYbM3jLFVTYkWSUDydWCSzJSdtnqkqND",
      "versionNumber": 2,
--    "versionTime": "2026-06-15T01:48:29Z"
-+    "versionTime": "2026-06-15T01:48:29Z",
+-    "versionTime": "2026-07-29T18:06:56Z"
++    "versionTime": "2026-07-29T18:06:56Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -1571,29 +1567,29 @@
        {
 -        "id": "#files",
 -        "serviceEndpoint": "https://example.org/",
-+        "id": "did:webvh:QmaWg9hkFsXg7ityiMZ3GG4JSTzXa8ERvgRtLi63rbxnQ4:example.org#files",
++        "id": "did:webvh:QmUmjgSCH5bDvSqhQ7anNo5bKn5Fn9yNtiJhKoL4PEbAb6:example.org#files",
 +        "serviceEndpoint": "https://example.org",
          "type": "relativeRef"
        },
        {
          "@context": "https://identity.foundation/linked-vp/contexts/v1",
 -        "id": "#whois",
-+        "id": "did:webvh:QmaWg9hkFsXg7ityiMZ3GG4JSTzXa8ERvgRtLi63rbxnQ4:example.org#whois",
++        "id": "did:webvh:QmUmjgSCH5bDvSqhQ7anNo5bKn5Fn9yNtiJhKoL4PEbAb6:example.org#whois",
          "serviceEndpoint": "https://example.org/whois.vp",
          "type": "LinkedVerifiablePresentation"
        }
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:49:28Z",
+     "created": "2026-07-29T18:10:45Z",
 +    "deactivated": false,
      "portable": true,
-     "scid": "QmaWg9hkFsXg7ityiMZ3GG4JSTzXa8ERvgRtLi63rbxnQ4",
-     "updated": "2026-06-15T01:49:29Z",
-     "versionId": "2-QmXNiQDbxxaNtLZainKvhdsy75Ge6tVRmn8HMr24YAYcQK",
+     "scid": "QmUmjgSCH5bDvSqhQ7anNo5bKn5Fn9yNtiJhKoL4PEbAb6",
+     "updated": "2026-07-29T18:10:46Z",
+     "versionId": "2-QmQ49jHPrRt7JCw6qHwNxThnc9pN5Hc1xREAD58X2VjH6b",
      "versionNumber": 2,
--    "versionTime": "2026-06-15T01:49:29Z"
-+    "versionTime": "2026-06-15T01:49:29Z",
+-    "versionTime": "2026-07-29T18:10:46Z"
++    "versionTime": "2026-07-29T18:10:46Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -1636,32 +1632,31 @@
 === portable-move / ts — resolutionResult.json ===
 --- expected
 +++ actual (rust resolver)
-     "keyAgreement": [],
      "service": [
        {
--        "id": "#files",
-+        "id": "did:webvh:QmSoujwhaNNgWGD3deyXDHoE3UTvnXJSeq925AR4kzoc9S:example.org#files",
-         "serviceEndpoint": "https://example.org",
+         "id": "did:webvh:QmfG1Dx5wj8zxVVkdTcD81teRgV5DLuQcUvzizd75x8Zxd:example.org#files",
+-        "serviceEndpoint": "https://example.org/",
++        "serviceEndpoint": "https://example.org",
          "type": "relativeRef"
        },
        {
-         "@context": "https://identity.foundation/linked-vp/contexts/v1",
--        "id": "#whois",
-+        "id": "did:webvh:QmSoujwhaNNgWGD3deyXDHoE3UTvnXJSeq925AR4kzoc9S:example.org#whois",
-         "serviceEndpoint": "https://example.org/whois.vp",
-         "type": "LinkedVerifiablePresentation"
-       }
 ...
-   },
    "didDocumentMetadata": {
      "created": "2000-01-01T00:00:00Z",
-+    "deactivated": false,
-+    "portable": true,
-+    "scid": "QmSoujwhaNNgWGD3deyXDHoE3UTvnXJSeq925AR4kzoc9S",
+     "deactivated": false,
+-    "nextKeyHashes": [],
+     "portable": true,
+-    "prerotation": false,
+-    "previousLogEntryHash": "QmfG1Dx5wj8zxVVkdTcD81teRgV5DLuQcUvzizd75x8Zxd",
+     "scid": "QmfG1Dx5wj8zxVVkdTcD81teRgV5DLuQcUvzizd75x8Zxd",
+-    "updateKeys": [
+-      "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+-    ],
      "updated": "2000-01-02T00:00:00Z",
-     "versionId": "2-QmfGVAEVP1t121wgcin2SPjsYtMDRgYRfSHxF81f1gHiqL",
-     "versionNumber": 2,
--    "versionTime": "2000-01-02T00:00:00Z"
+     "versionId": "2-QmeWQdcKVjga7Xgn6LJfFb3utdA4aaPeSMtNLVAEVmP9SZ",
+-    "watchers": [],
+-    "witness": {}
++    "versionNumber": 2,
 +    "versionTime": "2000-01-02T00:00:00Z",
 +    "watchers": null,
 +    "witness": null
@@ -1675,7 +1670,7 @@
 +++ actual (rust resolver)
      "service": [
        {
-         "id": "did:webvh:QmVgjwg2t4TaHYpdhFisgivyJH2bhkVABMRSCuFjHstcNH:example.com#files",
+         "id": "did:webvh:QmSDDg6M7apDP2eKsMeJ4pW6u6CxEgEBJ2kpw4Hx7s1eRh:example.com#files",
 -        "serviceEndpoint": "https://example.com/",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
@@ -1684,15 +1679,15 @@
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:50:27Z",
+     "created": "2026-07-29T18:12:35Z",
 +    "deactivated": false,
 +    "portable": false,
-     "scid": "QmVgjwg2t4TaHYpdhFisgivyJH2bhkVABMRSCuFjHstcNH",
-     "updated": "2026-06-15T01:50:27Z",
-     "versionId": "1-QmQ2n7wwXetW4wQTunrV8fd6GuPvBpuHXW6b2jnNwfVs2s",
+     "scid": "QmSDDg6M7apDP2eKsMeJ4pW6u6CxEgEBJ2kpw4Hx7s1eRh",
+     "updated": "2026-07-29T18:12:35Z",
+     "versionId": "1-QmQdP8J5zjARs73tcfwWkzExmrfupAxaSFYcU87aR6q9t3",
      "versionNumber": 1,
--    "versionTime": "2026-06-15T01:50:27Z"
-+    "versionTime": "2026-06-15T01:50:27Z",
+-    "versionTime": "2026-07-29T18:12:35Z"
++    "versionTime": "2026-07-29T18:12:35Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -1705,7 +1700,7 @@
 +++ actual (rust resolver)
      "service": [
        {
-         "id": "did:webvh:QmP5BS8pyuZ2rWaxiMrbZPd5YbSX5X7Li3cS6pEuAFcMb1:example.com#files",
+         "id": "did:webvh:QmdhiwhXPS1iLND6jjTcmUthStTSGe6K1XAzb4pN7mcrND:example.com#files",
 -        "serviceEndpoint": "https://example.com/",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
@@ -1714,15 +1709,15 @@
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:48:28Z",
+     "created": "2026-07-29T18:06:55Z",
 +    "deactivated": false,
      "portable": false,
-     "scid": "QmP5BS8pyuZ2rWaxiMrbZPd5YbSX5X7Li3cS6pEuAFcMb1",
-     "updated": "2026-06-15T01:48:28Z",
-     "versionId": "1-QmRYA4DfjCZBWLZb4NmzEKeGoG5E2n1rRCRxcsk83vnmb9",
+     "scid": "QmdhiwhXPS1iLND6jjTcmUthStTSGe6K1XAzb4pN7mcrND",
+     "updated": "2026-07-29T18:06:55Z",
+     "versionId": "1-QmSFovHsgaWAR4wGiJfYpqSzXEh5Ga3ErNgdhKgM2pXuzJ",
      "versionNumber": 1,
--    "versionTime": "2026-06-15T01:48:28Z"
-+    "versionTime": "2026-06-15T01:48:28Z",
+-    "versionTime": "2026-07-29T18:06:55Z"
++    "versionTime": "2026-07-29T18:06:55Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -1738,29 +1733,29 @@
        {
 -        "id": "#files",
 -        "serviceEndpoint": "https://example.com/",
-+        "id": "did:webvh:QmWP6kWz1Wwzehs6avT1aM4foFR82dY21ZEZ1Nj7aZt3V1:example.com#files",
++        "id": "did:webvh:QmZ5pCjVUB5jibWT19LypX1K4XL6a3MjrUpMD9Vef9RaQ4:example.com#files",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
        },
        {
          "@context": "https://identity.foundation/linked-vp/contexts/v1",
 -        "id": "#whois",
-+        "id": "did:webvh:QmWP6kWz1Wwzehs6avT1aM4foFR82dY21ZEZ1Nj7aZt3V1:example.com#whois",
++        "id": "did:webvh:QmZ5pCjVUB5jibWT19LypX1K4XL6a3MjrUpMD9Vef9RaQ4:example.com#whois",
          "serviceEndpoint": "https://example.com/whois.vp",
          "type": "LinkedVerifiablePresentation"
        }
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:49:28Z",
+     "created": "2026-07-29T18:10:45Z",
 +    "deactivated": false,
 +    "portable": false,
-     "scid": "QmWP6kWz1Wwzehs6avT1aM4foFR82dY21ZEZ1Nj7aZt3V1",
-     "updated": "2026-06-15T01:49:28Z",
-     "versionId": "1-QmPDaTYiXRdVX7T5MwbLxWs8ZQe3xhbmWTk4W5dazbxytv",
+     "scid": "QmZ5pCjVUB5jibWT19LypX1K4XL6a3MjrUpMD9Vef9RaQ4",
+     "updated": "2026-07-29T18:10:45Z",
+     "versionId": "1-QmUJXwaFT4jBt5pNZjFbm7knJEdWejCks3zheCdhARaU1z",
      "versionNumber": 1,
--    "versionTime": "2026-06-15T01:49:28Z"
-+    "versionTime": "2026-06-15T01:49:28Z",
+-    "versionTime": "2026-07-29T18:10:45Z"
++    "versionTime": "2026-07-29T18:10:45Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -1803,32 +1798,33 @@
 === pre-rotation / ts — resolutionResult.json ===
 --- expected
 +++ actual (rust resolver)
-     "keyAgreement": [],
      "service": [
        {
--        "id": "#files",
-+        "id": "did:webvh:QmXpqXh9uM1rN2uBuHQB4qdGUMfJsEouwz8Yn8RaaTXgKq:example.com#files",
-         "serviceEndpoint": "https://example.com",
+         "id": "did:webvh:QmVo7guGd8Fq4vGmCTcAuZWBFw8ipW8HNoJ8g7XFKmP4bS:example.com#files",
+-        "serviceEndpoint": "https://example.com/",
++        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
        },
        {
-         "@context": "https://identity.foundation/linked-vp/contexts/v1",
--        "id": "#whois",
-+        "id": "did:webvh:QmXpqXh9uM1rN2uBuHQB4qdGUMfJsEouwz8Yn8RaaTXgKq:example.com#whois",
-         "serviceEndpoint": "https://example.com/whois.vp",
-         "type": "LinkedVerifiablePresentation"
-       }
 ...
-   },
    "didDocumentMetadata": {
      "created": "2000-01-01T00:00:00Z",
-+    "deactivated": false,
-+    "portable": false,
-+    "scid": "QmXpqXh9uM1rN2uBuHQB4qdGUMfJsEouwz8Yn8RaaTXgKq",
+     "deactivated": false,
+-    "nextKeyHashes": [
+-      "Qmf2V5jB2UwPcFL5bvmKed7VvY3CSQ1RXyDdtip7ufpQ3R"
+-    ],
+     "portable": false,
+-    "prerotation": true,
+-    "previousLogEntryHash": "QmVo7guGd8Fq4vGmCTcAuZWBFw8ipW8HNoJ8g7XFKmP4bS",
+     "scid": "QmVo7guGd8Fq4vGmCTcAuZWBFw8ipW8HNoJ8g7XFKmP4bS",
+-    "updateKeys": [
+-      "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+-    ],
      "updated": "2000-01-01T00:00:00Z",
-     "versionId": "1-QmNhb1oxUua5QrZY9jLzEkU4z6yo3W4EdtbouaJQER4WCq",
-     "versionNumber": 1,
--    "versionTime": "2000-01-01T00:00:00Z"
+     "versionId": "1-QmZMrxhhbpVRaZUZdBgtF6UaGJohCKtQodyAicvQyVg5k4",
+-    "watchers": [],
+-    "witness": {}
++    "versionNumber": 1,
 +    "versionTime": "2000-01-01T00:00:00Z",
 +    "watchers": null,
 +    "witness": null
@@ -1842,7 +1838,7 @@
 +++ actual (rust resolver)
      "service": [
        {
-         "id": "did:webvh:QmVgjwg2t4TaHYpdhFisgivyJH2bhkVABMRSCuFjHstcNH:example.com#files",
+         "id": "did:webvh:QmSDDg6M7apDP2eKsMeJ4pW6u6CxEgEBJ2kpw4Hx7s1eRh:example.com#files",
 -        "serviceEndpoint": "https://example.com/",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
@@ -1851,15 +1847,15 @@
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:50:27Z",
+     "created": "2026-07-29T18:12:35Z",
 +    "deactivated": false,
 +    "portable": false,
-     "scid": "QmVgjwg2t4TaHYpdhFisgivyJH2bhkVABMRSCuFjHstcNH",
-     "updated": "2026-06-15T01:50:29Z",
-     "versionId": "3-QmcwboQ78tEqJEDDbYtVs15bBq2TqXjxEj9zoi3K5FaovH",
+     "scid": "QmSDDg6M7apDP2eKsMeJ4pW6u6CxEgEBJ2kpw4Hx7s1eRh",
+     "updated": "2026-07-29T18:12:37Z",
+     "versionId": "3-QmQgcVZn2LQZKpW3a2UeDUmPhTD7ryMUqc3Lb9As8o5tiq",
      "versionNumber": 3,
--    "versionTime": "2026-06-15T01:50:29Z"
-+    "versionTime": "2026-06-15T01:50:29Z",
+-    "versionTime": "2026-07-29T18:12:37Z"
++    "versionTime": "2026-07-29T18:12:37Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -1872,7 +1868,7 @@
 +++ actual (rust resolver)
      "service": [
        {
-         "id": "did:webvh:QmP5BS8pyuZ2rWaxiMrbZPd5YbSX5X7Li3cS6pEuAFcMb1:example.com#files",
+         "id": "did:webvh:QmdhiwhXPS1iLND6jjTcmUthStTSGe6K1XAzb4pN7mcrND:example.com#files",
 -        "serviceEndpoint": "https://example.com/",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
@@ -1881,15 +1877,15 @@
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:48:28Z",
+     "created": "2026-07-29T18:06:55Z",
 +    "deactivated": false,
      "portable": false,
-     "scid": "QmP5BS8pyuZ2rWaxiMrbZPd5YbSX5X7Li3cS6pEuAFcMb1",
-     "updated": "2026-06-15T01:48:30Z",
-     "versionId": "3-QmbLoMafpUjAgaRru1B4NKkaRrkMYrMDrKRfJ5Yh512bUz",
+     "scid": "QmdhiwhXPS1iLND6jjTcmUthStTSGe6K1XAzb4pN7mcrND",
+     "updated": "2026-07-29T18:06:57Z",
+     "versionId": "3-QmeSCSdyBPF6zSsU2Zqa2VGzu6mWwncu87aecRUPb4gbJY",
      "versionNumber": 3,
--    "versionTime": "2026-06-15T01:48:30Z"
-+    "versionTime": "2026-06-15T01:48:30Z",
+-    "versionTime": "2026-07-29T18:06:57Z"
++    "versionTime": "2026-07-29T18:06:57Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -1905,29 +1901,29 @@
        {
 -        "id": "#files",
 -        "serviceEndpoint": "https://example.com/",
-+        "id": "did:webvh:QmWP6kWz1Wwzehs6avT1aM4foFR82dY21ZEZ1Nj7aZt3V1:example.com#files",
++        "id": "did:webvh:QmZ5pCjVUB5jibWT19LypX1K4XL6a3MjrUpMD9Vef9RaQ4:example.com#files",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
        },
        {
          "@context": "https://identity.foundation/linked-vp/contexts/v1",
 -        "id": "#whois",
-+        "id": "did:webvh:QmWP6kWz1Wwzehs6avT1aM4foFR82dY21ZEZ1Nj7aZt3V1:example.com#whois",
++        "id": "did:webvh:QmZ5pCjVUB5jibWT19LypX1K4XL6a3MjrUpMD9Vef9RaQ4:example.com#whois",
          "serviceEndpoint": "https://example.com/whois.vp",
          "type": "LinkedVerifiablePresentation"
        }
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:49:28Z",
+     "created": "2026-07-29T18:10:45Z",
 +    "deactivated": false,
 +    "portable": false,
-     "scid": "QmWP6kWz1Wwzehs6avT1aM4foFR82dY21ZEZ1Nj7aZt3V1",
-     "updated": "2026-06-15T01:49:30Z",
-     "versionId": "3-QmQiXWDykLYn27GnDy1NRGENne8MUCB2vVWE8SEKr1pjCm",
+     "scid": "QmZ5pCjVUB5jibWT19LypX1K4XL6a3MjrUpMD9Vef9RaQ4",
+     "updated": "2026-07-29T18:10:47Z",
+     "versionId": "3-QmcmWkLErqtHAuQUNzSBYp6upJC6u49kfMqxEo1M4VK1YD",
      "versionNumber": 3,
--    "versionTime": "2026-06-15T01:49:30Z"
-+    "versionTime": "2026-06-15T01:49:30Z",
+-    "versionTime": "2026-07-29T18:10:47Z"
++    "versionTime": "2026-07-29T18:10:47Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -1970,32 +1966,33 @@
 === pre-rotation-consume / ts — resolutionResult.json ===
 --- expected
 +++ actual (rust resolver)
-     "keyAgreement": [],
      "service": [
        {
--        "id": "#files",
-+        "id": "did:webvh:QmXpqXh9uM1rN2uBuHQB4qdGUMfJsEouwz8Yn8RaaTXgKq:example.com#files",
-         "serviceEndpoint": "https://example.com",
+         "id": "did:webvh:QmVo7guGd8Fq4vGmCTcAuZWBFw8ipW8HNoJ8g7XFKmP4bS:example.com#files",
+-        "serviceEndpoint": "https://example.com/",
++        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
        },
        {
-         "@context": "https://identity.foundation/linked-vp/contexts/v1",
--        "id": "#whois",
-+        "id": "did:webvh:QmXpqXh9uM1rN2uBuHQB4qdGUMfJsEouwz8Yn8RaaTXgKq:example.com#whois",
-         "serviceEndpoint": "https://example.com/whois.vp",
-         "type": "LinkedVerifiablePresentation"
-       }
 ...
-   },
    "didDocumentMetadata": {
      "created": "2000-01-01T00:00:00Z",
-+    "deactivated": false,
-+    "portable": false,
-+    "scid": "QmXpqXh9uM1rN2uBuHQB4qdGUMfJsEouwz8Yn8RaaTXgKq",
+     "deactivated": false,
+-    "nextKeyHashes": [
+-      "QmPz1YVUT3mXMEixAWj8J6NkiQbskFmNu3DLYQLdynmrtR"
+-    ],
+     "portable": false,
+-    "prerotation": true,
+-    "previousLogEntryHash": "QmVo7guGd8Fq4vGmCTcAuZWBFw8ipW8HNoJ8g7XFKmP4bS",
+     "scid": "QmVo7guGd8Fq4vGmCTcAuZWBFw8ipW8HNoJ8g7XFKmP4bS",
+-    "updateKeys": [
+-      "z6MkvqoYXQfDDJRv8L4wKzxYeuKyVZBfi9Qo6Ro8MiLH3kDQ"
+-    ],
      "updated": "2000-01-03T00:00:00Z",
-     "versionId": "3-QmSjCVCLYuM8LpPYfmnVyNUN2EN3rar2odQPj7iiSJoFYv",
-     "versionNumber": 3,
--    "versionTime": "2000-01-03T00:00:00Z"
+     "versionId": "3-QmRcxKKNcQhYiktCShZWJkYbFikVfTkcSmtZSQwhaUhtYK",
+-    "watchers": [],
+-    "witness": {}
++    "versionNumber": 3,
 +    "versionTime": "2000-01-03T00:00:00Z",
 +    "watchers": null,
 +    "witness": null
@@ -2009,7 +2006,7 @@
 +++ actual (rust resolver)
        },
        {
-         "id": "did:webvh:QmWEva5XER8XTQi75y971fgYBKFbjvXphT1HkpeVkW88Uh:example.com#files",
+         "id": "did:webvh:QmfCen6kD4yj3zE1zsWbdbUXid6bdmndon1smsFqB98Bav:example.com#files",
 -        "serviceEndpoint": "https://example.com/",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
@@ -2018,15 +2015,15 @@
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:50:27Z",
+     "created": "2026-07-29T18:12:35Z",
 +    "deactivated": false,
 +    "portable": false,
-     "scid": "QmWEva5XER8XTQi75y971fgYBKFbjvXphT1HkpeVkW88Uh",
-     "updated": "2026-06-15T01:50:28Z",
-     "versionId": "2-QmbyXKshKVqrtxHc8Td4uioBSg7ftrgVJLa3wK9mptkRYM",
+     "scid": "QmfCen6kD4yj3zE1zsWbdbUXid6bdmndon1smsFqB98Bav",
+     "updated": "2026-07-29T18:12:36Z",
+     "versionId": "2-QmTyJ4e45KwZW98U6zBa2g2yTMcktgjrqrDBnp4iovyRxE",
      "versionNumber": 2,
--    "versionTime": "2026-06-15T01:50:28Z"
-+    "versionTime": "2026-06-15T01:50:28Z",
+-    "versionTime": "2026-07-29T18:12:36Z"
++    "versionTime": "2026-07-29T18:12:36Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -2039,7 +2036,7 @@
 +++ actual (rust resolver)
        },
        {
-         "id": "did:webvh:QmRBLAM2DKeKidNd1GZTNcP41KZjyBhY1Pm9jzabuZ51g5:example.com#files",
+         "id": "did:webvh:QmdcmKEBsUzEo76LX1mEkz8pRnorpXKezgQTpznFKfuwQs:example.com#files",
 -        "serviceEndpoint": "https://example.com/",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
@@ -2048,15 +2045,15 @@
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:48:28Z",
+     "created": "2026-07-29T18:06:55Z",
 +    "deactivated": false,
      "portable": false,
-     "scid": "QmRBLAM2DKeKidNd1GZTNcP41KZjyBhY1Pm9jzabuZ51g5",
-     "updated": "2026-06-15T01:48:29Z",
-     "versionId": "2-QmT7s4jDcFrVhAMiWfGcQXWrBKmRR8QUuKjGm7XEd3fvBE",
+     "scid": "QmdcmKEBsUzEo76LX1mEkz8pRnorpXKezgQTpznFKfuwQs",
+     "updated": "2026-07-29T18:06:56Z",
+     "versionId": "2-QmZ82b628g2grbJe15vQCxMQNFFF6xhjfeN6W4igX1GyAq",
      "versionNumber": 2,
--    "versionTime": "2026-06-15T01:48:29Z"
-+    "versionTime": "2026-06-15T01:48:29Z",
+-    "versionTime": "2026-07-29T18:06:56Z"
++    "versionTime": "2026-07-29T18:06:56Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -2072,29 +2069,29 @@
        {
 -        "id": "#files",
 -        "serviceEndpoint": "https://example.com/",
-+        "id": "did:webvh:QmRGsayJFTYqt6NNLE74pYdvH5stooqdnbeDnRYaQYsNJr:example.com#files",
++        "id": "did:webvh:QmYDXBcsPaWaj9azmHe55bbXZTmQsfry6V2VyXDF6cDrq3:example.com#files",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
        },
        {
          "@context": "https://identity.foundation/linked-vp/contexts/v1",
 -        "id": "#whois",
-+        "id": "did:webvh:QmRGsayJFTYqt6NNLE74pYdvH5stooqdnbeDnRYaQYsNJr:example.com#whois",
++        "id": "did:webvh:QmYDXBcsPaWaj9azmHe55bbXZTmQsfry6V2VyXDF6cDrq3:example.com#whois",
          "serviceEndpoint": "https://example.com/whois.vp",
          "type": "LinkedVerifiablePresentation"
        }
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:49:28Z",
+     "created": "2026-07-29T18:10:45Z",
 +    "deactivated": false,
 +    "portable": false,
-     "scid": "QmRGsayJFTYqt6NNLE74pYdvH5stooqdnbeDnRYaQYsNJr",
-     "updated": "2026-06-15T01:49:29Z",
-     "versionId": "2-QmPegF4nZogWvCQoNHVym6U2t6e9UgdA5H8abJoToK8w98",
+     "scid": "QmYDXBcsPaWaj9azmHe55bbXZTmQsfry6V2VyXDF6cDrq3",
+     "updated": "2026-07-29T18:10:46Z",
+     "versionId": "2-QmcUaGayzKRTGKTeScxiKBCTKm9nuktf6PNzADmk1MSfVY",
      "versionNumber": 2,
--    "versionTime": "2026-06-15T01:49:29Z"
-+    "versionTime": "2026-06-15T01:49:29Z",
+-    "versionTime": "2026-07-29T18:10:46Z"
++    "versionTime": "2026-07-29T18:10:46Z",
 +    "watchers": null,
 +    "witness": null
    },
@@ -2137,32 +2134,31 @@
 === services / ts — resolutionResult.json ===
 --- expected
 +++ actual (rust resolver)
-         "type": "DIDCommMessaging"
        },
        {
--        "id": "#files",
-+        "id": "did:webvh:QmV2V5CSzH5w9UF4rHHAdktXL93ounugmgV2LXVCx9s2i9:example.com#files",
-         "serviceEndpoint": "https://example.com",
+         "id": "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:example.com#files",
+-        "serviceEndpoint": "https://example.com/",
++        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
        },
        {
-         "@context": "https://identity.foundation/linked-vp/contexts/v1",
--        "id": "#whois",
-+        "id": "did:webvh:QmV2V5CSzH5w9UF4rHHAdktXL93ounugmgV2LXVCx9s2i9:example.com#whois",
-         "serviceEndpoint": "https://example.com/whois.vp",
-         "type": "LinkedVerifiablePresentation"
-       }
 ...
-   },
    "didDocumentMetadata": {
      "created": "2000-01-01T00:00:00Z",
-+    "deactivated": false,
-+    "portable": false,
-+    "scid": "QmV2V5CSzH5w9UF4rHHAdktXL93ounugmgV2LXVCx9s2i9",
+     "deactivated": false,
+-    "nextKeyHashes": [],
+     "portable": false,
+-    "prerotation": false,
+-    "previousLogEntryHash": "QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ",
+     "scid": "QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ",
+-    "updateKeys": [
+-      "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+-    ],
      "updated": "2000-01-02T00:00:00Z",
-     "versionId": "2-QmYUmpUekqCteNaGcqAuT5Db3E296zn3tLriH1RKQJgG67",
-     "versionNumber": 2,
--    "versionTime": "2000-01-02T00:00:00Z"
+     "versionId": "2-Qmbqeo7YzEWiDzvZSJ6NRk44PqZiPgaPbLZS1wosX6DtXe",
+-    "watchers": [],
+-    "witness": {}
++    "versionNumber": 2,
 +    "versionTime": "2000-01-02T00:00:00Z",
 +    "watchers": null,
 +    "witness": null
@@ -2176,7 +2172,7 @@
 +++ actual (rust resolver)
      "service": [
        {
-         "id": "did:webvh:QmeSwUSitBPnjKHiGW3cNzKirJukYwLArP5A8z2PDoVdzt:example.com#files",
+         "id": "did:webvh:QmY4rjVav9zjWL9a5pXCoeYtDrGoSbfMcTXgbntLUKyxc9:example.com#files",
 -        "serviceEndpoint": "https://example.com/",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
@@ -2185,15 +2181,15 @@
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:50:27Z",
+     "created": "2026-07-29T18:12:35Z",
 +    "deactivated": false,
 +    "portable": false,
-     "scid": "QmeSwUSitBPnjKHiGW3cNzKirJukYwLArP5A8z2PDoVdzt",
-     "updated": "2026-06-15T01:50:27Z",
-     "versionId": "1-QmNxFGBfgpzjDtaqndr7CwxrHfreV1z9agPa1rFgpHvyPF",
+     "scid": "QmY4rjVav9zjWL9a5pXCoeYtDrGoSbfMcTXgbntLUKyxc9",
+     "updated": "2026-07-29T18:12:35Z",
+     "versionId": "1-QmXWKfLo75FtX14fuefoqxz9jeR1pajFq73q1GFYREj7C1",
      "versionNumber": 1,
--    "versionTime": "2026-06-15T01:50:27Z"
-+    "versionTime": "2026-06-15T01:50:27Z",
+-    "versionTime": "2026-07-29T18:12:35Z"
++    "versionTime": "2026-07-29T18:12:35Z",
 +    "watchers": null,
 +    "witness": {
 +      "threshold": 1,
@@ -2213,7 +2209,7 @@
 +++ actual (rust resolver)
      "service": [
        {
-         "id": "did:webvh:Qmemp8WNvnMscdyJukyT7u2hRpmygd3KXcrfcexfS9GJJ4:example.com#files",
+         "id": "did:webvh:QmYtZydnEGTmNqAuAxTQfEMxWjUH9cujZYUWgqSpLYpvhh:example.com#files",
 -        "serviceEndpoint": "https://example.com/",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
@@ -2222,15 +2218,15 @@
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:48:28Z",
+     "created": "2026-07-29T18:06:55Z",
 +    "deactivated": false,
      "portable": false,
-     "scid": "Qmemp8WNvnMscdyJukyT7u2hRpmygd3KXcrfcexfS9GJJ4",
-     "updated": "2026-06-15T01:48:28Z",
-     "versionId": "1-QmQA7ok8zXo7unKP9yLDspHbtfUt6Mcw2fLk8T9JmqBcQ2",
+     "scid": "QmYtZydnEGTmNqAuAxTQfEMxWjUH9cujZYUWgqSpLYpvhh",
+     "updated": "2026-07-29T18:06:55Z",
+     "versionId": "1-QmZRPkozNYstunBK4dcE9ztMKUqHNS6SLLWzaDjR7W56pf",
      "versionNumber": 1,
--    "versionTime": "2026-06-15T01:48:28Z"
-+    "versionTime": "2026-06-15T01:48:28Z",
+-    "versionTime": "2026-07-29T18:06:55Z"
++    "versionTime": "2026-07-29T18:06:55Z",
 +    "watchers": null,
 +    "witness": {
 +      "threshold": 1,
@@ -2253,29 +2249,29 @@
        {
 -        "id": "#files",
 -        "serviceEndpoint": "https://example.com/",
-+        "id": "did:webvh:QmPMBcG9hzAJFCGETTpmzbefg5FmRtRxMCkudQZqioAziK:example.com#files",
++        "id": "did:webvh:QmTWZoFxnmUAkgn8Tj2zKdTGD7UBZLwc5nobZBaNmDEBB2:example.com#files",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
        },
        {
          "@context": "https://identity.foundation/linked-vp/contexts/v1",
 -        "id": "#whois",
-+        "id": "did:webvh:QmPMBcG9hzAJFCGETTpmzbefg5FmRtRxMCkudQZqioAziK:example.com#whois",
++        "id": "did:webvh:QmTWZoFxnmUAkgn8Tj2zKdTGD7UBZLwc5nobZBaNmDEBB2:example.com#whois",
          "serviceEndpoint": "https://example.com/whois.vp",
          "type": "LinkedVerifiablePresentation"
        }
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:49:28Z",
+     "created": "2026-07-29T18:10:45Z",
 +    "deactivated": false,
 +    "portable": false,
-     "scid": "QmPMBcG9hzAJFCGETTpmzbefg5FmRtRxMCkudQZqioAziK",
-     "updated": "2026-06-15T01:49:28Z",
-     "versionId": "1-QmT5oxBcEktYDynwhAjMRyLZ946wDCFn5sfDpjECbhtLDh",
+     "scid": "QmTWZoFxnmUAkgn8Tj2zKdTGD7UBZLwc5nobZBaNmDEBB2",
+     "updated": "2026-07-29T18:10:45Z",
+     "versionId": "1-QmQWqeWpa7Ad9qSbw6ZTjMxpd2s66hxNTpryVxeTefwZny",
      "versionNumber": 1,
--    "versionTime": "2026-06-15T01:49:28Z"
-+    "versionTime": "2026-06-15T01:49:28Z",
+-    "versionTime": "2026-07-29T18:10:45Z"
++    "versionTime": "2026-07-29T18:10:45Z",
 +    "watchers": null,
 +    "witness": {
 +      "threshold": 1,
@@ -2329,45 +2325,35 @@
 === witness-threshold / ts — resolutionResult.json ===
 --- expected
 +++ actual (rust resolver)
-     "keyAgreement": [],
      "service": [
        {
--        "id": "#files",
-+        "id": "did:webvh:QmU9s4GUNrt8SM9CCCTejsbZj583dXQWUduG1QnWaHbrzS:example.com#files",
-         "serviceEndpoint": "https://example.com",
+         "id": "did:webvh:QmZTne7vT227kcwn27tt1rSPvPKy1iQs6SgJA8dhwJBnbS:example.com#files",
+-        "serviceEndpoint": "https://example.com/",
++        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
        },
        {
-         "@context": "https://identity.foundation/linked-vp/contexts/v1",
--        "id": "#whois",
-+        "id": "did:webvh:QmU9s4GUNrt8SM9CCCTejsbZj583dXQWUduG1QnWaHbrzS:example.com#whois",
-         "serviceEndpoint": "https://example.com/whois.vp",
-         "type": "LinkedVerifiablePresentation"
-       }
 ...
-   },
    "didDocumentMetadata": {
      "created": "2000-01-01T00:00:00Z",
-+    "deactivated": false,
-+    "portable": false,
-+    "scid": "QmU9s4GUNrt8SM9CCCTejsbZj583dXQWUduG1QnWaHbrzS",
+     "deactivated": false,
+-    "nextKeyHashes": [],
+     "portable": false,
+-    "prerotation": false,
+-    "previousLogEntryHash": "QmZTne7vT227kcwn27tt1rSPvPKy1iQs6SgJA8dhwJBnbS",
+     "scid": "QmZTne7vT227kcwn27tt1rSPvPKy1iQs6SgJA8dhwJBnbS",
+-    "updateKeys": [
+-      "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+-    ],
      "updated": "2000-01-01T00:00:00Z",
-     "versionId": "1-QmYY8MFqu6fsEBgnew5AjZfKJ3XFKe3EvJT6iNUikp9nk7",
-     "versionNumber": 1,
--    "versionTime": "2000-01-01T00:00:00Z"
+     "versionId": "1-QmVfm3PzDU95EkjbuFCj9T7znnrgE5sW2v2uT5gQ347gZK",
+-    "watchers": [],
++    "versionNumber": 1,
 +    "versionTime": "2000-01-01T00:00:00Z",
 +    "watchers": null,
-+    "witness": {
-+      "threshold": 1,
-+      "witnesses": [
-+        {
-+          "id": "did:key:z6Mkrv5Cm2XCLumMPTqooLTCw6YDf421d7VdTziwrZ8vNf4L"
-+        }
-+      ]
-+    }
-   },
-   "didResolutionMetadata": {
-     "contentType": "application/did+ld+json"
+     "witness": {
+       "threshold": 1,
+       "witnesses": [
 
 
 === witness-update / dart — resolutionResult.json ===
@@ -2375,7 +2361,7 @@
 +++ actual (rust resolver)
      "service": [
        {
-         "id": "did:webvh:QmVXdAAejY2pHoQ1TEKqPkYHVucXTqvYNa1ZmD3DHu8iWA:example.com#files",
+         "id": "did:webvh:QmYdrpuASd65n2zisuF6ehAZct7NsvzR5jVW7Dm7UmiLzW:example.com#files",
 -        "serviceEndpoint": "https://example.com/",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
@@ -2384,15 +2370,15 @@
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:50:27Z",
+     "created": "2026-07-29T18:12:35Z",
 +    "deactivated": false,
 +    "portable": false,
-     "scid": "QmVXdAAejY2pHoQ1TEKqPkYHVucXTqvYNa1ZmD3DHu8iWA",
-     "updated": "2026-06-15T01:50:28Z",
-     "versionId": "2-QmdvfEewA3m32DwJmUNgGBYn9azrsTxJQXnNrKxYsvDzXm",
+     "scid": "QmYdrpuASd65n2zisuF6ehAZct7NsvzR5jVW7Dm7UmiLzW",
+     "updated": "2026-07-29T18:12:36Z",
+     "versionId": "2-QmeGJVRaTxe1rrjTVbAMDmHgAHuxopEEosKPy7x3TtRDHG",
      "versionNumber": 2,
--    "versionTime": "2026-06-15T01:50:28Z"
-+    "versionTime": "2026-06-15T01:50:28Z",
+-    "versionTime": "2026-07-29T18:12:36Z"
++    "versionTime": "2026-07-29T18:12:36Z",
 +    "watchers": null,
 +    "witness": {
 +      "threshold": 2,
@@ -2415,7 +2401,7 @@
 +++ actual (rust resolver)
      "service": [
        {
-         "id": "did:webvh:QmYyEpEUR2ZV2ntUpR2Y9HAjDnZUQ9cmqsBBkGpJviRYGU:example.com#files",
+         "id": "did:webvh:QmXnjYa4vkuSRHdwm17ZLiwTKvuYRC1oYwMQk26Jp4cNZ2:example.com#files",
 -        "serviceEndpoint": "https://example.com/",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
@@ -2424,15 +2410,15 @@
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:48:28Z",
+     "created": "2026-07-29T18:06:55Z",
 +    "deactivated": false,
      "portable": false,
-     "scid": "QmYyEpEUR2ZV2ntUpR2Y9HAjDnZUQ9cmqsBBkGpJviRYGU",
-     "updated": "2026-06-15T01:48:29Z",
-     "versionId": "2-QmZcgvHkcKU1q3UY3UV7wHhZN5teux4co9yw3ZTiYSfV8G",
+     "scid": "QmXnjYa4vkuSRHdwm17ZLiwTKvuYRC1oYwMQk26Jp4cNZ2",
+     "updated": "2026-07-29T18:06:56Z",
+     "versionId": "2-QmVbJsqTeaUbdufMr6j87LJ4raf2Uk9eZKpdbo6YsqeiTr",
      "versionNumber": 2,
--    "versionTime": "2026-06-15T01:48:29Z"
-+    "versionTime": "2026-06-15T01:48:29Z",
+-    "versionTime": "2026-07-29T18:06:56Z"
++    "versionTime": "2026-07-29T18:06:56Z",
 +    "watchers": null,
 +    "witness": {
 +      "threshold": 2,
@@ -2458,29 +2444,29 @@
        {
 -        "id": "#files",
 -        "serviceEndpoint": "https://example.com/",
-+        "id": "did:webvh:QmVmwxsTKEkmDcnrNDv9ccrxJtk9cSyQS4Nga3TzkUfaGT:example.com#files",
++        "id": "did:webvh:Qma4FjKPrsChyrVzh92YXZeA6yjwYMFbiu7T74nkPonkKP:example.com#files",
 +        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
        },
        {
          "@context": "https://identity.foundation/linked-vp/contexts/v1",
 -        "id": "#whois",
-+        "id": "did:webvh:QmVmwxsTKEkmDcnrNDv9ccrxJtk9cSyQS4Nga3TzkUfaGT:example.com#whois",
++        "id": "did:webvh:Qma4FjKPrsChyrVzh92YXZeA6yjwYMFbiu7T74nkPonkKP:example.com#whois",
          "serviceEndpoint": "https://example.com/whois.vp",
          "type": "LinkedVerifiablePresentation"
        }
 ...
    },
    "didDocumentMetadata": {
-     "created": "2026-06-15T01:49:28Z",
+     "created": "2026-07-29T18:10:45Z",
 +    "deactivated": false,
 +    "portable": false,
-     "scid": "QmVmwxsTKEkmDcnrNDv9ccrxJtk9cSyQS4Nga3TzkUfaGT",
-     "updated": "2026-06-15T01:49:29Z",
-     "versionId": "2-QmcsxtZwegSguNQQPgJVBhgD5abdXYk7qPUguXJXXs4wgi",
+     "scid": "Qma4FjKPrsChyrVzh92YXZeA6yjwYMFbiu7T74nkPonkKP",
+     "updated": "2026-07-29T18:10:46Z",
+     "versionId": "2-Qmd4Mu2iCKbNrXEnrru9pMwF79gyWRDZGK6yAk133URuf1",
      "versionNumber": 2,
--    "versionTime": "2026-06-15T01:49:29Z"
-+    "versionTime": "2026-06-15T01:49:29Z",
+-    "versionTime": "2026-07-29T18:10:46Z"
++    "versionTime": "2026-07-29T18:10:46Z",
 +    "watchers": null,
 +    "witness": {
 +      "threshold": 2,
@@ -2543,46 +2529,42 @@
 === witness-update / ts — resolutionResult.json ===
 --- expected
 +++ actual (rust resolver)
-     "keyAgreement": [],
      "service": [
        {
--        "id": "#files",
-+        "id": "did:webvh:QmbKWDWzoZZpiDQbDCD1tAVxWhsadoAdgKQuSfuM8pKQqv:example.com#files",
-         "serviceEndpoint": "https://example.com",
+         "id": "did:webvh:QmR72NXg5DyrNL1PXwk4kiZEJxS1RJxvFEtSu9wPSZkp1u:example.com#files",
+-        "serviceEndpoint": "https://example.com/",
++        "serviceEndpoint": "https://example.com",
          "type": "relativeRef"
        },
        {
-         "@context": "https://identity.foundation/linked-vp/contexts/v1",
--        "id": "#whois",
-+        "id": "did:webvh:QmbKWDWzoZZpiDQbDCD1tAVxWhsadoAdgKQuSfuM8pKQqv:example.com#whois",
-         "serviceEndpoint": "https://example.com/whois.vp",
-         "type": "LinkedVerifiablePresentation"
-       }
 ...
-   },
    "didDocumentMetadata": {
      "created": "2000-01-01T00:00:00Z",
-+    "deactivated": false,
-+    "portable": false,
-+    "scid": "QmbKWDWzoZZpiDQbDCD1tAVxWhsadoAdgKQuSfuM8pKQqv",
+     "deactivated": false,
+-    "nextKeyHashes": [],
+     "portable": false,
+-    "prerotation": false,
+-    "previousLogEntryHash": "QmR72NXg5DyrNL1PXwk4kiZEJxS1RJxvFEtSu9wPSZkp1u",
+     "scid": "QmR72NXg5DyrNL1PXwk4kiZEJxS1RJxvFEtSu9wPSZkp1u",
+-    "updateKeys": [
+-      "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+-    ],
      "updated": "2000-01-02T00:00:00Z",
-     "versionId": "2-QmcRmyDP523pLsvKvr49BNEVsevhjNGYZhxMGtPyhut9Hy",
-     "versionNumber": 2,
--    "versionTime": "2000-01-02T00:00:00Z"
+     "versionId": "2-QmVFJYT8yxTo2bATSCTHJnRcCMsZTf9tJURnM7zH6ZaKZW",
+-    "watchers": [],
++    "versionNumber": 2,
 +    "versionTime": "2000-01-02T00:00:00Z",
 +    "watchers": null,
-+    "witness": {
+     "witness": {
+-      "threshold": 1,
 +      "threshold": 2,
-+      "witnesses": [
-+        {
-+          "id": "did:key:z6Mkrv5Cm2XCLumMPTqooLTCw6YDf421d7VdTziwrZ8vNf4L"
+       "witnesses": [
+         {
+           "id": "did:key:z6Mkrv5Cm2XCLumMPTqooLTCw6YDf421d7VdTziwrZ8vNf4L"
 +        },
 +        {
 +          "id": "did:key:z6MkjnHi6KJKx625x56sxudLoKdDVDABJ5VHHdXRFPUea7NP"
-+        }
-+      ]
-+    }
-   },
-   "didResolutionMetadata": {
-     "contentType": "application/did+ld+json"
+         }
+       ]
+     }
 

@@ -32,7 +32,7 @@ Implementation: java-eecc 0.3.1
 | negative-path-traversal-did | invalidDid | ✅ PASS |  |
 | negative-pct-encoded-ip-host | invalidDid | ✅ PASS |  |
 | negative-pct-encoded-traversal | invalidDid | ✅ PASS |  |
-| negative-portable-scid-swap | invalidDid | ❌ FAIL | resolver accepted invalid log |
+| negative-portable-scid-swap | invalidDid | ✅ PASS |  |
 | negative-pre-rotation-omit-updatekeys | invalidParameters | ✅ PASS |  |
 | negative-scid-mismatch-genesis | invalidDid | ✅ PASS |  |
 | negative-unknown-method-version | invalidDid | ✅ PASS |  |
@@ -126,4 +126,4 @@ Implementation: java-eecc 0.3.1
 | witness-update | ts | 🔶 DIFF | see diffs.txt |
 
 ---
-Built from: https://github.com/european-epc-competence-center/didwebvh @ main (aab44de)
+Built from: https://github.com/european-epc-competence-center/didwebvh @ main (7f79b0d)
