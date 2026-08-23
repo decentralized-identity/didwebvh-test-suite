@@ -384,7 +384,7 @@ A GitHub Action on merge aggregates all `status.md` files into a top-level summa
 Both sides of each comparison are serialized through a [JSON Canonicalization Scheme (JCS)](https://www.rfc-editor.org/rfc/rfc8785) library before comparing. This eliminates false failures caused by differences in key ordering or whitespace that are semantically irrelevant.
 
 - **TypeScript**: implemented — uses [`json-canonicalize`](https://www.npmjs.com/package/json-canonicalize) (already a dep; `canonicalize` was already imported for hashing)
-- **Python**: implemented — uses [`jsoncanon`](https://pypi.org/project/jsoncanon/) (already a transitive dep of `did-webvh`; implements RFC 8785)
+- **Python**: implemented — uses [`jcs`](https://pypi.org/project/jcs/) (RFC 8785), installed as an explicit direct dependency of the harness rather than relied upon transitively via `did-webvh` — the library under test is free to change its own internal canonicalizer without breaking this comparison step
 - **Rust**: implemented — uses [`serde_jcs`](https://crates.io/crates/serde_jcs) (`serde_jcs::to_vec`)
 
 The comparison pattern in each harness should be:

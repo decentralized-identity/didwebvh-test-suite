@@ -15,7 +15,7 @@ Compliance test harness for the [did:webvh v1.0 specification](https://identity.
 ```bash
 cd implementations/python
 python -m venv .venv
-.venv/bin/pip install did-webvh pytest pytest-asyncio jsoncanon
+.venv/bin/pip install did-webvh pytest pytest-asyncio jcs
 .venv/bin/pytest
 ```
 
