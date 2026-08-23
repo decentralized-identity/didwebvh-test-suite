@@ -26,7 +26,7 @@ RUN mkdir -p /app \
 # by the harness's own comparison step. Installed explicitly (not relied upon
 # as a transitive dep of did-webvh) so the harness doesn't break if the library
 # under test changes its internal canonicalizer choice.
-RUN pip install --no-cache-dir pytest pytest-asyncio pyyaml jcs
+RUN pip install --no-cache-dir pytest pytest-asyncio pyyaml jcs==0.2.1
 
 WORKDIR /workspace
 
