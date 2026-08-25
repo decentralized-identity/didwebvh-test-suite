@@ -1,22 +1,29 @@
 #!/usr/bin/env bash
-# run <impl> [<repo>[:<branch>]]
+# run <impl> [<repo>[:<ref>]]
 #
 # Build a Docker image for the given implementation from the specified library
-# repo/branch, then run generate + cross-resolution, writing results back to
+# repo/ref, then run generate + cross-resolution, writing results back to
 # the local vectors/ and implementations/<impl>/ directories.
+#
+# <ref> is passed straight to `git clone --branch`, so it accepts anything
+# that resolves as a remote ref: a branch name, a tag, or a PR head ref — not
+# just branches, despite the historical "branch" naming below.
 #
 # Examples:
 #   scripts/run ts                                                          # main branch of default repo
 #   scripts/run ts main                                                     # explicit branch, default repo
+#   scripts/run ts v2.8.0                                                   # explicit tag, default repo
 #   scripts/run ts https://github.com/me/didwebvh-ts:my-pr                 # custom repo + branch (colon form)
 #   scripts/run ts https://github.com/me/didwebvh-ts/tree/my-pr            # GitHub PR URL (tree form)
+#   scripts/run ts https://github.com/decentralized-identity/didwebvh-ts:v2.8.0  # custom repo + tag
+#   scripts/run ts https://github.com/decentralized-identity/didwebvh-ts/releases/tag/v2.8.0  # GitHub release URL (as pasted from the Releases page)
 #   scripts/run python https://github.com/me/did-webvh-py/tree/fix/foo     # branch with slashes
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(dirname "$SCRIPT_DIR")"
 
-IMPL="${1:?Usage: run <impl> [<repo>[:<branch>]]}"
+IMPL="${1:?Usage: run <impl> [<repo>[:<ref>]]}"
 ARG2="${2:-}"
 
 CONFIG="$REPO_ROOT/implementations/$IMPL/config.yaml"
@@ -27,29 +34,36 @@ fi
 
 # Read default repo from config.yaml (home_repo field)
 DEFAULT_REPO=$(grep '^home_repo:' "$CONFIG" | awk '{print $2}' | tr -d '"' | tr -d "'")
-DEFAULT_BRANCH=main
+DEFAULT_REF=main
 
-# Parse the optional second argument: "repo:branch", "branch", or nothing
+# Parse the optional second argument: "repo:ref", "ref" (branch or tag), or
+# nothing. Whatever REF resolves to is handed straight to `git clone --branch`,
+# which resolves branches and tags identically — there is no separate tag flag.
 if [[ -z "$ARG2" ]]; then
   REPO="$DEFAULT_REPO"
-  BRANCH="$DEFAULT_BRANCH"
+  REF="$DEFAULT_REF"
 elif [[ "$ARG2" == *"://"* ]]; then
-  # Looks like a URL — check for GitHub /tree/<branch> form first, then colon form
+  # Looks like a URL — check for GitHub /tree/<ref> and /releases/tag/<tag>
+  # forms first, then colon form
   if [[ "$ARG2" == *"/tree/"* ]]; then
-    # https://github.com/owner/repo/tree/branch[/...]
+    # https://github.com/owner/repo/tree/ref[/...]
     REPO="${ARG2%%/tree/*}"
-    BRANCH="${ARG2#*"/tree/"}"
+    REF="${ARG2#*"/tree/"}"
+  elif [[ "$ARG2" == *"/releases/tag/"* ]]; then
+    # https://github.com/owner/repo/releases/tag/<tag>
+    REPO="${ARG2%%/releases/tag/*}"
+    REF="${ARG2#*"/releases/tag/"}"
   elif [[ "$ARG2" == *:* ]] && [[ "${ARG2##*:}" != "//"* ]] && [[ "${ARG2##*:}" =~ ^[a-zA-Z0-9_./-]+$ ]]; then
     REPO="${ARG2%:*}"
-    BRANCH="${ARG2##*:}"
+    REF="${ARG2##*:}"
   else
     REPO="$ARG2"
-    BRANCH="$DEFAULT_BRANCH"
+    REF="$DEFAULT_REF"
   fi
 else
-  # No :// → treat as a bare branch name using the default repo
+  # No :// → treat as a bare ref (branch or tag) name using the default repo
   REPO="$DEFAULT_REPO"
-  BRANCH="$ARG2"
+  REF="$ARG2"
 fi
 
 IMAGE="didwebvh-test-$IMPL:local"
@@ -57,7 +71,7 @@ IMAGE="didwebvh-test-$IMPL:local"
 echo "╔══════════════════════════════════════════════════════╗"
 printf "║  impl:   %-43s ║\n" "$IMPL"
 printf "║  repo:   %-43s ║\n" "$REPO"
-printf "║  branch: %-43s ║\n" "$BRANCH"
+printf "║  ref:    %-43s ║\n" "$REF"
 echo "╚══════════════════════════════════════════════════════╝"
 
 echo ""
@@ -65,7 +79,7 @@ echo "▶ docker build → $IMAGE"
 docker build \
   --no-cache \
   --build-arg "REPO=$REPO" \
-  --build-arg "BRANCH=$BRANCH" \
+  --build-arg "BRANCH=$REF" \
   -t "$IMAGE" \
   -f "$REPO_ROOT/implementations/$IMPL/Dockerfile" \
   "$REPO_ROOT"
@@ -83,7 +97,7 @@ COMMIT=$(docker run --rm --entrypoint cat "$IMAGE" /app/library-commit 2>/dev/nu
 COMMIT_SHORT="${COMMIT:0:7}"
 STATUS="$REPO_ROOT/implementations/$IMPL/status.md"
 if [[ -f "$STATUS" ]]; then
-  printf "\n---\nBuilt from: %s @ %s (%s)\n" "$REPO" "$BRANCH" "$COMMIT_SHORT" >> "$STATUS"
+  printf "\n---\nBuilt from: %s @ %s (%s)\n" "$REPO" "$REF" "$COMMIT_SHORT" >> "$STATUS"
 fi
 
 echo ""

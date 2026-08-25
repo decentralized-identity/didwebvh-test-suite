@@ -478,6 +478,10 @@ async function runURLResolutionTest(
 
   try {
     await resolveDID(did);
+  } catch {
+    // Some library versions reject a malformed identifier by throwing rather
+    // than returning a result — either way, outcome is decided below purely
+    // by whether our fetch intercept was ever reached.
   } finally {
     (globalThis as any).fetch = originalFetch;
     console.error = originalConsoleError;
@@ -537,7 +541,15 @@ async function runNegativeResolutionTest(
     ? JSON.parse(fs.readFileSync(witnessPath, 'utf8'))
     : undefined;
 
-  const result = await resolveDIDFromLog(log, { verifier, witnessProofs } as any);
+  let result: Awaited<ReturnType<typeof resolveDIDFromLog>>;
+  try {
+    result = await resolveDIDFromLog(log, { verifier, witnessProofs } as any);
+  } catch (e: any) {
+    // Some library versions/code paths reject an invalid log by throwing
+    // rather than returning a result with didResolutionMetadata.error — either
+    // way the log was correctly rejected, so this still counts as a PASS.
+    return { outcome: 'pass', expectedError, reason: `rejected via thrown error: ${e.message}` };
+  }
   if (result.didResolutionMetadata?.error) {
     // Resolver correctly rejected the invalid log.
     return { outcome: 'pass', expectedError };
@@ -693,10 +705,21 @@ async function main() {
     // Run negative resolution tests against pre-generated ts/ artifacts.
     // Only meaningful on a full run (not single-scenario targets), but harmless
     // to run always — scenarios without ts/ artifacts are reported as SKIP.
+    // Guarded so that any unexpected failure here (individual scenarios are
+    // already resilient to library exceptions — see runNegativeResolutionTest
+    // and runURLResolutionTest) still lets the DID Creation and
+    // Cross-Resolution results already computed above get written out, rather
+    // than losing a whole run's output to one uncaught error.
     process.stdout.write('Running negative resolution tests... ');
-    const negResRows = await negativeResolutionStatus();
-    negRows.push(...negResRows);
-    console.log('done');
+    try {
+      const negResRows = await negativeResolutionStatus();
+      negRows.push(...negResRows);
+      console.log('done');
+    } catch (e: any) {
+      console.error(`ERROR: ${e.message}`);
+      negRows.push({ testCase: '(negative resolution suite)', expectedError: '—', result: '❌ FAIL', notes: e.message });
+      hasError = true;
+    }
 
     const cfg = readConfig();
     const header = cfg.version ? `Implementation: didwebvh-ts ${cfg.version}\n\n` : '';

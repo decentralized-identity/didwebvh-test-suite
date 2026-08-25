@@ -109,11 +109,17 @@ scripts/run java-eecc
 # Run against a PR branch (using default repo)
 scripts/run ts feat/my-pr
 
+# Run against a specific released tag (using default repo)
+scripts/run ts v2.8.0
+
 # Run against a fork + branch
 scripts/run ts https://github.com/me/didwebvh-ts:feat/my-pr
+
+# Run against a fork + tag
+scripts/run ts https://github.com/me/didwebvh-ts:v2.8.0
 ```
 
-Each `scripts/run` call builds (or rebuilds from cache) a Docker image, runs generate + cross-resolution, and appends a provenance footer to `status.md` with the exact library commit used.
+Each `scripts/run` call builds (or rebuilds from cache) a Docker image, runs generate + cross-resolution, and appends a provenance footer to `status.md` with the exact library commit used. The second argument (after `<impl>`, or after `<repo>:`) is passed straight to `git clone --branch`, so anything that resolves as a remote ref works — branch name, tag, or PR head ref — not just branches, despite the flag's name.
 
 ### Direct (without Docker, for local development)
 
