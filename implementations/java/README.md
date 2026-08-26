@@ -1,16 +1,16 @@
 # Java Compliance Harness
 
-Compliance test harness for the [did:webvh v1.0 specification](https://identity.foundation/didwebvh/v1.0/) using the Java [didwebvh-java](https://github.com/IVIR3zaM/didwebvh-java) library.
+Compliance test harness for the [did:webvh v1.0 specification](https://identity.foundation/didwebvh/v1.0/) using the Java [didwebvh-java](https://github.com/decentralized-identity/didwebvh-java) library.
 
 ## Library
 
-**[IVIR3zaM/didwebvh-java](https://github.com/IVIR3zaM/didwebvh-java) v0.2.0** — a multi-module Maven project published on Maven Central.
+**[decentralized-identity/didwebvh-java](https://github.com/decentralized-identity/didwebvh-java) v0.2.0** — a multi-module Maven project published on Maven Central.
 
 This harness depends on the `didwebvh-core` module:
 
 ```xml
 <dependency>
-    <groupId>io.github.ivir3zam</groupId>
+    <groupId>io.github.decentralized-identity</groupId>
     <artifactId>didwebvh-core</artifactId>
     <version>0.2.0</version>
 </dependency>
