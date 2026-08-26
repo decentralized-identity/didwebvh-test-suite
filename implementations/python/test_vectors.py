@@ -19,7 +19,7 @@ import json
 import pytest
 from pathlib import Path
 
-import jsoncanon
+import jcs
 
 from did_webvh.resolver import resolve_did
 
@@ -105,7 +105,7 @@ def test_vector(scenario: str, impl: str, result_file: str, _status_data: dict) 
 
     _status_data["actual"] = actual
     _status_data["expected"] = expected
-    assert jsoncanon.canonicalize(actual) == jsoncanon.canonicalize(expected)
+    assert jcs.canonicalize(actual) == jcs.canonicalize(expected)
 
 
 # ---------------------------------------------------------------------------

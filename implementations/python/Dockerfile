@@ -22,8 +22,11 @@ RUN mkdir -p /app \
     && git -C /deps/did-webvh-py rev-parse HEAD > /app/library-commit \
     && pip install --no-cache-dir /deps/did-webvh-py
 
-# Install test runner and async support
-RUN pip install --no-cache-dir pytest pytest-asyncio pyyaml
+# Install test runner, async support, and the JCS (RFC 8785) canonicalizer used
+# by the harness's own comparison step. Installed explicitly (not relied upon
+# as a transitive dep of did-webvh) so the harness doesn't break if the library
+# under test changes its internal canonicalizer choice.
+RUN pip install --no-cache-dir pytest pytest-asyncio pyyaml jcs==0.2.1
 
 WORKDIR /workspace
 
