@@ -10,7 +10,7 @@
 
 FROM dart:stable
 
-ARG REPO=https://github.com/IVIR3zaM/didwebvh-dart
+ARG REPO=https://github.com/decentralized-identity/didwebvh-dart
 ARG BRANCH=main
 
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates git python3 \

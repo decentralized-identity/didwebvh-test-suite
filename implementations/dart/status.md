@@ -126,4 +126,4 @@ Implementation: didwebvh-dart 0.1.2
 | witness-update | ts | ✅ PASS |  |
 
 ---
-Built from: https://github.com/IVIR3zaM/didwebvh-dart @ main (6da1d81)
+Built from: https://github.com/decentralized-identity/didwebvh-dart @ main (2a5ab10)

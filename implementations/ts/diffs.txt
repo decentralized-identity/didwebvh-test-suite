@@ -8,28 +8,29 @@
 +  },
    "didDocument": {
      "@context": "https://www.w3.org/ns/did/v1",
-     "id": "did:webvh:QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP:example.com",
-@@ -32,14 +35,18 @@
+     "id": "did:webvh:QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy:example.com",
+@@ -32,14 +35,19 @@
      ]
    },
    "didDocumentMetadata": {
-+    "versionId": "1-QmYLRsVFAPJod6UfU2JLPMJrYqi2UgqjbzYmpXkeyHEeP3",
-     "created": "2026-07-29T18:22:35Z",
-     "updated": "2026-07-29T18:22:35Z",
++    "versionId": "1-QmUbNrRchbnC7hixhLXrUeJzrwFbcdXHzzcgqJX1biYiE4",
+     "created": "2026-08-11T19:30:02Z",
+     "updated": "2026-08-11T19:30:02Z",
 +    "deactivated": false,
 +    "portable": false,
-+    "scid": "QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP",
++    "scid": "QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy",
 +    "updateKeys": [
 +      "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
-+    "previousLogEntryHash": "QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP"
--    "versionId": "1-QmYLRsVFAPJod6UfU2JLPMJrYqi2UgqjbzYmpXkeyHEeP3",
++    "previousLogEntryHash": "QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy"
+-    "versionId": "1-QmUbNrRchbnC7hixhLXrUeJzrwFbcdXHzzcgqJX1biYiE4",
 -    "versionNumber": 1,
--    "versionTime": "2026-07-29T18:22:35Z",
--    "scid": "QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP"
+-    "versionTime": "2026-08-11T19:30:02Z",
+-    "scid": "QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy"
 -  },
 -  "didResolutionMetadata": {
 -    "contentType": "application/did+ld+json"
@@ -47,7 +48,7 @@
    "didDocument": {
      "@context": "https://www.w3.org/ns/did/v1",
      "id": "did:webvh:QmYyebYsxpEccifX1DXsjLXc8q8awKyGWFBRvzgoY3eXy6:example.com",
-@@ -32,15 +35,18 @@
+@@ -32,15 +35,19 @@
      ]
    },
    "didDocumentMetadata": {
@@ -65,6 +66,7 @@
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
 +    "previousLogEntryHash": "QmYyebYsxpEccifX1DXsjLXc8q8awKyGWFBRvzgoY3eXy6"
 -    "scid": "QmYyebYsxpEccifX1DXsjLXc8q8awKyGWFBRvzgoY3eXy6"
@@ -85,7 +87,7 @@
    "didDocument": {
      "@context": [
        "https://www.w3.org/ns/did/v1",
-@@ -23,27 +26,31 @@
+@@ -23,27 +26,32 @@
      ],
      "service": [
        {
@@ -115,6 +117,7 @@
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
 +    "previousLogEntryHash": "QmXcVryigFstU3VBTwQwnag58FwaEPyMc8CaD7g9g9zcTz"
 -    "versionId": "1-QmbLZxY7946T23AHGgRHkjHdzcF1SDckojUAcwG68uMdd1",
@@ -177,7 +180,7 @@
    "didDocument": {
      "@context": [
        "https://www.w3.org/ns/did/v1",
-@@ -13,41 +16,41 @@
+@@ -13,41 +16,42 @@
      "controller": "did:webvh:Qmc57yQsqz5NYVyMwT1zWTAXBAX6cNHfiAzqcABAJTkLnY:example.com",
      "id": "did:webvh:Qmc57yQsqz5NYVyMwT1zWTAXBAX6cNHfiAzqcABAJTkLnY:example.com",
      "keyAgreement": [],
@@ -227,6 +230,7 @@
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 -    "updated": "2000-01-01T00:00:00Z",
 -    "versionId": "1-QmWbebxXcUEq9YE9cB12DKxd4tCpntFn6Z1dUEbdw61cyx",
 -    "versionNumber": 1,
@@ -250,28 +254,29 @@
 +  },
    "didDocument": {
      "@context": "https://www.w3.org/ns/did/v1",
-     "id": "did:webvh:QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP:example.com",
-@@ -35,14 +38,18 @@
+     "id": "did:webvh:QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy:example.com",
+@@ -35,14 +38,19 @@
      ]
    },
    "didDocumentMetadata": {
-+    "versionId": "2-QmVWJkdgJhmXJQUH9uH2CASXZcfmQiZfyYpW5HU8rWAaJJ",
-     "created": "2026-07-29T18:22:35Z",
-     "updated": "2026-07-29T18:22:36Z",
++    "versionId": "2-QmRDhVzPaCCTGoKXs2Cf34GhYR8xNoRHZ1B37zzk2e7q3K",
+     "created": "2026-08-11T19:30:02Z",
+     "updated": "2026-08-11T19:30:03Z",
 +    "deactivated": false,
 +    "portable": false,
-+    "scid": "QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP",
++    "scid": "QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy",
 +    "updateKeys": [
 +      "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
-+    "previousLogEntryHash": "QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP"
--    "versionId": "2-QmVWJkdgJhmXJQUH9uH2CASXZcfmQiZfyYpW5HU8rWAaJJ",
++    "previousLogEntryHash": "QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy"
+-    "versionId": "2-QmRDhVzPaCCTGoKXs2Cf34GhYR8xNoRHZ1B37zzk2e7q3K",
 -    "versionNumber": 2,
--    "versionTime": "2026-07-29T18:22:36Z",
--    "scid": "QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP"
+-    "versionTime": "2026-08-11T19:30:03Z",
+-    "scid": "QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy"
 -  },
 -  "didResolutionMetadata": {
 -    "contentType": "application/did+ld+json"
@@ -289,7 +294,7 @@
    "didDocument": {
      "@context": "https://www.w3.org/ns/did/v1",
      "id": "did:webvh:QmYyebYsxpEccifX1DXsjLXc8q8awKyGWFBRvzgoY3eXy6:example.com",
-@@ -35,15 +38,18 @@
+@@ -35,15 +38,19 @@
      ]
    },
    "didDocumentMetadata": {
@@ -307,6 +312,7 @@
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
 +    "previousLogEntryHash": "QmYyebYsxpEccifX1DXsjLXc8q8awKyGWFBRvzgoY3eXy6"
 -    "scid": "QmYyebYsxpEccifX1DXsjLXc8q8awKyGWFBRvzgoY3eXy6"
@@ -327,7 +333,7 @@
    "didDocument": {
      "@context": [
        "https://www.w3.org/ns/did/v1",
-@@ -26,27 +29,31 @@
+@@ -26,27 +29,32 @@
      ],
      "service": [
        {
@@ -357,6 +363,7 @@
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
 +    "previousLogEntryHash": "QmXcVryigFstU3VBTwQwnag58FwaEPyMc8CaD7g9g9zcTz"
 -    "versionId": "2-QmZ9qdnsVcU6A3bxGWqQgmmwBRm41fYeMHdhj1MBwwd5nA",
@@ -419,7 +426,7 @@
    "didDocument": {
      "@context": [
        "https://www.w3.org/ns/did/v1",
-@@ -16,41 +19,41 @@
+@@ -16,41 +19,42 @@
      "controller": "did:webvh:Qmc57yQsqz5NYVyMwT1zWTAXBAX6cNHfiAzqcABAJTkLnY:example.com",
      "id": "did:webvh:Qmc57yQsqz5NYVyMwT1zWTAXBAX6cNHfiAzqcABAJTkLnY:example.com",
      "keyAgreement": [],
@@ -469,6 +476,7 @@
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 -    "updated": "2000-01-02T00:00:00Z",
 -    "versionId": "2-QmbizFKB593dcTPX114p1vRSn5WArBYGce1JAJKhxjbMV9",
 -    "versionNumber": 2,
@@ -485,37 +493,37 @@
 === deactivate / dart — resolutionResult.json ===
 --- expected
 +++ actual (ts resolver)
-@@ -1,46 +1,19 @@
+@@ -1,46 +1,20 @@
  {
 +  "didResolutionMetadata": {
 +    "contentType": "application/did+ld+json"
 -  "didDocument": {
 -    "@context": "https://www.w3.org/ns/did/v1",
--    "id": "did:webvh:QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP:example.com",
--    "controller": "did:webvh:QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP:example.com",
+-    "id": "did:webvh:QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy:example.com",
+-    "controller": "did:webvh:QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy:example.com",
 -    "verificationMethod": [
 -      {
--        "id": "did:webvh:QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP:example.com#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG",
+-        "id": "did:webvh:QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy:example.com#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG",
 -        "type": "Multikey",
--        "controller": "did:webvh:QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP:example.com",
+-        "controller": "did:webvh:QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy:example.com",
 -        "publicKeyMultibase": "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
 -      }
 -    ],
 -    "authentication": [
--      "did:webvh:QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP:example.com#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+-      "did:webvh:QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy:example.com#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
 -    ],
 -    "assertionMethod": [
--      "did:webvh:QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP:example.com#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+-      "did:webvh:QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy:example.com#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
 -    ],
 -    "service": [
 -      {
--        "id": "did:webvh:QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP:example.com#files",
+-        "id": "did:webvh:QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy:example.com#files",
 -        "type": "relativeRef",
 -        "serviceEndpoint": "https://example.com/"
 -      },
 -      {
 -        "@context": "https://identity.foundation/linked-vp/contexts/v1",
--        "id": "did:webvh:QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP:example.com#whois",
+-        "id": "did:webvh:QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy:example.com#whois",
 -        "type": "LinkedVerifiablePresentation",
 -        "serviceEndpoint": "https://example.com/whois.vp"
 -      }
@@ -523,21 +531,22 @@
    },
 +  "didDocument": null,
    "didDocumentMetadata": {
-+    "versionId": "2-QmWaPCL6NCs66UYyFKtzphFBytQ1ZyptJGdPSCqmNJj2KR",
-     "created": "2026-07-29T18:22:35Z",
-     "updated": "2026-07-29T18:22:36Z",
--    "versionId": "2-QmWaPCL6NCs66UYyFKtzphFBytQ1ZyptJGdPSCqmNJj2KR",
++    "versionId": "2-Qmbn2aDwQBq9a7CSnSYKSVCVGZmQpWumeWSrRzPYvZeaCf",
+     "created": "2026-08-11T19:30:02Z",
+     "updated": "2026-08-11T19:30:03Z",
+-    "versionId": "2-Qmbn2aDwQBq9a7CSnSYKSVCVGZmQpWumeWSrRzPYvZeaCf",
 -    "versionNumber": 2,
--    "versionTime": "2026-07-29T18:22:36Z",
+-    "versionTime": "2026-08-11T19:30:03Z",
      "deactivated": true,
 +    "portable": false,
-+    "scid": "QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP",
++    "scid": "QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy",
 +    "updateKeys": [],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
-+    "previousLogEntryHash": "QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP"
--    "scid": "QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP"
++    "previousLogEntryHash": "QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy"
+-    "scid": "QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy"
 -  },
 -  "didResolutionMetadata": {
 -    "contentType": "application/did+ld+json"
@@ -547,7 +556,7 @@
 === deactivate / java — resolutionResult.json ===
 --- expected
 +++ actual (ts resolver)
-@@ -1,34 +1,19 @@
+@@ -1,34 +1,20 @@
  {
 +  "didResolutionMetadata": {
 +    "contentType": "application/did+ld+json"
@@ -584,6 +593,7 @@
 +    "updateKeys": [],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
 +    "previousLogEntryHash": "QmYyebYsxpEccifX1DXsjLXc8q8awKyGWFBRvzgoY3eXy6"
 -    "scid": "QmYyebYsxpEccifX1DXsjLXc8q8awKyGWFBRvzgoY3eXy6"
@@ -596,7 +606,7 @@
 === deactivate / java-eecc — resolutionResult.json ===
 --- expected
 +++ actual (ts resolver)
-@@ -1,50 +1,19 @@
+@@ -1,50 +1,20 @@
  {
 +  "didResolutionMetadata": {
 +    "contentType": "application/did+ld+json"
@@ -650,6 +660,7 @@
 +    "updateKeys": [],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
 +    "previousLogEntryHash": "QmXcVryigFstU3VBTwQwnag58FwaEPyMc8CaD7g9g9zcTz"
 -    "scid": "QmXcVryigFstU3VBTwQwnag58FwaEPyMc8CaD7g9g9zcTz"
@@ -731,7 +742,7 @@
 === deactivate / rust — resolutionResult.json ===
 --- expected
 +++ actual (ts resolver)
-@@ -1,53 +1,19 @@
+@@ -1,53 +1,20 @@
  {
 +  "didResolutionMetadata": {
 +    "contentType": "application/did+ld+json"
@@ -782,6 +793,7 @@
 +    "updateKeys": [],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 -    "updated": "2026-07-29T18:15:35Z",
 -    "versionId": "2-QmQpMQdASrgTqmJnpbUDjkiaZfsQi5og8ghQ5aY73tcfnx",
 -    "versionNumber": 2,
@@ -805,28 +817,29 @@
 +  },
    "didDocument": {
      "@context": "https://www.w3.org/ns/did/v1",
-     "id": "did:webvh:QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP:example.com",
-@@ -32,14 +35,18 @@
+     "id": "did:webvh:QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy:example.com",
+@@ -32,14 +35,19 @@
      ]
    },
    "didDocumentMetadata": {
-+    "versionId": "2-QmboWtFD6nub5AZGDYqQrSaCcJkkRXcA14AaNHQ9RATdk6",
-     "created": "2026-07-29T18:22:35Z",
-     "updated": "2026-07-29T18:22:36Z",
++    "versionId": "2-Qmb2BwgPqwoXsmEPw7EPgWvPSrgC5ZbEozSBsdtPoPaUK2",
+     "created": "2026-08-11T19:30:02Z",
+     "updated": "2026-08-11T19:30:03Z",
 +    "deactivated": false,
 +    "portable": false,
-+    "scid": "QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP",
++    "scid": "QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy",
 +    "updateKeys": [
 +      "z6MknGc3ocHs3zdPiJbnaaqDi58NGb4pk1Sp9WxWufuXSdxf"
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
-+    "previousLogEntryHash": "QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP"
--    "versionId": "2-QmboWtFD6nub5AZGDYqQrSaCcJkkRXcA14AaNHQ9RATdk6",
++    "previousLogEntryHash": "QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy"
+-    "versionId": "2-Qmb2BwgPqwoXsmEPw7EPgWvPSrgC5ZbEozSBsdtPoPaUK2",
 -    "versionNumber": 2,
--    "versionTime": "2026-07-29T18:22:36Z",
--    "scid": "QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP"
+-    "versionTime": "2026-08-11T19:30:03Z",
+-    "scid": "QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy"
 -  },
 -  "didResolutionMetadata": {
 -    "contentType": "application/did+ld+json"
@@ -844,7 +857,7 @@
    "didDocument": {
      "@context": "https://www.w3.org/ns/did/v1",
      "id": "did:webvh:QmYyebYsxpEccifX1DXsjLXc8q8awKyGWFBRvzgoY3eXy6:example.com",
-@@ -32,15 +35,18 @@
+@@ -32,15 +35,19 @@
      ]
    },
    "didDocumentMetadata": {
@@ -862,6 +875,7 @@
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
 +    "previousLogEntryHash": "QmYyebYsxpEccifX1DXsjLXc8q8awKyGWFBRvzgoY3eXy6"
 -    "scid": "QmYyebYsxpEccifX1DXsjLXc8q8awKyGWFBRvzgoY3eXy6"
@@ -882,7 +896,7 @@
    "didDocument": {
      "@context": [
        "https://www.w3.org/ns/did/v1",
-@@ -23,27 +26,31 @@
+@@ -23,27 +26,32 @@
      ],
      "service": [
        {
@@ -912,6 +926,7 @@
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
 +    "previousLogEntryHash": "QmXcVryigFstU3VBTwQwnag58FwaEPyMc8CaD7g9g9zcTz"
 -    "versionId": "2-QmWzNND732x1wz4X8E894Fhj5Zc81RjHjRoKSzfRno5Pdo",
@@ -974,7 +989,7 @@
    "didDocument": {
      "@context": [
        "https://www.w3.org/ns/did/v1",
-@@ -13,41 +16,41 @@
+@@ -13,41 +16,42 @@
      "controller": "did:webvh:Qmc57yQsqz5NYVyMwT1zWTAXBAX6cNHfiAzqcABAJTkLnY:example.com",
      "id": "did:webvh:Qmc57yQsqz5NYVyMwT1zWTAXBAX6cNHfiAzqcABAJTkLnY:example.com",
      "keyAgreement": [],
@@ -1024,6 +1039,7 @@
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 -    "updated": "2000-01-02T00:00:00Z",
 -    "versionId": "2-QmTBYjihTX2h3aFXurXq67c5DjKN3fvc8cXbRBYsm18iRp",
 -    "versionNumber": 2,
@@ -1047,28 +1063,29 @@
 +  },
    "didDocument": {
      "@context": "https://www.w3.org/ns/did/v1",
-     "id": "did:webvh:QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP:example.com",
-@@ -32,14 +35,18 @@
+     "id": "did:webvh:QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy:example.com",
+@@ -32,14 +35,19 @@
      ]
    },
    "didDocumentMetadata": {
-+    "versionId": "1-QmYLRsVFAPJod6UfU2JLPMJrYqi2UgqjbzYmpXkeyHEeP3",
-     "created": "2026-07-29T18:22:35Z",
-     "updated": "2026-07-29T18:22:35Z",
++    "versionId": "1-QmUbNrRchbnC7hixhLXrUeJzrwFbcdXHzzcgqJX1biYiE4",
+     "created": "2026-08-11T19:30:02Z",
+     "updated": "2026-08-11T19:30:02Z",
 +    "deactivated": false,
 +    "portable": false,
-+    "scid": "QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP",
++    "scid": "QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy",
 +    "updateKeys": [
 +      "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
-+    "previousLogEntryHash": "QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP"
--    "versionId": "1-QmYLRsVFAPJod6UfU2JLPMJrYqi2UgqjbzYmpXkeyHEeP3",
++    "previousLogEntryHash": "QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy"
+-    "versionId": "1-QmUbNrRchbnC7hixhLXrUeJzrwFbcdXHzzcgqJX1biYiE4",
 -    "versionNumber": 1,
--    "versionTime": "2026-07-29T18:22:35Z",
--    "scid": "QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP"
+-    "versionTime": "2026-08-11T19:30:02Z",
+-    "scid": "QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy"
 -  },
 -  "didResolutionMetadata": {
 -    "contentType": "application/did+ld+json"
@@ -1085,28 +1102,29 @@
 +  },
    "didDocument": {
      "@context": "https://www.w3.org/ns/did/v1",
-     "id": "did:webvh:QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP:example.com",
-@@ -35,14 +38,18 @@
+     "id": "did:webvh:QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy:example.com",
+@@ -35,14 +38,19 @@
      ]
    },
    "didDocumentMetadata": {
-+    "versionId": "2-QmVWJkdgJhmXJQUH9uH2CASXZcfmQiZfyYpW5HU8rWAaJJ",
-     "created": "2026-07-29T18:22:35Z",
-     "updated": "2026-07-29T18:22:36Z",
++    "versionId": "2-QmRDhVzPaCCTGoKXs2Cf34GhYR8xNoRHZ1B37zzk2e7q3K",
+     "created": "2026-08-11T19:30:02Z",
+     "updated": "2026-08-11T19:30:03Z",
 +    "deactivated": false,
 +    "portable": false,
-+    "scid": "QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP",
++    "scid": "QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy",
 +    "updateKeys": [
 +      "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
-+    "previousLogEntryHash": "QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP"
--    "versionId": "2-QmVWJkdgJhmXJQUH9uH2CASXZcfmQiZfyYpW5HU8rWAaJJ",
++    "previousLogEntryHash": "QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy"
+-    "versionId": "2-QmRDhVzPaCCTGoKXs2Cf34GhYR8xNoRHZ1B37zzk2e7q3K",
 -    "versionNumber": 2,
--    "versionTime": "2026-07-29T18:22:36Z",
--    "scid": "QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP"
+-    "versionTime": "2026-08-11T19:30:03Z",
+-    "scid": "QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy"
 -  },
 -  "didResolutionMetadata": {
 -    "contentType": "application/did+ld+json"
@@ -1123,28 +1141,29 @@
 +  },
    "didDocument": {
      "@context": "https://www.w3.org/ns/did/v1",
-     "id": "did:webvh:QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP:example.com",
-@@ -36,14 +39,18 @@
+     "id": "did:webvh:QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy:example.com",
+@@ -36,14 +39,19 @@
      ]
    },
    "didDocumentMetadata": {
-+    "versionId": "3-QmZ6pMRNYDG9bT8FUVBBXaqP9McriXhTzYkcTwefvTAXD8",
-     "created": "2026-07-29T18:22:35Z",
-     "updated": "2026-07-29T18:22:37Z",
++    "versionId": "3-QmXPTMaehiJvpSfc3bjQzQ4EfjAh2RaRjsMe2dz2FpNio9",
+     "created": "2026-08-11T19:30:02Z",
+     "updated": "2026-08-11T19:30:04Z",
 +    "deactivated": false,
 +    "portable": false,
-+    "scid": "QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP",
++    "scid": "QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy",
 +    "updateKeys": [
 +      "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
-+    "previousLogEntryHash": "QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP"
--    "versionId": "3-QmZ6pMRNYDG9bT8FUVBBXaqP9McriXhTzYkcTwefvTAXD8",
++    "previousLogEntryHash": "QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy"
+-    "versionId": "3-QmXPTMaehiJvpSfc3bjQzQ4EfjAh2RaRjsMe2dz2FpNio9",
 -    "versionNumber": 3,
--    "versionTime": "2026-07-29T18:22:37Z",
--    "scid": "QmP1perXqTHLPtd2XAXJbyfXm7VG4dA7ANRXAcfQWBEeUP"
+-    "versionTime": "2026-08-11T19:30:04Z",
+-    "scid": "QmWJWhi8EvhWam39Z71uSmLQ43T1abhhZPrTizB92mKuqy"
 -  },
 -  "didResolutionMetadata": {
 -    "contentType": "application/did+ld+json"
@@ -1162,7 +1181,7 @@
    "didDocument": {
      "@context": "https://www.w3.org/ns/did/v1",
      "id": "did:webvh:QmYyebYsxpEccifX1DXsjLXc8q8awKyGWFBRvzgoY3eXy6:example.com",
-@@ -32,15 +35,18 @@
+@@ -32,15 +35,19 @@
      ]
    },
    "didDocumentMetadata": {
@@ -1180,6 +1199,7 @@
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
 +    "previousLogEntryHash": "QmYyebYsxpEccifX1DXsjLXc8q8awKyGWFBRvzgoY3eXy6"
 -    "scid": "QmYyebYsxpEccifX1DXsjLXc8q8awKyGWFBRvzgoY3eXy6"
@@ -1200,7 +1220,7 @@
    "didDocument": {
      "@context": "https://www.w3.org/ns/did/v1",
      "id": "did:webvh:QmYyebYsxpEccifX1DXsjLXc8q8awKyGWFBRvzgoY3eXy6:example.com",
-@@ -35,15 +38,18 @@
+@@ -35,15 +38,19 @@
      ]
    },
    "didDocumentMetadata": {
@@ -1218,6 +1238,7 @@
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
 +    "previousLogEntryHash": "QmYyebYsxpEccifX1DXsjLXc8q8awKyGWFBRvzgoY3eXy6"
 -    "scid": "QmYyebYsxpEccifX1DXsjLXc8q8awKyGWFBRvzgoY3eXy6"
@@ -1238,7 +1259,7 @@
    "didDocument": {
      "@context": "https://www.w3.org/ns/did/v1",
      "id": "did:webvh:QmYyebYsxpEccifX1DXsjLXc8q8awKyGWFBRvzgoY3eXy6:example.com",
-@@ -36,15 +39,18 @@
+@@ -36,15 +39,19 @@
      ]
    },
    "didDocumentMetadata": {
@@ -1256,6 +1277,7 @@
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
 +    "previousLogEntryHash": "QmYyebYsxpEccifX1DXsjLXc8q8awKyGWFBRvzgoY3eXy6"
 -    "scid": "QmYyebYsxpEccifX1DXsjLXc8q8awKyGWFBRvzgoY3eXy6"
@@ -1276,7 +1298,7 @@
    "didDocument": {
      "@context": [
        "https://www.w3.org/ns/did/v1",
-@@ -23,27 +26,31 @@
+@@ -23,27 +26,32 @@
      ],
      "service": [
        {
@@ -1306,6 +1328,7 @@
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
 +    "previousLogEntryHash": "QmXcVryigFstU3VBTwQwnag58FwaEPyMc8CaD7g9g9zcTz"
 -    "versionId": "1-QmbLZxY7946T23AHGgRHkjHdzcF1SDckojUAcwG68uMdd1",
@@ -1329,7 +1352,7 @@
    "didDocument": {
      "@context": [
        "https://www.w3.org/ns/did/v1",
-@@ -26,27 +29,31 @@
+@@ -26,27 +29,32 @@
      ],
      "service": [
        {
@@ -1359,6 +1382,7 @@
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
 +    "previousLogEntryHash": "QmXcVryigFstU3VBTwQwnag58FwaEPyMc8CaD7g9g9zcTz"
 -    "versionId": "2-QmZ9qdnsVcU6A3bxGWqQgmmwBRm41fYeMHdhj1MBwwd5nA",
@@ -1382,7 +1406,7 @@
    "didDocument": {
      "@context": [
        "https://www.w3.org/ns/did/v1",
-@@ -27,27 +30,31 @@
+@@ -27,27 +30,32 @@
      ],
      "service": [
        {
@@ -1412,6 +1436,7 @@
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
 +    "previousLogEntryHash": "QmXcVryigFstU3VBTwQwnag58FwaEPyMc8CaD7g9g9zcTz"
 -    "versionId": "3-QmU6wNiqV1yCHKoieR94rLrEXBN31YTquoiNXiaWNKNZay",
@@ -1575,7 +1600,7 @@
    "didDocument": {
      "@context": [
        "https://www.w3.org/ns/did/v1",
-@@ -13,41 +16,41 @@
+@@ -13,41 +16,42 @@
      "controller": "did:webvh:Qmc57yQsqz5NYVyMwT1zWTAXBAX6cNHfiAzqcABAJTkLnY:example.com",
      "id": "did:webvh:Qmc57yQsqz5NYVyMwT1zWTAXBAX6cNHfiAzqcABAJTkLnY:example.com",
      "keyAgreement": [],
@@ -1625,6 +1650,7 @@
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 -    "updated": "2000-01-03T00:00:00Z",
 -    "versionId": "1-QmWbebxXcUEq9YE9cB12DKxd4tCpntFn6Z1dUEbdw61cyx",
 -    "versionNumber": 1,
@@ -1649,7 +1675,7 @@
    "didDocument": {
      "@context": [
        "https://www.w3.org/ns/did/v1",
-@@ -16,41 +19,41 @@
+@@ -16,41 +19,42 @@
      "controller": "did:webvh:Qmc57yQsqz5NYVyMwT1zWTAXBAX6cNHfiAzqcABAJTkLnY:example.com",
      "id": "did:webvh:Qmc57yQsqz5NYVyMwT1zWTAXBAX6cNHfiAzqcABAJTkLnY:example.com",
      "keyAgreement": [],
@@ -1699,6 +1725,7 @@
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 -    "updated": "2000-01-03T00:00:00Z",
 -    "versionId": "2-QmbizFKB593dcTPX114p1vRSn5WArBYGce1JAJKhxjbMV9",
 -    "versionNumber": 2,
@@ -1723,7 +1750,7 @@
    "didDocument": {
      "@context": [
        "https://www.w3.org/ns/did/v1",
-@@ -17,41 +20,41 @@
+@@ -17,41 +20,42 @@
      "controller": "did:webvh:Qmc57yQsqz5NYVyMwT1zWTAXBAX6cNHfiAzqcABAJTkLnY:example.com",
      "id": "did:webvh:Qmc57yQsqz5NYVyMwT1zWTAXBAX6cNHfiAzqcABAJTkLnY:example.com",
      "keyAgreement": [],
@@ -1773,6 +1800,7 @@
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 -    "updated": "2000-01-03T00:00:00Z",
 -    "versionId": "3-QmceJhgSs5HTbwid4WCvY2nP9d5Ddmnu4K1wXaWWKjvGUw",
 -    "versionNumber": 3,
@@ -1797,7 +1825,7 @@
    "didDocument": {
      "@context": [
        "https://www.w3.org/ns/did/v1",
-@@ -33,27 +36,32 @@
+@@ -33,27 +36,33 @@
      ],
      "service": [
        {
@@ -1828,6 +1856,7 @@
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
 +    "previousLogEntryHash": "QmP4dxf3QM9wZL5NsGfVTZfsipqV56hr48imzJyup8A11U"
 -    "versionId": "2-QmagDp8nzT1fQ6Yz5cP1rksQM3eqb7NkmqGcbQtmKVYSBZ",
@@ -1911,7 +1940,7 @@
      "verificationMethod": [
        {
          "controller": "did:webvh:QmXZdkKddfnXYAsHpqjKFoTv5oyiCYM5cmbscDtMTi5Qhu:example.com",
-@@ -43,21 +33,35 @@
+@@ -43,21 +33,36 @@
          "publicKeyMultibase": "z6MknGc3ocHs3zdPiJbnaaqDi58NGb4pk1Sp9WxWufuXSdxf",
          "type": "Multikey"
        }
@@ -1943,6 +1972,7 @@
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 -    "updated": "2000-01-02T00:00:00Z",
 -    "versionId": "2-QmSWsnyR6p7FQ6v8PKKFQvVxeG682gDEwc9pJiSy4hGDBc",
 -    "versionNumber": 2,
@@ -1966,28 +1996,29 @@
 +  },
    "didDocument": {
      "@context": "https://www.w3.org/ns/did/v1",
-     "id": "did:webvh:Qmb3HaTb1WoPv5Qq1sLNMuqS3CcixyM4SjGGes3yx8w3d1:example.com",
-@@ -32,15 +35,18 @@
+     "id": "did:webvh:Qmeq8acNb8mqWggsUgGPWPXbSEuF4DRvymiGVdSgdzHU5t:example.com",
+@@ -32,15 +35,19 @@
      ]
    },
    "didDocumentMetadata": {
-+    "versionId": "1-QmaXR3hQWH5oPq3JaMr6a4PbKSFkRi44gU9oriyuGiKcaY",
-     "created": "2026-07-29T18:22:35Z",
-     "updated": "2026-07-29T18:22:35Z",
++    "versionId": "1-QmQM3zRXMjqjVjNze1WDcUMNzsJDw394Md7Wuob8Eh9mxd",
+     "created": "2026-08-11T19:30:02Z",
+     "updated": "2026-08-11T19:30:02Z",
 +    "deactivated": false,
--    "versionId": "1-QmaXR3hQWH5oPq3JaMr6a4PbKSFkRi44gU9oriyuGiKcaY",
+-    "versionId": "1-QmQM3zRXMjqjVjNze1WDcUMNzsJDw394Md7Wuob8Eh9mxd",
 -    "versionNumber": 1,
--    "versionTime": "2026-07-29T18:22:35Z",
+-    "versionTime": "2026-08-11T19:30:02Z",
      "portable": true,
-+    "scid": "Qmb3HaTb1WoPv5Qq1sLNMuqS3CcixyM4SjGGes3yx8w3d1",
++    "scid": "Qmeq8acNb8mqWggsUgGPWPXbSEuF4DRvymiGVdSgdzHU5t",
 +    "updateKeys": [
 +      "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
-+    "previousLogEntryHash": "Qmb3HaTb1WoPv5Qq1sLNMuqS3CcixyM4SjGGes3yx8w3d1"
--    "scid": "Qmb3HaTb1WoPv5Qq1sLNMuqS3CcixyM4SjGGes3yx8w3d1"
++    "previousLogEntryHash": "Qmeq8acNb8mqWggsUgGPWPXbSEuF4DRvymiGVdSgdzHU5t"
+-    "scid": "Qmeq8acNb8mqWggsUgGPWPXbSEuF4DRvymiGVdSgdzHU5t"
 -  },
 -  "didResolutionMetadata": {
 -    "contentType": "application/did+ld+json"
@@ -2005,7 +2036,7 @@
    "didDocument": {
      "@context": "https://www.w3.org/ns/did/v1",
      "id": "did:webvh:QmVg5XWXa7d953E2ysqdUvWBR8xbUazTFebsNAYaNK8xeX:example.com",
-@@ -32,15 +35,18 @@
+@@ -32,15 +35,19 @@
      ]
    },
    "didDocumentMetadata": {
@@ -2023,6 +2054,7 @@
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
 +    "previousLogEntryHash": "QmVg5XWXa7d953E2ysqdUvWBR8xbUazTFebsNAYaNK8xeX"
 -    "scid": "QmVg5XWXa7d953E2ysqdUvWBR8xbUazTFebsNAYaNK8xeX"
@@ -2043,7 +2075,7 @@
    "didDocument": {
      "@context": [
        "https://www.w3.org/ns/did/v1",
-@@ -23,28 +26,31 @@
+@@ -23,28 +26,32 @@
      ],
      "service": [
        {
@@ -2076,6 +2108,7 @@
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
 +    "previousLogEntryHash": "QmYm6resiWrDrPAxkUVxwbr1Be2VUCXdWieWhx3bgsCwF1"
 -    "scid": "QmYm6resiWrDrPAxkUVxwbr1Be2VUCXdWieWhx3bgsCwF1"
@@ -2135,7 +2168,7 @@
    "didDocument": {
      "@context": [
        "https://www.w3.org/ns/did/v1",
-@@ -13,41 +16,41 @@
+@@ -13,41 +16,42 @@
      "controller": "did:webvh:QmWPpSLJhdVVGnMnS8Z9BKBYwbRhhb4BHYidhiidLsvSfC:example.com",
      "id": "did:webvh:QmWPpSLJhdVVGnMnS8Z9BKBYwbRhhb4BHYidhiidLsvSfC:example.com",
      "keyAgreement": [],
@@ -2185,6 +2218,7 @@
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 -    "updated": "2000-01-01T00:00:00Z",
 -    "versionId": "1-QmY8n5j6nkyzPrjtVvVTkqtbiEk15D3GVzxiPUjTMPwr9f",
 -    "versionNumber": 1,
@@ -2208,28 +2242,29 @@
 +  },
    "didDocument": {
      "@context": "https://www.w3.org/ns/did/v1",
-     "id": "did:webvh:Qmb3HaTb1WoPv5Qq1sLNMuqS3CcixyM4SjGGes3yx8w3d1:example.org",
-@@ -35,15 +38,18 @@
+     "id": "did:webvh:Qmeq8acNb8mqWggsUgGPWPXbSEuF4DRvymiGVdSgdzHU5t:example.org",
+@@ -35,15 +38,19 @@
      ]
    },
    "didDocumentMetadata": {
-+    "versionId": "2-QmRF8tC4pe2ixw1EPTNB677v58ACq8ZJA7KW8bUFBcUZuY",
-     "created": "2026-07-29T18:22:35Z",
-     "updated": "2026-07-29T18:22:36Z",
++    "versionId": "2-QmZK2b7GDtRqWjDkSoSG37UKEZFxFTVd2Ja3Sv8SAnmtNa",
+     "created": "2026-08-11T19:30:02Z",
+     "updated": "2026-08-11T19:30:03Z",
 +    "deactivated": false,
--    "versionId": "2-QmRF8tC4pe2ixw1EPTNB677v58ACq8ZJA7KW8bUFBcUZuY",
+-    "versionId": "2-QmZK2b7GDtRqWjDkSoSG37UKEZFxFTVd2Ja3Sv8SAnmtNa",
 -    "versionNumber": 2,
--    "versionTime": "2026-07-29T18:22:36Z",
+-    "versionTime": "2026-08-11T19:30:03Z",
      "portable": true,
-+    "scid": "Qmb3HaTb1WoPv5Qq1sLNMuqS3CcixyM4SjGGes3yx8w3d1",
++    "scid": "Qmeq8acNb8mqWggsUgGPWPXbSEuF4DRvymiGVdSgdzHU5t",
 +    "updateKeys": [
 +      "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
-+    "previousLogEntryHash": "Qmb3HaTb1WoPv5Qq1sLNMuqS3CcixyM4SjGGes3yx8w3d1"
--    "scid": "Qmb3HaTb1WoPv5Qq1sLNMuqS3CcixyM4SjGGes3yx8w3d1"
++    "previousLogEntryHash": "Qmeq8acNb8mqWggsUgGPWPXbSEuF4DRvymiGVdSgdzHU5t"
+-    "scid": "Qmeq8acNb8mqWggsUgGPWPXbSEuF4DRvymiGVdSgdzHU5t"
 -  },
 -  "didResolutionMetadata": {
 -    "contentType": "application/did+ld+json"
@@ -2247,7 +2282,7 @@
    "didDocument": {
      "@context": "https://www.w3.org/ns/did/v1",
      "id": "did:webvh:QmVg5XWXa7d953E2ysqdUvWBR8xbUazTFebsNAYaNK8xeX:example.org",
-@@ -35,15 +38,18 @@
+@@ -35,15 +38,19 @@
      ]
    },
    "didDocumentMetadata": {
@@ -2265,6 +2300,7 @@
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
 +    "previousLogEntryHash": "QmVg5XWXa7d953E2ysqdUvWBR8xbUazTFebsNAYaNK8xeX"
 -    "scid": "QmVg5XWXa7d953E2ysqdUvWBR8xbUazTFebsNAYaNK8xeX"
@@ -2285,7 +2321,7 @@
    "didDocument": {
      "@context": [
        "https://www.w3.org/ns/did/v1",
-@@ -26,28 +29,31 @@
+@@ -26,28 +29,32 @@
      ],
      "service": [
        {
@@ -2318,6 +2354,7 @@
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
 +    "previousLogEntryHash": "QmYm6resiWrDrPAxkUVxwbr1Be2VUCXdWieWhx3bgsCwF1"
 -    "scid": "QmYm6resiWrDrPAxkUVxwbr1Be2VUCXdWieWhx3bgsCwF1"
@@ -2377,7 +2414,7 @@
    "didDocument": {
      "@context": [
        "https://www.w3.org/ns/did/v1",
-@@ -13,41 +16,41 @@
+@@ -13,41 +16,42 @@
      "controller": "did:webvh:QmWPpSLJhdVVGnMnS8Z9BKBYwbRhhb4BHYidhiidLsvSfC:example.com",
      "id": "did:webvh:QmWPpSLJhdVVGnMnS8Z9BKBYwbRhhb4BHYidhiidLsvSfC:example.com",
      "keyAgreement": [],
@@ -2427,6 +2464,7 @@
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 -    "updated": "2000-01-02T00:00:00Z",
 -    "versionId": "2-QmVuaRChgrjDwRervewT8veixnTP9ix5d28eUC2RtHHTYq",
 -    "versionNumber": 2,
@@ -2450,17 +2488,17 @@
 +  },
    "didDocument": {
      "@context": "https://www.w3.org/ns/did/v1",
-     "id": "did:webvh:QmPwweVoAU7dZM98Tis3XEDcLUGXXBUnJBFheo3crsQnXr:example.com",
-@@ -32,14 +35,20 @@
+     "id": "did:webvh:QmUtYPNfGR9twbKKCNo9bUq2JxWHGkRWGZoGo3R6m2UyMz:example.com",
+@@ -32,14 +35,21 @@
      ]
    },
    "didDocumentMetadata": {
-+    "versionId": "1-QmU12t51n2WJVzc8PCt6NiVTr6ZwCxTs7nbPuxbDugckdQ",
-     "created": "2026-07-29T18:22:35Z",
-     "updated": "2026-07-29T18:22:35Z",
++    "versionId": "1-QmdjuGArXeqTacsQVq1R5cSTAVChg3DGESkJFPidgBxqTF",
+     "created": "2026-08-11T19:30:02Z",
+     "updated": "2026-08-11T19:30:02Z",
 +    "deactivated": false,
 +    "portable": false,
-+    "scid": "QmPwweVoAU7dZM98Tis3XEDcLUGXXBUnJBFheo3crsQnXr",
++    "scid": "QmUtYPNfGR9twbKKCNo9bUq2JxWHGkRWGZoGo3R6m2UyMz",
 +    "updateKeys": [
 +      "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
 +    ],
@@ -2468,12 +2506,13 @@
 +      "Qmf2V5jB2UwPcFL5bvmKed7VvY3CSQ1RXyDdtip7ufpQ3R"
 +    ],
 +    "prerotation": true,
++    "witness": {},
 +    "watchers": null,
-+    "previousLogEntryHash": "QmPwweVoAU7dZM98Tis3XEDcLUGXXBUnJBFheo3crsQnXr"
--    "versionId": "1-QmU12t51n2WJVzc8PCt6NiVTr6ZwCxTs7nbPuxbDugckdQ",
++    "previousLogEntryHash": "QmUtYPNfGR9twbKKCNo9bUq2JxWHGkRWGZoGo3R6m2UyMz"
+-    "versionId": "1-QmdjuGArXeqTacsQVq1R5cSTAVChg3DGESkJFPidgBxqTF",
 -    "versionNumber": 1,
--    "versionTime": "2026-07-29T18:22:35Z",
--    "scid": "QmPwweVoAU7dZM98Tis3XEDcLUGXXBUnJBFheo3crsQnXr"
+-    "versionTime": "2026-08-11T19:30:02Z",
+-    "scid": "QmUtYPNfGR9twbKKCNo9bUq2JxWHGkRWGZoGo3R6m2UyMz"
 -  },
 -  "didResolutionMetadata": {
 -    "contentType": "application/did+ld+json"
@@ -2491,7 +2530,7 @@
    "didDocument": {
      "@context": "https://www.w3.org/ns/did/v1",
      "id": "did:webvh:QmfDDmMjVMgvTudtbrj8rvhFgEX1Ev3sQjDpEuNvAbypJt:example.com",
-@@ -32,15 +35,20 @@
+@@ -32,15 +35,21 @@
      ]
    },
    "didDocumentMetadata": {
@@ -2511,6 +2550,7 @@
 +      "Qmf2V5jB2UwPcFL5bvmKed7VvY3CSQ1RXyDdtip7ufpQ3R"
 +    ],
 +    "prerotation": true,
++    "witness": {},
 +    "watchers": null,
 +    "previousLogEntryHash": "QmfDDmMjVMgvTudtbrj8rvhFgEX1Ev3sQjDpEuNvAbypJt"
 -    "scid": "QmfDDmMjVMgvTudtbrj8rvhFgEX1Ev3sQjDpEuNvAbypJt"
@@ -2531,7 +2571,7 @@
    "didDocument": {
      "@context": [
        "https://www.w3.org/ns/did/v1",
-@@ -23,27 +26,33 @@
+@@ -23,27 +26,34 @@
      ],
      "service": [
        {
@@ -2563,6 +2603,7 @@
 +      "Qmf2V5jB2UwPcFL5bvmKed7VvY3CSQ1RXyDdtip7ufpQ3R"
 +    ],
 +    "prerotation": true,
++    "witness": {},
 +    "watchers": null,
 +    "previousLogEntryHash": "QmUGFwWdDfE6u8oLpCtuq5MFfwC4WaTK9qg3tqBoEixxKP"
 -    "versionId": "1-QmQ8B9G8jyDyTy7jFFw42ZZebEvvoEZpNuXCYrJr1zbSne",
@@ -2627,7 +2668,7 @@
    "didDocument": {
      "@context": [
        "https://www.w3.org/ns/did/v1",
-@@ -13,41 +16,43 @@
+@@ -13,41 +16,44 @@
      "controller": "did:webvh:QmUQVmu7yyX6x9jCUH863pBacUmg8Wuu4ZZtsdfv7Uv5iD:example.com",
      "id": "did:webvh:QmUQVmu7yyX6x9jCUH863pBacUmg8Wuu4ZZtsdfv7Uv5iD:example.com",
      "keyAgreement": [],
@@ -2679,6 +2720,7 @@
 +      "Qmf2V5jB2UwPcFL5bvmKed7VvY3CSQ1RXyDdtip7ufpQ3R"
 +    ],
 +    "prerotation": true,
++    "witness": {},
 -    "updated": "2000-01-01T00:00:00Z",
 -    "versionId": "1-QmUPj8g2FxDTpSRJugYRXJjv8w4NRYXsDPiaSkZc2ZJ18p",
 -    "versionNumber": 1,
@@ -2702,17 +2744,17 @@
 +  },
    "didDocument": {
      "@context": "https://www.w3.org/ns/did/v1",
-     "id": "did:webvh:QmPwweVoAU7dZM98Tis3XEDcLUGXXBUnJBFheo3crsQnXr:example.com",
-@@ -32,14 +35,20 @@
+     "id": "did:webvh:QmUtYPNfGR9twbKKCNo9bUq2JxWHGkRWGZoGo3R6m2UyMz:example.com",
+@@ -32,14 +35,21 @@
      ]
    },
    "didDocumentMetadata": {
-+    "versionId": "3-QmZV1kkgpAStZzUSocbPR1zSZfo6YET2UouJqv17rhoGc9",
-     "created": "2026-07-29T18:22:35Z",
-     "updated": "2026-07-29T18:22:37Z",
++    "versionId": "3-Qmb2a1gBXEBEstPvVaBCGG1q7Lp1BCCKid5YPiKX2ha5yn",
+     "created": "2026-08-11T19:30:02Z",
+     "updated": "2026-08-11T19:30:04Z",
 +    "deactivated": false,
 +    "portable": false,
-+    "scid": "QmPwweVoAU7dZM98Tis3XEDcLUGXXBUnJBFheo3crsQnXr",
++    "scid": "QmUtYPNfGR9twbKKCNo9bUq2JxWHGkRWGZoGo3R6m2UyMz",
 +    "updateKeys": [
 +      "z6MkvqoYXQfDDJRv8L4wKzxYeuKyVZBfi9Qo6Ro8MiLH3kDQ"
 +    ],
@@ -2720,12 +2762,13 @@
 +      "QmPz1YVUT3mXMEixAWj8J6NkiQbskFmNu3DLYQLdynmrtR"
 +    ],
 +    "prerotation": true,
++    "witness": {},
 +    "watchers": null,
-+    "previousLogEntryHash": "QmPwweVoAU7dZM98Tis3XEDcLUGXXBUnJBFheo3crsQnXr"
--    "versionId": "3-QmZV1kkgpAStZzUSocbPR1zSZfo6YET2UouJqv17rhoGc9",
++    "previousLogEntryHash": "QmUtYPNfGR9twbKKCNo9bUq2JxWHGkRWGZoGo3R6m2UyMz"
+-    "versionId": "3-Qmb2a1gBXEBEstPvVaBCGG1q7Lp1BCCKid5YPiKX2ha5yn",
 -    "versionNumber": 3,
--    "versionTime": "2026-07-29T18:22:37Z",
--    "scid": "QmPwweVoAU7dZM98Tis3XEDcLUGXXBUnJBFheo3crsQnXr"
+-    "versionTime": "2026-08-11T19:30:04Z",
+-    "scid": "QmUtYPNfGR9twbKKCNo9bUq2JxWHGkRWGZoGo3R6m2UyMz"
 -  },
 -  "didResolutionMetadata": {
 -    "contentType": "application/did+ld+json"
@@ -2743,7 +2786,7 @@
    "didDocument": {
      "@context": "https://www.w3.org/ns/did/v1",
      "id": "did:webvh:QmfDDmMjVMgvTudtbrj8rvhFgEX1Ev3sQjDpEuNvAbypJt:example.com",
-@@ -32,15 +35,20 @@
+@@ -32,15 +35,21 @@
      ]
    },
    "didDocumentMetadata": {
@@ -2763,6 +2806,7 @@
 +      "QmPz1YVUT3mXMEixAWj8J6NkiQbskFmNu3DLYQLdynmrtR"
 +    ],
 +    "prerotation": true,
++    "witness": {},
 +    "watchers": null,
 +    "previousLogEntryHash": "QmfDDmMjVMgvTudtbrj8rvhFgEX1Ev3sQjDpEuNvAbypJt"
 -    "scid": "QmfDDmMjVMgvTudtbrj8rvhFgEX1Ev3sQjDpEuNvAbypJt"
@@ -2783,7 +2827,7 @@
    "didDocument": {
      "@context": [
        "https://www.w3.org/ns/did/v1",
-@@ -23,27 +26,33 @@
+@@ -23,27 +26,34 @@
      ],
      "service": [
        {
@@ -2815,6 +2859,7 @@
 +      "QmPz1YVUT3mXMEixAWj8J6NkiQbskFmNu3DLYQLdynmrtR"
 +    ],
 +    "prerotation": true,
++    "witness": {},
 +    "watchers": null,
 +    "previousLogEntryHash": "QmUGFwWdDfE6u8oLpCtuq5MFfwC4WaTK9qg3tqBoEixxKP"
 -    "versionId": "3-QmdTniwuTeCnnQNuMteBRBuVmZXCCUEe4nFi2qywXb14qD",
@@ -2879,7 +2924,7 @@
    "didDocument": {
      "@context": [
        "https://www.w3.org/ns/did/v1",
-@@ -13,41 +16,43 @@
+@@ -13,41 +16,44 @@
      "controller": "did:webvh:QmUQVmu7yyX6x9jCUH863pBacUmg8Wuu4ZZtsdfv7Uv5iD:example.com",
      "id": "did:webvh:QmUQVmu7yyX6x9jCUH863pBacUmg8Wuu4ZZtsdfv7Uv5iD:example.com",
      "keyAgreement": [],
@@ -2931,6 +2976,7 @@
 +      "QmPz1YVUT3mXMEixAWj8J6NkiQbskFmNu3DLYQLdynmrtR"
 +    ],
 +    "prerotation": true,
++    "witness": {},
 -    "updated": "2000-01-03T00:00:00Z",
 -    "versionId": "3-QmTa52uaWAABzmTTfaKnEqpxwYNeTvuT8C2TStGZonrGKy",
 -    "versionNumber": 3,
@@ -2954,28 +3000,29 @@
 +  },
    "didDocument": {
      "@context": "https://www.w3.org/ns/did/v1",
-     "id": "did:webvh:QmasZANtB46M54nb2fojRELHjZbAraQxiJHsUAiRvuFhxh:example.com",
-@@ -42,14 +45,18 @@
+     "id": "did:webvh:QmRRf61zidFXgPN1kQCwzzn9pJ9dwQ4VTF6BWyBC29o6Ny:example.com",
+@@ -42,14 +45,19 @@
      ]
    },
    "didDocumentMetadata": {
-+    "versionId": "2-QmStaHQKrpFF4qsbbXHd5PNdAUwF5bum1Tgb7g8GTCWnKU",
-     "created": "2026-07-29T18:22:35Z",
-     "updated": "2026-07-29T18:22:36Z",
++    "versionId": "2-QmbQWRZQqx1WCvMXZPcW8zmHzGyzueNznrbd9LKc1Cesnd",
+     "created": "2026-08-11T19:30:03Z",
+     "updated": "2026-08-11T19:30:04Z",
 +    "deactivated": false,
 +    "portable": false,
-+    "scid": "QmasZANtB46M54nb2fojRELHjZbAraQxiJHsUAiRvuFhxh",
++    "scid": "QmRRf61zidFXgPN1kQCwzzn9pJ9dwQ4VTF6BWyBC29o6Ny",
 +    "updateKeys": [
 +      "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
-+    "previousLogEntryHash": "QmasZANtB46M54nb2fojRELHjZbAraQxiJHsUAiRvuFhxh"
--    "versionId": "2-QmStaHQKrpFF4qsbbXHd5PNdAUwF5bum1Tgb7g8GTCWnKU",
++    "previousLogEntryHash": "QmRRf61zidFXgPN1kQCwzzn9pJ9dwQ4VTF6BWyBC29o6Ny"
+-    "versionId": "2-QmbQWRZQqx1WCvMXZPcW8zmHzGyzueNznrbd9LKc1Cesnd",
 -    "versionNumber": 2,
--    "versionTime": "2026-07-29T18:22:36Z",
--    "scid": "QmasZANtB46M54nb2fojRELHjZbAraQxiJHsUAiRvuFhxh"
+-    "versionTime": "2026-08-11T19:30:04Z",
+-    "scid": "QmRRf61zidFXgPN1kQCwzzn9pJ9dwQ4VTF6BWyBC29o6Ny"
 -  },
 -  "didResolutionMetadata": {
 -    "contentType": "application/did+ld+json"
@@ -2993,7 +3040,7 @@
    "didDocument": {
      "@context": "https://www.w3.org/ns/did/v1",
      "id": "did:webvh:Qmby9sKPBvj1nvga3KcrK5kPHZsdvWbPRz31C6pVkHpTGH:example.com",
-@@ -42,15 +45,18 @@
+@@ -42,15 +45,19 @@
      ]
    },
    "didDocumentMetadata": {
@@ -3011,6 +3058,7 @@
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
 +    "previousLogEntryHash": "Qmby9sKPBvj1nvga3KcrK5kPHZsdvWbPRz31C6pVkHpTGH"
 -    "scid": "Qmby9sKPBvj1nvga3KcrK5kPHZsdvWbPRz31C6pVkHpTGH"
@@ -3031,7 +3079,7 @@
    "didDocument": {
      "@context": [
        "https://www.w3.org/ns/did/v1",
-@@ -33,27 +36,31 @@
+@@ -33,27 +36,32 @@
          "serviceEndpoint": "https://example.com/didcomm"
        },
        {
@@ -3061,6 +3109,7 @@
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 +    "watchers": null,
 +    "previousLogEntryHash": "QmTWikwSgSTiKzvML8AtZroaCekKcYw6taownx3kMoKqA5"
 -    "versionId": "2-Qmd5dAvuEsikBZiBTQoFw5wyX4BtUjjEZFx4oPzuyeyTod",
@@ -3142,7 +3191,7 @@
        }
      ],
      "verificationMethod": [
-@@ -46,18 +49,18 @@
+@@ -46,18 +49,19 @@
      ]
    },
    "didDocumentMetadata": {
@@ -3157,6 +3206,7 @@
 +    ],
 +    "nextKeyHashes": [],
 +    "prerotation": false,
++    "witness": {},
 -    "updated": "2000-01-02T00:00:00Z",
 -    "versionId": "2-QmYCBbEkDfW5YWLbJo3b4a7MhNMLzpQQ4qT1eSzqEa3szs",
 -    "versionNumber": 2,
@@ -3180,17 +3230,17 @@
 +  },
    "didDocument": {
      "@context": "https://www.w3.org/ns/did/v1",
-     "id": "did:webvh:QmT9krez7SCJTdX97p9HtwXfRxSk2tkSppQzEmPwSJutF8:example.com",
+     "id": "did:webvh:QmXELKJX3b5ySq12u1hdTyH7U6mTZDMyGCbQe5SXa5UxHv:example.com",
 @@ -32,14 +35,26 @@
      ]
    },
    "didDocumentMetadata": {
-+    "versionId": "1-QmT7iemhNdFzJHvH4ZUj3E46QtwahZTTvXKtDDnVX7q4mw",
-     "created": "2026-07-29T18:22:35Z",
-     "updated": "2026-07-29T18:22:35Z",
++    "versionId": "1-QmVzeWRWt6Egg3xXZP7N2YHem8wcMeP3oAZ6yKqw1h7BFh",
+     "created": "2026-08-11T19:30:03Z",
+     "updated": "2026-08-11T19:30:03Z",
 +    "deactivated": false,
 +    "portable": false,
-+    "scid": "QmT9krez7SCJTdX97p9HtwXfRxSk2tkSppQzEmPwSJutF8",
++    "scid": "QmXELKJX3b5ySq12u1hdTyH7U6mTZDMyGCbQe5SXa5UxHv",
 +    "updateKeys": [
 +      "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
 +    ],
@@ -3205,11 +3255,11 @@
 +      ]
 +    },
 +    "watchers": null,
-+    "previousLogEntryHash": "QmT9krez7SCJTdX97p9HtwXfRxSk2tkSppQzEmPwSJutF8"
--    "versionId": "1-QmT7iemhNdFzJHvH4ZUj3E46QtwahZTTvXKtDDnVX7q4mw",
++    "previousLogEntryHash": "QmXELKJX3b5ySq12u1hdTyH7U6mTZDMyGCbQe5SXa5UxHv"
+-    "versionId": "1-QmVzeWRWt6Egg3xXZP7N2YHem8wcMeP3oAZ6yKqw1h7BFh",
 -    "versionNumber": 1,
--    "versionTime": "2026-07-29T18:22:35Z",
--    "scid": "QmT9krez7SCJTdX97p9HtwXfRxSk2tkSppQzEmPwSJutF8"
+-    "versionTime": "2026-08-11T19:30:03Z",
+-    "scid": "QmXELKJX3b5ySq12u1hdTyH7U6mTZDMyGCbQe5SXa5UxHv"
 -  },
 -  "didResolutionMetadata": {
 -    "contentType": "application/did+ld+json"
@@ -3463,17 +3513,17 @@
 +  },
    "didDocument": {
      "@context": "https://www.w3.org/ns/did/v1",
-     "id": "did:webvh:QmQz6pkKgZoghy1yworakwYck2h9931jE4MYy61fMDj22q:example.com",
+     "id": "did:webvh:QmTbFviptJt5rRQwrVXVvbB2oXtiWj9UJrxoox9QSCLkNy:example.com",
 @@ -32,14 +35,26 @@
      ]
    },
    "didDocumentMetadata": {
-+    "versionId": "2-QmZHHcKfPgwyFPAtqDKY9DSS6jXNUGWeRHb8nF5AExS9Yu",
-     "created": "2026-07-29T18:22:35Z",
-     "updated": "2026-07-29T18:22:36Z",
++    "versionId": "2-QmSBrvNnQbh7SUqbxaikEkzZDnmRmAi4mjMy71iHbH1Dmg",
+     "created": "2026-08-11T19:30:03Z",
+     "updated": "2026-08-11T19:30:04Z",
 +    "deactivated": false,
 +    "portable": false,
-+    "scid": "QmQz6pkKgZoghy1yworakwYck2h9931jE4MYy61fMDj22q",
++    "scid": "QmTbFviptJt5rRQwrVXVvbB2oXtiWj9UJrxoox9QSCLkNy",
 +    "updateKeys": [
 +      "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
 +    ],
@@ -3488,11 +3538,11 @@
 +      ]
 +    },
 +    "watchers": null,
-+    "previousLogEntryHash": "QmQz6pkKgZoghy1yworakwYck2h9931jE4MYy61fMDj22q"
--    "versionId": "2-QmZHHcKfPgwyFPAtqDKY9DSS6jXNUGWeRHb8nF5AExS9Yu",
++    "previousLogEntryHash": "QmTbFviptJt5rRQwrVXVvbB2oXtiWj9UJrxoox9QSCLkNy"
+-    "versionId": "2-QmSBrvNnQbh7SUqbxaikEkzZDnmRmAi4mjMy71iHbH1Dmg",
 -    "versionNumber": 2,
--    "versionTime": "2026-07-29T18:22:36Z",
--    "scid": "QmQz6pkKgZoghy1yworakwYck2h9931jE4MYy61fMDj22q"
+-    "versionTime": "2026-08-11T19:30:04Z",
+-    "scid": "QmTbFviptJt5rRQwrVXVvbB2oXtiWj9UJrxoox9QSCLkNy"
 -  },
 -  "didResolutionMetadata": {
 -    "contentType": "application/did+ld+json"
