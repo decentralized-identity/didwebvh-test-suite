@@ -114,4 +114,4 @@ thisdid is a resolver-only wrapper — it has no DID-log generator, so DID Creat
 | witness-update | ts | 🔶 DIFF | see diffs.txt |
 
 ---
-Built from: https://github.com/decentralized-identity/thisdid @ main (e650380)
+Built from: https://github.com/decentralized-identity/thisdid @ main (28753d3)
