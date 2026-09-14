@@ -5,9 +5,10 @@ import { load as yamlLoad } from 'js-yaml';
 import { sha256 } from '@noble/hashes/sha2';
 import { canonicalize } from 'json-canonicalize';
 import { createDID, updateDID, multibaseEncode, multibaseDecode, MultibaseEncoding, prepareDataForSigning } from 'didwebvh-ts';
-import type { DIDLog, VerificationMethod, DataIntegrityProof, WitnessProofFileEntry } from 'didwebvh-ts';
+import type { DIDLog, DIDDocument, DataIntegrityProof, WitnessProofFileEntry } from 'didwebvh-ts';
 import { keyFromSeed, Ed25519Signer, PermissiveVerifier } from './cryptography.ts';
-import type { KeyDef, CreateStep, UpdateStep, StepParams } from './interfaces.ts';
+import type { KeyMaterial } from './cryptography.ts';
+import type { KeyDef, CreateStep, UpdateStep, StepParams, ServiceDef, VerificationMethodDef } from './interfaces.ts';
 // KeyDef used via NegativeScript.keys below
 import * as ed25519 from '@stablelib/ed25519';
 
@@ -25,6 +26,53 @@ function deriveNextKeyHash(publicKeyMultibase: string): string {
   const hash = sha256(publicKeyMultibase);
   const multihash = new Uint8Array([0x12, 0x20, ...hash]);
   return multibaseEncode(multihash, MultibaseEncoding.BASE58_BTC).slice(1);
+}
+
+function buildDIDDocument(
+  docVMs: (KeyMaterial | VerificationMethodDef)[],
+  options?: {
+    context?: string[];
+    alsoKnownAs?: string[];
+    services?: ServiceDef[];
+  }
+): DIDDocument {
+  const context = [
+    'https://www.w3.org/ns/did/v1',
+    'https://w3id.org/security/multikey/v1',
+    ...(options?.context ?? []),
+  ];
+
+  const verificationMethod = docVMs.map((vm, index) => {
+    const fragment = (vm as VerificationMethodDef).id
+      ? ((vm as VerificationMethodDef).id!.startsWith('#') ? (vm as VerificationMethodDef).id!.slice(1) : (vm as VerificationMethodDef).id!)
+      : (vm.publicKeyMultibase ? vm.publicKeyMultibase.slice(-8) : `key-${index + 1}`);
+    return {
+      id: `{DID}#${fragment}`,
+      type: vm.type ?? 'Multikey',
+      controller: vm.controller ?? '{DID}',
+      ...(vm.publicKeyMultibase ? { publicKeyMultibase: vm.publicKeyMultibase } : {}),
+      ...(vm.purpose ? { purpose: vm.purpose } : {}),
+    };
+  });
+
+  const authIds = verificationMethod.map(vm => vm.id);
+
+  const doc: any = {
+    '@context': context,
+    id: '{DID}',
+    controller: '{DID}',
+    verificationMethod,
+    authentication: authIds,
+  };
+
+  if (options?.alsoKnownAs && options.alsoKnownAs.length > 0) {
+    doc.alsoKnownAs = options.alsoKnownAs;
+  }
+  if (options?.services && options.services.length > 0) {
+    doc.service = options.services;
+  }
+
+  return doc as DIDDocument;
 }
 
 // Extended step types for negative tests
@@ -80,15 +128,15 @@ interface LogEntryLike {
   proof?: DataIntegrityProof[];
 }
 
-function buildKeyMap(keys: KeyDef[]): Map<string, VerificationMethod> {
-  const map = new Map<string, VerificationMethod>();
+function buildKeyMap(keys: KeyDef[]): Map<string, KeyMaterial> {
+  const map = new Map<string, KeyMaterial>();
   for (const keyDef of keys) {
     map.set(keyDef.id, keyFromSeed(keyDef.seed));
   }
   return map;
 }
 
-function resolveKeyVMs(keyIds: string[], keyMap: Map<string, VerificationMethod>): VerificationMethod[] {
+function resolveKeyVMs(keyIds: string[], keyMap: Map<string, KeyMaterial>): KeyMaterial[] {
   return keyIds.map(id => {
     const vm = keyMap.get(id);
     if (!vm) throw new Error(`Unknown key ID: ${id}`);
@@ -96,7 +144,7 @@ function resolveKeyVMs(keyIds: string[], keyMap: Map<string, VerificationMethod>
   });
 }
 
-function buildWitnessParam(config: { threshold: number; witnesses: { id: string }[] }, keyMap: Map<string, VerificationMethod>) {
+function buildWitnessParam(config: { threshold: number; witnesses: { id: string }[] }, keyMap: Map<string, KeyMaterial>) {
   return {
     threshold: config.threshold,
     witnesses: config.witnesses.map(w => {
@@ -123,7 +171,7 @@ function keyIdToPlaceholder(keyId: string): string {
 
 // Placeholders expand to the raw public key multibase so that the script
 // template controls surrounding context (e.g. "did:key:{KEY_ATTACKER}#{KEY_AUTHORIZED}").
-function substituteKeyPlaceholders(value: unknown, keyMap: Map<string, VerificationMethod>): unknown {
+function substituteKeyPlaceholders(value: unknown, keyMap: Map<string, KeyMaterial>): unknown {
   if (typeof value !== 'string') return value;
   let result = value;
   for (const [keyId, vm] of keyMap) {
@@ -137,7 +185,7 @@ function applyMutation(
   mutation: string,
   field?: string,
   value?: unknown,
-  keyMap?: Map<string, VerificationMethod>
+  keyMap?: Map<string, KeyMaterial>
 ): LogEntryLike {
   const mutated = JSON.parse(JSON.stringify(entry)) as LogEntryLike;
   const substitutedValue = keyMap ? substituteKeyPlaceholders(value, keyMap) : value;
@@ -189,7 +237,7 @@ async function resignEntry(
   entry: LogEntryLike,
   entryIndex: number,
   log: DIDLog,
-  signerVM: VerificationMethod,
+  signerVM: KeyMaterial,
 ): Promise<LogEntryLike> {
   // The hash input for entry N uses the versionId of entry N-1 as its own
   // versionId field (this is how the did:webvh hash chain is constructed).
@@ -250,8 +298,8 @@ async function resignEntry(
 async function createGenesisBypass(
   domain: string,
   timestamp: string,
-  updateKeyVMs: VerificationMethod[],
-  signerVM: VerificationMethod,
+  updateKeyVMs: KeyMaterial[],
+  signerVM: KeyMaterial,
   witnessParam: unknown,
   nextKeyHashes: string[],
   portable: boolean,
@@ -330,7 +378,7 @@ async function updateEntryBypass(
   timestamp: string,
   parameters: Record<string, unknown>,
   state: Record<string, unknown>,
-  signerVM: VerificationMethod,
+  signerVM: KeyMaterial,
 ): Promise<DIDLog> {
   const prevEntry = log[log.length - 1] as any;
   const versionNumber = log.length + 1;
@@ -383,10 +431,10 @@ async function processNegativeScript(scriptPath: string): Promise<void> {
     return;
   }
 
-  const keyMap = script.keys?.length ? buildKeyMap(script.keys) : new Map<string, VerificationMethod>();
+  const keyMap = script.keys?.length ? buildKeyMap(script.keys) : new Map<string, KeyMaterial>();
   let log: DIDLog = [];
-  let currentUpdateVMs: VerificationMethod[] = [];
-  let currentWitnessVMs: VerificationMethod[] = [];
+  let currentUpdateVMs: KeyMaterial[] = [];
+  let currentWitnessVMs: KeyMaterial[] = [];
   // Valid witness proofs generated after each log entry so that updateDID's
   // internal resolveDIDFromLog can resolve the preceding entries.  These are
   // separate from the (potentially malicious) witnessProofs written to disk.
@@ -420,6 +468,12 @@ async function processNegativeScript(scriptPath: string): Promise<void> {
         currentWitnessVMs = [];
       }
 
+      const didDocument = buildDIDDocument(currentUpdateVMs, {
+        context: s.params?.context,
+        alsoKnownAs: s.params?.alsoKnownAs,
+        services: s.params?.services,
+      });
+
       let newLog: DIDLog;
       try {
         ({ log: newLog } = await createDID({
@@ -427,9 +481,7 @@ async function processNegativeScript(scriptPath: string): Promise<void> {
           signer,
           verifier,
           updateKeys: currentUpdateVMs.map(vm => vm.publicKeyMultibase!),
-          verificationMethods: currentUpdateVMs,
-          context: s.params?.context,
-          alsoKnownAs: s.params?.alsoKnownAs,
+          didDocument,
           portable: s.params?.portable,
           nextKeyHashes,
           witness: witnessParam ?? null,
@@ -483,6 +535,15 @@ async function processNegativeScript(scriptPath: string): Promise<void> {
 
       const witnessParam = s.params?.witness ? buildWitnessParam(s.params.witness, keyMap) : undefined;
 
+      let didDocToUpdate: DIDDocument | undefined;
+      if (s.params?.services || s.params?.verificationMethods || s.params?.alsoKnownAs || s.params?.context) {
+        didDocToUpdate = buildDIDDocument(currentUpdateVMs, {
+          context: s.params?.context,
+          alsoKnownAs: s.params?.alsoKnownAs,
+          services: s.params?.services,
+        });
+      }
+
       // The library may reject timestamps that are not strictly later than the
       // previous entry.  If it does, retry with a bumped timestamp — a
       // subsequent corrupt step will overwrite the value before re-signing.
@@ -493,10 +554,7 @@ async function processNegativeScript(scriptPath: string): Promise<void> {
         signer,
         verifier,
         updateKeys: currentUpdateVMs.map(vm => vm.publicKeyMultibase!),
-        verificationMethods: currentUpdateVMs,
-        context: s.params?.context,
-        alsoKnownAs: s.params?.alsoKnownAs,
-        services: s.params?.services as any,
+        didDocument: didDocToUpdate,
         nextKeyHashes: nextKeyHashes.length > 0 ? nextKeyHashes : [],
         witness: witnessParam,
         witnessProofs: constructionWitnessProofs.length > 0 ? constructionWitnessProofs : undefined,
@@ -542,7 +600,6 @@ async function processNegativeScript(scriptPath: string): Promise<void> {
         signer,
         verifier,
         updateKeys: currentUpdateVMs.map(vm => vm.publicKeyMultibase!),
-        verificationMethods: currentUpdateVMs,
         witnessProofs: constructionWitnessProofs.length > 0 ? constructionWitnessProofs : undefined,
         address: s.domain,
       };
