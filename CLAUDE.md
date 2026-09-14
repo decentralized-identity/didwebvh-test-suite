@@ -38,6 +38,10 @@ vectors/                        # Committed artifacts, organized by scenario the
     java-eecc/
       did.jsonl
       resolutionResult*.json
+    dart/
+      did.jsonl
+      resolutionResult*.json
+    # thisdid is resolver-only — it never writes vectors/<scenario>/thisdid/
 implementations/
   ts/
     Dockerfile                  # Docker build for the TS harness
@@ -82,6 +86,20 @@ implementations/
     status.md
     diffs.txt
     config.yaml
+  dart/
+    Dockerfile
+    docker-entrypoint.sh
+    bin/                         # generate_vectors.dart + test_vectors.dart entrypoints
+    status.md
+    diffs.txt
+    config.yaml
+  thisdid/
+    Dockerfile                  # clones decentralized-identity/thisdid, builds vendor/webvh-did-resolver
+    src/
+      harness.ts                 # resolver-only: cross-resolution + negative-resolution only, no generator
+    status.md
+    diffs.txt
+    config.yaml
 scripts/
   run       # build + run a single implementation via Docker
   run-all   # two-pass run of all implementations
@@ -105,6 +123,8 @@ scripts/run python
 scripts/run rust
 scripts/run java
 scripts/run java-eecc
+scripts/run dart
+scripts/run thisdid
 
 # Run against a PR branch (using default repo)
 scripts/run ts feat/my-pr
@@ -157,6 +177,12 @@ cd implementations/java-eecc && mvn compile exec:java@generate-vectors
 
 # Java-EECC — cross-resolution + negative tests
 cd implementations/java-eecc && mvn compile exec:java
+
+# thisdid — resolver-only: no generate step. Local dev needs a sibling checkout
+# of https://github.com/decentralized-identity/thisdid at ../thisdid (the
+# harness's package.json depends on file:../../../thisdid/vendor/webvh-did-resolver);
+# the Docker path clones it fresh instead and needs no sibling checkout.
+cd implementations/thisdid && npm install && npm test
 ```
 
 ## Maintenance: Testing Whether XFAILs Are Fixed
@@ -376,6 +402,10 @@ Each implementation lives under `implementations/<lang>/` with its own harness c
 5. The implementer opens a PR to commit their latest artifacts and status files.
 
 A GitHub Action on merge aggregates all `status.md` files into a top-level summary matrix.
+
+**Resolver-only implementations** (currently `thisdid`) skip step 1 entirely — they have no
+generator, so `status.md`'s DID Creation section just notes that generation is not applicable and
+`vectors/<scenario>/<lang>/` is never written for them. Steps 2–4 still run unchanged.
 
 **Divergences are expected and valuable.** When two implementations disagree, the diff is surfaced in `status.md` and becomes a Working Group discussion item about the spec — there is no single reference implementation that auto-wins.
 
