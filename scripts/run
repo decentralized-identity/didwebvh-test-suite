@@ -11,6 +11,9 @@
 #   scripts/run ts https://github.com/me/didwebvh-ts:my-pr                 # custom repo + branch (colon form)
 #   scripts/run ts https://github.com/me/didwebvh-ts/tree/my-pr            # GitHub PR URL (tree form)
 #   scripts/run python https://github.com/me/did-webvh-py/tree/fix/foo     # branch with slashes
+#   scripts/run ts me:my-pr                                                 # fork owner + branch (GitHub's
+#                                                                            # "compare across forks" copy-icon
+#                                                                            # format) — same repo name as default
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -46,8 +49,17 @@ elif [[ "$ARG2" == *"://"* ]]; then
     REPO="$ARG2"
     BRANCH="$DEFAULT_BRANCH"
   fi
+elif [[ "$ARG2" == *:* ]]; then
+  # No :// but has a colon → GitHub's fork-owner shorthand, "owner:branch"
+  # (what the "compare across forks" copy icon on GitHub gives you). Git ref
+  # names can never contain ':', so this can't be mistaken for a bare branch.
+  FORK_OWNER="${ARG2%%:*}"
+  BRANCH="${ARG2#*:}"
+  HOST_PREFIX="${DEFAULT_REPO%/*/*}"
+  REPO_NAME="${DEFAULT_REPO##*/}"
+  REPO="$HOST_PREFIX/$FORK_OWNER/$REPO_NAME"
 else
-  # No :// → treat as a bare branch name using the default repo
+  # No colon at all → treat as a bare branch name using the default repo
   REPO="$DEFAULT_REPO"
   BRANCH="$ARG2"
 fi
