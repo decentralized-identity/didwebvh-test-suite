@@ -78,9 +78,19 @@ def pytest_runtest_makereport(item, call):
                       "result": "⚠️ XFAIL", "notes": notes})
 
     elif report.failed:
-        if store.get("actual") is not None and store.get("expected") is not None:
-            diff = _compute_diff(store["expected"], store["actual"])
-            if diff:
+        actual, expected = store.get("actual"), store.get("expected")
+        if actual is not None and expected is not None:
+            diff = _compute_diff(expected, actual)
+            error = (actual.get("didResolutionMetadata") or {}).get("error")
+            if error:
+                # the log was rejected, which is a failure to resolve rather than
+                # a difference in output
+                _rows.append({"testCase": scenario, "logSource": impl,
+                              "result": "❌ FAIL", "notes": f"resolution error: {error}"})
+                if diff:
+                    _diffs.append({"testCase": scenario, "logSource": impl,
+                                   "filename": result_file, "diff": diff})
+            elif diff:
                 _rows.append({"testCase": scenario, "logSource": impl,
                               "result": "🔶 DIFF", "notes": "see diffs.txt"})
                 _diffs.append({"testCase": scenario, "logSource": impl,
