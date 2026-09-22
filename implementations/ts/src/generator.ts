@@ -5,9 +5,10 @@ import { load as yamlLoad } from 'js-yaml';
 import { sha256 } from '@noble/hashes/sha2';
 import { canonicalize } from 'json-canonicalize';
 import { createDID, updateDID, resolveDID, resolveDIDFromLog, multibaseEncode, multibaseDecode, MultibaseEncoding, prepareDataForSigning } from 'didwebvh-ts';
-import type { DIDLog, VerificationMethod, WitnessProofFileEntry, DataIntegrityProof } from 'didwebvh-ts';
+import type { DIDLog, DIDDocument, WitnessProofFileEntry, DataIntegrityProof } from 'didwebvh-ts';
 import { keyFromSeed, Ed25519Signer, PermissiveVerifier } from './cryptography.ts';
-import type { Script, CreateStep, UpdateStep, DeactivateStep, ResolveStep } from './interfaces.ts';
+import type { KeyMaterial } from './cryptography.ts';
+import type { Script, CreateStep, UpdateStep, DeactivateStep, ResolveStep, ServiceDef, VerificationMethodDef } from './interfaces.ts';
 import * as ed25519 from '@stablelib/ed25519';
 
 const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../..');
@@ -28,9 +29,56 @@ function deriveNextKeyHash(publicKeyMultibase: string): string {
   return multibaseEncode(multihash, MultibaseEncoding.BASE58_BTC).slice(1);
 }
 
+function buildDIDDocument(
+  docVMs: (KeyMaterial | VerificationMethodDef)[],
+  options?: {
+    context?: string[];
+    alsoKnownAs?: string[];
+    services?: ServiceDef[];
+  }
+): DIDDocument {
+  const context = [
+    'https://www.w3.org/ns/did/v1',
+    'https://w3id.org/security/multikey/v1',
+    ...(options?.context ?? []),
+  ];
+
+  const verificationMethod = docVMs.map((vm, index) => {
+    const fragment = (vm as VerificationMethodDef).id
+      ? ((vm as VerificationMethodDef).id!.startsWith('#') ? (vm as VerificationMethodDef).id!.slice(1) : (vm as VerificationMethodDef).id!)
+      : (vm.publicKeyMultibase ? vm.publicKeyMultibase.slice(-8) : `key-${index + 1}`);
+    return {
+      id: `{DID}#${fragment}`,
+      type: vm.type ?? 'Multikey',
+      controller: vm.controller ?? '{DID}',
+      ...(vm.publicKeyMultibase ? { publicKeyMultibase: vm.publicKeyMultibase } : {}),
+      ...(vm.purpose ? { purpose: vm.purpose } : {}),
+    };
+  });
+
+  const authIds = verificationMethod.map(vm => vm.id);
+
+  const doc: any = {
+    '@context': context,
+    id: '{DID}',
+    controller: '{DID}',
+    verificationMethod,
+    authentication: authIds,
+  };
+
+  if (options?.alsoKnownAs && options.alsoKnownAs.length > 0) {
+    doc.alsoKnownAs = options.alsoKnownAs;
+  }
+  if (options?.services && options.services.length > 0) {
+    doc.service = options.services;
+  }
+
+  return doc as DIDDocument;
+}
+
 async function deactivateDIDWithTimestamp(
   log: DIDLog,
-  signerVM: VerificationMethod,
+  signerVM: KeyMaterial,
   timestamp: string
 ): Promise<DIDLog> {
   const lastEntry = log[log.length - 1];
@@ -72,7 +120,7 @@ async function deactivateDIDWithTimestamp(
 
 async function generateWitnessProof(
   versionId: string,
-  witnessVM: VerificationMethod,
+  witnessVM: KeyMaterial,
   timestamp: string
 ): Promise<DataIntegrityProof> {
   const document = { versionId };
@@ -91,15 +139,15 @@ async function generateWitnessProof(
   return { ...proof, proofValue } as DataIntegrityProof;
 }
 
-function buildKeyMap(script: Script): Map<string, VerificationMethod> {
-  const map = new Map<string, VerificationMethod>();
+function buildKeyMap(script: Script): Map<string, KeyMaterial> {
+  const map = new Map<string, KeyMaterial>();
   for (const keyDef of script.keys) {
     map.set(keyDef.id, keyFromSeed(keyDef.seed));
   }
   return map;
 }
 
-function resolveKeyVMs(keyIds: string[], keyMap: Map<string, VerificationMethod>): VerificationMethod[] {
+function resolveKeyVMs(keyIds: string[], keyMap: Map<string, KeyMaterial>): KeyMaterial[] {
   return keyIds.map(id => {
     const vm = keyMap.get(id);
     if (!vm) throw new Error(`Unknown key ID: ${id}`);
@@ -107,7 +155,7 @@ function resolveKeyVMs(keyIds: string[], keyMap: Map<string, VerificationMethod>
   });
 }
 
-function buildWitnessParam(config: { threshold: number; witnesses: { id: string }[] }, keyMap: Map<string, VerificationMethod>) {
+function buildWitnessParam(config: { threshold: number; witnesses: { id: string }[] }, keyMap: Map<string, KeyMaterial>) {
   return {
     threshold: config.threshold,
     witnesses: config.witnesses.map(w => {
@@ -126,9 +174,9 @@ async function processScript(scriptPath: string, verify: boolean): Promise<void>
   const keyMap = buildKeyMap(script);
 
   let log: DIDLog = [];
-  let currentUpdateVMs: VerificationMethod[] = [];
-  let currentDocVMs: VerificationMethod[] = [];
-  let witnessVMs: VerificationMethod[] = [];
+  let currentUpdateVMs: KeyMaterial[] = [];
+  let currentDocVMs: (KeyMaterial | VerificationMethodDef)[] = [];
+  let witnessVMs: KeyMaterial[] = [];
   let witnessProofs: WitnessProofFileEntry[] = [];
 
   const resolveResults: Array<{ filename: string; result: unknown }> = [];
@@ -158,14 +206,18 @@ async function processScript(scriptPath: string, verify: boolean): Promise<void>
         ? resolveKeyVMs(s.params.nextKeyHashes, keyMap).map(vm => deriveNextKeyHash(vm.publicKeyMultibase!))
         : [];
 
+      const didDocument = buildDIDDocument(currentDocVMs, {
+        context: s.params?.context,
+        alsoKnownAs: s.params?.alsoKnownAs,
+        services: s.params?.services,
+      });
+
       const { log: newLog, meta } = await createDID({
         address: s.domain,
         signer,
         verifier,
         updateKeys: currentUpdateVMs.map(vm => vm.publicKeyMultibase!),
-        verificationMethods: currentDocVMs,
-        context: s.params?.context,
-        alsoKnownAs: s.params?.alsoKnownAs,
+        didDocument,
         portable: s.params?.portable,
         nextKeyHashes,
         witness: witnessParam ?? null,
@@ -206,7 +258,7 @@ async function processScript(scriptPath: string, verify: boolean): Promise<void>
         currentDocVMs = s.params.verificationMethods.map(vmDef => ({
           ...vmDef,
           type: vmDef.type ?? 'Multikey',
-        })) as VerificationMethod[];
+        }));
       }
 
       // The previous witness list governs this entry (a change takes effect only after
@@ -226,21 +278,27 @@ async function processScript(scriptPath: string, verify: boolean): Promise<void>
         ? resolveKeyVMs(s.params.nextKeyHashes, keyMap).map(vm => deriveNextKeyHash(vm.publicKeyMultibase!))
         : [];
 
+      let didDocToUpdate: DIDDocument | undefined;
+      if (s.params?.services || s.params?.verificationMethods || s.params?.alsoKnownAs || s.params?.context) {
+        didDocToUpdate = buildDIDDocument(currentDocVMs, {
+          context: s.params?.context,
+          alsoKnownAs: s.params?.alsoKnownAs,
+          services: s.params?.services,
+        });
+      }
+
       const { log: newLog, meta } = await updateDID({
         log,
         signer,
         verifier,
         updateKeys: currentUpdateVMs.map(vm => vm.publicKeyMultibase!),
-        verificationMethods: currentDocVMs,
-        context: s.params?.context,
-        alsoKnownAs: s.params?.alsoKnownAs,
-        services: s.params?.services as any,
+        didDocument: didDocToUpdate,
         nextKeyHashes: nextKeyHashes.length > 0 ? nextKeyHashes : [],
         witness: witnessParam,
         witnessProofs: witnessProofs.length > 0 ? witnessProofs : undefined,
         updated: s.timestamp,
         address: s.domain,
-      } as any);
+      });
 
       log = newLog;
 

@@ -1,9 +1,18 @@
 import * as ed25519 from '@stablelib/ed25519';
 import { AbstractCrypto, prepareDataForSigning } from 'didwebvh-ts';
 import { multibaseEncode, multibaseDecode, MultibaseEncoding } from 'didwebvh-ts';
-import type { SigningInput, SigningOutput, SignerOptions, VerificationMethod } from 'didwebvh-ts';
+import type { SigningInput, SigningOutput, SignerOptions } from 'didwebvh-ts';
 
-export function keyFromSeed(hexSeed: string): VerificationMethod {
+export interface KeyMaterial {
+  type?: string;
+  id?: string;
+  controller?: string;
+  publicKeyMultibase: string;
+  secretKeyMultibase: string;
+  purpose?: string;
+}
+
+export function keyFromSeed(hexSeed: string): KeyMaterial {
   const seed = Buffer.from(hexSeed.padStart(64, '0'), 'hex');
   const keyPair = ed25519.generateKeyPairFromSeed(seed);
   const publicKeyMultibase = multibaseEncode(
@@ -25,8 +34,8 @@ export function keyFromSeed(hexSeed: string): VerificationMethod {
 export class Ed25519Signer extends AbstractCrypto {
   private secretKey: Uint8Array;
 
-  constructor(options: SignerOptions) {
-    super(options);
+  constructor(options: { verificationMethod?: KeyMaterial; id?: string }) {
+    super(options as SignerOptions);
     const smb = options.verificationMethod?.secretKeyMultibase;
     if (!smb) throw new Error('secretKeyMultibase required');
     this.secretKey = multibaseDecode(smb).bytes.slice(2);
