@@ -12,6 +12,10 @@ implementations. Each vector folder contains:
 - `README.md` — attack pattern, audit bug ID, per-implementation status,
   expected error code
 
+Parser-level `resolve-did` vectors use the 46-character base58btc SCID from
+`basic-create/ts/did.jsonl`. Keeping the SCID syntactically valid ensures
+rejection exercises the domain or path under test rather than the SCID.
+
 ## Index
 
 | Scenario | Audit bug | Vulnerable impls at audit time |
