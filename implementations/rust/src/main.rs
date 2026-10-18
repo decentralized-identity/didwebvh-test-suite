@@ -19,6 +19,7 @@
 use std::path::Path;
 
 use didwebvh_rs::log_entry::LogEntryMethods;
+use didwebvh_rs::host_policy::HostPolicy;
 use didwebvh_rs::prelude::DIDWebVHState;
 use didwebvh_rs::url::WebVHURL;
 use serde_json::{json, Value};
@@ -68,6 +69,99 @@ async fn main() {
     let mut all_diffs: Vec<(String, String, String, String)> = Vec::new();
     // (test_case, expected_error, result, notes)
     let mut neg_rows: Vec<(String, String, String, String)> = Vec::new();
+    // URL assertions are evaluated without fetching a log or making a request.
+    let mut url_rows: Vec<(String, String, String, String)> = Vec::new();
+    let mut probe_rows: Vec<(String, String, String, String)> = Vec::new();
+    let mut probe_pass = 0u32;
+    let mut probe_diff = 0u32;
+    let mut probe_fail = 0u32;
+    let mut probe_skip = 0u32;
+    let mut url_skip = 0u32;
+    let mut scripted_scenarios = std::collections::HashSet::new();
+    let mut probe_scenarios = std::collections::HashSet::new();
+    let mut log_scenarios = std::collections::HashSet::new();
+
+    for scenario in &scenarios {
+        let scenario_name = scenario.file_name().to_string_lossy().to_string();
+        let script_path = scenario.path().join("script.yaml");
+        let Ok(script_text) = std::fs::read_to_string(&script_path) else { continue };
+        let script: serde_yaml::Value = match serde_yaml::from_str(&script_text) {
+            Ok(script) => script,
+            Err(e) => {
+                eprintln!("FAIL   {scenario_name}/script.yaml (parse error: {e})");
+                fail += 1;
+                url_rows.push((scenario_name, "❌ FAIL".to_string(), "script.yaml".to_string(), format!("parse error: {e}")));
+                continue;
+            }
+        };
+        let Some(steps) = script["steps"].as_sequence() else { continue };
+        if steps.iter().any(|step| step["op"].as_str() == Some("create")) {
+            log_scenarios.insert(scenario_name.clone());
+        }
+        if script["probe"].as_bool() == Some(true) {
+            probe_scenarios.insert(scenario_name.clone());
+        }
+        let has_log = scenario.path().join("ts/did.jsonl")
+            .metadata().map(|m| m.len() > 0).unwrap_or(false);
+        for (index, step) in steps.iter().enumerate() {
+            if step["op"].as_str() != Some("resolve-did")
+                || (step["expectFetchUrl"].is_null() && step["expectError"].is_null())
+                || (has_log && step["expectFetchUrl"].is_null())
+            {
+                continue;
+            }
+            scripted_scenarios.insert(scenario_name.clone());
+            let id = format!("{scenario_name}/resolve-did/{}", index + 1);
+            let is_probe = step["probe"].as_bool().unwrap_or(false)
+                || script["probe"].as_bool().unwrap_or(false);
+            let expected = step["expectFetchUrl"].as_str()
+                .or_else(|| step["expectError"].as_str())
+                .unwrap_or("?");
+            let (result, notes) = check_url_step(step);
+            let result = if is_probe && result == UrlOutcome::Fail {
+                UrlOutcome::Diff
+            } else {
+                result
+            };
+            let label = match result {
+                UrlOutcome::Pass => "✅ PASS",
+                UrlOutcome::Diff => "🔶 DIFF",
+                UrlOutcome::Fail => "❌ FAIL",
+                UrlOutcome::Skip => "⚠️ SKIP",
+            };
+            if result == UrlOutcome::Pass || result == UrlOutcome::Skip {
+                println!("{}   {id} ({notes})", result.as_str());
+            } else {
+                eprintln!("{}   {id} ({notes})", result.as_str());
+            }
+            let row = (id, label.to_string(), expected.to_string(), notes);
+            if result == UrlOutcome::Diff {
+                all_diffs.push((
+                    scenario_name.clone(),
+                    format!("step {}", index + 1),
+                    "expectFetchUrl".to_string(),
+                    format!("expected: {expected}\nactual: {}", row.3),
+                ));
+            }
+            if is_probe {
+                probe_rows.push(row);
+                match result {
+                    UrlOutcome::Pass => probe_pass += 1,
+                    UrlOutcome::Diff => probe_diff += 1,
+                    UrlOutcome::Fail => probe_fail += 1,
+                    UrlOutcome::Skip => probe_skip += 1,
+                }
+            } else {
+                url_rows.push(row);
+                match result {
+                    UrlOutcome::Pass => pass += 1,
+                    UrlOutcome::Diff => diff_count += 1,
+                    UrlOutcome::Fail => fail += 1,
+                    UrlOutcome::Skip => url_skip += 1,
+                }
+            }
+        }
+    }
 
     // --- Negative resolution tests ---
     let mut neg_scenarios: Vec<_> = scenarios
@@ -79,6 +173,9 @@ async fn main() {
     for scenario in &neg_scenarios {
         let scenario_dir = scenario.path();
         let scenario_name = scenario.file_name().to_string_lossy().to_string();
+        if probe_scenarios.contains(&scenario_name) {
+            continue;
+        }
         let ts_dir = scenario_dir.join("ts");
 
         // Read expected error from ts/resolutionResult.json
@@ -92,6 +189,9 @@ async fn main() {
 
         let jsonl_path = ts_dir.join("did.jsonl");
         if !jsonl_path.exists() {
+            if scripted_scenarios.contains(&scenario_name) {
+                continue;
+            }
             neg_rows.push((scenario_name, expected_error, "⚠️ SKIP".to_string(), "ts/ not generated".to_string()));
             continue;
         }
@@ -105,6 +205,9 @@ async fn main() {
         };
 
         if log_content.trim().is_empty() {
+            if scripted_scenarios.contains(&scenario_name) {
+                continue;
+            }
             // URL-only test: parse the DID URLs from script.yaml and check that
             // the URL parser rejects each one before any network call is needed.
             let script_path = scenario_dir.join("script.yaml");
@@ -202,13 +305,9 @@ async fn main() {
         }
 
         // Negative test vectors are handled separately — skip them here.
-        if scenario_name.starts_with("negative-") {
+        if scenario_name.starts_with("negative-") || !log_scenarios.contains(&scenario_name) {
             continue;
         }
-
-        // Delete old per-scenario status.md if it exists
-        let old_status = scenario_dir.join(IMPL_NAME).join("status.md");
-        let _ = std::fs::remove_file(&old_status);
 
         let mut impl_dirs: Vec<_> = match std::fs::read_dir(&scenario_dir) {
             Ok(rd) => rd
@@ -291,10 +390,11 @@ async fn main() {
         }
     }
 
-    println!("\n{pass} passed, {diff_count} diff, {fail} failed, {xfail} xfailed");
+    println!("\n{pass} passed, {diff_count} diff, {fail} failed, {xfail} xfailed, {url_skip} URL skipped");
+    println!("URL probes: {probe_pass} passed, {probe_diff} diff, {probe_fail} failed, {probe_skip} skipped (excluded from conformance exit status)");
 
     // Write implementations/rust/status.md
-    if !all_rows.is_empty() {
+    if !all_rows.is_empty() || !url_rows.is_empty() || !probe_rows.is_empty() {
         let version = read_config_version();
         let header = if version.is_empty() { String::new() } else {
             format!("Implementation: didwebvh-rs {version}\n\n")
@@ -330,12 +430,14 @@ async fn main() {
             String::new()
         };
 
+        let url_table = format_url_rows("Pre-network URL assertions", &url_rows);
+        let probe_table = format_url_rows("URL probes (non-conformance)", &probe_rows);
         let table_rows: String = all_rows.iter()
             .map(|(tc, ls, r, n)| format!("| {tc} | {ls} | {r} | {n} |"))
             .collect::<Vec<_>>()
             .join("\n");
         let content = format!(
-            "# rust status\n\n{header}{gen_table}{neg_table}## Cross-Resolution\n\n| Test Case | Log Source | Result | Notes |\n|---|---|---|---|\n{table_rows}\n"
+            "# rust status\n\n{header}{gen_table}{neg_table}{url_table}{probe_table}## Cross-Resolution\n\n| Test Case | Log Source | Result | Notes |\n|---|---|---|---|\n{table_rows}\n"
         );
         if let Err(e) = std::fs::write(&status_path, &content) {
             eprintln!("warning: could not write status.md: {e}");
@@ -372,6 +474,108 @@ fn read_config_version() -> String {
         .map(|s| s.trim().trim_matches('"').to_string())
         .unwrap_or_default();
     [version, commit].into_iter().filter(|s| !s.is_empty()).collect::<Vec<_>>().join(" @ ")
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+enum UrlOutcome {
+    Pass,
+    Diff,
+    Fail,
+    Skip,
+}
+
+impl UrlOutcome {
+    fn as_str(self) -> &'static str {
+        match self {
+            Self::Pass => "PASS",
+            Self::Diff => "DIFF",
+            Self::Fail => "FAIL",
+            Self::Skip => "SKIP",
+        }
+    }
+}
+
+fn check_url_step(step: &serde_yaml::Value) -> (UrlOutcome, String) {
+    let Some(did) = step["did"].as_str() else {
+        return (UrlOutcome::Fail, "resolve-did step has no did".to_string());
+    };
+    let expected_url = step["expectFetchUrl"].as_str();
+    let expected_error = step["expectError"].as_str();
+    if expected_url.is_some() && expected_error.is_some() {
+        return (UrlOutcome::Fail, "step specifies both expectFetchUrl and expectError".to_string());
+    }
+    if expected_url.is_none() && expected_error.is_none() {
+        return (UrlOutcome::Fail, "expected URL or error must be a string".to_string());
+    }
+
+    // Use the resolver's pre-request egress check, without making a request.
+    let actual = WebVHURL::parse_did_url(did)
+        .and_then(|url| url.get_fetch_url("did.jsonl", HostPolicy::PublicOnly));
+    match (expected_url, expected_error, actual) {
+        (Some(expected), None, Ok(url)) if url.as_str() == expected => {
+            (UrlOutcome::Pass, format!("fetch URL: {url}"))
+        }
+        (Some(expected), None, Ok(url)) => {
+            (UrlOutcome::Diff, format!("expected {expected}; got {url}"))
+        }
+        (Some(_), None, Err(e)) => (UrlOutcome::Fail, format!("URL construction failed: {e}")),
+        (None, Some("invalidDid"), Err(e)) => {
+            (UrlOutcome::Pass, format!("rejected before network: {e}"))
+        }
+        (None, Some("invalidDid"), Ok(url)) => {
+            (UrlOutcome::Fail, format!("expected invalidDid; constructed {url}"))
+        }
+        (None, Some(error), _) => {
+            (UrlOutcome::Skip, format!("{error} requires resolution beyond URL construction"))
+        }
+        _ => unreachable!(),
+    }
+}
+
+fn format_url_rows(title: &str, rows: &[(String, String, String, String)]) -> String {
+    if rows.is_empty() {
+        return String::new();
+    }
+    let rows = rows.iter()
+        .map(|(id, result, expected, notes)| format!(
+            "| {} | {} | {} | {} |",
+            id.replace('|', "\\|"),
+            expected.replace('|', "\\|"),
+            result,
+            notes.replace('|', "\\|").replace('\n', " "),
+        ))
+        .collect::<Vec<_>>()
+        .join("\n");
+    format!("## {title}\n\n| Test Case | Expected | Result | Notes |\n|---|---|---|---|\n{rows}\n\n")
+}
+
+#[cfg(test)]
+mod url_step_tests {
+    use super::*;
+
+    fn check(yaml: &str) -> UrlOutcome {
+        let step = serde_yaml::from_str(yaml).unwrap();
+        check_url_step(&step).0
+    }
+
+    #[test]
+    fn compares_the_resolvers_pre_network_url() {
+        let did = "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:x.example.com";
+        assert_eq!(check(&format!(
+            "did: {did}\nexpectFetchUrl: https://x.example.com/.well-known/did.jsonl"
+        )), UrlOutcome::Pass);
+        assert_eq!(check(&format!(
+            "did: {did}\nexpectFetchUrl: https://different.example.com/did.jsonl"
+        )), UrlOutcome::Diff);
+    }
+
+    #[test]
+    fn checks_errors_without_fetching() {
+        let did = "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:127.0.0.1";
+        assert_eq!(check(&format!("did: {did}\nexpectError: invalidDid")), UrlOutcome::Pass);
+        assert_eq!(check(&format!("did: {did}\nexpectFetchUrl: https://example.com/did.jsonl")), UrlOutcome::Fail);
+        assert_eq!(check("did: did:webvh:QmS:example.com\nexpectError: invalidProof"), UrlOutcome::Skip);
+    }
 }
 
 // ---------------------------------------------------------------------------

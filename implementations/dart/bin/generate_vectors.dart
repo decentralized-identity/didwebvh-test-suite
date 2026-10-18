@@ -59,6 +59,12 @@ void main(List<String> args) async {
     try {
       final script =
           loadYaml(scriptPath.readAsStringSync()) as YamlMap;
+      final steps = script['steps'] as YamlList?;
+      if (steps == null || !steps.any((step) => step is YamlMap && step['op'] == 'create')) {
+        print('SKIP (URL-only scenario)');
+        skipped++;
+        continue;
+      }
       await _processScenario(scenarioDir, script);
       print('done');
       generated++;

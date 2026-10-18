@@ -56,6 +56,8 @@ public class TestVectors {
 
     private final List<String[]> allRows = new ArrayList<>();  // [scenario, logSource, result, notes]
     private final List<String[]> negRows = new ArrayList<>();  // [scenario, expectedError, result, notes]
+    private final List<String[]> urlRows = new ArrayList<>();  // [scenario/step, expected URL, result, notes]
+    private final List<String[]> probeRows = new ArrayList<>();
     private final StringBuilder allDiffs = new StringBuilder();
 
     public static void main(String[] args) {
@@ -85,6 +87,38 @@ public class TestVectors {
                     .collect(Collectors.toList());
         }
 
+        // HttpResolver passes this transformer's output to its LogFetcher.
+        for (Path scenarioDir : scenarios) {
+            Path scriptPath = scenarioDir.resolve("script.yaml");
+            if (!Files.exists(scriptPath)) continue;
+            Map<String, Object> script = new Yaml().load(Files.readString(scriptPath));
+            if (script == null) continue;
+            List<?> steps = (List<?>) script.getOrDefault("steps", List.of());
+            for (int index = 0; index < steps.size(); index++) {
+                if (!(steps.get(index) instanceof Map<?, ?> step) || !"resolve-did".equals(step.get("op"))
+                        || !(step.get("expectFetchUrl") instanceof String expected)) continue;
+                boolean probe = Boolean.TRUE.equals(script.get("probe")) || Boolean.TRUE.equals(step.get("probe"));
+                String result;
+                String notes = "";
+                try {
+                    String actual = DidUrlTransformer.toLogUrl((String) step.get("did"));
+                    result = expected.equals(actual) ? "✅ PASS" : "🔶 DIFF";
+                    if (!expected.equals(actual)) notes = "actual: " + actual;
+                } catch (RuntimeException e) {
+                    result = probe ? "🔶 DIFF" : "❌ FAIL";
+                    notes = "rejected before fetch: " + e.getMessage();
+                }
+                String[] row = {scenarioDir.getFileName() + "/step " + (index + 1), expected, result, notes};
+                (probe ? probeRows : urlRows).add(row);
+                if (!notes.isEmpty()) {
+                    allDiffs.append("=== ").append(row[0]).append(probe ? " (probe)" : "")
+                            .append(" ===\nexpected: ").append(expected).append("\n").append(notes).append("\n\n");
+                }
+                if (!probe && "❌ FAIL".equals(result)) fail++;
+                if (!probe && "🔶 DIFF".equals(result)) diff++;
+            }
+        }
+
         // --- Negative resolution tests (ts/ artifacts only) ---
         for (Path scenarioDir : scenarios) {
             String scenarioName = scenarioDir.getFileName().toString();
@@ -108,40 +142,31 @@ public class TestVectors {
 
             String rawJsonl = Files.readString(jsonlPath).strip();
             if (rawJsonl.isEmpty()) {
-                // URL-only test: parse each DID URL from script.yaml using DidUrlTransformer.toLogUrl().
-                // PASS = all DIDs are rejected by the parser; FAIL = any DID is accepted.
+                // URL-only test: exercise the converter used by HttpResolver for fetches.
                 Path scriptPath = scenarioDir.resolve("script.yaml");
                 try {
                     Yaml yaml = new Yaml();
                     Map<String, Object> script = yaml.load(Files.readString(scriptPath));
                     List<?> steps = (List<?>) script.getOrDefault("steps", List.of());
-                    List<String> dids = new ArrayList<>();
-                    for (Object step : steps) {
-                        if (!(step instanceof Map)) continue;
-                        Map<?, ?> m = (Map<?, ?>) step;
-                        if (!"resolve-did".equals(m.get("op"))) continue;
-                        if (m.get("did") instanceof String) dids.add((String) m.get("did"));
-                    }
-                    if (dids.isEmpty()) {
-                        negRows.add(new String[]{scenarioName, expectedError, "⚠️ SKIP", "no resolve-did ops in script"});
-                    } else {
-                        String failReason = null;
-                        for (String did : dids) {
-                            try {
-                                DidUrlTransformer.toLogUrl(did);
-                                failReason = "URL parser accepted invalid DID: " + did;
-                                break;
-                            } catch (Exception ignored) {
-                                // URL correctly rejected
-                            }
-                        }
-                        if (failReason == null) {
-                            pass++;
-                            negRows.add(new String[]{scenarioName, expectedError, "✅ PASS", ""});
-                        } else {
+                    int checked = 0;
+                    for (int index = 0; index < steps.size(); index++) {
+                        if (!(steps.get(index) instanceof Map)) continue;
+                        Map<?, ?> step = (Map<?, ?>) steps.get(index);
+                        if (!"resolve-did".equals(step.get("op")) || !(step.get("did") instanceof String)) continue;
+                        checked++;
+                        String label = scenarioName + "/step " + (index + 1);
+                        String error = String.valueOf(step.get("expectError"));
+                        try {
+                            String url = DidUrlTransformer.toLogUrl((String) step.get("did"));
                             fail++;
-                            negRows.add(new String[]{scenarioName, expectedError, "❌ FAIL", failReason});
+                            negRows.add(new String[]{label, error, "❌ FAIL", "resolver would fetch invalid DID at: " + url});
+                        } catch (RuntimeException e) {
+                            pass++;
+                            negRows.add(new String[]{label, error, "✅ PASS", ""});
                         }
+                    }
+                    if (checked == 0) {
+                        negRows.add(new String[]{scenarioName, expectedError, "⚠️ SKIP", "no resolve-did ops in script"});
                     }
                 } catch (Exception e) {
                     negRows.add(new String[]{scenarioName, expectedError, "⚠️ SKIP", "cannot parse script.yaml: " + e.getMessage()});
@@ -181,12 +206,16 @@ public class TestVectors {
         }
 
         for (Path scenarioDir : scenarios) {
-            if (!Files.exists(scenarioDir.resolve("script.yaml"))) continue;
-
+            Path scriptPath = scenarioDir.resolve("script.yaml");
+            if (!Files.exists(scriptPath)) continue;
             String scenarioName = scenarioDir.getFileName().toString();
 
             // Negative test vectors are handled separately — skip here.
             if (scenarioName.startsWith("negative-")) continue;
+            Map<String, Object> script = new Yaml().load(Files.readString(scriptPath));
+            List<?> steps = (List<?>) script.getOrDefault("steps", List.of());
+            if (steps.stream().noneMatch(step -> step instanceof Map
+                    && "create".equals(((Map<?, ?>) step).get("op")))) continue;
 
             // Delete old per-scenario status.md if present
             Files.deleteIfExists(scenarioDir.resolve(IMPL_NAME).resolve("status.md"));
@@ -324,6 +353,19 @@ public class TestVectors {
             content.append("## Negative Resolution\n\n");
             content.append("| Test Case | Expected Error | Result | Notes |\n|---|---|---|---|\n");
             for (String[] row : negRows) {
+                content.append("| ").append(row[0]).append(" | ").append(row[1])
+                       .append(" | ").append(row[2]).append(" | ").append(row[3]).append(" |\n");
+            }
+            content.append("\n");
+        }
+
+        for (Map.Entry<String, List<String[]>> section : List.of(
+                Map.entry("DID-to-HTTPS Transformation", urlRows),
+                Map.entry("Interoperability Probes (non-conformance)", probeRows))) {
+            if (section.getValue().isEmpty()) continue;
+            content.append("## ").append(section.getKey()).append("\n\n");
+            content.append("| Test Case | Expected URL | Result | Notes |\n|---|---|---|---|\n");
+            for (String[] row : section.getValue()) {
                 content.append("| ").append(row[0]).append(" | ").append(row[1])
                        .append(" | ").append(row[2]).append(" | ").append(row[3]).append(" |\n");
             }
