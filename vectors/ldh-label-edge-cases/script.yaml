@@ -1,0 +1,11 @@
+description: "Single-character and digit-first DNS labels are valid"
+spec_ref: "https://identity.foundation/didwebvh/v1.0/#did-method-specific-identifier"
+
+steps:
+  - op: resolve-did
+    did: "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:x.example.com"
+    expectFetchUrl: "https://x.example.com/.well-known/did.jsonl"
+
+  - op: resolve-did
+    did: "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:3m.example.com"
+    expectFetchUrl: "https://3m.example.com/.well-known/did.jsonl"

@@ -1,0 +1,20 @@
+description: "Probe: percent-encoded U-label DID-to-HTTPS behaviour"
+spec_ref: "https://identity.foundation/didwebvh/v1.0/#the-did-to-https-transformation"
+probe: true
+
+steps:
+  - op: resolve-did
+    did: "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:jp%E7%B4%8D%E8%B1%86.%E4%BE%8B.jp"
+    expectFetchUrl: "https://xn--jp-cd2fp15c.xn--fsq.jp/.well-known/did.jsonl"
+
+  - op: resolve-did
+    did: "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:b%C3%BCcher.example.com"
+    expectFetchUrl: "https://xn--bcher-kva.example.com/.well-known/did.jsonl"
+
+  - op: resolve-did
+    did: "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:B%C3%9CCHER.example.com"
+    expectFetchUrl: "https://xn--bcher-kva.example.com/.well-known/did.jsonl"
+
+  - op: resolve-did
+    did: "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:fa%C3%9F.de"
+    expectFetchUrl: "https://xn--fa-hia.de/.well-known/did.jsonl"

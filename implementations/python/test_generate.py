@@ -404,10 +404,15 @@ def _run_script(script: dict, omit_empty_nkh: bool = False) -> tuple[list[dict],
 # ---------------------------------------------------------------------------
 
 def _collect_scenarios() -> list[str]:
+    # URL-only scripts (resolve-did steps, no create) have no log to generate.
     return sorted(
         vdir.name
         for vdir in VECTORS_ROOT.iterdir()
         if vdir.is_dir() and (vdir / "script.yaml").exists()
+        and any(
+            step.get("op") == "create"
+            for step in (yaml.safe_load((vdir / "script.yaml").read_text()) or {}).get("steps") or []
+        )
     )
 
 

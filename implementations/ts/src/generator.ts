@@ -141,7 +141,7 @@ async function generateWitnessProof(
 
 function buildKeyMap(script: Script): Map<string, KeyMaterial> {
   const map = new Map<string, KeyMaterial>();
-  for (const keyDef of script.keys) {
+  for (const keyDef of script.keys ?? []) {
     map.set(keyDef.id, keyFromSeed(keyDef.seed));
   }
   return map;
@@ -506,24 +506,23 @@ interface RowEntry { logSource: string; result: string; notes: string }
 interface DiffEntry { logSource: string; filename: string; diff: string }
 interface GenRow { testCase: string; result: string; notes: string }
 interface NegRow { testCase: string; expectedError: string; result: string; notes: string }
+interface FetchRow { testCase: string; step: number; result: string; notes: string }
+interface FetchOp { op: 'resolve-did'; did: string; expectFetchUrl: string }
 
 // ---------------------------------------------------------------------------
 // Negative resolution tests
 // ---------------------------------------------------------------------------
 
-// Calls resolveDID(did) with fetch mocked out.
-// PASS  = resolver rejected the URL before making any network call (correct).
-// FAIL  = resolver attempted a fetch (the malicious URL was not caught pre-network).
+// Capture the URL passed to fetch, before the HTTP client can rewrite it.
 async function runURLResolutionTest(
   did: string,
-): Promise<{ outcome: 'pass' | 'fail'; fetchedUrl?: string }> {
-  let fetchAttempted = false;
-  let fetchedUrl = '';
+): Promise<{ fetchedUrl?: string; error?: string }> {
+  let fetchedUrl: string | undefined;
+  let error: string | undefined;
 
   const originalFetch = (globalThis as any).fetch;
   const originalConsoleError = console.error;
   (globalThis as any).fetch = async (url: RequestInfo | URL) => {
-    fetchAttempted = true;
     fetchedUrl = String(url);
     throw new Error('fetch intercepted by test harness');
   };
@@ -535,15 +534,39 @@ async function runURLResolutionTest(
   };
 
   try {
-    await resolveDID(did);
+    const result = await resolveDID(did);
+    error = result.didResolutionMetadata.error;
+  } catch (caught) {
+    error = caught instanceof Error ? caught.message : String(caught);
   } finally {
     (globalThis as any).fetch = originalFetch;
     console.error = originalConsoleError;
   }
 
-  return fetchAttempted
-    ? { outcome: 'fail', fetchedUrl }
-    : { outcome: 'pass' };
+  return { fetchedUrl, error };
+}
+
+async function fetchUrlStatus(
+  scenarioName: string,
+  script: { steps?: FetchOp[]; probe?: boolean }
+): Promise<{ rows: FetchRow[]; diffs: string[] }> {
+  const rows: FetchRow[] = [];
+  const diffs: string[] = [];
+  for (const [index, step] of (script.steps ?? []).entries()) {
+    if (step.op !== 'resolve-did') continue;
+    if (typeof step.did !== 'string' || typeof step.expectFetchUrl !== 'string') {
+      throw new Error(`${scenarioName} step ${index + 1} must specify did and expectFetchUrl`);
+    }
+    const { fetchedUrl, error } = await runURLResolutionTest(step.did);
+    const matches = fetchedUrl === step.expectFetchUrl;
+    const result = matches ? '✅ PASS' : fetchedUrl || script.probe ? '🔶 DIFF' : '❌ FAIL';
+    const notes = matches ? '' : fetchedUrl ? `fetched: ${fetchedUrl}` : `rejected before fetch: ${error ?? 'no error reported'}`;
+    rows.push({ testCase: scenarioName, step: index + 1, result, notes });
+    if (!matches) {
+      diffs.push(`=== ${scenarioName} / step ${index + 1} ===\nexpected: ${step.expectFetchUrl}\nactual: ${fetchedUrl ?? `(no fetch; ${error ?? 'no error reported'})`}`);
+    }
+  }
+  return { rows, diffs };
 }
 
 async function runNegativeResolutionTest(
@@ -575,11 +598,18 @@ async function runNegativeResolutionTest(
 
     for (const op of resolveDIDOps) {
       const r = await runURLResolutionTest(op.did as string);
-      if (r.outcome === 'fail') {
+      if (r.fetchedUrl !== undefined) {
         return {
           outcome: 'fail',
           expectedError,
           reason: `resolver fetched URL: ${r.fetchedUrl}`,
+        };
+      }
+      if (r.error !== op.expectError) {
+        return {
+          outcome: 'fail',
+          expectedError,
+          reason: `expected ${op.expectError}, got ${r.error ?? 'no error'}`,
         };
       }
     }
@@ -718,12 +748,29 @@ async function main() {
 
   const genRows: GenRow[] = [];
   const negRows: NegRow[] = [];
+  const urlRows: FetchRow[] = [];
+  const probeRows: FetchRow[] = [];
+  const urlDiffs: string[] = [];
   const allRows: Array<{ testCase: string } & RowEntry> = [];
   const allDiffs: Array<{ testCase: string } & DiffEntry> = [];
 
   let hasError = false;
   for (const scriptPath of scriptPaths) {
     const name = path.basename(path.dirname(scriptPath));
+    const script = yamlLoad(fs.readFileSync(scriptPath, 'utf8')) as { steps?: FetchOp[]; probe?: boolean };
+    if (script.steps?.some(step => step.op === 'resolve-did')) {
+      process.stdout.write(`Checking ${name} URLs... `);
+      const { rows, diffs } = await fetchUrlStatus(name, script);
+      if (verify) {
+        console.log(rows.map(row => `step ${row.step}: ${row.result}${row.notes ? ` (${row.notes})` : ''}`).join(', '));
+        if (!script.probe && rows.some(row => row.result !== '✅ PASS')) hasError = true;
+      } else {
+        (script.probe ? probeRows : urlRows).push(...rows);
+        urlDiffs.push(...diffs);
+        console.log('done');
+      }
+      continue;
+    }
     process.stdout.write(`${verify ? 'Verifying' : 'Generating'} ${name}... `);
     try {
       await processScript(scriptPath, verify);
@@ -747,7 +794,7 @@ async function main() {
     }
   }
 
-  if (!verify && (genRows.length > 0 || allRows.length > 0)) {
+  if (!verify && (genRows.length > 0 || allRows.length > 0 || urlRows.length > 0 || probeRows.length > 0)) {
     // Run negative resolution tests against pre-generated ts/ artifacts.
     // Only meaningful on a full run (not single-scenario targets), but harmless
     // to run always — scenarios without ts/ artifacts are reported as SKIP.
@@ -767,6 +814,10 @@ async function main() {
       ? `## Negative Resolution\n\n| Test Case | Expected Error | Result | Notes |\n|---|---|---|---|\n${negRows.map(r => `| ${r.testCase} | ${r.expectedError} | ${r.result} | ${r.notes} |`).join('\n')}\n\n`
       : '';
 
+    const fetchTable = (heading: string, rows: FetchRow[]) => rows.length > 0
+      ? `## ${heading}\n\n| Test Case | Step | Result | Notes |\n|---|---|---|---|\n${rows.map(r => `| ${r.testCase} | ${r.step} | ${r.result} | ${r.notes} |`).join('\n')}\n\n`
+      : '';
+
     const tableRows = allRows
       .map(r => `| ${r.testCase} | ${r.logSource} | ${r.result} | ${r.notes} |`)
       .join('\n');
@@ -775,13 +826,14 @@ async function main() {
       : '';
 
     fs.writeFileSync(statusPath,
-      `# ts status\n\n${header}${genTable}${negTable}${crossTable}`
+      `# ts status\n\n${header}${genTable}${negTable}${fetchTable('DID-to-HTTPS Transformation', urlRows)}${fetchTable('Interoperability Probes (non-conformance)', probeRows)}${crossTable}`
     );
 
-    if (allDiffs.length > 0) {
-      const diffContent = allDiffs
-        .map(d => `=== ${d.testCase} / ${d.logSource} — ${d.filename} ===\n${d.diff}`)
-        .join('\n\n') + '\n';
+    if (allDiffs.length > 0 || urlDiffs.length > 0) {
+      const diffContent = [
+        ...allDiffs.map(d => `=== ${d.testCase} / ${d.logSource} — ${d.filename} ===\n${d.diff}`),
+        ...urlDiffs,
+      ].join('\n\n') + '\n';
       fs.writeFileSync(diffsPath, diffContent);
     }
   }
