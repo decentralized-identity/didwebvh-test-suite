@@ -4,5 +4,5 @@ negative: true
 
 steps:
   - op: resolve-did
-    did: "did:webvh:Qm0000000000000000000000000000000000000000000000:example.com:..:..:admin"
+    did: "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:example.com:..:..:admin"
     expectError: invalidDid
