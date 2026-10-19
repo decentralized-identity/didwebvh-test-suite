@@ -1,0 +1,12 @@
+description: "Raw Unicode in a DID domain violates DID Core and did:webvh syntax"
+spec_ref: "https://identity.foundation/didwebvh/v1.0/#did-method-specific-identifier"
+negative: true
+
+steps:
+  - op: resolve-did
+    did: "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:jp納豆.例.jp"
+    expectError: invalidDid
+
+  - op: resolve-did
+    did: "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:bücher.example.com"
+    expectError: invalidDid

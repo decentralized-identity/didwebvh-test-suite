@@ -1,0 +1,15 @@
+description: "A-label DID-to-HTTPS transformation including UTF-8 paths"
+spec_ref: "https://identity.foundation/didwebvh/v1.0/#the-did-to-https-transformation"
+
+steps:
+  - op: resolve-did
+    did: "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:xn--jp-cd2fp15c.xn--fsq.jp"
+    expectFetchUrl: "https://xn--jp-cd2fp15c.xn--fsq.jp/.well-known/did.jsonl"
+
+  - op: resolve-did
+    did: "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:xn--jp-cd2fp15c.xn--fsq.jp:%E7%94%A8%E6%88%B7"
+    expectFetchUrl: "https://xn--jp-cd2fp15c.xn--fsq.jp/%E7%94%A8%E6%88%B7/did.jsonl"
+
+  - op: resolve-did
+    did: "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:xn--jp-cd2fp15c.xn--fsq.jp:%e7%94%a8%e6%88%b7"
+    expectFetchUrl: "https://xn--jp-cd2fp15c.xn--fsq.jp/%E7%94%A8%E6%88%B7/did.jsonl"

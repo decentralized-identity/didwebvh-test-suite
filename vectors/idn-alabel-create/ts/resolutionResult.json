@@ -1,0 +1,56 @@
+{
+  "didResolutionMetadata": {
+    "contentType": "application/did+ld+json"
+  },
+  "didDocument": {
+    "@context": [
+      "https://www.w3.org/ns/did/v1",
+      "https://w3id.org/security/multikey/v1"
+    ],
+    "id": "did:webvh:QmTycscVgmFgCRZb9rUFidKMSxE1ZX1BjPgBr4c41sN7WJ:xn--jp-cd2fp15c.xn--fsq.jp",
+    "controller": "did:webvh:QmTycscVgmFgCRZb9rUFidKMSxE1ZX1BjPgBr4c41sN7WJ:xn--jp-cd2fp15c.xn--fsq.jp",
+    "verificationMethod": [
+      {
+        "id": "did:webvh:QmTycscVgmFgCRZb9rUFidKMSxE1ZX1BjPgBr4c41sN7WJ:xn--jp-cd2fp15c.xn--fsq.jp#P5RDjVJG",
+        "type": "Multikey",
+        "controller": "did:webvh:QmTycscVgmFgCRZb9rUFidKMSxE1ZX1BjPgBr4c41sN7WJ:xn--jp-cd2fp15c.xn--fsq.jp",
+        "publicKeyMultibase": "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG",
+        "purpose": "authentication"
+      }
+    ],
+    "authentication": [
+      "did:webvh:QmTycscVgmFgCRZb9rUFidKMSxE1ZX1BjPgBr4c41sN7WJ:xn--jp-cd2fp15c.xn--fsq.jp#P5RDjVJG"
+    ],
+    "service": [
+      {
+        "id": "did:webvh:QmTycscVgmFgCRZb9rUFidKMSxE1ZX1BjPgBr4c41sN7WJ:xn--jp-cd2fp15c.xn--fsq.jp#files",
+        "type": "relativeRef",
+        "serviceEndpoint": "https://xn--jp-cd2fp15c.xn--fsq.jp/"
+      },
+      {
+        "@context": "https://identity.foundation/linked-vp/contexts/v1",
+        "id": "did:webvh:QmTycscVgmFgCRZb9rUFidKMSxE1ZX1BjPgBr4c41sN7WJ:xn--jp-cd2fp15c.xn--fsq.jp#whois",
+        "type": "LinkedVerifiablePresentation",
+        "serviceEndpoint": "https://xn--jp-cd2fp15c.xn--fsq.jp/whois.vp"
+      }
+    ]
+  },
+  "didDocumentMetadata": {
+    "versionId": "1-QmWZzheDWvJ4sTZZJqyD2P3Cs4NBdJwT6xJ9vAGQnuAXUd",
+    "versionTime": "2000-01-01T00:00:00Z",
+    "created": "2000-01-01T00:00:00Z",
+    "updated": "2000-01-01T00:00:00Z",
+    "deactivated": false,
+    "portable": false,
+    "scid": "QmTycscVgmFgCRZb9rUFidKMSxE1ZX1BjPgBr4c41sN7WJ",
+    "updateKeys": [
+      "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+    ],
+    "nextKeyHashes": [],
+    "prerotation": false,
+    "witness": {},
+    "watchers": [],
+    "ttl": "3600",
+    "previousLogEntryHash": "QmTycscVgmFgCRZb9rUFidKMSxE1ZX1BjPgBr4c41sN7WJ"
+  }
+}

@@ -73,7 +73,11 @@ After a run, check `implementations/<impl>/status.md`. Each file has three secti
 |---|---|
 | **DID Creation** | Did the implementation successfully generate its own vectors from the scripts? |
 | **Negative Resolution** | Does the implementation correctly *reject* each intentionally invalid log? |
+| **DID-to-HTTPS Transformation** | Does a valid DID yield the specified URL *before* HTTP-client rewriting? |
+| **Interoperability Probes** | Records open-spec behaviour; differences are not conformance failures. |
 | **Cross-Resolution** | Does the implementation resolve every other impl's committed logs correctly? |
+
+For the Java, Java-EECC, and Dart URL-only checks, the harness invokes the URL transformer used immediately before the library's fetch call. This records the URL before HTTP-client rewriting, without making a network request. URL-only scenarios are skipped during DID-log generation and cross-resolution; their assertions appear in the URL and negative-resolution sections instead.
 
 Result codes:
 
@@ -175,10 +179,41 @@ scripts/
 | `multi-update` | Create + two updates; resolve at v1, v2, and HEAD |
 | `multiple-update-keys` | Create with two `updateKeys`; update signed by the second key |
 | `services` | Create with service endpoints; update adding a second service |
+| `idn-alabel-create` | Create and cross-resolve a DID with an A-label domain |
+| `idn-did-to-https` | Capture the A-label DID's HTTPS URL and uppercase-hex path encoding |
+| `ldh-label-edge-cases` | Single-character and digit-first domain labels |
 
 ### Negative scenarios
 
-16 `negative-*` scenarios cover intentionally invalid logs. Each implementation resolves them and reports PASS (correctly rejected) or FAIL (incorrectly accepted).
+The `negative-*` scenarios cover intentionally invalid logs and DID URLs.
+`negative-raw-unicode-domain` rejects Unicode outside DID Core `idchar`;
+`negative-dns-label-too-long` enforces the 63-octet DNS label limit. See
+[the negative vector index](./vectors/NEGATIVE_VECTORS.md) for the complete list.
+
+### Interoperability probes
+
+`idn-pct-ulabel-probe` captures the HTTPS URLs produced from percent-encoded
+U-label DIDs. v1.0 leaves the Unicode normalisation form and IDNA profile open:
+the stated URL is a comparison target, **not** a conformance requirement.
+Report discrepancies as DIFFs in a separate probes section, including
+pre-fetch rejection. Do not count those discrepancies as FAILs. The A-label
+create and resolve tests above do not test percent-encoded U-label behavior.
+
+`path-pct-unreserved-probe` captures the HTTPS URL for path segments that
+percent-encode RFC 3986 unreserved characters, such as `%7E` for `~`. v1.0 does
+not say whether these stay encoded in the URL; the comparison target decodes
+them, following RFC 3986 normalisation.
+
+### `resolve-did` URL assertions
+
+A `resolve-did` step may use `expectFetchUrl` to assert the exact URL a
+resolver passes to its HTTP client, or `expectError` to require rejection
+before any request. The harness intercepts and aborts the request; it never
+contacts the host. Compare URLs exactly (including percent-encoding case),
+before any HTTP-client IDNA conversion. For `expectFetchUrl`, report a
+different URL as DIFF and pre-fetch rejection as FAIL; with `probe: true`,
+both outcomes are non-conformance DIFFs. Harnesses without this interception
+report SKIP rather than PASS.
 
 ---
 

@@ -16,7 +16,11 @@ Compliance test harness for the [did:webvh v1.0 specification](https://identity.
 cargo run --manifest-path implementations/rust/Cargo.toml --bin test-vectors
 ```
 
-Output follows the `PASS` / `XFAIL` / `FAIL` convention used across all harnesses.  Exit code is `0` when all results are pass or xfail; `1` if any test fails outright.
+Output reports `PASS` / `DIFF` / `FAIL` / `SKIP` / `XFAIL`. Exit code is `0` when there are no conformance differences or failures; `1` for a conformance `DIFF` or `FAIL`.
+
+`resolve-did` script steps with `expectFetchUrl` or URL-level `expectError: invalidDid` are also checked without network access. The harness calls `WebVHURL::parse_did_url` and `get_fetch_url("did.jsonl", HostPolicy::PublicOnly)`, the default pre-request egress check used by the resolver. A different URL is `DIFF`, a construction error when a URL was expected is `FAIL`, and errors requiring log resolution are `SKIP` at this stage. Results appear under **Pre-network URL assertions** in `status.md`.
+
+Set `probe: true` on a scenario or step to report these checks separately under **URL probes (non-conformance)**. Probe `PASS` / `DIFF` / `FAIL` / `SKIP` counts are printed but do not affect the conformance exit code.
 
 ## Current Test Results
 
