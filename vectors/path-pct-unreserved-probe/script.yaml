@@ -1,0 +1,16 @@
+description: "Probe: percent-encoded unreserved characters in DID path segments"
+spec_ref: "https://identity.foundation/didwebvh/v1.0/#the-did-to-https-transformation"
+probe: true
+
+steps:
+  - op: resolve-did
+    did: "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:example.com:a%7Eb"
+    expectFetchUrl: "https://example.com/a~b/did.jsonl"
+
+  - op: resolve-did
+    did: "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:example.com:a%7eb"
+    expectFetchUrl: "https://example.com/a~b/did.jsonl"
+
+  - op: resolve-did
+    did: "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:example.com:%41b%2Dc%5Fd%2Ee"
+    expectFetchUrl: "https://example.com/Ab-c_d.e/did.jsonl"

@@ -199,6 +199,11 @@ Report discrepancies as DIFFs in a separate probes section, including
 pre-fetch rejection. Do not count those discrepancies as FAILs. The A-label
 create and resolve tests above do not test percent-encoded U-label behavior.
 
+`path-pct-unreserved-probe` captures the HTTPS URL for path segments that
+percent-encode RFC 3986 unreserved characters, such as `%7E` for `~`. v1.0 does
+not say whether these stay encoded in the URL; the comparison target decodes
+them, following RFC 3986 normalisation.
+
 ### `resolve-did` URL assertions
 
 A `resolve-did` step may use `expectFetchUrl` to assert the exact URL a
