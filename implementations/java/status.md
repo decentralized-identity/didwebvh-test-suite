@@ -9,6 +9,7 @@ Implementation: didwebvh-java 0.3.0-SNAPSHOT @ c50db5b
 | basic-create | ✅ PASS |  |
 | basic-update | ✅ PASS |  |
 | deactivate | ✅ PASS |  |
+| idn-alabel-create | ✅ PASS |  |
 | key-rotation | ✅ PASS |  |
 | multi-update | ✅ PASS |  |
 | multiple-update-keys | ⚠️ SKIP | multiple-update-keys at create time not supported by didwebvh-java API |
@@ -26,14 +27,21 @@ Implementation: didwebvh-java 0.3.0-SNAPSHOT @ c50db5b
 |---|---|---|---|
 | negative-cross-did-witness-replay | invalidDid | ✅ PASS |  |
 | negative-did-key-body-fragment-mismatch | invalidProof | ✅ PASS |  |
+| negative-dns-label-too-long/step 1 | invalidDid | ✅ PASS |  |
 | negative-duplicate-witness-ids | invalidParameters | ✅ PASS |  |
-| negative-fragment-leaks-into-domain | invalidDid | ✅ PASS |  |
-| negative-lowercase-pct-port-ip | invalidDid | ✅ PASS |  |
-| negative-path-traversal-did | invalidDid | ✅ PASS |  |
-| negative-pct-encoded-ip-host | invalidDid | ✅ PASS |  |
-| negative-pct-encoded-traversal | invalidDid | ✅ PASS |  |
+| negative-fragment-leaks-into-domain/step 1 | invalidDid | ✅ PASS |  |
+| negative-lowercase-pct-port-ip/step 1 | invalidDid | ✅ PASS |  |
+| negative-path-traversal-did/step 1 | invalidDid | ❌ FAIL | resolver would fetch invalid DID at: https://example.com/../../admin/did.jsonl |
+| negative-pct-encoded-ip-host/step 1 | invalidDid | ❌ FAIL | resolver would fetch invalid DID at: https://127%2E0%2E0%2E1/.well-known/did.jsonl |
+| negative-pct-encoded-ip-host/step 2 | invalidDid | ❌ FAIL | resolver would fetch invalid DID at: https://127%2e0%2e0%2e1/.well-known/did.jsonl |
+| negative-pct-encoded-ip-host/step 3 | invalidDid | ❌ FAIL | resolver would fetch invalid DID at: https://169%2E254%2E169%2E254/.well-known/did.jsonl |
+| negative-pct-encoded-traversal/step 1 | invalidDid | ❌ FAIL | resolver would fetch invalid DID at: https://example.com/%252E%252E/admin/did.jsonl |
+| negative-pct-encoded-traversal/step 2 | invalidDid | ❌ FAIL | resolver would fetch invalid DID at: https://example.com/%252e%252e/admin/did.jsonl |
+| negative-pct-encoded-traversal/step 3 | invalidDid | ❌ FAIL | resolver would fetch invalid DID at: https://example.com/a%252Fb/did.jsonl |
 | negative-portable-scid-swap | invalidDid | ✅ PASS |  |
 | negative-pre-rotation-omit-updatekeys | invalidParameters | ✅ PASS |  |
+| negative-raw-unicode-domain/step 1 | invalidDid | ❌ FAIL | resolver would fetch invalid DID at: https://xn--jp-cd2fp15c.xn--fsq.jp/.well-known/did.jsonl |
+| negative-raw-unicode-domain/step 2 | invalidDid | ❌ FAIL | resolver would fetch invalid DID at: https://xn--bcher-kva.example.com/.well-known/did.jsonl |
 | negative-scid-mismatch-genesis | invalidDid | ✅ PASS |  |
 | negative-unknown-method-version | invalidDid | ✅ PASS |  |
 | negative-versiontime-future | invalidDid | ✅ PASS |  |
@@ -41,6 +49,28 @@ Implementation: didwebvh-java 0.3.0-SNAPSHOT @ c50db5b
 | negative-witness-update-threshold-not-met | invalidDid | ✅ PASS |  |
 | negative-wrong-cryptosuite | invalidProof | ✅ PASS |  |
 | negative-zero-witness-threshold | invalidParameters | ✅ PASS |  |
+
+## DID-to-HTTPS Transformation
+
+| Test Case | Expected URL | Result | Notes |
+|---|---|---|---|
+| idn-did-to-https/step 1 | https://xn--jp-cd2fp15c.xn--fsq.jp/.well-known/did.jsonl | ✅ PASS |  |
+| idn-did-to-https/step 2 | https://xn--jp-cd2fp15c.xn--fsq.jp/%E7%94%A8%E6%88%B7/did.jsonl | 🔶 DIFF | actual: https://xn--jp-cd2fp15c.xn--fsq.jp/%25E7%2594%25A8%25E6%2588%25B7/did.jsonl |
+| idn-did-to-https/step 3 | https://xn--jp-cd2fp15c.xn--fsq.jp/%E7%94%A8%E6%88%B7/did.jsonl | 🔶 DIFF | actual: https://xn--jp-cd2fp15c.xn--fsq.jp/%25e7%2594%25a8%25e6%2588%25b7/did.jsonl |
+| ldh-label-edge-cases/step 1 | https://x.example.com/.well-known/did.jsonl | ✅ PASS |  |
+| ldh-label-edge-cases/step 2 | https://3m.example.com/.well-known/did.jsonl | ✅ PASS |  |
+
+## Interoperability Probes (non-conformance)
+
+| Test Case | Expected URL | Result | Notes |
+|---|---|---|---|
+| idn-pct-ulabel-probe/step 1 | https://xn--jp-cd2fp15c.xn--fsq.jp/.well-known/did.jsonl | 🔶 DIFF | actual: https://jp%E7%B4%8D%E8%B1%86.%E4%BE%8B.jp/.well-known/did.jsonl |
+| idn-pct-ulabel-probe/step 2 | https://xn--bcher-kva.example.com/.well-known/did.jsonl | 🔶 DIFF | actual: https://b%C3%BCcher.example.com/.well-known/did.jsonl |
+| idn-pct-ulabel-probe/step 3 | https://xn--bcher-kva.example.com/.well-known/did.jsonl | 🔶 DIFF | actual: https://B%C3%9CCHER.example.com/.well-known/did.jsonl |
+| idn-pct-ulabel-probe/step 4 | https://xn--fa-hia.de/.well-known/did.jsonl | 🔶 DIFF | actual: https://fa%C3%9F.de/.well-known/did.jsonl |
+| path-pct-unreserved-probe/step 1 | https://example.com/a~b/did.jsonl | 🔶 DIFF | actual: https://example.com/a%257Eb/did.jsonl |
+| path-pct-unreserved-probe/step 2 | https://example.com/a~b/did.jsonl | 🔶 DIFF | actual: https://example.com/a%257eb/did.jsonl |
+| path-pct-unreserved-probe/step 3 | https://example.com/Ab-c_d.e/did.jsonl | 🔶 DIFF | actual: https://example.com/%2541b%252Dc%255Fd%252Ee/did.jsonl |
 
 ## Cross-Resolution
 
@@ -64,6 +94,12 @@ Implementation: didwebvh-java 0.3.0-SNAPSHOT @ c50db5b
 | deactivate | python | 🔶 DIFF | see diffs.txt |
 | deactivate | rust | 🔶 DIFF | see diffs.txt |
 | deactivate | ts | 🔶 DIFF | see diffs.txt |
+| idn-alabel-create | dart | 🔶 DIFF | see diffs.txt |
+| idn-alabel-create | java (self) | ✅ PASS |  |
+| idn-alabel-create | java-eecc | 🔶 DIFF | see diffs.txt |
+| idn-alabel-create | python | 🔶 DIFF | see diffs.txt |
+| idn-alabel-create | rust | 🔶 DIFF | see diffs.txt |
+| idn-alabel-create | ts | 🔶 DIFF | see diffs.txt |
 | key-rotation | dart | 🔶 DIFF | see diffs.txt |
 | key-rotation | java (self) | ✅ PASS |  |
 | key-rotation | java-eecc | 🔶 DIFF | see diffs.txt |

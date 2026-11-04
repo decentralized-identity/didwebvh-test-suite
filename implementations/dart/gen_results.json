@@ -15,6 +15,11 @@
     "notes": ""
   },
   {
+    "testCase": "idn-alabel-create",
+    "result": "✅ PASS",
+    "notes": ""
+  },
+  {
     "testCase": "key-rotation",
     "result": "✅ PASS",
     "notes": ""

@@ -1,0 +1,53 @@
+{
+  "didDocument": {
+    "@context": [
+      "https://www.w3.org/ns/did/v1",
+      "https://w3id.org/security/multikey/v1"
+    ],
+    "assertionMethod": [],
+    "authentication": [
+      "did:webvh:QmezTptUcGaT9JM1UCYVj9RqZDbEDGyysSRsi9juwLFTeg:xn--jp-cd2fp15c.xn--fsq.jp#P5RDjVJG"
+    ],
+    "capabilityDelegation": [],
+    "capabilityInvocation": [],
+    "controller": "did:webvh:QmezTptUcGaT9JM1UCYVj9RqZDbEDGyysSRsi9juwLFTeg:xn--jp-cd2fp15c.xn--fsq.jp",
+    "id": "did:webvh:QmezTptUcGaT9JM1UCYVj9RqZDbEDGyysSRsi9juwLFTeg:xn--jp-cd2fp15c.xn--fsq.jp",
+    "keyAgreement": [],
+    "service": [
+      {
+        "id": "did:webvh:QmezTptUcGaT9JM1UCYVj9RqZDbEDGyysSRsi9juwLFTeg:xn--jp-cd2fp15c.xn--fsq.jp#files",
+        "serviceEndpoint": "https://xn--jp-cd2fp15c.xn--fsq.jp",
+        "type": "relativeRef"
+      },
+      {
+        "@context": "https://identity.foundation/linked-vp/contexts/v1",
+        "id": "did:webvh:QmezTptUcGaT9JM1UCYVj9RqZDbEDGyysSRsi9juwLFTeg:xn--jp-cd2fp15c.xn--fsq.jp#whois",
+        "serviceEndpoint": "https://xn--jp-cd2fp15c.xn--fsq.jp/whois.vp",
+        "type": "LinkedVerifiablePresentation"
+      }
+    ],
+    "verificationMethod": [
+      {
+        "controller": "did:webvh:QmezTptUcGaT9JM1UCYVj9RqZDbEDGyysSRsi9juwLFTeg:xn--jp-cd2fp15c.xn--fsq.jp",
+        "id": "did:webvh:QmezTptUcGaT9JM1UCYVj9RqZDbEDGyysSRsi9juwLFTeg:xn--jp-cd2fp15c.xn--fsq.jp#P5RDjVJG",
+        "publicKeyMultibase": "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG",
+        "type": "Multikey"
+      }
+    ]
+  },
+  "didDocumentMetadata": {
+    "created": "2000-01-01T00:00:00Z",
+    "deactivated": false,
+    "portable": false,
+    "scid": "QmezTptUcGaT9JM1UCYVj9RqZDbEDGyysSRsi9juwLFTeg",
+    "updated": "2000-01-01T00:00:00Z",
+    "versionId": "1-QmWRRmVNiDuHFTRxSqaGBGQUiuDdaW779Mdo2cb7HrBHkk",
+    "versionNumber": 1,
+    "versionTime": "2000-01-01T00:00:00Z",
+    "watchers": null,
+    "witness": null
+  },
+  "didResolutionMetadata": {
+    "contentType": "application/did+ld+json"
+  }
+}

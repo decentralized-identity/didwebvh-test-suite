@@ -46,7 +46,17 @@ function stubFetchTracking(): { restore: () => void; attempted: boolean; url: st
 }
 
 async function resolveViaThisdid(did: string, resolutionOptions: Record<string, unknown> = {}): Promise<any> {
-  const registry = getResolver() as unknown as Record<string, (...args: any[]) => Promise<any>>;
+  // The wrapper's default fetch on Node is its own guarded undici client, which
+  // bypasses the globalThis.fetch stubs above and goes to the real network.
+  // Route it back through globalThis.fetch (looked up per call, so the stub
+  // active at that moment is used) and declare that the caller owns the
+  // destination check, as the wrapper's own tests do.
+  const registry = getResolver({
+    fetchPolicy: {
+      fetch: ((input: any, init?: any) => globalThis.fetch(input, init)) as typeof fetch,
+    },
+    destinationGuard: 'caller',
+  } as any) as unknown as Record<string, (...args: any[]) => Promise<any>>;
   return registry.webvh(did, null, null, resolutionOptions);
 }
 

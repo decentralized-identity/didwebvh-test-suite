@@ -1,43 +1,43 @@
 [
   {
-    "versionId": "1-QmPBDUVCdsQ5RcZrs2K38jMsAscGnHC61odYsqQ1iv6ECo",
+    "versionId": "1-QmbLXMvbjrYkaJXJCKH7AyfZgyj8Dihs5BEAg96Q2rp8Ai",
     "proof": [
       {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
         "verificationMethod": "did:key:z6Mkrv5Cm2XCLumMPTqooLTCw6YDf421d7VdTziwrZ8vNf4L#z6Mkrv5Cm2XCLumMPTqooLTCw6YDf421d7VdTziwrZ8vNf4L",
-        "created": "2026-07-29T18:17:37Z",
+        "created": "2026-11-04T20:47:09Z",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z2Exm2KzMeo6ALXtQJfs6puTscr74CUBqomWks8C2Rei6Uqxic5zuc6Mb3QeWRY5MJKXefKLwo6iPU7ESBTsYGtHr"
+        "proofValue": "z4DeQ6aV7Wtx9LP6UswzutQSvpE9fHJ2iU4ddZRj6M9poWib8WPJeUKDyrFdQhpu4iBuc7iDYC289BFBXXMdKdoZA"
       },
       {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
         "verificationMethod": "did:key:z6MkjnHi6KJKx625x56sxudLoKdDVDABJ5VHHdXRFPUea7NP#z6MkjnHi6KJKx625x56sxudLoKdDVDABJ5VHHdXRFPUea7NP",
-        "created": "2026-07-29T18:17:37Z",
+        "created": "2026-11-04T20:47:09Z",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z39jb4FZA2PCtdLBbTMuE2PfzZrFBftfDxGJvLpEUGDiM6sT4oSniWADyVu3ihhDe4eNNkHPwJjcCm3EaRCUwGTY2"
+        "proofValue": "z2qQ6TiUkuWdqXmzF1JeshmAHSZDjvmiv2fgHJSLTyAZmkYLEwjKFNnqfB5MTZATqoKnJceiGuFfCjK2gWvvk3ZCp"
       }
     ]
   },
   {
-    "versionId": "2-Qmaj4byhv8pqeAW8ZznoQUQCgPRRZRy2d3UYBvHsqYuVcM",
+    "versionId": "2-QmTzYr6u3Ez4gzRChBWNX22EeAgFybbR6HB3RkiRB5NDcU",
     "proof": [
       {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
         "verificationMethod": "did:key:z6Mkrv5Cm2XCLumMPTqooLTCw6YDf421d7VdTziwrZ8vNf4L#z6Mkrv5Cm2XCLumMPTqooLTCw6YDf421d7VdTziwrZ8vNf4L",
-        "created": "2026-07-29T18:17:37Z",
+        "created": "2026-11-04T20:47:09Z",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z2jQGMRfj9SfvjDxxtAo5vpupTZayMfVLRz41WSLB2EfEgbdNydchTj41rEdMagjgbXD11x4FewJKG1NS9SRs448i"
+        "proofValue": "zALbqScaohGydFm67rbzLFdFqqGCJYRcp9QbS38X24hB3nyhERhPip7emJT2UGq93ppuZNoQR2TG36LnQkCzvrvg"
       },
       {
         "type": "DataIntegrityProof",
         "cryptosuite": "eddsa-jcs-2022",
         "verificationMethod": "did:key:z6MkjnHi6KJKx625x56sxudLoKdDVDABJ5VHHdXRFPUea7NP#z6MkjnHi6KJKx625x56sxudLoKdDVDABJ5VHHdXRFPUea7NP",
-        "created": "2026-07-29T18:17:37Z",
+        "created": "2026-11-04T20:47:09Z",
         "proofPurpose": "assertionMethod",
-        "proofValue": "z5MJNnprzd925NPDeXWUTn1R8tGn24ZzDUGjZf5YcD7yvpu4sKE3k239ZWxdBLSb23x3FSkUqoR2eitWmixBX4B8j"
+        "proofValue": "z2sdMjdnaPcNanh4rpSo2fVWJvZm9x2kvUzyXFQmYea9BEHx5mCuKhTh3RnYaHjPug3yFbrYqz451o7vs5QY7C5ra"
       }
     ]
   }

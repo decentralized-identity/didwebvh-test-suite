@@ -52,6 +52,7 @@
     "deactivated": false,
     "portable": false,
     "scid": "QmaSetYkGWKD3FF9VBazD9FRfg7RBbiQKum21NcryzTkM1",
+    "ttl": "3600",
     "versionId": "2-QmYDLrfFgUqfkruNxgDKYCjbaySmjj3tM3RQE96ZtFhQhG",
     "versionNumber": 2,
     "versionTime": "2000-01-02T00:00:00Z",

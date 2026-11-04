@@ -1,0 +1,46 @@
+{
+  "didDocument": {
+    "@context": "https://www.w3.org/ns/did/v1",
+    "id": "did:webvh:QmbZmgufkKN1qvzsZS8oRzztTgkfp9LmrMJj9bG7VfjvvH:xn--jp-cd2fp15c.xn--fsq.jp",
+    "controller": "did:webvh:QmbZmgufkKN1qvzsZS8oRzztTgkfp9LmrMJj9bG7VfjvvH:xn--jp-cd2fp15c.xn--fsq.jp",
+    "verificationMethod": [
+      {
+        "id": "did:webvh:QmbZmgufkKN1qvzsZS8oRzztTgkfp9LmrMJj9bG7VfjvvH:xn--jp-cd2fp15c.xn--fsq.jp#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG",
+        "type": "Multikey",
+        "controller": "did:webvh:QmbZmgufkKN1qvzsZS8oRzztTgkfp9LmrMJj9bG7VfjvvH:xn--jp-cd2fp15c.xn--fsq.jp",
+        "publicKeyMultibase": "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+      }
+    ],
+    "authentication": [
+      "did:webvh:QmbZmgufkKN1qvzsZS8oRzztTgkfp9LmrMJj9bG7VfjvvH:xn--jp-cd2fp15c.xn--fsq.jp#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+    ],
+    "assertionMethod": [
+      "did:webvh:QmbZmgufkKN1qvzsZS8oRzztTgkfp9LmrMJj9bG7VfjvvH:xn--jp-cd2fp15c.xn--fsq.jp#z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+    ],
+    "service": [
+      {
+        "id": "did:webvh:QmbZmgufkKN1qvzsZS8oRzztTgkfp9LmrMJj9bG7VfjvvH:xn--jp-cd2fp15c.xn--fsq.jp#files",
+        "type": "relativeRef",
+        "serviceEndpoint": "https://xn--jp-cd2fp15c.xn--fsq.jp/"
+      },
+      {
+        "@context": "https://identity.foundation/linked-vp/contexts/v1",
+        "id": "did:webvh:QmbZmgufkKN1qvzsZS8oRzztTgkfp9LmrMJj9bG7VfjvvH:xn--jp-cd2fp15c.xn--fsq.jp#whois",
+        "type": "LinkedVerifiablePresentation",
+        "serviceEndpoint": "https://xn--jp-cd2fp15c.xn--fsq.jp/whois.vp"
+      }
+    ]
+  },
+  "didDocumentMetadata": {
+    "created": "2026-11-04T20:47:09Z",
+    "updated": "2026-11-04T20:47:09Z",
+    "versionId": "1-QmQMhkqDx9pUTfQ332HdJG15SXQHNzqUaiUu2cDuCyQrDR",
+    "versionNumber": 1,
+    "versionTime": "2026-11-04T20:47:09Z",
+    "portable": false,
+    "scid": "QmbZmgufkKN1qvzsZS8oRzztTgkfp9LmrMJj9bG7VfjvvH"
+  },
+  "didResolutionMetadata": {
+    "contentType": "application/did+ld+json"
+  }
+}

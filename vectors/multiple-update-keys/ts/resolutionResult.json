@@ -11,18 +11,18 @@
     "controller": "did:webvh:QmP3WFXAfND3yLL3eXZHvCNZaNRGaZzxU8i5rjVPS73i6L:example.com",
     "verificationMethod": [
       {
-        "type": "Multikey",
-        "publicKeyMultibase": "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG",
-        "purpose": "authentication",
         "id": "did:webvh:QmP3WFXAfND3yLL3eXZHvCNZaNRGaZzxU8i5rjVPS73i6L:example.com#P5RDjVJG",
-        "controller": "did:webvh:QmP3WFXAfND3yLL3eXZHvCNZaNRGaZzxU8i5rjVPS73i6L:example.com"
+        "type": "Multikey",
+        "controller": "did:webvh:QmP3WFXAfND3yLL3eXZHvCNZaNRGaZzxU8i5rjVPS73i6L:example.com",
+        "publicKeyMultibase": "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG",
+        "purpose": "authentication"
       },
       {
-        "type": "Multikey",
-        "publicKeyMultibase": "z6MknGc3ocHs3zdPiJbnaaqDi58NGb4pk1Sp9WxWufuXSdxf",
-        "purpose": "authentication",
         "id": "did:webvh:QmP3WFXAfND3yLL3eXZHvCNZaNRGaZzxU8i5rjVPS73i6L:example.com#ufuXSdxf",
-        "controller": "did:webvh:QmP3WFXAfND3yLL3eXZHvCNZaNRGaZzxU8i5rjVPS73i6L:example.com"
+        "type": "Multikey",
+        "controller": "did:webvh:QmP3WFXAfND3yLL3eXZHvCNZaNRGaZzxU8i5rjVPS73i6L:example.com",
+        "publicKeyMultibase": "z6MknGc3ocHs3zdPiJbnaaqDi58NGb4pk1Sp9WxWufuXSdxf",
+        "purpose": "authentication"
       }
     ],
     "authentication": [
@@ -47,7 +47,8 @@
     ]
   },
   "didDocumentMetadata": {
-    "versionId": "2-QmXyqqct1UiP8gN6vK4twC46F7xmRFGKRtZz7CRJ3pcHUz",
+    "versionId": "2-QmRpxabZtyS2sp79DvNC1fbAYUs1A6rQrkyRW4XkRnbj4Y",
+    "versionTime": "2000-01-02T00:00:00Z",
     "created": "2000-01-01T00:00:00Z",
     "updated": "2000-01-02T00:00:00Z",
     "deactivated": false,
@@ -61,6 +62,7 @@
     "prerotation": false,
     "witness": {},
     "watchers": [],
+    "ttl": "3600",
     "previousLogEntryHash": "QmP3WFXAfND3yLL3eXZHvCNZaNRGaZzxU8i5rjVPS73i6L"
   }
 }

@@ -7,19 +7,19 @@
       "https://www.w3.org/ns/did/v1",
       "https://w3id.org/security/multikey/v1"
     ],
-    "id": "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:example.com",
-    "controller": "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:example.com",
+    "id": "did:webvh:QmeePZKyZmhRs7FBknHbNDhQbiUoPDL3Un7mx9Ap9PwJ8F:example.com",
+    "controller": "did:webvh:QmeePZKyZmhRs7FBknHbNDhQbiUoPDL3Un7mx9Ap9PwJ8F:example.com",
     "verificationMethod": [
       {
+        "id": "did:webvh:QmeePZKyZmhRs7FBknHbNDhQbiUoPDL3Un7mx9Ap9PwJ8F:example.com#P5RDjVJG",
         "type": "Multikey",
+        "controller": "did:webvh:QmeePZKyZmhRs7FBknHbNDhQbiUoPDL3Un7mx9Ap9PwJ8F:example.com",
         "publicKeyMultibase": "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG",
-        "purpose": "authentication",
-        "id": "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:example.com#P5RDjVJG",
-        "controller": "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:example.com"
+        "purpose": "authentication"
       }
     ],
     "authentication": [
-      "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:example.com#P5RDjVJG"
+      "did:webvh:QmeePZKyZmhRs7FBknHbNDhQbiUoPDL3Un7mx9Ap9PwJ8F:example.com#P5RDjVJG"
     ],
     "service": [
       {
@@ -33,25 +33,26 @@
         "serviceEndpoint": "https://example.com/didcomm"
       },
       {
-        "id": "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:example.com#files",
+        "id": "did:webvh:QmeePZKyZmhRs7FBknHbNDhQbiUoPDL3Un7mx9Ap9PwJ8F:example.com#files",
         "type": "relativeRef",
         "serviceEndpoint": "https://example.com/"
       },
       {
         "@context": "https://identity.foundation/linked-vp/contexts/v1",
-        "id": "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:example.com#whois",
+        "id": "did:webvh:QmeePZKyZmhRs7FBknHbNDhQbiUoPDL3Un7mx9Ap9PwJ8F:example.com#whois",
         "type": "LinkedVerifiablePresentation",
         "serviceEndpoint": "https://example.com/whois.vp"
       }
     ]
   },
   "didDocumentMetadata": {
-    "versionId": "2-Qmbqeo7YzEWiDzvZSJ6NRk44PqZiPgaPbLZS1wosX6DtXe",
+    "versionId": "2-QmZc9AGAzuK1qjWLA9swoirYX35PZSkSNv1yZyX2Jm3ari",
+    "versionTime": "2000-01-02T00:00:00Z",
     "created": "2000-01-01T00:00:00Z",
     "updated": "2000-01-02T00:00:00Z",
     "deactivated": false,
     "portable": false,
-    "scid": "QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ",
+    "scid": "QmeePZKyZmhRs7FBknHbNDhQbiUoPDL3Un7mx9Ap9PwJ8F",
     "updateKeys": [
       "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
     ],
@@ -59,6 +60,7 @@
     "prerotation": false,
     "witness": {},
     "watchers": [],
-    "previousLogEntryHash": "QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ"
+    "ttl": "3600",
+    "previousLogEntryHash": "QmeePZKyZmhRs7FBknHbNDhQbiUoPDL3Un7mx9Ap9PwJ8F"
   }
 }

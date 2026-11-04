@@ -27,13 +27,30 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && chmod -R a+rX "$COREPACK_HOME" \
     && rm -rf /var/lib/apt/lists/*
 
-# Clone the thisdid monorepo, build only the vendored webvh-did-resolver
-# subpackage (it has its own pnpm-lock.yaml and is buildable standalone),
-# then save the exact commit used for provenance.
+# Clone the thisdid monorepo, save the exact commit used for provenance, then
+# build only the vendored webvh-did-resolver subpackage (it has its own
+# pnpm-lock.yaml).
+#
+# Since thisdid commit 97f6b8f, webvh-did-resolver depends on
+# `didwebvh-ts: link:../forks/didwebvh-ts`, a git submodule (GoPlausible's
+# fork of didwebvh-ts, pinned by the thisdid commit). A `link:` dependency is
+# neither installed nor built by pnpm, so the submodule must be checked out,
+# installed and built first. The resolver also compiles node-guard.ts against
+# Node's types, which upstream CI gets from the monorepo root's `npm ci`; here
+# just @types/node (at the root lockfile's version) is installed into
+# vendor/node_modules, where tsc finds it by walking up from the subpackage.
+# Both steps are skipped for older thisdid commits that predate the fork.
 RUN mkdir -p /app \
     && git clone --depth 1 --branch "$BRANCH" "$REPO" /deps/thisdid \
     && git -C /deps/thisdid rev-parse HEAD > /app/library-commit \
-    && cd /deps/thisdid/vendor/webvh-did-resolver \
+    && cd /deps/thisdid \
+    && if git config -f .gitmodules --get submodule.vendor/forks/didwebvh-ts.path >/dev/null 2>&1; then \
+         git submodule update --init --depth 1 vendor/forks/didwebvh-ts \
+         && (cd vendor/forks/didwebvh-ts && pnpm install --frozen-lockfile && pnpm run build) \
+         && TYPES_NODE="$(jq -r '.packages["node_modules/@types/node"].version // "latest"' package-lock.json 2>/dev/null || echo latest)" \
+         && npm install --no-save --no-package-lock --ignore-scripts --prefix vendor "@types/node@${TYPES_NODE}"; \
+       fi \
+    && cd vendor/webvh-did-resolver \
     && pnpm install --frozen-lockfile \
     && pnpm run build
 

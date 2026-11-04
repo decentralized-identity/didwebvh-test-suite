@@ -1,6 +1,6 @@
 # thisdid status
 
-Implementation: @thisdid/webvh-did-resolver 1.0.0 (wraps didwebvh-ts 2.8.0)
+Implementation: @thisdid/webvh-did-resolver 1.0.0 (wraps didwebvh-ts link:../forks/didwebvh-ts)
 
 ## DID Creation
 
@@ -14,6 +14,7 @@ thisdid is a resolver-only wrapper — it has no DID-log generator, so DID Creat
 |---|---|---|---|
 | negative-cross-did-witness-replay | invalidDid | ✅ PASS |  |
 | negative-did-key-body-fragment-mismatch | invalidProof | ✅ PASS |  |
+| negative-dns-label-too-long | invalidDid | ❌ FAIL | resolver fetched URL: https://aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.example.com/.well-known/did.jsonl |
 | negative-duplicate-witness-ids | invalidParameters | ✅ PASS |  |
 | negative-fragment-leaks-into-domain | invalidDid | ✅ PASS |  |
 | negative-lowercase-pct-port-ip | invalidDid | ✅ PASS |  |
@@ -22,6 +23,7 @@ thisdid is a resolver-only wrapper — it has no DID-log generator, so DID Creat
 | negative-pct-encoded-traversal | invalidDid | ✅ PASS |  |
 | negative-portable-scid-swap | invalidDid | ✅ PASS |  |
 | negative-pre-rotation-omit-updatekeys | invalidParameters | ✅ PASS |  |
+| negative-raw-unicode-domain | invalidDid | ❌ FAIL | resolver fetched URL: https://xn--jp-cd2fp15c.xn--fsq.jp/.well-known/did.jsonl |
 | negative-scid-mismatch-genesis | invalidDid | ✅ PASS |  |
 | negative-unknown-method-version | invalidDid | ✅ PASS |  |
 | negative-versiontime-future | invalidDid | ✅ PASS |  |
@@ -39,79 +41,85 @@ thisdid is a resolver-only wrapper — it has no DID-log generator, so DID Creat
 | basic-create | java-eecc | 🔶 DIFF | see diffs.txt |
 | basic-create | python | 🔶 DIFF | see diffs.txt |
 | basic-create | rust | 🔶 DIFF | see diffs.txt |
-| basic-create | ts | 🔶 DIFF | see diffs.txt |
+| basic-create | ts | ✅ PASS |  |
 | basic-update | dart | 🔶 DIFF | see diffs.txt |
 | basic-update | java | 🔶 DIFF | see diffs.txt |
 | basic-update | java-eecc | 🔶 DIFF | see diffs.txt |
 | basic-update | python | 🔶 DIFF | see diffs.txt |
 | basic-update | rust | 🔶 DIFF | see diffs.txt |
-| basic-update | ts | 🔶 DIFF | see diffs.txt |
+| basic-update | ts | ✅ PASS |  |
 | deactivate | dart | 🔶 DIFF | see diffs.txt |
 | deactivate | java | 🔶 DIFF | see diffs.txt |
 | deactivate | java-eecc | 🔶 DIFF | see diffs.txt |
 | deactivate | python | 🔶 DIFF | see diffs.txt |
 | deactivate | rust | 🔶 DIFF | see diffs.txt |
 | deactivate | ts | 🔶 DIFF | see diffs.txt |
+| idn-alabel-create | dart | 🔶 DIFF | see diffs.txt |
+| idn-alabel-create | java | 🔶 DIFF | see diffs.txt |
+| idn-alabel-create | java-eecc | 🔶 DIFF | see diffs.txt |
+| idn-alabel-create | python | 🔶 DIFF | see diffs.txt |
+| idn-alabel-create | rust | 🔶 DIFF | see diffs.txt |
+| idn-alabel-create | ts | ✅ PASS |  |
 | key-rotation | dart | 🔶 DIFF | see diffs.txt |
 | key-rotation | java | 🔶 DIFF | see diffs.txt |
 | key-rotation | java-eecc | 🔶 DIFF | see diffs.txt |
 | key-rotation | python | 🔶 DIFF | see diffs.txt |
 | key-rotation | rust | 🔶 DIFF | see diffs.txt |
-| key-rotation | ts | 🔶 DIFF | see diffs.txt |
+| key-rotation | ts | ✅ PASS |  |
 | multi-update | dart | 🔶 DIFF | see diffs.txt |
 | multi-update | java | 🔶 DIFF | see diffs.txt |
 | multi-update | java-eecc | 🔶 DIFF | see diffs.txt |
 | multi-update | python | 🔶 DIFF | see diffs.txt |
 | multi-update | rust | 🔶 DIFF | see diffs.txt |
-| multi-update | ts | 🔶 DIFF | see diffs.txt |
+| multi-update | ts | ✅ PASS |  |
 | multiple-update-keys | dart | ⚠️ SKIP | no did.jsonl |
 | multiple-update-keys | java | ⚠️ SKIP | no did.jsonl |
 | multiple-update-keys | java-eecc | 🔶 DIFF | see diffs.txt |
 | multiple-update-keys | python | 🔶 DIFF | see diffs.txt |
 | multiple-update-keys | rust | 🔶 DIFF | see diffs.txt |
-| multiple-update-keys | ts | 🔶 DIFF | see diffs.txt |
+| multiple-update-keys | ts | ✅ PASS |  |
 | portable | dart | 🔶 DIFF | see diffs.txt |
 | portable | java | 🔶 DIFF | see diffs.txt |
 | portable | java-eecc | 🔶 DIFF | see diffs.txt |
 | portable | python | 🔶 DIFF | see diffs.txt |
 | portable | rust | 🔶 DIFF | see diffs.txt |
-| portable | ts | 🔶 DIFF | see diffs.txt |
+| portable | ts | ✅ PASS |  |
 | portable-move | dart | 🔶 DIFF | see diffs.txt |
 | portable-move | java | 🔶 DIFF | see diffs.txt |
 | portable-move | java-eecc | 🔶 DIFF | see diffs.txt |
 | portable-move | python | 🔶 DIFF | see diffs.txt |
 | portable-move | rust | 🔶 DIFF | see diffs.txt |
-| portable-move | ts | 🔶 DIFF | see diffs.txt |
+| portable-move | ts | ✅ PASS |  |
 | pre-rotation | dart | 🔶 DIFF | see diffs.txt |
 | pre-rotation | java | 🔶 DIFF | see diffs.txt |
 | pre-rotation | java-eecc | 🔶 DIFF | see diffs.txt |
 | pre-rotation | python | 🔶 DIFF | see diffs.txt |
 | pre-rotation | rust | 🔶 DIFF | see diffs.txt |
-| pre-rotation | ts | 🔶 DIFF | see diffs.txt |
+| pre-rotation | ts | ✅ PASS |  |
 | pre-rotation-consume | dart | 🔶 DIFF | see diffs.txt |
 | pre-rotation-consume | java | 🔶 DIFF | see diffs.txt |
 | pre-rotation-consume | java-eecc | 🔶 DIFF | see diffs.txt |
 | pre-rotation-consume | python | 🔶 DIFF | see diffs.txt |
 | pre-rotation-consume | rust | 🔶 DIFF | see diffs.txt |
-| pre-rotation-consume | ts | 🔶 DIFF | see diffs.txt |
+| pre-rotation-consume | ts | ✅ PASS |  |
 | services | dart | 🔶 DIFF | see diffs.txt |
 | services | java | 🔶 DIFF | see diffs.txt |
 | services | java-eecc | 🔶 DIFF | see diffs.txt |
 | services | python | 🔶 DIFF | see diffs.txt |
 | services | rust | 🔶 DIFF | see diffs.txt |
-| services | ts | 🔶 DIFF | see diffs.txt |
+| services | ts | ✅ PASS |  |
 | witness-threshold | dart | 🔶 DIFF | see diffs.txt |
 | witness-threshold | java | 🔶 DIFF | see diffs.txt |
 | witness-threshold | java-eecc | 🔶 DIFF | see diffs.txt |
 | witness-threshold | python | 🔶 DIFF | see diffs.txt |
 | witness-threshold | rust | 🔶 DIFF | see diffs.txt |
-| witness-threshold | ts | 🔶 DIFF | see diffs.txt |
+| witness-threshold | ts | ✅ PASS |  |
 | witness-update | dart | 🔶 DIFF | see diffs.txt |
 | witness-update | java | 🔶 DIFF | see diffs.txt |
 | witness-update | java-eecc | 🔶 DIFF | see diffs.txt |
 | witness-update | python | 🔶 DIFF | see diffs.txt |
 | witness-update | rust | 🔶 DIFF | see diffs.txt |
-| witness-update | ts | 🔶 DIFF | see diffs.txt |
+| witness-update | ts | ✅ PASS |  |
 
 ---
-Built from: https://github.com/decentralized-identity/thisdid @ main (28753d3)
+Built from: https://github.com/decentralized-identity/thisdid @ main (5b77421)
