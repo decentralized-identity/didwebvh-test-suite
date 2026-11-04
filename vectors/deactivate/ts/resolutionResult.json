@@ -5,6 +5,7 @@
   "didDocument": null,
   "didDocumentMetadata": {
     "versionId": "2-QmYb3D51qGSjcWUVg9P8Y5nuN9KyRQLfKc9yFLvxoWuUce",
+    "versionTime": "2000-01-02T00:00:00Z",
     "created": "2000-01-01T00:00:00Z",
     "updated": "2000-01-02T00:00:00Z",
     "deactivated": true,
@@ -17,6 +18,7 @@
     "prerotation": false,
     "witness": {},
     "watchers": [],
+    "ttl": "3600",
     "previousLogEntryHash": "QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ"
   }
 }

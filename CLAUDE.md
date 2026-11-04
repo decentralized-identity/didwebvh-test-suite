@@ -185,43 +185,21 @@ cd implementations/java-eecc && mvn compile exec:java
 cd implementations/thisdid && npm install && npm test
 ```
 
-## Maintenance: Testing Whether XFAILs Are Fixed
+## Remaining XFAIL Guards
 
-### Shortcut prompt
+Most of the old XFAIL guards (pre-flight log checks that marked known library incompatibilities as XFAIL instead of FAIL) have been removed. The ones still in the code (checked 2026-11-04):
 
-> "Test if any XFAILs are fixed for the **\<impl\>** implementation"
-
-Use `<impl>` = `ts`, `python`, `rust`, `java`, or `java-eecc`.
-
-### What this prompt means
-
-Each harness contains **guards** — pre-flight checks that skip or mark a test as XFAIL before the resolver runs. They exist because a known library bug or spec incompatibility would otherwise cause a confusing FAIL. When a library is upgraded, some guards may no longer be needed.
-
-When you give Claude this prompt it will:
-
-1. Identify all active XFAIL guards for that implementation (see locations below).
-2. Temporarily comment them out one at a time (or all at once if independent).
-3. Re-run the harness with `scripts/run <impl>` and read the updated `status.md`.
-   - The harness source (where guards live) is **mounted from the host**, so guard edits take effect immediately — no Docker rebuild needed.
-   - If a new library version is what's expected to fix the XFAIL, first run `scripts/run <impl> <branch>` to build with the new library, then re-edit the guard and run again.
-4. Report which XFAILs became PASS (guard can be permanently deleted) and which became FAIL or DIFF (library still broken — guard must stay).
-5. Apply whichever permanent changes you approve.
-
-### Where guards live per implementation
-
-| Implementation | Guard type | Location |
+| Implementation | Guard | Location |
 |---|---|---|
-| **Java** | Pre-flight functions (`logHasEmptyNextKeyHashes`, `logHasEmptyWitness`) + runtime pattern list (`isKnownTsCompatError`) | `implementations/java/src/main/java/org/didwebvh/compliance/TestVectors.java` |
-| **Java EECC** | Same pattern as Java | `implementations/java-eecc/src/main/java/org/didwebvh/compliance/TestVectors.java` |
-| **Python** | Pre-flight functions (e.g. `_log_has_empty_next_key_hashes`) called with `pytest.xfail()` | `implementations/python/test_vectors.py` |
-| **Rust** | Pre-flight pattern list checked before resolution | `implementations/rust/src/main.rs` |
-| **TS** | Pattern list in `runNegativeResolutionTest` / cross-resolution loop | `implementations/ts/src/generator.ts` |
+| **Java** | `isKnownTsCompatError`: resolver errors mentioning `nextKeyHashes`, pre-rotation or "updateKeys are not null" become XFAIL. The witness reflection workaround (`resolveWithWitness`) also reports XFAIL if it can't reach `LogProcessor.process()`. `logHasEmptyNextKeyHashes` and `logHasEmptyWitness` are still defined but nothing calls them. | `implementations/java/src/main/java/org/didwebvh/compliance/TestVectors.java` |
+| **Java EECC** | A `did-witness.json` that fails to parse becomes XFAIL. | `implementations/java-eecc/src/main/java/org/didwebvh/compliance/TestVectors.java` |
+| **Dart** | `_isKnownTsCompatError`, same idea as Java's. | `implementations/dart/bin/test_vectors.dart` |
+| **Python** | `_log_has_empty_next_key_hashes` calls `pytest.xfail()` in `test_generate.py` (Python-vs-TS generation check; it doesn't appear in `status.md`). It checks log content, so it keeps firing until the TS log stops writing `nextKeyHashes: []`, even if the Python library is fixed. `test_vectors.py` has no guards. | `implementations/python/test_generate.py` |
+| **TS, Rust, thisdid** | None. Rust still has an `XFail` outcome type, but nothing produces it. | — |
 
-### Important nuance for Python
+To check whether a guard is still needed, comment it out, rerun `scripts/run <impl>`, and see whether the affected rows become PASS (delete the guard) or FAIL/DIFF (keep it). Harness source is mounted from the host, so guard edits take effect without a Docker rebuild.
 
-Python's `pytest.xfail()` is **unconditional** — it checks log content, not resolver behaviour. Even after a Python library fix, the guard will still fire if the TS log still contains the offending content (e.g. `nextKeyHashes: []`). The correct action when a Python fix lands is to **delete the guard entirely** rather than just commenting it out, then rerun to confirm PASS.
-
-### Upgrading the library first
+## Upgrading an Implementation's Library
 
 **With Docker (preferred):** just pass the branch to `scripts/run` — the image always clones fresh from the specified branch, so there is nothing to manually update:
 
@@ -229,7 +207,7 @@ Python's `pytest.xfail()` is **unconditional** — it checks log content, not re
 scripts/run python https://github.com/decentralized-identity/didwebvh-py:my-fix-branch
 ```
 
-**Without Docker:** update the library version in the implementation's build file and config.yaml, then recompile/rebuild before running the XFAIL test:
+**Without Docker:** update the library version in the implementation's build file and config.yaml, then recompile/rebuild before rerunning:
 
 | Implementation | Build file | Key field |
 |---|---|---|
@@ -482,6 +460,14 @@ The negative generator (`implementations/ts/src/negative-generator.ts`) already 
 ### Cross-Language Error Vectors
 
 `implementations/python/test-suite/` contains hand-authored invalid logs (`invalid-json`, `invalid-method`, `invalid-scid`, `missing-proof`, `missing-witness`) and a `resolver-suite.json` test manifest. These are currently consumed only by the Python harness (`test_resolver_suite.py`). The `vectors/negative-*/` approach supersedes this for new work — the old suite is not a priority to migrate.
+
+### Negative Vector SCID Follow-ups (from PR #24 review)
+
+PR #24 replaced the invalid placeholder SCID `Qm0000…` (48 characters, and `0` is not a valid base58btc character) in the five URL-only negative vectors with the valid 46-character SCID from `basic-create/ts/did.jsonl`. That way a resolver can't PASS just by rejecting the SCID. Follow-up items:
+
+1. **Fix the contradictory docs in `vectors/NEGATIVE_VECTORS.md`.** The `resolve-did` op example still uses `did:webvh:Qm0000...0000:...`, and the text after it still says the placeholder SCID is something the resolver should reject before fetching. Both contradict the new rule that the SCID must be valid. Update the example to the valid SCID and remove that sentence.
+2. **Add a positive-control vector.** Add a `resolve-did` step that uses the same SCID with a normal host such as `example.com`, expecting the resolver to accept the DID and attempt a fetch (e.g. via `expectFetchUrl`). This proves each resolver accepts the SCID, so a PASS on the negatives means the bad host or path was what got rejected. Alternatively, have the harnesses check the rejection reason.
+3. **Treat new FAILs on these rows as real findings.** After the vectors are rerun with the valid SCID, a new FAIL on the URL-only negatives (`negative-pct-encoded-ip-host`, `negative-pct-encoded-traversal`, `negative-path-traversal-did`, `negative-fragment-leaks-into-domain`, `negative-lowercase-pct-port-ip`) most likely means a missing IP or traversal check that the old SCID was hiding, not a regression from PR #24.
 
 ## Generator Design Notes
 

@@ -11,11 +11,11 @@
     "controller": "did:webvh:QmfG1Dx5wj8zxVVkdTcD81teRgV5DLuQcUvzizd75x8Zxd:example.com",
     "verificationMethod": [
       {
-        "type": "Multikey",
-        "publicKeyMultibase": "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG",
-        "purpose": "authentication",
         "id": "did:webvh:QmfG1Dx5wj8zxVVkdTcD81teRgV5DLuQcUvzizd75x8Zxd:example.com#P5RDjVJG",
-        "controller": "did:webvh:QmfG1Dx5wj8zxVVkdTcD81teRgV5DLuQcUvzizd75x8Zxd:example.com"
+        "type": "Multikey",
+        "controller": "did:webvh:QmfG1Dx5wj8zxVVkdTcD81teRgV5DLuQcUvzizd75x8Zxd:example.com",
+        "publicKeyMultibase": "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG",
+        "purpose": "authentication"
       }
     ],
     "authentication": [
@@ -37,6 +37,7 @@
   },
   "didDocumentMetadata": {
     "versionId": "1-Qma8aFfhnzn7sTcBGJHNVeqDQ3vmLmWutSKFTPdvSZxgkV",
+    "versionTime": "2000-01-01T00:00:00Z",
     "created": "2000-01-01T00:00:00Z",
     "updated": "2000-01-01T00:00:00Z",
     "deactivated": false,
@@ -49,6 +50,7 @@
     "prerotation": false,
     "witness": {},
     "watchers": [],
+    "ttl": "3600",
     "previousLogEntryHash": "QmfG1Dx5wj8zxVVkdTcD81teRgV5DLuQcUvzizd75x8Zxd"
   }
 }

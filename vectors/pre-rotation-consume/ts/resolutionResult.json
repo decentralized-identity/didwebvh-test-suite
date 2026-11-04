@@ -11,15 +11,15 @@
     "controller": "did:webvh:QmVo7guGd8Fq4vGmCTcAuZWBFw8ipW8HNoJ8g7XFKmP4bS:example.com",
     "verificationMethod": [
       {
+        "id": "did:webvh:QmVo7guGd8Fq4vGmCTcAuZWBFw8ipW8HNoJ8g7XFKmP4bS:example.com#P5RDjVJG",
         "type": "Multikey",
-        "publicKeyMultibase": "z6MkvqoYXQfDDJRv8L4wKzxYeuKyVZBfi9Qo6Ro8MiLH3kDQ",
-        "purpose": "authentication",
-        "id": "did:webvh:QmVo7guGd8Fq4vGmCTcAuZWBFw8ipW8HNoJ8g7XFKmP4bS:example.com#MiLH3kDQ",
-        "controller": "did:webvh:QmVo7guGd8Fq4vGmCTcAuZWBFw8ipW8HNoJ8g7XFKmP4bS:example.com"
+        "controller": "did:webvh:QmVo7guGd8Fq4vGmCTcAuZWBFw8ipW8HNoJ8g7XFKmP4bS:example.com",
+        "publicKeyMultibase": "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG",
+        "purpose": "authentication"
       }
     ],
     "authentication": [
-      "did:webvh:QmVo7guGd8Fq4vGmCTcAuZWBFw8ipW8HNoJ8g7XFKmP4bS:example.com#MiLH3kDQ"
+      "did:webvh:QmVo7guGd8Fq4vGmCTcAuZWBFw8ipW8HNoJ8g7XFKmP4bS:example.com#P5RDjVJG"
     ],
     "service": [
       {
@@ -36,7 +36,8 @@
     ]
   },
   "didDocumentMetadata": {
-    "versionId": "3-QmRcxKKNcQhYiktCShZWJkYbFikVfTkcSmtZSQwhaUhtYK",
+    "versionId": "3-Qmf3rR5S6zHiCAnHcvGxeRx9P1GqjdJMf5wD4Q3T6pzQ4F",
+    "versionTime": "2000-01-03T00:00:00Z",
     "created": "2000-01-01T00:00:00Z",
     "updated": "2000-01-03T00:00:00Z",
     "deactivated": false,
@@ -51,6 +52,7 @@
     "prerotation": true,
     "witness": {},
     "watchers": [],
+    "ttl": "3600",
     "previousLogEntryHash": "QmVo7guGd8Fq4vGmCTcAuZWBFw8ipW8HNoJ8g7XFKmP4bS"
   }
 }

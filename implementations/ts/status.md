@@ -9,6 +9,7 @@ Implementation: didwebvh-ts 3.0.0
 | basic-create | ✅ PASS |  |
 | basic-update | ✅ PASS |  |
 | deactivate | ✅ PASS |  |
+| idn-alabel-create | ✅ PASS |  |
 | key-rotation | ✅ PASS |  |
 | multi-update | ✅ PASS |  |
 | multiple-update-keys | ✅ PASS |  |
@@ -26,6 +27,7 @@ Implementation: didwebvh-ts 3.0.0
 |---|---|---|---|
 | negative-cross-did-witness-replay | invalidDid | ✅ PASS |  |
 | negative-did-key-body-fragment-mismatch | invalidProof | ✅ PASS |  |
+| negative-dns-label-too-long | invalidDid | ✅ PASS |  |
 | negative-duplicate-witness-ids | invalidParameters | ✅ PASS |  |
 | negative-fragment-leaks-into-domain | invalidDid | ✅ PASS |  |
 | negative-lowercase-pct-port-ip | invalidDid | ✅ PASS |  |
@@ -34,6 +36,7 @@ Implementation: didwebvh-ts 3.0.0
 | negative-pct-encoded-traversal | invalidDid | ✅ PASS |  |
 | negative-portable-scid-swap | invalidDid | ✅ PASS |  |
 | negative-pre-rotation-omit-updatekeys | invalidParameters | ✅ PASS |  |
+| negative-raw-unicode-domain | invalidDid | ✅ PASS |  |
 | negative-scid-mismatch-genesis | invalidDid | ✅ PASS |  |
 | negative-unknown-method-version | invalidDid | ✅ PASS |  |
 | negative-versiontime-future | invalidDid | ✅ PASS |  |
@@ -41,6 +44,28 @@ Implementation: didwebvh-ts 3.0.0
 | negative-witness-update-threshold-not-met | invalidDid | ✅ PASS |  |
 | negative-wrong-cryptosuite | invalidProof | ✅ PASS |  |
 | negative-zero-witness-threshold | invalidParameters | ✅ PASS |  |
+
+## DID-to-HTTPS Transformation
+
+| Test Case | Step | Result | Notes |
+|---|---|---|---|
+| idn-did-to-https | 1 | ✅ PASS |  |
+| idn-did-to-https | 2 | ✅ PASS |  |
+| idn-did-to-https | 3 | ✅ PASS |  |
+| ldh-label-edge-cases | 1 | ✅ PASS |  |
+| ldh-label-edge-cases | 2 | ✅ PASS |  |
+
+## Interoperability Probes (non-conformance)
+
+| Test Case | Step | Result | Notes |
+|---|---|---|---|
+| idn-pct-ulabel-probe | 1 | ✅ PASS |  |
+| idn-pct-ulabel-probe | 2 | ✅ PASS |  |
+| idn-pct-ulabel-probe | 3 | ✅ PASS |  |
+| idn-pct-ulabel-probe | 4 | ✅ PASS |  |
+| path-pct-unreserved-probe | 1 | ✅ PASS |  |
+| path-pct-unreserved-probe | 2 | ✅ PASS |  |
+| path-pct-unreserved-probe | 3 | ✅ PASS |  |
 
 ## Cross-Resolution
 
@@ -64,6 +89,12 @@ Implementation: didwebvh-ts 3.0.0
 | deactivate | python | 🔶 DIFF | see diffs.txt |
 | deactivate | rust | 🔶 DIFF | see diffs.txt |
 | deactivate | ts (self) | ✅ PASS |  |
+| idn-alabel-create | dart | 🔶 DIFF | see diffs.txt |
+| idn-alabel-create | java | 🔶 DIFF | see diffs.txt |
+| idn-alabel-create | java-eecc | 🔶 DIFF | see diffs.txt |
+| idn-alabel-create | python | 🔶 DIFF | see diffs.txt |
+| idn-alabel-create | rust | 🔶 DIFF | see diffs.txt |
+| idn-alabel-create | ts (self) | ✅ PASS |  |
 | key-rotation | dart | 🔶 DIFF | see diffs.txt |
 | key-rotation | java | 🔶 DIFF | see diffs.txt |
 | key-rotation | java-eecc | 🔶 DIFF | see diffs.txt |
@@ -126,4 +157,4 @@ Implementation: didwebvh-ts 3.0.0
 | witness-update | ts (self) | ✅ PASS |  |
 
 ---
-Built from: https://github.com/decentralized-identity/didwebvh-ts @ main (14e02b0)
+Built from: https://github.com/decentralized-identity/didwebvh-ts @ main (ee114a0)

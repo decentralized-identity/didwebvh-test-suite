@@ -1,0 +1,39 @@
+{
+  "didDocument" : {
+    "@context" : [ "https://www.w3.org/ns/did/v1", "https://w3id.org/security/multikey/v1" ],
+    "id" : "did:webvh:QmdWtbPKdSadwwrWDGVoqw6n893tAxHJYbaN5QPvdVqhVN:xn--jp-cd2fp15c.xn--fsq.jp",
+    "controller" : "did:webvh:QmdWtbPKdSadwwrWDGVoqw6n893tAxHJYbaN5QPvdVqhVN:xn--jp-cd2fp15c.xn--fsq.jp",
+    "assertionMethod" : [ ],
+    "keyAgreement" : [ ],
+    "capabilityDelegation" : [ ],
+    "capabilityInvocation" : [ ],
+    "verificationMethod" : [ {
+      "id" : "did:webvh:QmdWtbPKdSadwwrWDGVoqw6n893tAxHJYbaN5QPvdVqhVN:xn--jp-cd2fp15c.xn--fsq.jp#P5RDjVJG",
+      "type" : "Multikey",
+      "controller" : "did:webvh:QmdWtbPKdSadwwrWDGVoqw6n893tAxHJYbaN5QPvdVqhVN:xn--jp-cd2fp15c.xn--fsq.jp",
+      "publicKeyMultibase" : "z6MkjchhfUsD6mmvni8mCdXHw216Xrm9bQe2mBH1P5RDjVJG"
+    } ],
+    "authentication" : [ "did:webvh:QmdWtbPKdSadwwrWDGVoqw6n893tAxHJYbaN5QPvdVqhVN:xn--jp-cd2fp15c.xn--fsq.jp#P5RDjVJG" ],
+    "service" : [ {
+      "id" : "#files",
+      "type" : "relativeRef",
+      "serviceEndpoint" : "https://xn--jp-cd2fp15c.xn--fsq.jp/"
+    }, {
+      "@context" : "https://identity.foundation/linked-vp/contexts/v1",
+      "id" : "#whois",
+      "type" : "LinkedVerifiablePresentation",
+      "serviceEndpoint" : "https://xn--jp-cd2fp15c.xn--fsq.jp/whois.vp"
+    } ]
+  },
+  "didDocumentMetadata" : {
+    "created" : "2026-11-04T20:48:10Z",
+    "updated" : "2026-11-04T20:48:10Z",
+    "versionId" : "1-QmPcWMxwtmCGQ421kct8JRbcHYL6Lx45s5hgQsfV5T2jSm",
+    "versionNumber" : 1,
+    "versionTime" : "2026-11-04T20:48:10Z",
+    "scid" : "QmdWtbPKdSadwwrWDGVoqw6n893tAxHJYbaN5QPvdVqhVN"
+  },
+  "didResolutionMetadata" : {
+    "contentType" : "application/did+ld+json"
+  }
+}
