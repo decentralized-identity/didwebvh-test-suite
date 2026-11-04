@@ -7,5 +7,5 @@ steps:
   # makes percent-encoding case-insensitive. Lowercase %3a stays glued to
   # the host, which then no longer parses as an IpAddr in a lazy check.
   - op: resolve-did
-    did: "did:webvh:Qm0000000000000000000000000000000000000000000000:127.0.0.1%3a8080"
+    did: "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:127.0.0.1%3a8080"
     expectError: invalidDid

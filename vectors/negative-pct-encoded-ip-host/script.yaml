@@ -4,16 +4,16 @@ negative: true
 
 steps:
   - op: resolve-did
-    did: "did:webvh:Qm0000000000000000000000000000000000000000000000:127%2E0%2E0%2E1"
+    did: "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:127%2E0%2E0%2E1"
     expectError: invalidDid
 
   # Lowercase percent-encoding form must be rejected too (RFC 3986 §2.1
   # mandates case-insensitive percent-encoding).
   - op: resolve-did
-    did: "did:webvh:Qm0000000000000000000000000000000000000000000000:127%2e0%2e0%2e1"
+    did: "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:127%2e0%2e0%2e1"
     expectError: invalidDid
 
   # Cloud metadata endpoint via the same trick.
   - op: resolve-did
-    did: "did:webvh:Qm0000000000000000000000000000000000000000000000:169%2E254%2E169%2E254"
+    did: "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:169%2E254%2E169%2E254"
     expectError: invalidDid

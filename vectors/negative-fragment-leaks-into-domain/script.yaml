@@ -7,5 +7,5 @@ steps:
   # when no query is present. The vulnerable code path then sees
   # domain="127.0.0.1#x", which is not an IpAddr and slips past IP-rejection.
   - op: resolve-did
-    did: "did:webvh:Qm0000000000000000000000000000000000000000000000:127.0.0.1#x"
+    did: "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:127.0.0.1#x"
     expectError: invalidDid

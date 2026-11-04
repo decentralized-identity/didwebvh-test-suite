@@ -4,13 +4,13 @@ negative: true
 
 steps:
   - op: resolve-did
-    did: "did:webvh:Qm0000000000000000000000000000000000000000000000:example.com:%2E%2E:admin"
+    did: "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:example.com:%2E%2E:admin"
     expectError: invalidDid
 
   - op: resolve-did
-    did: "did:webvh:Qm0000000000000000000000000000000000000000000000:example.com:%2e%2e:admin"
+    did: "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:example.com:%2e%2e:admin"
     expectError: invalidDid
 
   - op: resolve-did
-    did: "did:webvh:Qm0000000000000000000000000000000000000000000000:example.com:a%2Fb"
+    did: "did:webvh:QmUy89VrfryQ254CeHZzQfmcKqByPoKNGqYykP3SeXuegQ:example.com:a%2Fb"
     expectError: invalidDid
