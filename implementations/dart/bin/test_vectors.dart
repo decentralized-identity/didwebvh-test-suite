@@ -17,6 +17,7 @@ import 'package:yaml/yaml.dart';
 
 import 'package:didwebvh/didwebvh.dart';
 import 'package:didwebvh/src/resolve/log_processor.dart';
+import 'package:didwebvh/src/url/did_to_https_transformer.dart';
 
 const _implName = 'dart';
 final _versionFileRe = RegExp(r'^resolutionResult\.(\d+)\.json$');
@@ -46,7 +47,48 @@ void main() async {
   var pass = 0, fail = 0, diff = 0, xfail = 0;
   final allRows = <List<String>>[];   // [scenario, logSource, result, notes]
   final negRows = <List<String>>[];   // [scenario, expectedError, result, notes]
+  final urlRows = <List<String>>[];
+  final probeRows = <List<String>>[];
   final allDiffs = StringBuffer();
+
+  // DidResolver hands this transformer's output to HttpDidFetcher.
+  for (final scenarioDir in scenarios) {
+    final scenarioName = p.basename(scenarioDir.path);
+    final scriptFile = File(p.join(scenarioDir.path, 'script.yaml'));
+    if (!scriptFile.existsSync()) continue;
+    final script = loadYaml(scriptFile.readAsStringSync()) as YamlMap;
+    final steps = script['steps'] as YamlList?;
+    if (steps == null) continue;
+    for (var index = 0; index < steps.length; index++) {
+      final step = steps[index] as YamlMap;
+      if (step['op'] != 'resolve-did' || step['expectFetchUrl'] is! String) continue;
+      final expected = step['expectFetchUrl'] as String;
+      final probe = script['probe'] == true || step['probe'] == true;
+      String result;
+      var notes = '';
+      try {
+        final actual = DidToHttpsTransformer.toHttpsUrl(step['did'] as String);
+        result = expected == actual ? '✅ PASS' : '🔶 DIFF';
+        if (expected != actual) notes = 'actual: $actual';
+      } catch (e) {
+        result = probe ? '🔶 DIFF' : '❌ FAIL';
+        notes = 'rejected before fetch: $e';
+      }
+      final row = <String>[
+        '$scenarioName/step ${index + 1}',
+        expected,
+        result,
+        notes,
+      ];
+      (probe ? probeRows : urlRows).add(row);
+      if (notes.isNotEmpty) {
+        allDiffs.write('=== ${row[0]}${probe ? ' (probe)' : ''} ===\n'
+            'expected: $expected\n$notes\n\n');
+      }
+      if (!probe && result == '❌ FAIL') fail++;
+      if (!probe && result == '🔶 DIFF') diff++;
+    }
+  }
 
   // ── Negative resolution tests (ts/ artifacts only) ──────────────────────
   for (final scenarioDir in scenarios) {
@@ -75,40 +117,31 @@ void main() async {
     final rawJsonl = jsonlFile.readAsStringSync().trim();
 
     if (rawJsonl.isEmpty) {
-      // URL-only test: parse each DID URL from script.yaml.
-      // PASS = all DIDs are rejected by the parser; FAIL = any DID is accepted.
+      // URL-only test: exercise the converter the network resolver uses.
       final scriptPath = File(p.join(scenarioDir.path, 'script.yaml'));
       try {
         final script = loadYaml(scriptPath.readAsStringSync()) as YamlMap;
         final stepsRaw = script['steps'];
         final steps = stepsRaw is YamlList ? stepsRaw : const <dynamic>[];
-        final dids = <String>[];
-        for (final step in steps) {
-          final s = step as YamlMap;
-          if (s['op'] == 'resolve-did' && s['did'] is String) {
-            dids.add(s['did'] as String);
+        var checked = 0;
+        for (var index = 0; index < steps.length; index++) {
+          final step = steps[index] as YamlMap;
+          if (step['op'] != 'resolve-did' || step['did'] is! String) continue;
+          checked++;
+          final label = '$scenarioName/step ${index + 1}';
+          final error = step['expectError']?.toString() ?? expectedError;
+          try {
+            final url = DidToHttpsTransformer.toHttpsUrl(step['did'] as String);
+            fail++;
+            negRows.add([label, error, '❌ FAIL',
+                'resolver would fetch invalid DID at: $url']);
+          } catch (e) {
+            pass++;
+            negRows.add([label, error, '✅ PASS', '']);
           }
         }
-        if (dids.isEmpty) {
+        if (checked == 0) {
           negRows.add([scenarioName, expectedError, '⚠️ SKIP', 'no resolve-did ops in script']);
-        } else {
-          String? failReason;
-          for (final did in dids) {
-            try {
-              DidWebVhUrl.parse(did);
-              failReason = 'URL parser accepted invalid DID: $did';
-              break;
-            } catch (_) {
-              // Correctly rejected.
-            }
-          }
-          if (failReason == null) {
-            pass++;
-            negRows.add([scenarioName, expectedError, '✅ PASS', '']);
-          } else {
-            fail++;
-            negRows.add([scenarioName, expectedError, '❌ FAIL', failReason]);
-          }
         }
       } catch (e) {
         negRows.add([scenarioName, expectedError, '⚠️ SKIP',
@@ -145,10 +178,14 @@ void main() async {
 
   // ── Cross-resolution ─────────────────────────────────────────────────────
   for (final scenarioDir in scenarios) {
-    if (!File(p.join(scenarioDir.path, 'script.yaml')).existsSync()) continue;
+    final scriptFile = File(p.join(scenarioDir.path, 'script.yaml'));
+    if (!scriptFile.existsSync()) continue;
 
     final scenarioName = p.basename(scenarioDir.path);
     if (scenarioName.startsWith('negative-')) continue;
+    final script = loadYaml(scriptFile.readAsStringSync()) as YamlMap;
+    final steps = script['steps'] as YamlList?;
+    if (steps == null || !steps.any((step) => step is YamlMap && step['op'] == 'create')) continue;
 
     // Delete old per-scenario status.md if present (legacy artefact).
     final perScenarioStatus =
@@ -246,7 +283,7 @@ void main() async {
     }
   }
 
-  _writeCombinedOutput(implRoot, negRows, allRows, allDiffs.toString());
+  _writeCombinedOutput(implRoot, negRows, urlRows, probeRows, allRows, allDiffs.toString());
 
   print('\n$pass passed, $diff diff, $fail failed, $xfail xfailed');
   exit((fail > 0 || diff > 0) ? 1 : 0);
@@ -259,6 +296,8 @@ void main() async {
 void _writeCombinedOutput(
   Directory implRoot,
   List<List<String>> negRows,
+  List<List<String>> urlRows,
+  List<List<String>> probeRows,
   List<List<String>> allRows,
   String diffsContent,
 ) {
@@ -299,6 +338,19 @@ void _writeCombinedOutput(
     for (final row in negRows) {
       content.write(
           '| ${row[0]} | ${row[1]} | ${row[2]} | ${row[3]} |\n');
+    }
+    content.write('\n');
+  }
+
+  for (final section in [
+    ('DID-to-HTTPS Transformation', urlRows),
+    ('Interoperability Probes (non-conformance)', probeRows),
+  ]) {
+    if (section.$2.isEmpty) continue;
+    content.write('## ${section.$1}\n\n');
+    content.write('| Test Case | Expected URL | Result | Notes |\n|---|---|---|---|\n');
+    for (final row in section.$2) {
+      content.write('| ${row[0]} | ${row[1]} | ${row[2]} | ${row[3]} |\n');
     }
     content.write('\n');
   }

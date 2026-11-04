@@ -4,9 +4,9 @@ This file documents the `negative-*` scenarios in this directory. Unlike the
 happy-path vectors, these scenarios describe **logs and DID URLs that a
 conforming resolver MUST reject**.
 
-Every negative vector here is derived from a real cross-implementation
-security bug found in an audit of the Rust, Python, TypeScript, and Java
-implementations. Each vector folder contains:
+Most negative vectors here come from a cross-implementation security audit of
+the Rust, Python, TypeScript, and Java implementations. IDN review vectors
+exercise domain-syntax requirements. Each vector folder contains:
 
 - `script.yaml` — DSL script with `negative: true` at top level
 - `README.md` — attack pattern, audit bug ID, per-implementation status,
@@ -32,12 +32,15 @@ implementations. Each vector folder contains:
 | [`negative-versiontime-future`](./negative-versiontime-future/) | P1 / J8 | Python, TS, Java (partial) |
 | [`negative-unknown-method-version`](./negative-unknown-method-version/) | R6 | Rust, Python, TS, Java (all four) |
 | [`negative-cross-did-witness-replay`](./negative-cross-did-witness-replay/) | #11 | Rust, TS, Java |
+| [`negative-raw-unicode-domain`](./negative-raw-unicode-domain/) | IDN review | Rust, TS |
+| [`negative-dns-label-too-long`](./negative-dns-label-too-long/) | IDN review | Rust, Python, TS |
 
 Bug IDs `#1` – `#15` come from the original 15-patch Rust audit. Prefixes
 indicate the audit each ID was originated in: `R` = Rust additional,
 `P` = Python, `T` = TypeScript, `J` = Java. The full audit matrix is
 external to this repo (see the security advisory that ships these
-vectors).
+vectors). "IDN review" indicates interoperability analysis rather than a
+security audit bug ID.
 
 ## Required DSL extensions
 

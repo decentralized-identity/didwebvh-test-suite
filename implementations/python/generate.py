@@ -24,6 +24,13 @@ IMPL_NAME = "python"
 
 
 
+def _is_generation_script(script: dict) -> bool:
+    """Negative and URL-only (resolve-did) scripts have no log to generate."""
+    if script.get("negative", False):
+        return False
+    return any(step.get("op") == "create" for step in script.get("steps") or [])
+
+
 def _process_scenario(scenario_name: str) -> tuple[bool, str]:
     scenario_dir = VECTORS_ROOT / scenario_name
     script_path = scenario_dir / "script.yaml"
@@ -79,7 +86,7 @@ def main():
         scenario_names = sorted(
             d.name for d in VECTORS_ROOT.iterdir()
             if d.is_dir() and (d / "script.yaml").exists()
-            and not yaml.safe_load((d / "script.yaml").read_text()).get("negative", False)
+            and _is_generation_script(yaml.safe_load((d / "script.yaml").read_text()) or {})
         )
 
     gen_rows = []

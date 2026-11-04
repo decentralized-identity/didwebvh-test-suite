@@ -273,6 +273,11 @@ async fn main() {
                     println!("generate {name} ... SKIP (negative test)");
                     continue;
                 }
+                if !s.steps.iter().any(|step| step.op == "create") {
+                    skipped += 1;
+                    println!("generate {name} ... SKIP (URL-only scenario)");
+                    continue;
+                }
             }
         }
 

@@ -19,7 +19,9 @@ import json
 import pytest
 from pathlib import Path
 
+import aiohttp
 import jcs
+import yaml
 
 from did_webvh.resolver import resolve_did
 
@@ -49,10 +51,17 @@ def _collect_cases() -> list[tuple[str, str, str]]:
 
 
 def _collect_negative_cases() -> list[tuple[str, str]]:
-    """Return (scenario_name, expected_error) for all negative test vectors with a ts/ log."""
+    """Return (scenario_name, expected_error) for all negative test vectors with a ts/ log.
+
+    URL-only scenarios whose resolve-did steps are checked by
+    test_resolve_did_step are excluded so they are not reported twice.
+    """
+    url_scenarios = {scenario for scenario, _ in _collect_resolve_did_steps()}
     cases = []
     for vdir in sorted(VECTORS_ROOT.iterdir()):
         if not vdir.is_dir() or not vdir.name.startswith("negative-"):
+            continue
+        if vdir.name in url_scenarios:
             continue
         ts_dir = vdir / "ts"
         jsonl = ts_dir / "did.jsonl"
@@ -63,6 +72,47 @@ def _collect_negative_cases() -> list[tuple[str, str]]:
             "didResolutionMetadata", {}
         ).get("error", "?")
         cases.append((vdir.name, expected_error))
+    return cases
+
+
+def _load_script(vdir: Path) -> dict | None:
+    script_path = vdir / "script.yaml"
+    if not script_path.exists():
+        return None
+    return yaml.safe_load(script_path.read_text()) or {}
+
+
+def _has_ts_log(vdir: Path) -> bool:
+    log = vdir / "ts" / "did.jsonl"
+    return log.exists() and bool(log.read_text().strip())
+
+
+def _is_resolve_did_assertion(step: dict, has_log: bool) -> bool:
+    """True for resolve-did steps checked by test_resolve_did_step.
+
+    expectError steps in scenarios with a non-empty ts/ log are exercised by
+    test_negative_resolution against that log instead.
+    """
+    if not isinstance(step, dict) or step.get("op") != "resolve-did":
+        return False
+    if "expectFetchUrl" in step:
+        return True
+    return "expectError" in step and not has_log
+
+
+def _collect_resolve_did_steps() -> list[tuple[str, int]]:
+    """Return (scenario_name, 1-based step number) for resolve-did assertions."""
+    cases = []
+    for vdir in sorted(VECTORS_ROOT.iterdir()):
+        if not vdir.is_dir():
+            continue
+        script = _load_script(vdir)
+        if not script:
+            continue
+        has_log = _has_ts_log(vdir)
+        for index, step in enumerate(script.get("steps") or []):
+            if _is_resolve_did_assertion(step, has_log):
+                cases.append((vdir.name, index + 1))
     return cases
 
 
@@ -149,3 +199,130 @@ def test_negative_resolution(scenario: str, expected_error: str, _status_data: d
         _status_data["neg_outcome"] = "pass"
         _status_data["neg_scenario"] = scenario
         _status_data["neg_expected_error"] = expected_error
+
+
+# ---------------------------------------------------------------------------
+# resolve-did script steps (DID-to-HTTPS URL assertions and probes)
+# ---------------------------------------------------------------------------
+
+class _FetchIntercepted(Exception):
+    """Raised in place of the HTTP request so no network access occurs."""
+
+
+async def _resolve_capturing_fetch(did: str) -> tuple[str | None, str | None, str | None]:
+    """Resolve ``did`` with aiohttp requests intercepted.
+
+    Returns (fetched_url, error_code, exception). The URL is the argument exactly as the
+    library passed it to ``aiohttp.ClientSession.get``, before aiohttp converts
+    it to a ``yarl.URL`` (which would re-encode / IDNA-normalise the host).
+    """
+    fetched: list[str] = []
+
+    def _get(self, url, *args, **kwargs):
+        fetched.append(str(url))
+        raise _FetchIntercepted(str(url))
+
+    async def _request(self, method, str_or_url, *args, **kwargs):
+        # Backstop for any request path that bypasses ClientSession.get.
+        if not fetched:
+            fetched.append(str(str_or_url))
+        raise _FetchIntercepted(str(str_or_url))
+
+    mp = pytest.MonkeyPatch()
+    mp.setattr(aiohttp.ClientSession, "get", _get)
+    mp.setattr(aiohttp.ClientSession, "_request", _request)
+    error: str | None = None
+    exception: str | None = None
+    try:
+        result = await resolve_did(did)
+        metadata = result.serialize().get("didResolutionMetadata") or {}
+        error = metadata.get("error")
+    except _FetchIntercepted:
+        pass
+    except Exception as exc:
+        exception = f"{type(exc).__name__}: {exc}"
+    finally:
+        mp.undo()
+    return (fetched[0] if fetched else None), error, exception
+
+
+def _evaluate_resolve_did_step(step: dict) -> tuple[str, str, str, str | None]:
+    """Return (outcome, expected, notes, diff) for a resolve-did step.
+
+    outcome is one of "pass", "diff", "fail", "skip".
+    """
+    did = step.get("did")
+    expected_url = step.get("expectFetchUrl")
+    expected_error = step.get("expectError")
+    expected = str(expected_url if expected_url is not None else expected_error)
+    if not isinstance(did, str):
+        return "fail", expected, "resolve-did step has no did", None
+    if expected_url is not None and expected_error is not None:
+        return "fail", expected, "step specifies both expectFetchUrl and expectError", None
+    if not isinstance(expected_url or expected_error, str):
+        return "fail", expected, "expected URL or error must be a string", None
+
+    fetched_url, error, exception = asyncio.run(_resolve_capturing_fetch(did))
+    rejection = error or exception or "no error reported"
+
+    if expected_url is not None:
+        if fetched_url == expected_url:
+            return "pass", expected, f"fetch URL: {fetched_url}", None
+        if fetched_url is not None:
+            return ("diff", expected, f"expected {expected_url}; got {fetched_url}",
+                    f"expected: {expected_url}\nactual:   {fetched_url}")
+        return ("fail", expected, f"rejected before fetch: {rejection}",
+                f"expected: {expected_url}\nactual:   (no fetch; {rejection})")
+
+    # expectError
+    if fetched_url is not None:
+        if expected_error != "invalidDid":
+            return ("skip", expected,
+                    f"{expected_error} requires resolution beyond URL construction", None)
+        return ("fail", expected, f"resolver fetched URL: {fetched_url}",
+                f"expected: error {expected_error}\nactual:   fetched {fetched_url}")
+    if error == expected_error:
+        return "pass", expected, "rejected before fetch", None
+    if error is None and exception in {
+        "ValueError: Invalid DID URL",
+        "ValueError: Invalid DID",
+        "ValueError: Invalid method-specific ID",
+        "ValueError: Invalid domain name in method-specific ID",
+        "ValueError: Invalid path in method-specific ID",
+        "ValueError: Invalid port specification",
+    } and expected_error == "invalidDid":
+        # This implementation raises these parser errors instead of returning
+        # invalidDid resolution metadata.
+        return "pass", expected, f"rejected before fetch: {exception}", None
+    return ("diff", expected, f"expected {expected_error}; got {rejection}",
+            f"expected: error {expected_error}\nactual:   {rejection}")
+
+
+@pytest.mark.parametrize("scenario,step_number", _collect_resolve_did_steps())
+def test_resolve_did_step(scenario: str, step_number: int, _status_data: dict) -> None:
+    """Check the URL a resolve-did step fetches (expectFetchUrl) or that it is
+    rejected before any fetch (expectError), without network access.
+
+    Steps in a scenario (or individual steps) marked ``probe: true`` are
+    reported separately and never fail the run.
+    """
+    script = _load_script(VECTORS_ROOT / scenario) or {}
+    step = (script.get("steps") or [])[step_number - 1]
+    probe = bool(script.get("probe")) or bool(step.get("probe"))
+
+    outcome, expected, notes, diff = _evaluate_resolve_did_step(step)
+    if probe and outcome == "fail":
+        outcome = "diff"
+    _status_data.update({
+        "url_case": f"{scenario}/resolve-did/{step_number}",
+        "url_expected": expected,
+        "url_outcome": outcome,
+        "url_notes": notes,
+        "url_diff": diff,
+        "url_probe": probe,
+    })
+
+    if outcome == "skip":
+        pytest.skip(notes)
+    if outcome in ("diff", "fail") and not probe:
+        pytest.fail(f"{outcome.upper()}: {notes}")

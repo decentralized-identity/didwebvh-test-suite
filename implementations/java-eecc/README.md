@@ -39,6 +39,8 @@ mvn compile exec:java
 
 This walks `../../vectors/` and runs every committed test vector through the resolver.  Output follows the same `PASS` / `XFAIL` / `FAIL` convention used by the other harnesses.  Exit code is `0` when all results are pass or xfail; `1` if any test fails outright.
 
+URL-only vectors call `DidUrlTransformer.toLogUrl`, the converter used by `HttpResolver` before it passes the URL to its `LogFetcher`. No network request is made. Exact URL mismatches are reported as DIFF; the percent-encoded U-label probe is reported separately and does not affect the exit code.
+
 ## Current Test Results
 
 | Scenario | Result | Notes |

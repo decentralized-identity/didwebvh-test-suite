@@ -23,11 +23,24 @@ python -m venv .venv
 
 | File | What it tests |
 |---|---|
-| `test_vectors.py` | Resolves every vector in `vectors/` against the Python resolver and compares against the committed `resolutionResult*.json` files |
+| `test_vectors.py` | Resolves every vector in `vectors/` against the Python resolver and compares against the committed `resolutionResult*.json` files; also checks `resolve-did` script steps (see below) |
 | `test_generate.py` | Re-executes each `script.yaml` using the Python library (create, update, deactivate) and verifies the generated log and resolution results match the committed artifacts |
 | `test_resolver_suite.py` | Runs the hand-authored error-case suite in `test-suite/` — invalid logs, missing proofs, etc. |
 
 The `test-suite/` directory contains hand-authored logs for negative / error scenarios (`invalid-json`, `invalid-method`, `invalid-scid`, `missing-proof`, `missing-witness`) plus a happy-path log (`short`) that covers resolution by `versionId`, `versionNumber`, and conflict cases.  These are currently Python-only — see `CLAUDE.md` Future Work for the plan to make them cross-language.
+
+## `resolve-did` script steps
+
+`test_resolve_did_step` checks `resolve-did` steps that specify `expectFetchUrl`, or `expectError` in a scenario with no (or an empty) `ts/did.jsonl`. It calls `resolve_did(did)` with `aiohttp.ClientSession.get` patched to record the URL argument exactly as the library passed it — before aiohttp converts it to a `yarl.URL` — and to abort the request, so no network access occurs.
+
+| Step | PASS | DIFF | FAIL | SKIP |
+|---|---|---|---|---|
+| `expectFetchUrl` | captured URL equals expected | a different URL was fetched | resolver rejected the DID before fetching | — |
+| `expectError` | no fetch, and the expected error was returned (an exception raised before fetching counts as `invalidDid`) | no fetch, but a different error was returned | resolver fetched a URL (`invalidDid` expected) | expected error requires resolution beyond URL construction |
+
+Malformed steps (no `did`, or both / neither expectation) are reported as FAIL. Results appear in `status.md` under **Pre-network URL assertions**; DIFF/FAIL details go to `diffs.txt`. Scenarios already covered here are omitted from **Negative Resolution**.
+
+Set `probe: true` on a scenario or step to report its results under **URL probes (non-conformance)** instead. Probe outcomes are recorded but never fail the pytest run.
 
 ## Current Test Results (`test_vectors.py`)
 

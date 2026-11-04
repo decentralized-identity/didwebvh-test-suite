@@ -86,6 +86,13 @@ public class GenerateVectors {
                 try (InputStream is = Files.newInputStream(scriptPath)) {
                     script = yaml.load(is);
                 }
+                List<?> steps = (List<?>) script.getOrDefault("steps", List.of());
+                if (steps.stream().noneMatch(step -> step instanceof Map
+                        && "create".equals(((Map<?, ?>) step).get("op")))) {
+                    System.out.println("SKIP (URL-only scenario)");
+                    skipped++;
+                    continue;
+                }
                 processScenario(scenarioDir, script);
                 System.out.println("done");
                 generated++;
