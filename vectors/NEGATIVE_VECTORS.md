@@ -39,6 +39,9 @@ rejection exercises the domain or path under test rather than the SCID.
 | [`negative-raw-unicode-domain`](./negative-raw-unicode-domain/) | IDN review | Rust, TS |
 | [`negative-dns-label-too-long`](./negative-dns-label-too-long/) | IDN review | Rust, Python, TS |
 | [`negative-undefined-parameter`](./negative-undefined-parameter/) | Spec review | TS (3.0.0); others not yet assessed |
+| [`negative-string-witness-threshold`](./negative-string-witness-threshold/) | Spec review | TS (3.0.0); others not yet assessed |
+| [`negative-malformed-string-witness-threshold`](./negative-malformed-string-witness-threshold/) | Spec review | TS (3.0.0); others not yet assessed |
+| [`negative-fractional-witness-threshold`](./negative-fractional-witness-threshold/) | Spec review | TS (3.0.0); others not yet assessed |
 
 Bug IDs `#1` – `#15` come from the original 15-patch Rust audit. Prefixes
 indicate the audit each ID was originated in: `R` = Rust additional,
