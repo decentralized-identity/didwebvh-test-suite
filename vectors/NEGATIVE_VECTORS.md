@@ -38,13 +38,15 @@ rejection exercises the domain or path under test rather than the SCID.
 | [`negative-cross-did-witness-replay`](./negative-cross-did-witness-replay/) | #11 | Rust, TS, Java |
 | [`negative-raw-unicode-domain`](./negative-raw-unicode-domain/) | IDN review | Rust, TS |
 | [`negative-dns-label-too-long`](./negative-dns-label-too-long/) | IDN review | Rust, Python, TS |
+| [`negative-undefined-parameter`](./negative-undefined-parameter/) | Spec review | TS (3.0.0); others not yet assessed |
 
 Bug IDs `#1` – `#15` come from the original 15-patch Rust audit. Prefixes
 indicate the audit each ID was originated in: `R` = Rust additional,
 `P` = Python, `T` = TypeScript, `J` = Java. The full audit matrix is
 external to this repo (see the security advisory that ships these
 vectors). "IDN review" indicates interoperability analysis rather than a
-security audit bug ID.
+security audit bug ID; "Spec review" indicates a rule taken directly from the
+specification text.
 
 ## Required DSL extensions
 
