@@ -1,0 +1,34 @@
+description: "Witness configuration whose threshold is the string \"1abc\", which parses to 1 when coerced"
+spec_ref: "https://identity.foundation/didwebvh/v1.0/#witness-lists"
+negative: true
+
+keys:
+  - id: key-0
+    type: ed25519
+    seed: "0000000000000000000000000000000000000000000000000000000000000001"
+  - id: wit-0
+    type: ed25519
+    seed: "0000000000000000000000000000000000000000000000000000000000000010"
+
+steps:
+  - op: create
+    domain: example.com
+    signer: key-0
+    timestamp: "2000-01-01T00:00:00Z"
+    params:
+      updateKeys: ["key-0"]
+      # Malformed: threshold is a string with a numeric prefix; parseInt-style
+      # coercion reads it as 1.
+      witness:
+        threshold: "1abc"
+        witnesses:
+          - id: wit-0
+
+  # A valid witness proof, so a resolver that coerces "1abc" to 1 finds the
+  # threshold met and resolves the DID. The malformed string is the only fault.
+  - op: sign-witness-proof
+    signer: wit-0
+    entry: 0
+
+  - op: resolve
+    expectError: invalidParameters
